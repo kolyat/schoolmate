@@ -1,0 +1,221 @@
+# German translations for Schoolmate.
+# Copyright (C) 2018 Kirill 'Kolyat' Kiselnikov
+# This file is distributed under the same license as the Schoolmate project.
+# Kirill 'Kolyat' Kiselnikov <kks.pub@gmail.com>, 2018.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 0.1\n"
+"Report-Msgid-Bugs-To: kks.pub@gmail.com\n"
+"POT-Creation-Date: 2018-09-11 22:03+0300\n"
+"PO-Revision-Date: 2018-09-11 23:05+0300\n"
+"Last-Translator: Kirill 'Kolyat' Kiselnikov <kks.pub@gmail.com>\n"
+"Language: de\n"
+"Language-Team: de <kks.pub@gmail.com>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.6.0\n"
+"X-Generator: Poedit 1.8.12\n"
+
+#: account/admin.py:11
+msgid "Credentials"
+msgstr "Anmeldeinformationen"
+
+#: account/admin.py:14 account/static/account/js/account.js:6
+msgid "User info"
+msgstr "Benutzerinformation"
+
+#: account/admin.py:18
+msgid "Contacts"
+msgstr "Kontakte"
+
+#: account/admin.py:21
+msgid "Miscellaneous"
+msgstr "Sonstiges"
+
+#: account/admin.py:24
+msgid "Permissions"
+msgstr "Berechtigungen"
+
+#: account/static/account/js/account.js:19
+#: account/static/account/js/login.js:17
+msgid "Username"
+msgstr "Nutzername"
+
+#: account/static/account/js/account.js:24
+msgid "First name"
+msgstr "Vorname"
+
+#: account/static/account/js/account.js:29
+msgid "Patronymic name"
+msgstr "Vatersname"
+
+#: account/static/account/js/account.js:34
+msgid "Last name"
+msgstr "Nachname"
+
+#: account/static/account/js/account.js:39
+msgid "Date of birth"
+msgstr "Geburtsdatum"
+
+#: account/static/account/js/account.js:45
+#: account/static/account/js/password_reset.js:32
+msgid "E-mail"
+msgstr "E-Mail"
+
+#: account/static/account/js/account.js:50
+msgid "Form"
+msgstr "Schulklasse"
+
+#: account/static/account/js/account.js:55
+msgid "Language"
+msgstr "Sprache"
+
+#: account/static/account/js/account.js:70
+#: account/static/account/js/account.js:104
+msgid "Change password"
+msgstr "Passwort ändern"
+
+#: account/static/account/js/account.js:83
+msgid "Current password"
+msgstr "Aktuelles Passwort"
+
+#: account/static/account/js/account.js:86
+#: account/static/account/js/account.js:93
+#: account/static/account/js/account.js:100
+#: account/static/account/js/password_reset_confirm.js:21
+#: account/static/account/js/password_reset_confirm.js:28
+msgid "Field can not be empty"
+msgstr "Feld darf nicht leer sein"
+
+#: account/static/account/js/account.js:90
+#: account/static/account/js/password_reset_confirm.js:18
+msgid "New password"
+msgstr "Neues Passwort"
+
+#: account/static/account/js/account.js:97
+#: account/static/account/js/password_reset_confirm.js:25
+msgid "Retype new password"
+msgstr "Neues Passwort erneut eingeben"
+
+#: account/static/account/js/account.js:117
+msgid "New passwords are not the same"
+msgstr "Neue Passwörter sind nicht gleich"
+
+#: account/static/account/js/account.js:151
+msgid "Failed to retrieve user info from server"
+msgstr "Fehler beim Abrufen der Benutzerinformationen vom Server"
+
+#: account/static/account/js/account.js:176
+msgid "Language changed"
+msgstr "Sprache geändert"
+
+#: account/static/account/js/account.js:185
+msgid "Language change failed"
+msgstr "Sprachänderung fehlgeschlagen"
+
+#: account/static/account/js/account.js:205
+msgid "Password changed"
+msgstr "Passwort geändert"
+
+#: account/static/account/js/account.js:213
+msgid "Password change failed"
+msgstr "Passwort ändern fehlgeschlagen"
+
+#: account/static/account/js/login.js:7
+msgid "Log in to system"
+msgstr "Einloggen in das System"
+
+#: account/static/account/js/login.js:19 account/tests/data_test_login.py:10
+msgid "Username can not be empty"
+msgstr "Benutzername darf nicht leer sein"
+
+#: account/static/account/js/login.js:22
+msgid "Password"
+msgstr "Passwort"
+
+#: account/static/account/js/login.js:25 account/tests/data_test_login.py:15
+msgid "Password can not be empty"
+msgstr "Passwort darf nicht leer sein"
+
+#: account/static/account/js/login.js:28
+msgid "Log in"
+msgstr "Einloggen"
+
+#: account/static/account/js/login.js:41
+msgid "Forgot password"
+msgstr "Vergissen ein Passwort"
+
+#: account/static/account/js/login.js:65 account/tests/test_login.py:61
+msgid "Wrong username/password"
+msgstr "Falscher Benutzername/Passwort"
+
+#: account/static/account/js/password_reset.js:21
+#: account/templates/password_reset.html:3
+msgid "Password reset"
+msgstr "Passwort zurücksetzen"
+
+#: account/static/account/js/password_reset.js:36
+msgid "Reset"
+msgstr "Zurücksetzen"
+
+#: account/static/account/js/password_reset.js:45
+msgid "E-mail can not be empty"
+msgstr "E-mail darf nicht leer sein"
+
+#: account/static/account/js/password_reset.js:49
+msgid "Must be valid e-mail address"
+msgstr "Muss gültige E-Mail-Adresse sein"
+
+#: account/static/account/js/password_reset.js:72
+msgid "Could not send password reset confirmation"
+msgstr "Konnte keine Bestätigung zum Zurücksetzen des Passworts senden"
+
+#: account/static/account/js/password_reset_complete.js:10
+#: account/templates/password_reset_complete.html:3
+msgid "Password reset complete"
+msgstr "Passwort zurücksetzen vollendet"
+
+#: account/static/account/js/password_reset_complete.js:14
+#: account/static/account/js/password_reset_sent.js:13
+msgid "Back to login page"
+msgstr "Zurück zur Anmeldeseite"
+
+#: account/static/account/js/password_reset_confirm.js:7
+msgid "Enter new password"
+msgstr "Neues Passwort eingeben"
+
+#: account/static/account/js/password_reset_confirm.js:31
+msgid "Confirm"
+msgstr "Bestätigen"
+
+#: account/static/account/js/password_reset_confirm.js:42
+msgid "Passwords are not the same"
+msgstr "Passwörter sind nicht gleich"
+
+#: account/static/account/js/password_reset_confirm.js:71
+msgid "Could not set up new password"
+msgstr "Konnte kein neues Passwort einrichten"
+
+#: account/static/account/js/password_reset_sent.js:9
+msgid "Password reset confirmation has been sent to your e-mail"
+msgstr "Die Bestätigung zum Zurücksetzen des Passworts wurde an Ihre E-Mail gesendet"
+
+#: account/templates/account.html:3 account/tests/test_login.py:20
+msgid "Profile"
+msgstr "Profil"
+
+#: account/templates/login.html:3 account/tests/test_logout.py:19
+#: account/tests/test_logout.py:31 account/tests/test_logout.py:33
+msgid "Sign in"
+msgstr "Anmelden"
+
+#: account/templates/password_reset_confirm.html:3
+msgid "Password reset confirmation"
+msgstr "Passwort zurücksetzen Bestätigung"
+
+#: account/templates/password_reset_sent.html:3
+msgid "Password reset sent"
+msgstr "Passwort zurücksetzen gesendet"

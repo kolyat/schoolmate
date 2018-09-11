@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script type="text/javascript" src="{{ url('javascript-catalog') }}"></script>
+  <link href="{{ static('webix/codebase/webix.css') }}" rel="stylesheet"
+        type="text/css" />
+  <link href="{{ static('css/base.css') }}" rel="stylesheet" type="text/css" />
+  <script src="{{ static('webix/codebase/webix.js') }}"
+          type="text/javascript" charset="utf-8"></script>
+  <link rel="icon" href="{{ static('img/favicon.png') }}" type="image/png" />
+  <title>{% block title %}{% endblock title %}</title>
+</head>
+<body>
+  {% csrf_token %}
+  {% if request.session['_language'] %}
+    {% set lang = request.session['_language'] %}
+    {% if lang == 'ru' %}
+      <script src="{{ static('webix/codebase/i18n/ru.js') }}"
+              type="text/javascript" charset="utf-8"></script>
+      <script>webix.i18n.setLocale("ru-RU");</script>
+    {% elif lang == 'de' %}
+      <script src="{{ static('webix/codebase/i18n/de.js') }}"
+              type="text/javascript" charset="utf-8"></script>
+      <script>webix.i18n.setLocale("de-DE");</script>
+    {% else %}
+      <script src="{{ static('webix/codebase/i18n/en.js') }}"
+              type="text/javascript" charset="utf-8"></script>
+      <script>webix.i18n.setLocale("en-US");</script>
+    {% endif %}
+  {% elif server_lang %}
+    {% if server_lang == 'ru' %}
+      <script src="{{ static('webix/codebase/i18n/ru.js') }}"
+              type="text/javascript" charset="utf-8"></script>
+      <script>webix.i18n.setLocale("ru-RU");</script>
+    {% elif server_lang == 'de' %}
+      <script src="{{ static('webix/codebase/i18n/de.js') }}"
+              type="text/javascript" charset="utf-8"></script>
+      <script>webix.i18n.setLocale("de-DE");</script>
+    {% else %}
+      <script src="{{ static('webix/codebase/i18n/en.js') }}"
+              type="text/javascript" charset="utf-8"></script>
+      <script>webix.i18n.setLocale("en-US");</script>
+    {% endif %}
+  {% else %}
+    <script src="{{ static('webix/codebase/i18n/en.js') }}"
+            type="text/javascript" charset="utf-8"></script>
+    <script>webix.i18n.setLocale("en-US");</script>
+  {% endif %}
+  <script src="{{ static('js/base.js') }}"
+          type="text/javascript" charset="utf-8"></script>
+  {% block login %}{% endblock login %}
+  {% block password_reset %}{% endblock password_reset %}
+  {% block password_reset_sent %}{% endblock password_reset_sent %}
+  {% block password_reset_confirm %}{% endblock password_reset_confirm %}
+  {% block password_reset_complete %}{% endblock password_reset_complete %}
+  {% block main %}{% endblock main %}
+</body>
+</html>
