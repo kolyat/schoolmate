@@ -1,0 +1,2 @@
+# schoolmate
+School management system
