@@ -17,12 +17,10 @@
 import logging
 import seleniumbase
 
-from testutils import settings
+from . import settings
 
 
-class Auth(seleniumbase.BaseCase):
-    """Class with common authentication functions"""
-
+class SchoolmateClient(seleniumbase.BaseCase):
     def login(self, user, passwd):
         """Log in to system
 

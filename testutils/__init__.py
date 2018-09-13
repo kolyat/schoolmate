@@ -1,9 +1,7 @@
 import os
 import logging
 
-from django.conf import settings as django_settings
-from schoolmate import settings as project_settings
-from testutils import settings
+from . import settings
 
 
 logging.basicConfig(
@@ -12,5 +10,3 @@ logging.basicConfig(
     **settings.LOG_OPTIONS
 )
 logging.getLogger(__name__).addHandler(logging.NullHandler())
-
-django_settings.configure(default_settings=project_settings)

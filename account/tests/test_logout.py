@@ -15,14 +15,12 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 import logging
-import seleniumbase
-from django.utils.translation import gettext as _
+from django.utils.translation import gettext_lazy as _
 
-from testutils import settings
-from . import common
+from testutils import settings, webutils
 
 
-class TestLogout(seleniumbase.BaseCase, common.Auth):
+class TestLogout(webutils.SchoolmateClient):
     """Test logout procedure"""
 
     def test_logout(self):

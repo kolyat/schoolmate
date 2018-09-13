@@ -15,16 +15,15 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 import logging
-import seleniumbase
 import ddt
 from selenium.webdriver.common.by import By
-from django.utils.translation import gettext as _
+from django.utils.translation import gettext_lazy as _
 
-from testutils import settings, ddtutils
-from . import common, data_test_login
+from testutils import settings, ddtutils, webutils
+from . import data_test_login
 
 
-class TestLogin(seleniumbase.BaseCase, common.Auth):
+class TestLogin(webutils.SchoolmateClient):
     """Test normal login"""
 
     def test_admin(self):
@@ -42,7 +41,7 @@ class TestLogin(seleniumbase.BaseCase, common.Auth):
 
 
 @ddt.ddt
-class TestLoginError(seleniumbase.BaseCase):
+class TestLoginError(webutils.SchoolmateClient):
     """Test login errors"""
 
     @ddt.data(*ddtutils.prepare(data_test_login.validation_data))
