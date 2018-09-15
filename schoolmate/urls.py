@@ -16,6 +16,7 @@
 
 from django.contrib import admin
 from django.urls import include, path
+from django.conf.urls.i18n import i18n_patterns
 from django.views import generic, i18n
 
 from schoolmate import settings
@@ -24,8 +25,10 @@ from schoolmate import settings
 urlpatterns = [
     path('', include('account.urls')),
     path('admin/', admin.site.urls),
-    path('jsi18n/', i18n.JavaScriptCatalog.as_view(),
-         name='javascript-catalog'),
     path('favicon.ico', generic.RedirectView.as_view(
         url='{}img/favicon.ico'.format(settings.STATIC_URL))),
 ]
+urlpatterns += i18n_patterns(path(
+    'jsi18n/', i18n.JavaScriptCatalog.as_view(domain='django'),
+    name='javascript-catalog'
+))
