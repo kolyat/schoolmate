@@ -16,7 +16,7 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
-var personalInfoFormLabelWidth = 125;
+var personalInfoFormLabelWidth = 200;
 personalInfoForm = {
     body: {
         rows: [
@@ -76,7 +76,7 @@ personalInfoForm = {
                         options: []
                     }
                 ],
-                type: "form", minWidth: 350, maxWidth: 420
+                type: "form", minWidth: 425, maxWidth: 490
             }
         ]
     }, align: "center"
