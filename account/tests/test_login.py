@@ -32,12 +32,16 @@ class TestLogin(webutils.SchoolmateClient):
         logging.info('Log in as administrator')
         self.login(settings.ADMIN_USER, settings.ADMIN_PASS)
         try:
+            self.wait_for_ready_state_complete()
             self.assertEqual(_('Profile'), self.get_page_title())
-            self.assert_text(settings.ADMIN_USER, '#username')
+            self.wait_for_text(settings.ADMIN_USER,
+                               '//div[@view_id="username"]/div/input',
+                               by=By.XPATH)
             logging.info('Login successful')
         except Exception as e:
             logging.error('Error while logging in as administrator')
             logging.error(e)
+            self.fail(e)
 
 
 @ddt.ddt
@@ -56,11 +60,12 @@ class TestLoginError(webutils.SchoolmateClient):
         logging.info('Trying {}'.format(creds))
         self.login(creds['username'], creds['password'])
         try:
-            self.assert_text(message, selector, by=By.XPATH)
+            self.wait_for_text_visible(message, selector, by=By.XPATH)
             logging.info('Validation passed')
         except Exception as e:
             logging.error('Error in form validation: {}'.format(creds))
             logging.error(e)
+            self.fail(e)
 
     @ddt.data(*ddtutils.prepare(data_test_login.wrong_creds))
     @ddt.unpack
@@ -72,7 +77,7 @@ class TestLoginError(webutils.SchoolmateClient):
         logging.info('Trying {}'.format(creds))
         self.login(creds['username'], creds['password'])
         try:
-            self.assert_text(
+            self.wait_for_text_visible(
                 _('Wrong username/password'),
                 '//div[@class="webix_message_area"]/div/div', by=By.XPATH
             )
@@ -81,6 +86,7 @@ class TestLoginError(webutils.SchoolmateClient):
             logging.error('Error in handling wrong credentials: {}'
                           ''.format(creds))
             logging.error(e)
+            self.fail(e)
 
 
 if __name__ == '__main__':

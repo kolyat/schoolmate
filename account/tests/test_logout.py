@@ -28,13 +28,16 @@ class TestLogout(webutils.SchoolmateClient):
         """
         logging.info('Normal logout procedure test')
         self.login(settings.ADMIN_USER, settings.ADMIN_PASS)
+        self.wait_for_ready_state_complete()
         self.logout()
         try:
+            self.wait_for_ready_state_complete()
             self.assertEqual(_('Sign in'), self.get_page_title())
             logging.info('Logout successful')
         except Exception as e:
             logging.error('Error during logout')
             logging.error(e)
+            self.fail(e)
 
     def test_logout_without_login(self):
         """Logout without login
@@ -42,13 +45,16 @@ class TestLogout(webutils.SchoolmateClient):
         logging.info('Logout without login test')
         self.open(settings.BASE_URL)
         try:
+            self.wait_for_ready_state_complete()
             self.assertEqual(_('Sign in'), self.get_page_title())
             self.open(settings.LOGOUT_URL)
+            self.wait_for_ready_state_complete()
             self.assertEqual(_('Sign in'), self.get_page_title())
             logging.info('Logout without login passed')
         except Exception as e:
             logging.error('Logout without login failed')
             logging.error(e)
+            self.fail(e)
 
 
 if __name__ == '__main__':

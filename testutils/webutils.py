@@ -14,8 +14,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-import logging
 import seleniumbase
+from selenium.webdriver.common.by import By
 
 from . import settings
 
@@ -27,15 +27,17 @@ class SchoolmateClient(seleniumbase.BaseCase):
         :param user: username
         :param passwd: password
         """
-        logging.info('Login - {}:{}'.format(user, passwd))
         self.open(settings.LOGIN_URL)
-        self.send_keys('#username', user)
-        self.send_keys('#password', passwd)
-        self.click('#login_btn')
+        self.send_keys('//div[@view_id="username"]/div/input', user,
+                       by=By.XPATH)
+        self.send_keys('//div[@view_id="password"]/div/input', passwd,
+                       by=By.XPATH)
+        self.click('//div[@view_id="login_btn"]/div/button', by=By.XPATH)
 
     def logout(self):
         """Log out
         """
-        logging.info('Logging out')
-        self.click('#user_item')
-        self.click('#logout_item')
+        self.wait_for_element_visible('a[webix_l_id=user_item]')
+        self.click('a[webix_l_id=user_item]')
+        self.wait_for_element_visible('a[webix_l_id=logout_item]')
+        self.click('a[webix_l_id=logout_item]')
