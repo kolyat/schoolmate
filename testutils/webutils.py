@@ -14,8 +14,10 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
+import time
 import seleniumbase
 from selenium.webdriver.common.by import By
+from seleniumbase.config import settings as sbsettings
 
 from . import settings
 
@@ -37,7 +39,8 @@ class SchoolmateClient(seleniumbase.BaseCase):
     def logout(self):
         """Log out
         """
-        self.wait_for_element_visible('a[webix_l_id=user_item]')
-        self.click('a[webix_l_id=user_item]')
-        self.wait_for_element_visible('a[webix_l_id=logout_item]')
-        self.click('a[webix_l_id=logout_item]')
+        self.wait_for_element_visible('[webix_l_id=user_item]')
+        self.hover_on_element('[webix_l_id=user_item]')
+        time.sleep(sbsettings.MINI_TIMEOUT / 2)
+        self.wait_for_element_visible('[webix_l_id=logout_item]')
+        self.click('[webix_l_id=logout_item]')

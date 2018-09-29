@@ -17,7 +17,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
 var csrfToken = document.getElementsByName("csrfmiddlewaretoken")[0].value;
-headers = {
+var headers = {
     "X-CSRFToken": csrfToken,
     "Content-Type": "application/json"
 };
