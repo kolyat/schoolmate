@@ -14,6 +14,7 @@ LOG_OPTIONS = {
 # Credentials
 #
 ADMIN_USER = 'admin'
+ADMIN_EMAIL = 'admin@school.edu'
 ADMIN_PASS = 'nimda'
 
 #
