@@ -18,13 +18,24 @@ import pytest
 
 from account import models
 from testutils import settings
+from . import data_test_password_change
 
 
-@pytest.fixture(scope='session')
+@pytest.fixture(autouse=True)
+def enable_db_access_for_all_tests(db):
+    pass
+
+
+@pytest.fixture()
 def django_db_setup(django_db_setup, django_db_blocker):
     with django_db_blocker.unblock():
         models.SchoolUser.objects.create_superuser(
             username=settings.ADMIN_USER,
             email=settings.ADMIN_EMAIL,
             password=settings.ADMIN_PASS
+        )
+        models.SchoolUser.objects.create_user(
+            data_test_password_change.user['username'],
+            data_test_password_change.user['email'],
+            data_test_password_change.user['password']
         )

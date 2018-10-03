@@ -52,7 +52,8 @@ class TestProfile(webutils.SchoolmateClient):
                 '//div[@view_id="last_name"]/div/input', 'value', by=By.XPATH
             ))
             self.assertEqual(user_info['patronymic_name'], self.get_attribute(
-                '//div[@view_id="patronymic_name"]/div/input', 'value', by=By.XPATH
+                '//div[@view_id="patronymic_name"]/div/input', 'value',
+                by=By.XPATH
             ))
             self.assertEqual(user_info['birth_date'], self.get_attribute(
                 '//div[@view_id="birth_date"]/div/input', 'value', by=By.XPATH

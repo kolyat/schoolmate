@@ -28,7 +28,7 @@ from . import data_test_login
 class TestLogin(webutils.SchoolmateClient):
     """Test normal login"""
 
-    def test_admin(self):
+    def test_admin_login(self):
         """Log in as administrator
         """
         logging.info('Log in as administrator')
@@ -57,7 +57,7 @@ class TestLoginError(webutils.SchoolmateClient):
 
     @ddt.data(*ddtutils.prepare(data_test_login.validation_data))
     @ddt.unpack
-    def test_validation(self, creds, selector, message):
+    def test_login_validation(self, creds, selector, message):
         """Test form validation with {0}; expected - {2}
 
         :param creds: dict with form data
@@ -76,7 +76,7 @@ class TestLoginError(webutils.SchoolmateClient):
 
     @ddt.data(*ddtutils.prepare(data_test_login.wrong_creds))
     @ddt.unpack
-    def test_error_message(self, creds):
+    def test_login_error_message(self, creds):
         """Test login error message with {0}
 
         :param creds: dict with form data

@@ -44,3 +44,19 @@ class SchoolmateClient(seleniumbase.BaseCase):
         time.sleep(sbsettings.MINI_TIMEOUT / 2)
         self.wait_for_element_visible('[webix_l_id=logout_item]')
         self.click('[webix_l_id=logout_item]')
+
+    def change_password(self, old, new1, new2):
+        """Change password
+
+        :param old: old password
+        :param new1: new password
+        :param new2: repeat new password
+        """
+        self.send_keys('//div[@view_id="old_password"]/div/input', old,
+                       by=By.XPATH)
+        self.send_keys('//div[@view_id="new_password1"]/div/input', new1,
+                       by=By.XPATH)
+        self.send_keys('//div[@view_id="new_password2"]/div/input', new2,
+                       by=By.XPATH)
+        self.click('//div[@view_id="change_password_btn"]/div/button',
+                   by=By.XPATH)

@@ -66,8 +66,8 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'autoescape': False,
-            'match_extension': '.html',
-            'match_regex': r'^(?!admin/).*',
+            'match_extension': '.html.j2',
+            # 'match_regex': r'^(?!admin/).*',
             'newstyle_gettext': True,
             'translation_engine': 'django.utils.translation',
             'extensions': [
@@ -119,10 +119,6 @@ DATABASES = {
         'PASSWORD': 'postgres',
         'HOST': 'localhost',
         'PORT': '5432'
-    },
-    'test_db': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'schoolmate'
     }
 }
 

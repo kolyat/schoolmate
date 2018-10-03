@@ -32,7 +32,7 @@ from . import models
 def account(request):
     """Profile page
     """
-    return shortcuts.render(request, 'account.html')
+    return shortcuts.render(request, 'account.html.j2')
 
 
 @auth_decorators.login_required()
