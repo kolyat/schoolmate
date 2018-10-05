@@ -14,3 +14,4 @@ Schoolmate is an electronic school management system.
     ```
 
 - PostgreSQL 9.6 or higher
+- _Optional:_ mail server
