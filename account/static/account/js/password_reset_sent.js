@@ -33,10 +33,10 @@ webix.ui({
                         href: "/login/",
                         click: function() {
                             webix.send(this.config.href, {}, "GET") },
-                        align: "center", minWidth: 150, width: 150
+                        align: "center", minWidth: 300, width: 300
                     },
                 ],
-                width: 360, margin: 9
+                width: 660, margin: 9
             }
         ]
     }

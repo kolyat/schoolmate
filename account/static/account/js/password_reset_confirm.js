@@ -80,7 +80,7 @@ function postNewPasswordForm() {
     if (new_password_form.validate()) {
         webix.ajax().post(
             newPasswordUrl,
-            login_form.getValues(),
+            new_password_form.getValues(),
             function(text, data, xhr) {
                 if (xhr["responseURL"] !== newPasswordUrl) {
                     webix.send(xhr["responseURL"], {}, "GET");

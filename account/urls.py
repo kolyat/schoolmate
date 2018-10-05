@@ -34,7 +34,7 @@ urlpatterns = [
              template_name='password_reset.html.j2',
              email_template_name='password_reset_email.html.j2',
              subject_template_name='password_reset_subj.txt',
-             success_url='password_reset/sent/'
+             success_url='/password_reset/sent/'
          ),
          name='password_reset'),
     path('password_reset/sent/',
@@ -45,7 +45,7 @@ urlpatterns = [
          auth_views.PasswordResetConfirmView.as_view(
              template_name='password_reset_confirm.html.j2',
              post_reset_login=False,
-             success_url='password_reset/complete/'
+             success_url='/password_reset/complete/'
          ),
          name='password_reset_confirm'),
     path('password_reset/complete/',
