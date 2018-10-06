@@ -43,22 +43,6 @@ class TestPasswordReset(webutils.SchoolmateClient):
         try:
             self.wait_for_ready_state_complete()
             self.assertEqual('Password reset', self.get_page_title())
-            logging.info('Check empty e-mail field validation...')
-            self.click('//div[@view_id="reset_btn"]/div/button', by=By.XPATH)
-            self.wait_for_text_visible(
-                _('E-mail can not be empty'),
-                '//div[@view_id="email"]/div[@role="alert"]', by=By.XPATH
-            )
-            logging.info('Done')
-            logging.info('Check with invalid e-mail address...')
-            self.send_keys('//div[@view_id="email"]/div/input', 'email',
-                           by=By.XPATH)
-            self.click('//div[@view_id="reset_btn"]/div/button', by=By.XPATH)
-            self.wait_for_text_visible(
-                _('Must be valid e-mail address'),
-                '//div[@view_id="email"]/div[@role="alert"]', by=By.XPATH
-            )
-            logging.info('Done')
             logging.info('Trying to send e-mail to {} ...'.format(
                 data_test_password_reset.user['email']))
             self.send_keys(
@@ -160,6 +144,39 @@ class TestPasswordReset(webutils.SchoolmateClient):
             logging.info('Password reset procedure test passed')
         except Exception as e:
             logging.error('Error during password reset procedure')
+            logging.error(e)
+            self.fail(e)
+
+    def test_email_validation_for_password_reset(self):
+        """Test e-mail validation for password reset
+        """
+        self.open(settings.LOGIN_URL)
+        self.wait_for_ready_state_complete()
+        self.click('//div[@view_id="forgot_password_btn"]/div/button',
+                   by=By.XPATH)
+        time.sleep(sbsettings.SMALL_TIMEOUT / 2)
+        try:
+            self.wait_for_ready_state_complete()
+            self.assertEqual('Password reset', self.get_page_title())
+            logging.info('Check empty e-mail field validation...')
+            self.click('//div[@view_id="reset_btn"]/div/button', by=By.XPATH)
+            self.wait_for_text_visible(
+                _('E-mail can not be empty'),
+                '//div[@view_id="email"]/div[@role="alert"]', by=By.XPATH
+            )
+            logging.info('Done')
+            logging.info('Check with invalid e-mail address...')
+            self.send_keys('//div[@view_id="email"]/div/input', 'email',
+                           by=By.XPATH)
+            self.click('//div[@view_id="reset_btn"]/div/button', by=By.XPATH)
+            self.wait_for_text_visible(
+                _('Must be valid e-mail address'),
+                '//div[@view_id="email"]/div[@role="alert"]', by=By.XPATH
+            )
+            logging.info('Done')
+            logging.info('E-mail validation passed')
+        except Exception as e:
+            logging.error('Error in e-mail validation')
             logging.error(e)
             self.fail(e)
 
