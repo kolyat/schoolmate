@@ -53,6 +53,13 @@ class TestPasswordChange(webutils.SchoolmateClient):
             logging.info('Log out')
             self.logout()
             self.wait_for_ready_state_complete()
+            logging.info('Trying old password: {}'.format(user['password']))
+            self.login(user['username'], user['password'])
+            self.wait_for_text_visible(
+                _('Wrong username/password'),
+                '//div[@class="webix_message_area"]/div/div', by=By.XPATH
+            )
+            logging.info('Passed')
             logging.info('Log in (with new password) as {}:{}'.format(
                 user['username'], new_password))
             self.login(user['username'], new_password)
