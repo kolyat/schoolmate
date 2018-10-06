@@ -18,7 +18,7 @@ import pytest
 
 from account import models
 from testutils import settings
-from . import data_test_password_change
+from . import data_test_password_change, data_test_password_reset
 
 
 @pytest.fixture(autouse=True)
@@ -38,4 +38,9 @@ def django_db_setup(django_db_setup, django_db_blocker):
             data_test_password_change.user['username'],
             data_test_password_change.user['email'],
             data_test_password_change.user['password']
+        )
+        models.SchoolUser.objects.create_user(
+            data_test_password_reset.user['username'],
+            data_test_password_reset.user['email'],
+            data_test_password_reset.user['password']
         )
