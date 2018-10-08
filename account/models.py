@@ -14,27 +14,31 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-import itertools
 from django.db import models
 from django.contrib.auth import models as auth_models
-from multiselectfield import MultiSelectField
+from django.utils.translation import gettext as _
 
 from schoolmate import settings
-
-
-FORM_NUMBERS = [str(n) for n in range(1, 12)]
-FORM_LETTERS = 'АБВГД'
-FORMS = [''.join(f) for f in itertools.product(FORM_NUMBERS, FORM_LETTERS)]
+from school import models as school_models
 
 
 class SchoolUser(auth_models.AbstractUser):
     """Extended version of user model
     """
-    patronymic_name = models.CharField(max_length=254, blank=True, null=True)
-    birth_date = models.DateField(blank=True, null=True)
-    school_form = MultiSelectField(blank=True, null=True,
-                                   choices=tuple(zip(FORMS, FORMS)))
+    patronymic_name = models.CharField(max_length=254, blank=True, null=True,
+                                       verbose_name=_('Patronymic name'))
+    birth_date = models.DateField(blank=True, null=True,
+                                  verbose_name=_('Date of birth'))
+    school_form = models.ForeignKey(
+        school_models.SchoolForm, blank=True, null=True,
+        on_delete=models.DO_NOTHING, verbose_name=_('School form')
+    )
     language = models.CharField(
         max_length=9, blank=False, null=False,
-        choices=settings.LANGUAGES, default=settings.LANGUAGE_CODE
+        choices=settings.LANGUAGES, default=settings.LANGUAGE_CODE,
+        verbose_name=_('Language')
     )
+
+    class Meta:
+        verbose_name = _('School user')
+        verbose_name_plural = _('School users')

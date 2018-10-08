@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'multiselectfield',
     # Project apps
+    'school.apps.SchoolConfig',
     'account.apps.AccountConfig'
 ]
 MIDDLEWARE = [
