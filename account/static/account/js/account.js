@@ -196,7 +196,7 @@ function patchLanguage(newv, oldv) {
                     expire: 3000,
                     id: "language_changed_msg"
                 });
-                document.location.reload(true);
+                location.reload(true);
             },
             error: function(text, data, xhr) {
                 webix.message({
