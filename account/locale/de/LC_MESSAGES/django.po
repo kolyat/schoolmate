@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1\n"
 "Report-Msgid-Bugs-To: kks.pub@gmail.com\n"
-"POT-Creation-Date: 2018-09-11 22:03+0300\n"
-"PO-Revision-Date: 2018-09-11 23:05+0300\n"
+"POT-Creation-Date: 2018-10-09 02:40+0300\n"
+"PO-Revision-Date: 2018-10-09 02:47+0300\n"
 "Last-Translator: Kirill 'Kolyat' Kiselnikov <kks.pub@gmail.com>\n"
 "Language: de\n"
 "Language-Team: de <kks.pub@gmail.com>\n"
@@ -17,205 +17,228 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.6.0\n"
-"X-Generator: Poedit 1.8.12\n"
+"X-Generator: Poedit 2.2\n"
 
-#: account/admin.py:11
+#: account/admin.py:27
 msgid "Credentials"
 msgstr "Anmeldeinformationen"
 
-#: account/admin.py:14 account/static/account/js/account.js:6
+#: account/admin.py:30 account/static/account/js/account.js:24
 msgid "User info"
 msgstr "Benutzerinformation"
 
-#: account/admin.py:18
+#: account/admin.py:34
 msgid "Contacts"
 msgstr "Kontakte"
 
-#: account/admin.py:21
+#: account/admin.py:37
 msgid "Miscellaneous"
 msgstr "Sonstiges"
 
-#: account/admin.py:24
+#: account/admin.py:40
 msgid "Permissions"
 msgstr "Berechtigungen"
 
-#: account/static/account/js/account.js:19
-#: account/static/account/js/login.js:17
-msgid "Username"
-msgstr "Nutzername"
-
-#: account/static/account/js/account.js:24
-msgid "First name"
-msgstr "Vorname"
-
-#: account/static/account/js/account.js:29
+#: account/models.py:29 account/static/account/js/account.js:47
 msgid "Patronymic name"
 msgstr "Vatersname"
 
-#: account/static/account/js/account.js:34
-msgid "Last name"
-msgstr "Nachname"
-
-#: account/static/account/js/account.js:39
+#: account/models.py:31 account/static/account/js/account.js:57
 msgid "Date of birth"
 msgstr "Geburtsdatum"
 
-#: account/static/account/js/account.js:45
-#: account/static/account/js/password_reset.js:32
-msgid "E-mail"
-msgstr "E-Mail"
-
-#: account/static/account/js/account.js:50
-msgid "Form"
+#: account/models.py:34
+msgid "School form"
 msgstr "Schulklasse"
 
-#: account/static/account/js/account.js:55
+#: account/models.py:39 account/static/account/js/account.js:73
 msgid "Language"
 msgstr "Sprache"
 
-#: account/static/account/js/account.js:70
-#: account/static/account/js/account.js:104
+#: account/models.py:43
+msgid "School user"
+msgstr "Schulnutzer"
+
+#: account/models.py:44
+msgid "School users"
+msgstr "Schulnutzern"
+
+#: account/static/account/js/account.js:37
+#: account/static/account/js/login.js:35
+msgid "Username"
+msgstr "Nutzername"
+
+#: account/static/account/js/account.js:42
+msgid "First name"
+msgstr "Vorname"
+
+#: account/static/account/js/account.js:52
+msgid "Last name"
+msgstr "Nachname"
+
+#: account/static/account/js/account.js:63
+#: account/static/account/js/password_reset.js:50
+msgid "E-mail"
+msgstr "E-Mail"
+
+#: account/static/account/js/account.js:68
+msgid "Form"
+msgstr "Schulklasse"
+
+#: account/static/account/js/account.js:88
+#: account/static/account/js/account.js:122
 msgid "Change password"
 msgstr "Passwort ändern"
 
-#: account/static/account/js/account.js:83
+#: account/static/account/js/account.js:101
 msgid "Current password"
 msgstr "Aktuelles Passwort"
 
-#: account/static/account/js/account.js:86
-#: account/static/account/js/account.js:93
-#: account/static/account/js/account.js:100
-#: account/static/account/js/password_reset_confirm.js:21
-#: account/static/account/js/password_reset_confirm.js:28
+#: account/static/account/js/account.js:104
+#: account/static/account/js/account.js:111
+#: account/static/account/js/account.js:118
+#: account/static/account/js/password_reset_confirm.js:39
+#: account/static/account/js/password_reset_confirm.js:46
+#: account/tests/data_test_password_change.py:29
+#: account/tests/data_test_password_change.py:35
+#: account/tests/data_test_password_change.py:41
+#: account/tests/test_password_reset.py:94
+#: account/tests/test_password_reset.py:99
 msgid "Field can not be empty"
 msgstr "Feld darf nicht leer sein"
 
-#: account/static/account/js/account.js:90
-#: account/static/account/js/password_reset_confirm.js:18
+#: account/static/account/js/account.js:108
+#: account/static/account/js/password_reset_confirm.js:36
 msgid "New password"
 msgstr "Neues Passwort"
 
-#: account/static/account/js/account.js:97
-#: account/static/account/js/password_reset_confirm.js:25
+#: account/static/account/js/account.js:115
+#: account/static/account/js/password_reset_confirm.js:43
 msgid "Retype new password"
 msgstr "Neues Passwort erneut eingeben"
 
-#: account/static/account/js/account.js:117
+#: account/static/account/js/account.js:135
+#: account/tests/test_password_change.py:120
 msgid "New passwords are not the same"
 msgstr "Neue Passwörter sind nicht gleich"
 
-#: account/static/account/js/account.js:151
+#: account/static/account/js/account.js:169
 msgid "Failed to retrieve user info from server"
 msgstr "Fehler beim Abrufen der Benutzerinformationen vom Server"
 
-#: account/static/account/js/account.js:176
+#: account/static/account/js/account.js:194
 msgid "Language changed"
 msgstr "Sprache geändert"
 
-#: account/static/account/js/account.js:185
+#: account/static/account/js/account.js:203
 msgid "Language change failed"
 msgstr "Sprachänderung fehlgeschlagen"
 
-#: account/static/account/js/account.js:205
+#: account/static/account/js/account.js:223
+#: account/tests/test_password_change.py:49
 msgid "Password changed"
 msgstr "Passwort geändert"
 
-#: account/static/account/js/account.js:213
+#: account/static/account/js/account.js:231
+#: account/tests/test_password_change.py:139
 msgid "Password change failed"
 msgstr "Passwort ändern fehlgeschlagen"
 
-#: account/static/account/js/login.js:7
+#: account/static/account/js/login.js:25
 msgid "Log in to system"
 msgstr "Einloggen in das System"
 
-#: account/static/account/js/login.js:19 account/tests/data_test_login.py:10
+#: account/static/account/js/login.js:37 account/tests/data_test_login.py:26
 msgid "Username can not be empty"
 msgstr "Benutzername darf nicht leer sein"
 
-#: account/static/account/js/login.js:22
+#: account/static/account/js/login.js:40
 msgid "Password"
 msgstr "Passwort"
 
-#: account/static/account/js/login.js:25 account/tests/data_test_login.py:15
+#: account/static/account/js/login.js:43 account/tests/data_test_login.py:31
 msgid "Password can not be empty"
 msgstr "Passwort darf nicht leer sein"
 
-#: account/static/account/js/login.js:28
+#: account/static/account/js/login.js:46
 msgid "Log in"
 msgstr "Einloggen"
 
-#: account/static/account/js/login.js:41
+#: account/static/account/js/login.js:59
 msgid "Forgot password"
 msgstr "Vergissen ein Passwort"
 
-#: account/static/account/js/login.js:65 account/tests/test_login.py:61
+#: account/static/account/js/login.js:83 account/tests/test_login.py:88
+#: account/tests/test_password_change.py:59
+#: account/tests/test_password_reset.py:134
 msgid "Wrong username/password"
 msgstr "Falscher Benutzername/Passwort"
 
-#: account/static/account/js/password_reset.js:21
-#: account/templates/password_reset.html:3
+#: account/static/account/js/password_reset.js:39
 msgid "Password reset"
 msgstr "Passwort zurücksetzen"
 
-#: account/static/account/js/password_reset.js:36
+#: account/static/account/js/password_reset.js:54
 msgid "Reset"
 msgstr "Zurücksetzen"
 
-#: account/static/account/js/password_reset.js:45
+#: account/static/account/js/password_reset.js:63
+#: account/tests/test_password_reset.py:164
 msgid "E-mail can not be empty"
 msgstr "E-mail darf nicht leer sein"
 
-#: account/static/account/js/password_reset.js:49
+#: account/static/account/js/password_reset.js:67
+#: account/tests/test_password_reset.py:173
 msgid "Must be valid e-mail address"
 msgstr "Muss gültige E-Mail-Adresse sein"
 
-#: account/static/account/js/password_reset.js:72
+#: account/static/account/js/password_reset.js:90
 msgid "Could not send password reset confirmation"
 msgstr "Konnte keine Bestätigung zum Zurücksetzen des Passworts senden"
 
-#: account/static/account/js/password_reset_complete.js:10
-#: account/templates/password_reset_complete.html:3
+#: account/static/account/js/password_reset_complete.js:28
 msgid "Password reset complete"
 msgstr "Passwort zurücksetzen vollendet"
 
-#: account/static/account/js/password_reset_complete.js:14
-#: account/static/account/js/password_reset_sent.js:13
+#: account/static/account/js/password_reset_complete.js:32
+#: account/static/account/js/password_reset_sent.js:31
 msgid "Back to login page"
 msgstr "Zurück zur Anmeldeseite"
 
-#: account/static/account/js/password_reset_confirm.js:7
+#: account/static/account/js/password_reset_confirm.js:25
 msgid "Enter new password"
 msgstr "Neues Passwort eingeben"
 
-#: account/static/account/js/password_reset_confirm.js:31
+#: account/static/account/js/password_reset_confirm.js:49
 msgid "Confirm"
 msgstr "Bestätigen"
 
-#: account/static/account/js/password_reset_confirm.js:42
+#: account/static/account/js/password_reset_confirm.js:60
+#: account/tests/test_password_reset.py:110
 msgid "Passwords are not the same"
 msgstr "Passwörter sind nicht gleich"
 
-#: account/static/account/js/password_reset_confirm.js:71
+#: account/static/account/js/password_reset_confirm.js:89
 msgid "Could not set up new password"
 msgstr "Konnte kein neues Passwort einrichten"
 
-#: account/static/account/js/password_reset_sent.js:9
+#: account/static/account/js/password_reset_sent.js:27
 msgid "Password reset confirmation has been sent to your e-mail"
-msgstr "Die Bestätigung zum Zurücksetzen des Passworts wurde an Ihre E-Mail gesendet"
+msgstr ""
+"Die Bestätigung zum Zurücksetzen des Passworts wurde an Ihre E-Mail "
+"gesendet"
 
-#: account/templates/account.html:3 account/tests/test_login.py:20
+#: account/tests/test_login.py:39 account/tests/test_password_change.py:68
+#: account/tests/test_password_reset.py:143
 msgid "Profile"
 msgstr "Profil"
 
-#: account/templates/login.html:3 account/tests/test_logout.py:19
-#: account/tests/test_logout.py:31 account/tests/test_logout.py:33
+#: account/tests/test_logout.py:39
 msgid "Sign in"
 msgstr "Anmelden"
 
-#: account/templates/password_reset_confirm.html:3
-msgid "Password reset confirmation"
-msgstr "Passwort zurücksetzen Bestätigung"
+#~ msgid "Password reset confirmation"
+#~ msgstr "Passwort zurücksetzen Bestätigung"
 
-#: account/templates/password_reset_sent.html:3
-msgid "Password reset sent"
-msgstr "Passwort zurücksetzen gesendet"
+#~ msgid "Password reset sent"
+#~ msgstr "Passwort zurücksetzen gesendet"

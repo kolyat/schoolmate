@@ -1,0 +1,36 @@
+# German translations for Schoolmate.
+# Copyright (C) 2018 Kirill 'Kolyat' Kiselnikov
+# This file is distributed under the same license as the Schoolmate project.
+# Kirill 'Kolyat' Kiselnikov <kks.pub@gmail.com>, 2018.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Schoolmate 0.1\n"
+"Report-Msgid-Bugs-To: kks.pub@gmail.com\n"
+"POT-Creation-Date: 2018-10-09 02:40+0300\n"
+"PO-Revision-Date: 2018-10-09 02:50+0300\n"
+"Language: de\n"
+"Language-Team: de <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.6.0\n"
+"Last-Translator: Kirill 'Kolyat' Kiselnikov <kks.pub@gmail.com>\n"
+"X-Generator: Poedit 2.2\n"
+
+#: school/models.py:31
+msgid "Form number"
+msgstr "Klassennummer"
+
+#: school/models.py:36
+msgid "Form letter"
+msgstr "Klassenbrief"
+
+#: school/models.py:46
+msgid "School form"
+msgstr "Schulklasse"
+
+#: school/models.py:47
+msgid "School forms"
+msgstr "Schulklassen"

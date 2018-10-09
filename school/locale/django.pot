@@ -17,11 +17,19 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.6.0\n"
 
-#: static/js/main.js:24
-msgid "Profile"
+#: school/models.py:31
+msgid "Form number"
 msgstr ""
 
-#: static/js/main.js:34
-msgid "Log out"
+#: school/models.py:36
+msgid "Form letter"
+msgstr ""
+
+#: school/models.py:46
+msgid "School form"
+msgstr ""
+
+#: school/models.py:47
+msgid "School forms"
 msgstr ""
 
