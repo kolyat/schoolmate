@@ -19,4 +19,7 @@ from django.contrib import admin
 from . import models
 
 
-admin.site.register(models.SchoolForm)
+admin.site.register((
+    models.SchoolForm, models.SchoolSubject, models.DailySchedule,
+    models.SchoolYear, models.YearSchedule
+))
