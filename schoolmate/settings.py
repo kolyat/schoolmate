@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'django_jinja',
     'django_babel',
     'rest_framework',
-    'multiselectfield',
     # Project apps
     'school.apps.SchoolConfig',
     'account.apps.AccountConfig'
