@@ -60,6 +60,8 @@ def user(request):
 
 
 class UserInfoSerializer(serializers.ModelSerializer):
+    school_form = serializers.StringRelatedField(many=False)
+
     class Meta:
         model = models.SchoolUser
         fields = ('username', 'first_name', 'last_name', 'patronymic_name',
