@@ -35,7 +35,8 @@ class TestProfile(webutils.SchoolmateClient):
         username = user_info.pop('username')
         email = user_info.pop('email')
         password = user_info.pop('password')
-        _sf = school_models.SchoolForm(**school_form).save()
+        _sf = school_models.SchoolForm(**school_form)
+        _sf.save()
         account_models.SchoolUser.objects.create_user(
             username, email, password, school_form=_sf, **user_info)
         logging.info('Log in as {}'.format(username))
