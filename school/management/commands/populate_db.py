@@ -16,7 +16,9 @@
 
 from django.core.management import base
 
-from school import models
+from testutils import settings
+from school import models as school_models
+from account import models as account_models
 from . import _db_data
 
 
@@ -24,5 +26,18 @@ class Command(base.BaseCommand):
     requires_migrations_checks = True
 
     def handle(self, *args, **options):
-        [models.SchoolForm(form_number=n, form_letter=l).save()
-         for n in models.FORM_NUMBERS for l in _db_data.FORM_LETTERS]
+        # Clean up
+        account_models.SchoolUser.objects.all().delete()
+        school_models.SchoolSubject.objects.all().delete()
+        school_models.SchoolForm.objects.all().delete()
+        # Create new data
+        [school_models.SchoolForm(form_number=n, form_letter=l).save()
+         for n in school_models.FORM_NUMBERS.__reversed__()
+         for l in _db_data.FORM_LETTERS]
+        [school_models.SchoolSubject(subject=s).save()
+         for s in _db_data.SUBJECTS]
+        account_models.SchoolUser.objects.create_superuser(
+            username=settings.ADMIN_USER,
+            email=settings.ADMIN_EMAIL,
+            password=settings.ADMIN_PASS
+        )

@@ -61,7 +61,7 @@ class SchoolSubject(models.Model):
     """Represents school subject
     """
     subject = models.CharField(
-        max_length=254, blank=False, null=False,
+        max_length=254, blank=True, null=True,
         verbose_name=_('School subject')
     )
 
@@ -108,7 +108,7 @@ class DailySchedule(models.Model):
 
     class Meta:
         verbose_name = _('Daily schedule')
-        verbose_name_plural = _('List of daily schedules')
+        verbose_name_plural = _('Daily schedules')
 
 
 class SchoolYear(models.Model):
@@ -133,7 +133,7 @@ class SchoolYear(models.Model):
 
     class Meta:
         verbose_name = _('School year')
-        verbose_name_plural = _('List of school years')
+        verbose_name_plural = _('Academic years')
 
 
 class YearSchedule(models.Model):
@@ -171,4 +171,4 @@ class YearSchedule(models.Model):
 
     class Meta:
         verbose_name = _('School year schedule')
-        verbose_name_plural = _('List of school year schedules')
+        verbose_name_plural = _('Academic year schedules')
