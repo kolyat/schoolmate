@@ -28,6 +28,9 @@ class Command(base.BaseCommand):
     def handle(self, *args, **options):
         # Clean up
         account_models.SchoolUser.objects.all().delete()
+        school_models.YearSchedule.objects.all().delete()
+        school_models.SchoolYear.objects.all().delete()
+        school_models.DailySchedule.objects.all().delete()
         school_models.SchoolSubject.objects.all().delete()
         school_models.SchoolForm.objects.all().delete()
         # Create new data
@@ -36,6 +39,12 @@ class Command(base.BaseCommand):
          for l in _db_data.FORM_LETTERS]
         [school_models.SchoolSubject(subject=s).save()
          for s in _db_data.SUBJECTS]
+        [school_models.DailySchedule(**d).save()
+         for d in _db_data.DAILY_SCHEDULE]
+        _sy = school_models.SchoolYear(**_db_data.SCHOOL_YEAR)
+        _sy.save()
+        [school_models.YearSchedule(school_year=_sy, **y).save()
+         for y in _db_data.YEAR_SCHEDULE]
         account_models.SchoolUser.objects.create_superuser(
             username=settings.ADMIN_USER,
             email=settings.ADMIN_EMAIL,
