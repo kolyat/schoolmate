@@ -20,7 +20,8 @@ from selenium.webdriver.common.by import By
 from seleniumbase.config import settings as sbsettings
 
 from testutils import rndutils, webutils
-from account import models
+from school import models as school_models
+from account import models as account_models
 
 
 class TestProfile(webutils.SchoolmateClient):
@@ -30,11 +31,13 @@ class TestProfile(webutils.SchoolmateClient):
         """Check data in user info form
         """
         user_info = rndutils.new_schooluser()
+        school_form = rndutils.new_schoolform()
         username = user_info.pop('username')
         email = user_info.pop('email')
         password = user_info.pop('password')
-        models.SchoolUser.objects.create_user(username, email, password,
-                                              **user_info)
+        _sf = school_models.SchoolForm(**school_form).save()
+        account_models.SchoolUser.objects.create_user(
+            username, email, password, school_form=_sf, **user_info)
         logging.info('Log in as {}'.format(username))
         self.login(username, password)
         time.sleep(sbsettings.SMALL_TIMEOUT)
@@ -61,9 +64,12 @@ class TestProfile(webutils.SchoolmateClient):
             self.assertEqual(email, self.get_attribute(
                 '//div[@view_id="email"]/div/input', 'value', by=By.XPATH
             ))
-            self.assertEqual(user_info['school_form'], self.get_attribute(
-                '//div[@view_id="school_form"]/div/input', 'value', by=By.XPATH
-            ))
+            self.assertEqual(
+                ''.join((school_form['form_number'],
+                         school_form['form_letter'])),
+                self.get_attribute('//div[@view_id="school_form"]/div/input',
+                                   'value', by=By.XPATH)
+            )
             logging.info('Profile check successful')
         except Exception as e:
             logging.error('Profile check error')

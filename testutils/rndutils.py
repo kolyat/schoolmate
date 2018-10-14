@@ -2,7 +2,6 @@
 # This file is the part of testutils, released under modified MIT license
 
 import random
-import itertools
 import mimesis
 import mimesis.builtins
 from mimesis import enums
@@ -10,9 +9,8 @@ from mimesis import enums
 from schoolmate import settings
 
 
-FORM_NUMBERS = [str(n) for n in range(1, 12)]
-FORM_LETTERS = 'АБВ'
-FORMS = [''.join(f) for f in itertools.product(FORM_NUMBERS, FORM_LETTERS)]
+FORM_NUMBERS = range(1, 12)
+FORM_LETTERS = 'АБ'
 
 
 def random_char():
@@ -54,6 +52,17 @@ def random_id():
     return random.randint(100000, 999999)
 
 
+def new_schoolform():
+    """Generate school form data
+
+    :return: dict with school form number and letter
+    """
+    return {
+        'form_number': random.choice(FORM_NUMBERS),
+        'form_letter': random.choice(FORM_LETTERS)
+    }
+
+
 def new_schooluser():
     """Generate data for fake school user
 
@@ -73,7 +82,6 @@ def new_schooluser():
         'patronymic_name': _person_ru.patronymic(_gender),
         'birth_date': _date.date(start=1990, end=2000, fmt='%Y-%m-%d'),
         'email': _person.email(),
-        'school_form': random.choice(FORMS),
         'language': random.choice(settings.LANGUAGES)[0],
         'is_active': True,
         'is_staff': False,
