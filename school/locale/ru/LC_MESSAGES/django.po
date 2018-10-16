@@ -7,8 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Schoolmate 0.1\n"
 "Report-Msgid-Bugs-To: kks.pub@gmail.com\n"
-"POT-Creation-Date: 2018-10-09 02:40+0300\n"
-"PO-Revision-Date: 2018-10-09 02:52+0300\n"
+"POT-Creation-Date: 2018-10-16 21:09+0300\n"
+"PO-Revision-Date: 2018-10-16 21:42+0300\n"
+"Last-Translator: Kirill 'Kolyat' Kiselnikov <kks.pub@gmail.com>\n"
 "Language: ru\n"
 "Language-Team: ru <LL@li.org>\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
@@ -17,21 +18,108 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.6.0\n"
-"Last-Translator: Kirill 'Kolyat' Kiselnikov <kks.pub@gmail.com>\n"
-"X-Generator: Poedit 2.2\n"
+"X-Generator: Poedit 1.8.12\n"
+
+#: school/models.py:26
+msgid "Lesson"
+msgstr "Урок"
+
+#: school/models.py:27
+msgid "Break"
+msgstr "Перемена"
+
+#: school/models.py:30
+msgid "Quarter"
+msgstr "Четверть"
 
 #: school/models.py:31
+msgid "Holidays"
+msgstr "Каникулы"
+
+#: school/models.py:41
 msgid "Form number"
 msgstr "Номер класса"
 
-#: school/models.py:36
+#: school/models.py:46
 msgid "Form letter"
 msgstr "Буква класса (параллель)"
 
-#: school/models.py:46
+#: school/models.py:56
 msgid "School form"
 msgstr "Класс"
 
-#: school/models.py:47
+#: school/models.py:57
 msgid "School forms"
 msgstr "Классы"
+
+#: school/models.py:65 school/models.py:75
+msgid "School subject"
+msgstr "Предмет"
+
+#: school/models.py:76
+msgid "School subjects"
+msgstr "Предметы"
+
+#: school/models.py:86 school/models.py:149
+msgid "Number of a period"
+msgstr "Номер периода"
+
+#: school/models.py:90 school/models.py:153
+msgid "Period type"
+msgstr "Тип периода"
+
+#: school/models.py:93
+msgid "Start time of a period"
+msgstr "Время начала периода"
+
+#: school/models.py:96
+msgid "End time of a period"
+msgstr "Время окончания периода"
+
+#: school/models.py:100 school/models.py:163
+msgid "Additional description"
+msgstr "Описание"
+
+#: school/models.py:110
+msgid "Daily schedule"
+msgstr "Расписание дня"
+
+#: school/models.py:111
+msgid "Daily schedules"
+msgstr "Расписания учебного дня"
+
+#: school/models.py:119
+msgid "Name of school year"
+msgstr "Название учебного года"
+
+#: school/models.py:122
+msgid "Start date of a school year"
+msgstr "Дата начала учебного года"
+
+#: school/models.py:125
+msgid "End date of a school year"
+msgstr "Дата окончания учебного года"
+
+#: school/models.py:135 school/models.py:145
+msgid "School year"
+msgstr "Учебный год"
+
+#: school/models.py:136
+msgid "Academic years"
+msgstr "Учебные года"
+
+#: school/models.py:156
+msgid "Start date of a period"
+msgstr "Дата начала периода"
+
+#: school/models.py:159
+msgid "End date of a period"
+msgstr "Дата окончания периода"
+
+#: school/models.py:173
+msgid "School year schedule"
+msgstr "Расписание учебного года"
+
+#: school/models.py:174
+msgid "Academic year schedules"
+msgstr "Расписания учебного года"

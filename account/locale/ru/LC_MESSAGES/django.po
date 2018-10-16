@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1\n"
 "Report-Msgid-Bugs-To: kks.pub@gmail.com\n"
-"POT-Creation-Date: 2018-10-09 02:40+0300\n"
-"PO-Revision-Date: 2018-10-09 02:48+0300\n"
+"POT-Creation-Date: 2018-10-16 21:09+0300\n"
+"PO-Revision-Date: 2018-10-16 21:13+0300\n"
 "Last-Translator: Kirill 'Kolyat' Kiselnikov <kks.pub@gmail.com>\n"
 "Language: ru\n"
 "Language-Team: ru <kks.pub@gmail.com>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.6.0\n"
-"X-Generator: Poedit 2.2\n"
+"X-Generator: Poedit 1.8.12\n"
 
 #: account/admin.py:27
 msgid "Credentials"
@@ -58,11 +58,11 @@ msgstr "Язык"
 
 #: account/models.py:43
 msgid "School user"
-msgstr "Пользователь ШИС"
+msgstr "Пользователь"
 
 #: account/models.py:44
 msgid "School users"
-msgstr "Пользователи ШИС"
+msgstr "Пользователи"
 
 #: account/static/account/js/account.js:37 account/static/account/js/login.js:35
 msgid "Username"

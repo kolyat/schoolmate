@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Schoolmate 0.1\n"
 "Report-Msgid-Bugs-To: kks.pub@gmail.com\n"
-"POT-Creation-Date: 2018-10-09 02:40+0300\n"
+"POT-Creation-Date: 2018-10-16 21:09+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,19 +17,107 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.6.0\n"
 
+#: school/models.py:26
+msgid "Lesson"
+msgstr ""
+
+#: school/models.py:27
+msgid "Break"
+msgstr ""
+
+#: school/models.py:30
+msgid "Quarter"
+msgstr ""
+
 #: school/models.py:31
+msgid "Holidays"
+msgstr ""
+
+#: school/models.py:41
 msgid "Form number"
 msgstr ""
 
-#: school/models.py:36
+#: school/models.py:46
 msgid "Form letter"
 msgstr ""
 
-#: school/models.py:46
+#: school/models.py:56
 msgid "School form"
 msgstr ""
 
-#: school/models.py:47
+#: school/models.py:57
 msgid "School forms"
+msgstr ""
+
+#: school/models.py:65 school/models.py:75
+msgid "School subject"
+msgstr ""
+
+#: school/models.py:76
+msgid "School subjects"
+msgstr ""
+
+#: school/models.py:86 school/models.py:149
+msgid "Number of a period"
+msgstr ""
+
+#: school/models.py:90 school/models.py:153
+msgid "Period type"
+msgstr ""
+
+#: school/models.py:93
+msgid "Start time of a period"
+msgstr ""
+
+#: school/models.py:96
+msgid "End time of a period"
+msgstr ""
+
+#: school/models.py:100 school/models.py:163
+msgid "Additional description"
+msgstr ""
+
+#: school/models.py:110
+msgid "Daily schedule"
+msgstr ""
+
+#: school/models.py:111
+msgid "Daily schedules"
+msgstr ""
+
+#: school/models.py:119
+msgid "Name of school year"
+msgstr ""
+
+#: school/models.py:122
+msgid "Start date of a school year"
+msgstr ""
+
+#: school/models.py:125
+msgid "End date of a school year"
+msgstr ""
+
+#: school/models.py:135 school/models.py:145
+msgid "School year"
+msgstr ""
+
+#: school/models.py:136
+msgid "Academic years"
+msgstr ""
+
+#: school/models.py:156
+msgid "Start date of a period"
+msgstr ""
+
+#: school/models.py:159
+msgid "End date of a period"
+msgstr ""
+
+#: school/models.py:173
+msgid "School year schedule"
+msgstr ""
+
+#: school/models.py:174
+msgid "Academic year schedules"
 msgstr ""
 
