@@ -172,3 +172,26 @@ class YearSchedule(models.Model):
     class Meta:
         verbose_name = _('School year schedule')
         verbose_name_plural = _('Academic year schedules')
+
+
+class Classroom(models.Model):
+    """Represents classroom in a school building
+    """
+    room_id = models.CharField(
+        max_length=15, blank=False, null=False, unique=True,
+        verbose_name=_('Classroom\'s ID')
+    )
+    room_name = models.CharField(
+        max_length=254, blank=True, null=True,
+        verbose_name=_('Classroom\'s name')
+    )
+
+    def __str__(self):
+        return '{} - {}'.format(self.room_id, self.room_name)
+
+    def __unicode__(self):
+        return '{} - {}'.format(self.room_id, self.room_name)
+
+    class Meta:
+        verbose_name = _('Classroom')
+        verbose_name_plural = _('Classrooms')
