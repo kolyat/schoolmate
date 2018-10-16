@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'rest_framework',
     # Project apps
     'school.apps.SchoolConfig',
-    'account.apps.AccountConfig'
+    'account.apps.AccountConfig',
+    'timetable.apps.TimetableConfig'
 ]
 MIDDLEWARE = [
     # Django middleware
@@ -162,7 +163,9 @@ LANGUAGE_CODE = LANGUAGES[0][0]
 TEMPLATES[0]['OPTIONS']['constants'].update({'server_lang': LANGUAGE_CODE})
 LOCALE_PATHS = [
     os.path.join(BASE_DIR, 'locale'),
-    os.path.join(BASE_DIR, 'account', 'locale')
+    os.path.join(BASE_DIR, 'school', 'locale'),
+    os.path.join(BASE_DIR, 'account', 'locale'),
+    os.path.join(BASE_DIR, 'timetable', 'locale')
 ]
 TIME_ZONE = 'Europe/Moscow'
 USE_I18N = True
@@ -174,5 +177,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
-    os.path.join(BASE_DIR, 'account', 'static')
+    os.path.join(BASE_DIR, 'school', 'static'),
+    os.path.join(BASE_DIR, 'account', 'static'),
+    os.path.join(BASE_DIR, 'timetable', 'static')
 ]
