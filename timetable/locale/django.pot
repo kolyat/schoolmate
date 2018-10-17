@@ -1,0 +1,59 @@
+# Translations template for Schoolmate.
+# Copyright (C) 2018 Kirill 'Kolyat' Kiselnikov
+# This file is distributed under the same license as the Schoolmate project.
+# Kirill 'Kolyat' Kiselnikov <kks.pub@gmail.com>, 2018.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Schoolmate 0.1\n"
+"Report-Msgid-Bugs-To: kks.pub@gmail.com\n"
+"POT-Creation-Date: 2018-10-18 00:37+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.6.0\n"
+
+#: timetable/models.py:24
+msgid "Monday"
+msgstr ""
+
+#: timetable/models.py:25
+msgid "Tuesday"
+msgstr ""
+
+#: timetable/models.py:26
+msgid "Wednesday"
+msgstr ""
+
+#: timetable/models.py:27
+msgid "Thursday"
+msgstr ""
+
+#: timetable/models.py:28
+msgid "Friday"
+msgstr ""
+
+#: timetable/models.py:29
+msgid "Saturday"
+msgstr ""
+
+#: timetable/models.py:41
+msgid "Lesson number"
+msgstr ""
+
+#: timetable/models.py:49
+msgid "Day of week"
+msgstr ""
+
+#: timetable/models.py:65
+msgid "Timetable"
+msgstr ""
+
+#: timetable/models.py:66
+msgid "Timetables"
+msgstr ""
+

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Schoolmate 0.1\n"
 "Report-Msgid-Bugs-To: kks.pub@gmail.com\n"
-"POT-Creation-Date: 2018-10-16 21:09+0300\n"
-"PO-Revision-Date: 2018-10-16 21:42+0300\n"
+"POT-Creation-Date: 2018-10-18 00:37+0300\n"
+"PO-Revision-Date: 2018-10-18 00:49+0300\n"
 "Last-Translator: Kirill 'Kolyat' Kiselnikov <kks.pub@gmail.com>\n"
 "Language: ru\n"
 "Language-Team: ru <LL@li.org>\n"
@@ -123,3 +123,19 @@ msgstr "Расписание учебного года"
 #: school/models.py:174
 msgid "Academic year schedules"
 msgstr "Расписания учебного года"
+
+#: school/models.py:182
+msgid "Classroom's ID"
+msgstr "Номер кабинета"
+
+#: school/models.py:186
+msgid "Classroom's name"
+msgstr "Название кабинета"
+
+#: school/models.py:196
+msgid "Classroom"
+msgstr "Кабинет"
+
+#: school/models.py:197
+msgid "Classrooms"
+msgstr "Классные комнаты"

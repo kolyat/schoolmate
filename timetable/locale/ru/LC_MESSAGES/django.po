@@ -1,0 +1,61 @@
+# Russian translations for Schoolmate.
+# Copyright (C) 2018 Kirill 'Kolyat' Kiselnikov
+# This file is distributed under the same license as the Schoolmate project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2018.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Schoolmate 0.1\n"
+"Report-Msgid-Bugs-To: kks.pub@gmail.com\n"
+"POT-Creation-Date: 2018-10-18 00:37+0300\n"
+"PO-Revision-Date: 2018-10-18 00:54+0300\n"
+"Language: ru\n"
+"Language-Team: ru <LL@li.org>\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.6.0\n"
+"Last-Translator: Kirill 'Kolyat' Kiselnikov <kks.pub@gmail.com>\n"
+"X-Generator: Poedit 1.8.12\n"
+
+#: timetable/models.py:24
+msgid "Monday"
+msgstr "Понедельник"
+
+#: timetable/models.py:25
+msgid "Tuesday"
+msgstr "Вторник"
+
+#: timetable/models.py:26
+msgid "Wednesday"
+msgstr "Среда"
+
+#: timetable/models.py:27
+msgid "Thursday"
+msgstr "Четверг"
+
+#: timetable/models.py:28
+msgid "Friday"
+msgstr "Пятница"
+
+#: timetable/models.py:29
+msgid "Saturday"
+msgstr "Суббота"
+
+#: timetable/models.py:41
+msgid "Lesson number"
+msgstr "Номер урока"
+
+#: timetable/models.py:49
+msgid "Day of week"
+msgstr "День недели"
+
+#: timetable/models.py:65
+msgid "Timetable"
+msgstr "Расписание уроков"
+
+#: timetable/models.py:66
+msgid "Timetables"
+msgstr "Расписания уроков"
