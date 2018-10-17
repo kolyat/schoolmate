@@ -21,5 +21,5 @@ from . import models
 
 admin.site.register((
     models.SchoolForm, models.SchoolSubject, models.DailySchedule,
-    models.SchoolYear, models.YearSchedule
+    models.SchoolYear, models.YearSchedule, models.Classroom
 ))

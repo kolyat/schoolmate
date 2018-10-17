@@ -28,7 +28,7 @@ DAYS_OF_WEEK = (
     (6, _('Friday')),
     (7, _('Saturday'))
 )
-days_of_week = dict(*DAYS_OF_WEEK)
+days_of_week = dict(DAYS_OF_WEEK)
 
 
 class Timetable(models.Model):
