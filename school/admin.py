@@ -37,20 +37,26 @@ class DailyScheduleAdmin(admin.ModelAdmin):
     ordering = ('start_time',)
 
 
-@admin.register(models.SchoolYear)
-class SchoolYearAdmin(admin.ModelAdmin):
-    list_display = ('name', 'start_date', 'end_date')
-    list_editable = ('start_date', 'end_date')
+# @admin.register(models.YearSchedule)
+# class YearScheduleAdmin(admin.ModelAdmin):
+#     list_display = ('school_year', 'number', 'period_type',
+#                     'start_date', 'end_date', 'description')
+#     list_editable = ('number', 'period_type', 'start_date', 'end_date',
+#                      'description')
+#     ordering = ('-school_year', 'start_date')
+
+
+class YearScheduleInline(admin.TabularInline):
+    model = models.YearSchedule
+    fields = ('number', 'period_type', 'start_date', 'end_date', 'description')
     ordering = ('start_date',)
 
 
-@admin.register(models.YearSchedule)
-class YearScheduleAdmin(admin.ModelAdmin):
-    list_display = ('school_year', 'number', 'period_type',
-                    'start_date', 'end_date', 'description')
-    list_editable = ('number', 'period_type', 'start_date', 'end_date',
-                     'description')
-    ordering = ('-school_year', 'start_date')
+@admin.register(models.SchoolYear)
+class SchoolYearAdmin(admin.ModelAdmin):
+    inlines = [YearScheduleInline, ]
+    list_display = ('name', 'start_date', 'end_date')
+    ordering = ('-start_date',)
 
 
 @admin.register(models.Classroom)
