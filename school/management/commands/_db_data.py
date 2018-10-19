@@ -215,3 +215,9 @@ YEAR_SCHEDULE = [
         'description': 'Дополнительные каникулы для первоклассников'
     }
 ].__reversed__()
+CLASSROOMS = [
+    {
+        'room_id': '1',
+        'room_name': 'Кабинет'
+    }
+]
