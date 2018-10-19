@@ -28,38 +28,37 @@ DAYS_OF_WEEK = (
     (6, _('Friday')),
     (7, _('Saturday'))
 )
-days_of_week = dict(DAYS_OF_WEEK)
 
 
 class Timetable(models.Model):
     """Lesson schedule of each academic year
     """
+    day_of_week = models.PositiveSmallIntegerField(
+        blank=False, null=False, choices=DAYS_OF_WEEK,
+        verbose_name=_('Day of week')
+    )
     lesson_number = models.PositiveSmallIntegerField(
         blank=False, null=False,
         choices=tuple(zip(school_models.PERIOD_NUMBERS,
                           [str(n) for n in school_models.PERIOD_NUMBERS])),
         verbose_name=_('Lesson number')
     )
-    classroom = models.OneToOneField(school_models.Classroom,
-                                     on_delete=models.DO_NOTHING)
+    school_form = models.OneToOneField(school_models.SchoolForm,
+                                       on_delete=models.PROTECT)
     subject = models.OneToOneField(school_models.SchoolSubject,
-                                   on_delete=models.DO_NOTHING)
-    day_of_week = models.PositiveSmallIntegerField(
-        blank=False, null=False, choices=DAYS_OF_WEEK,
-        verbose_name=_('Day of week')
+                                   on_delete=models.PROTECT)
+    classroom = models.OneToOneField(
+        school_models.Classroom, blank=True, null=True,
+        on_delete=models.PROTECT
     )
-    year = models.OneToOneField(school_models.SchoolYear,
-                                on_delete=models.DO_NOTHING)
+    year = models.ForeignKey(school_models.SchoolYear,
+                             on_delete=models.PROTECT)
 
     def __str__(self):
-        return '-'.join((days_of_week[self.day_of_week],
-                         str(self.lesson_number),
-                         str(self.subject)))
+        return str(self.subject)
 
     def __unicode__(self):
-        return '-'.join((days_of_week[self.day_of_week],
-                         str(self.lesson_number),
-                         str(self.subject)))
+        return str(self.subject)
 
     class Meta:
         verbose_name = _('Timetable')

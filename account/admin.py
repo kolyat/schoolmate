@@ -29,7 +29,7 @@ class SchoolUserAdmin(auth_admin.UserAdmin):
         }),
         (_('User info'), {
             'fields': ('first_name', 'patronymic_name', 'last_name',
-                       'birth_date')
+                       'birth_date', 'school_form')
         }),
         (_('Contacts'), {
             'fields': ('email',)
@@ -38,16 +38,12 @@ class SchoolUserAdmin(auth_admin.UserAdmin):
             'fields': ('language', 'date_joined')
         }),
         (_('Permissions'), {
-            'fields': ('school_form', 'is_active', 'is_staff', 'is_superuser',
-                       'groups', 'user_permissions')
+            'fields': ('is_active', 'is_staff', 'is_superuser', 'groups',
+                       'user_permissions')
         })
     )
-    list_display = (
-        'username', 'email', 'first_name', 'last_name', 'school_form',
-        'is_staff', 'is_active'
-    )
+    list_display = ('username', 'first_name', 'last_name', 'school_form',
+                    'is_staff', 'is_active')
     list_filter = ('is_staff', 'is_active')
-    search_fields = (
-        'username', 'first_name', 'patronymic_name', 'last_name', 'birth_date',
-        'email', 'school_form'
-    )
+    search_fields = ('username', 'first_name', 'patronymic_name', 'last_name',
+                     'birth_date', 'school_form', 'email')

@@ -19,4 +19,9 @@ from django.contrib import admin
 from . import models
 
 
-admin.site.register(models.Timetable)
+@admin.register(models.Timetable)
+class TimetableAdmin(admin.ModelAdmin):
+    list_display = ('school_form', 'day_of_week', 'lesson_number',
+                    'subject', 'classroom')
+    list_editable = ('day_of_week', 'lesson_number', 'subject', 'classroom')
+    ordering = ('-year', 'day_of_week', 'lesson_number')

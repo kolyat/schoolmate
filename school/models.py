@@ -61,7 +61,7 @@ class SchoolSubject(models.Model):
     """Represents school subject
     """
     subject = models.CharField(
-        max_length=254, blank=True, null=True,
+        max_length=254, blank=False, null=False,
         verbose_name=_('School subject')
     )
 
@@ -107,8 +107,8 @@ class DailySchedule(models.Model):
         return self.description
 
     class Meta:
-        verbose_name = _('Daily schedule')
-        verbose_name_plural = _('Daily schedules')
+        verbose_name = _('Period')
+        verbose_name_plural = _('Daily schedule')
 
 
 class SchoolYear(models.Model):
@@ -141,7 +141,7 @@ class YearSchedule(models.Model):
     Period type (academic quarter/holidays), it's number, date of start
     and end
     """
-    school_year = models.ForeignKey(SchoolYear, on_delete=models.DO_NOTHING,
+    school_year = models.ForeignKey(SchoolYear, on_delete=models.PROTECT,
                                     verbose_name=_('School year'))
     number = models.PositiveSmallIntegerField(
         blank=False, null=False,
@@ -179,18 +179,18 @@ class Classroom(models.Model):
     """
     room_id = models.CharField(
         max_length=15, blank=False, null=False, unique=True,
-        verbose_name=_('Classroom\'s ID')
+        verbose_name=_('Classroom ID')
     )
     room_name = models.CharField(
         max_length=254, blank=True, null=True,
-        verbose_name=_('Classroom\'s name')
+        verbose_name=_('Classroom name')
     )
 
     def __str__(self):
-        return '{} - {}'.format(self.room_id, self.room_name)
+        return self.room_id
 
     def __unicode__(self):
-        return '{} - {}'.format(self.room_id, self.room_name)
+        return self.room_id
 
     class Meta:
         verbose_name = _('Classroom')

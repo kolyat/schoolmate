@@ -19,7 +19,42 @@ from django.contrib import admin
 from . import models
 
 
-admin.site.register((
-    models.SchoolForm, models.SchoolSubject, models.DailySchedule,
-    models.SchoolYear, models.YearSchedule, models.Classroom
-))
+@admin.register(models.SchoolForm)
+class SchoolFormAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(models.SchoolSubject)
+class SchoolSubjectAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(models.DailySchedule)
+class DailyScheduleAdmin(admin.ModelAdmin):
+    list_display = ('number', 'period_type', 'start_time', 'end_time',
+                    'description')
+    list_editable = ('period_type', 'start_time', 'end_time', 'description')
+    ordering = ('start_time',)
+
+
+@admin.register(models.SchoolYear)
+class SchoolYearAdmin(admin.ModelAdmin):
+    list_display = ('name', 'start_date', 'end_date')
+    list_editable = ('start_date', 'end_date')
+    ordering = ('start_date',)
+
+
+@admin.register(models.YearSchedule)
+class YearScheduleAdmin(admin.ModelAdmin):
+    list_display = ('school_year', 'number', 'period_type',
+                    'start_date', 'end_date', 'description')
+    list_editable = ('number', 'period_type', 'start_date', 'end_date',
+                     'description')
+    ordering = ('-school_year', 'start_date')
+
+
+@admin.register(models.Classroom)
+class ClassroomAdmin(admin.ModelAdmin):
+    list_display = ('room_id', 'room_name')
+    list_editable = ('room_name',)
+    ordering = ('room_id',)
