@@ -50,6 +50,7 @@ class YearScheduleInline(admin.TabularInline):
     model = models.YearSchedule
     fields = ('number', 'period_type', 'start_date', 'end_date', 'description')
     ordering = ('start_date',)
+    extra = 0
 
 
 @admin.register(models.SchoolYear)
