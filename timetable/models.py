@@ -30,9 +30,39 @@ DAYS_OF_WEEK = (
 )
 
 
+class TimetableYear(models.Model):
+    school_year = models.ForeignKey(school_models.SchoolYear,
+                                    on_delete=models.PROTECT)
+
+    def __str__(self):
+        return str(self.school_year)
+
+    def __unicode__(self):
+        return str(self.school_year)
+
+    class Meta:
+        verbose_name = _('Timetable')
+        verbose_name_plural = _('Timetables')
+
+
+class TimetableSchoolForm(models.Model):
+    year = models.ForeignKey(TimetableYear, on_delete=models.PROTECT)
+    school_form = models.ForeignKey(school_models.SchoolForm,
+                                    on_delete=models.PROTECT)
+
+    def __str__(self):
+        return str(self.school_form)
+
+    def __unicode__(self):
+        return str(self.school_form)
+
+    class Meta:
+        verbose_name = _('Timetable')
+        verbose_name_plural = _('Timetables')
+
+
 class Timetable(models.Model):
-    """Lesson schedule of each academic year
-    """
+    form = models.ForeignKey(TimetableSchoolForm, on_delete=models.PROTECT)
     day_of_week = models.PositiveSmallIntegerField(
         blank=False, null=False, choices=DAYS_OF_WEEK,
         verbose_name=_('Day of week')
@@ -43,16 +73,12 @@ class Timetable(models.Model):
                           [str(n) for n in school_models.PERIOD_NUMBERS])),
         verbose_name=_('Lesson number')
     )
-    school_form = models.OneToOneField(school_models.SchoolForm,
-                                       on_delete=models.PROTECT)
     subject = models.OneToOneField(school_models.SchoolSubject,
                                    on_delete=models.PROTECT)
     classroom = models.OneToOneField(
         school_models.Classroom, blank=True, null=True,
         on_delete=models.PROTECT
     )
-    year = models.ForeignKey(school_models.SchoolYear,
-                             on_delete=models.PROTECT)
 
     def __str__(self):
         return str(self.subject)

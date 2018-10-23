@@ -19,9 +19,33 @@ from django.contrib import admin
 from . import models
 
 
-@admin.register(models.Timetable)
-class TimetableAdmin(admin.ModelAdmin):
-    list_display = ('school_form', 'day_of_week', 'lesson_number',
-                    'subject', 'classroom')
-    list_editable = ('day_of_week', 'lesson_number', 'subject', 'classroom')
-    ordering = ('-year', 'day_of_week', 'lesson_number')
+class TimetableInline(admin.TabularInline):
+    model = models.Timetable
+    fields = ('day_of_week', 'lesson_number', 'subject', 'classroom')
+    ordering = ('day_of_week', 'lesson_number')
+    extra = 0
+
+
+class TimetableSchoolFormInline(admin.StackedInline):
+    model = models.TimetableSchoolForm
+    show_change_link = True
+    fields = ('school_form',)
+    ordering = ('-school_form',)
+    extra = 0
+
+
+@admin.register(models.TimetableYear)
+class TimetableYearAdmin(admin.ModelAdmin):
+    inlines = (TimetableSchoolFormInline,)
+    fields = ('school_year',)
+    ordering = ('school_year',)
+
+
+@admin.register(models.TimetableSchoolForm)
+class TimetableSchoolFormAdmin(admin.ModelAdmin):
+    inlines = (TimetableInline,)
+    fields = ('school_form',)
+    ordering = ('-school_form',)
+
+    def has_module_permission(self, request):
+        return False
