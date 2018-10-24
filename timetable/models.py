@@ -73,9 +73,9 @@ class Timetable(models.Model):
                           [str(n) for n in school_models.PERIOD_NUMBERS])),
         verbose_name=_('Lesson number')
     )
-    subject = models.OneToOneField(school_models.SchoolSubject,
-                                   on_delete=models.PROTECT)
-    classroom = models.OneToOneField(
+    subject = models.ForeignKey(school_models.SchoolSubject,
+                                on_delete=models.PROTECT)
+    classroom = models.ForeignKey(
         school_models.Classroom, blank=True, null=True,
         on_delete=models.PROTECT
     )
