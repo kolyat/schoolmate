@@ -17,38 +17,22 @@
 from django.core.management import base
 
 from testutils import settings
-from school import models as school_models
 from account import models as account_models
-from . import _db_data
 
 
 class Command(base.BaseCommand):
     requires_migrations_checks = True
 
     def handle(self, *args, **options):
-        # Clean up
+        print('ACCOUNT app')
+        print('Clean up... ', end='')
         account_models.SchoolUser.objects.all().delete()
-        school_models.Classroom.objects.all().delete()
-        school_models.YearSchedule.objects.all().delete()
-        school_models.SchoolYear.objects.all().delete()
-        school_models.DailySchedule.objects.all().delete()
-        school_models.SchoolSubject.objects.all().delete()
-        school_models.SchoolForm.objects.all().delete()
-        # Create new data
-        [school_models.SchoolForm(form_number=n, form_letter=l).save()
-         for n in school_models.FORM_NUMBERS.__reversed__()
-         for l in _db_data.FORM_LETTERS]
-        [school_models.SchoolSubject(subject=s).save()
-         for s in _db_data.SUBJECTS]
-        [school_models.DailySchedule(**d).save()
-         for d in _db_data.DAILY_SCHEDULE]
-        _sy = school_models.SchoolYear(**_db_data.SCHOOL_YEAR)
-        _sy.save()
-        [school_models.YearSchedule(school_year=_sy, **y).save()
-         for y in _db_data.YEAR_SCHEDULE]
-        [school_models.Classroom(**c).save() for c in _db_data.CLASSROOMS]
+        print('OK')
+        print('Create new data:')
+        print('    {:.<25}...'.format('Users'), end='')
         account_models.SchoolUser.objects.create_superuser(
             username=settings.ADMIN_USER,
             email=settings.ADMIN_EMAIL,
             password=settings.ADMIN_PASS
         )
+        print('OK')
