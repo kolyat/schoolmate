@@ -8,3 +8,4 @@ ddt
 seleniumbase
 pytest-django
 mimesis
+django-grappelli

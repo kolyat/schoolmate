@@ -24,6 +24,7 @@ from schoolmate import settings
 
 urlpatterns = [
     path('', include('account.urls')),
+    path('grappelli/', include('grappelli.urls')),
     path('admin/', admin.site.urls),
     path('favicon.ico', generic.RedirectView.as_view(
         url='{}img/favicon.ico'.format(settings.STATIC_URL))),
