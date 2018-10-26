@@ -15,6 +15,7 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 import os
+from django.utils.translation import gettext_lazy as _
 
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -28,11 +29,12 @@ ALLOWED_HOSTS = []
 
 # Application definition
 INSTALLED_APPS = [
+    # Django apps and Grappelli admin
+    'django.contrib.contenttypes',
+    'grappelli.dashboard',
     'grappelli',
-    # Django apps
     'django.contrib.admin',
     'django.contrib.auth',
-    'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
@@ -182,3 +184,12 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'account', 'static'),
     os.path.join(BASE_DIR, 'timetable', 'static')
 ]
+
+
+# Grappelli settings
+GRAPPELLI_ADMIN_TITLE = _('Schoolmate maintenance')
+GRAPPELLI_INDEX_DASHBOARD = 'schoolmate.dashboard.SchoolmateAdminDashboard'
+GRAPPELLI_AUTOCOMPLETE_LIMIT = 7
+GRAPPELLI_SWITCH_USER = False
+GRAPPELLI_SWITCH_USER_ORIGINAL = False
+GRAPPELLI_SWITCH_USER_TARGET = False
