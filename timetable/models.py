@@ -42,7 +42,7 @@ class TimetableYear(models.Model):
 
     class Meta:
         verbose_name = _('Timetable')
-        verbose_name_plural = _('Timetables')
+        verbose_name_plural = _('Timetable')
 
 
 class TimetableSchoolForm(models.Model):
@@ -57,8 +57,8 @@ class TimetableSchoolForm(models.Model):
         return str(self.school_form)
 
     class Meta:
-        verbose_name = _('Timetable')
-        verbose_name_plural = _('Timetables')
+        verbose_name = _('Form')
+        verbose_name_plural = _('Form')
 
 
 class Timetable(models.Model):
@@ -87,5 +87,5 @@ class Timetable(models.Model):
         return str(self.subject)
 
     class Meta:
-        verbose_name = _('Timetable')
-        verbose_name_plural = _('Timetables')
+        verbose_name = _('Subject')
+        verbose_name_plural = _('Subjects')
