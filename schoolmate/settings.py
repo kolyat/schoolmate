@@ -58,7 +58,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     # Custom middleware
-    'middleware.UserLanguage',
+    'user_language_middleware.UserLanguageMiddleware',
     'django_babel.middleware.LocaleMiddleware'
 ]
 ROOT_URLCONF = 'schoolmate.urls'
