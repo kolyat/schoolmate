@@ -4,7 +4,7 @@ import logging
 # Logging
 #
 LOG_OPTIONS = {
-    'filemode': 'w',
+    'filemode': 'a',
     'format': '%(asctime)s [%(module)15s] %(levelname)7s - %(funcName)s'
               ' - %(message)s',
     'level': logging.INFO

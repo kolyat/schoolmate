@@ -66,7 +66,7 @@ class TestProfile(webutils.SchoolmateClient):
                 '//div[@view_id="email"]/div/input', 'value', by=By.XPATH
             ))
             self.assertEqual(
-                ''.join((school_form['form_number'],
+                ''.join((str(school_form['form_number']),
                          school_form['form_letter'])),
                 self.get_attribute('//div[@view_id="school_form"]/div/input',
                                    'value', by=By.XPATH)
