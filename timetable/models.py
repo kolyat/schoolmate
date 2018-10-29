@@ -31,8 +31,10 @@ DAYS_OF_WEEK = (
 
 
 class TimetableYear(models.Model):
-    school_year = models.ForeignKey(school_models.SchoolYear,
-                                    on_delete=models.PROTECT)
+    school_year = models.ForeignKey(
+        school_models.SchoolYear, on_delete=models.PROTECT,
+        verbose_name=_('School year')
+    )
 
     def __str__(self):
         return str(self.school_year)
@@ -46,9 +48,12 @@ class TimetableYear(models.Model):
 
 
 class TimetableSchoolForm(models.Model):
-    year = models.ForeignKey(TimetableYear, on_delete=models.PROTECT)
-    school_form = models.ForeignKey(school_models.SchoolForm,
-                                    on_delete=models.PROTECT)
+    year = models.ForeignKey(TimetableYear, on_delete=models.PROTECT,
+                             verbose_name=_('Year'))
+    school_form = models.ForeignKey(
+        school_models.SchoolForm, on_delete=models.PROTECT,
+        verbose_name=_('School form')
+    )
 
     def __str__(self):
         return str(self.school_form)
@@ -62,7 +67,8 @@ class TimetableSchoolForm(models.Model):
 
 
 class Timetable(models.Model):
-    form = models.ForeignKey(TimetableSchoolForm, on_delete=models.PROTECT)
+    form = models.ForeignKey(TimetableSchoolForm, on_delete=models.PROTECT,
+                             verbose_name=_('Form'))
     day_of_week = models.PositiveSmallIntegerField(
         blank=False, null=False, choices=DAYS_OF_WEEK,
         verbose_name=_('Day of week')
@@ -73,11 +79,13 @@ class Timetable(models.Model):
                           [str(n) for n in school_models.PERIOD_NUMBERS])),
         verbose_name=_('Lesson number')
     )
-    subject = models.ForeignKey(school_models.SchoolSubject,
-                                on_delete=models.PROTECT)
+    subject = models.ForeignKey(
+        school_models.SchoolSubject, on_delete=models.PROTECT,
+        verbose_name=_('Subject')
+    )
     classroom = models.ForeignKey(
         school_models.Classroom, blank=True, null=True,
-        on_delete=models.PROTECT
+        on_delete=models.PROTECT, verbose_name=_('Classroom')
     )
 
     def __str__(self):

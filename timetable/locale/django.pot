@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Schoolmate 0.1\n"
 "Report-Msgid-Bugs-To: kks.pub@gmail.com\n"
-"POT-Creation-Date: 2018-10-18 00:37+0300\n"
+"POT-Creation-Date: 2018-10-29 15:50+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,6 +16,10 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.6.0\n"
+
+#: timetable/apps.py:23 timetable/models.py:46 timetable/models.py:47
+msgid "Timetable"
+msgstr ""
 
 #: timetable/models.py:24
 msgid "Monday"
@@ -41,19 +45,39 @@ msgstr ""
 msgid "Saturday"
 msgstr ""
 
-#: timetable/models.py:41
-msgid "Lesson number"
+#: timetable/models.py:36
+msgid "School year"
 msgstr ""
 
-#: timetable/models.py:49
+#: timetable/models.py:52
+msgid "Year"
+msgstr ""
+
+#: timetable/models.py:55
+msgid "School form"
+msgstr ""
+
+#: timetable/models.py:65 timetable/models.py:66 timetable/models.py:71
+msgid "Form"
+msgstr ""
+
+#: timetable/models.py:74
 msgid "Day of week"
 msgstr ""
 
-#: timetable/models.py:65
-msgid "Timetable"
+#: timetable/models.py:80
+msgid "Lesson number"
 msgstr ""
 
-#: timetable/models.py:66
-msgid "Timetables"
+#: timetable/models.py:84 timetable/models.py:98
+msgid "Subject"
+msgstr ""
+
+#: timetable/models.py:88
+msgid "Classroom"
+msgstr ""
+
+#: timetable/models.py:99
+msgid "Subjects"
 msgstr ""
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Schoolmate 0.1\n"
 "Report-Msgid-Bugs-To: kks.pub@gmail.com\n"
-"POT-Creation-Date: 2018-10-16 21:09+0300\n"
+"POT-Creation-Date: 2018-10-29 15:50+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -35,6 +35,10 @@ msgstr ""
 
 #: account/admin.py:40
 msgid "Permissions"
+msgstr ""
+
+#: account/apps.py:23
+msgid "Account"
 msgstr ""
 
 #: account/models.py:29 account/static/account/js/account.js:47

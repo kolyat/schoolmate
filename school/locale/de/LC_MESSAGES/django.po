@@ -7,17 +7,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Schoolmate 0.1\n"
 "Report-Msgid-Bugs-To: kks.pub@gmail.com\n"
-"POT-Creation-Date: 2018-10-18 00:37+0300\n"
-"PO-Revision-Date: 2018-10-18 00:51+0300\n"
+"POT-Creation-Date: 2018-10-29 15:50+0300\n"
+"PO-Revision-Date: 2018-10-29 15:32+0300\n"
 "Last-Translator: Kirill 'Kolyat' Kiselnikov <kks.pub@gmail.com>\n"
 "Language: de\n"
 "Language-Team: de <LL@li.org>\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.6.0\n"
-"X-Generator: Poedit 1.8.12\n"
+
+#: school/apps.py:23
+msgid "General"
+msgstr "Allgemeines"
 
 #: school/models.py:26
 msgid "Lesson"
@@ -80,12 +83,12 @@ msgid "Additional description"
 msgstr "Zusätzliche Beschreibung"
 
 #: school/models.py:110
-msgid "Daily schedule"
-msgstr "Tagesablauf"
+msgid "Period"
+msgstr "Periode"
 
 #: school/models.py:111
-msgid "Daily schedules"
-msgstr "Tagespläne"
+msgid "Daily schedule"
+msgstr "Tagesablauf"
 
 #: school/models.py:119
 msgid "Name of school year"
@@ -124,12 +127,12 @@ msgid "Academic year schedules"
 msgstr "Schuljahrpläne"
 
 #: school/models.py:182
-msgid "Classroom's ID"
+msgid "Classroom ID"
 msgstr "Klassenzimmer ID"
 
 #: school/models.py:186
-msgid "Classroom's name"
-msgstr "Klassenzimmername"
+msgid "Classroom name"
+msgstr "Klassenzimmernname"
 
 #: school/models.py:196
 msgid "Classroom"
@@ -138,3 +141,13 @@ msgstr "Klassenzimmer"
 #: school/models.py:197
 msgid "Classrooms"
 msgstr "Klassenzimmern"
+
+#~ msgid "Daily schedules"
+#~ msgstr "Tagespläne"
+
+#~ msgid "Classroom's ID"
+#~ msgstr "Klassenzimmer ID"
+
+#~ msgid "Classroom's name"
+#~ msgstr "Klassenzimmername"
+
