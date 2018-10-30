@@ -77,7 +77,7 @@ var password_reset_form = $$("password_reset_form");
 
 
 function postPasswordResetForm() {
-    var passwordResetURL = "/password_reset/";
+    var passwordResetURL = "/profile/password_reset/";
     if (password_reset_form.validate()) {
         webix.ajax().post(
             passwordResetURL,

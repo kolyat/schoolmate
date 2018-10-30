@@ -215,10 +215,11 @@ function patchLanguage(newv, oldv) {
 function postPasswordChangeForm() {
     if (password_change_form.validate()) {
         webix.ajax().post(
-            "/password_change/",
+            "/profile/password_change/",
             password_change_form.getValues(),
             function(text, data, xhr) {
-                if (xhr["responseURL"].includes("/password_change/done/")) {
+                if (xhr["responseURL"].includes(
+                        "/profile/password_change/done/")) {
                     webix.message({
                         text: gettext("Password changed"),
                         type: "success",

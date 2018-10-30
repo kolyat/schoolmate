@@ -33,7 +33,7 @@ userMenu = {
                 {
                     value: gettext("Log out"),
                      name: "logout_item", id: "logout_item",
-                    href: "/logout/", config: {
+                    href: "/profile/logout/", config: {
                         click: function(id) {
                             webix.send(this.config.href, {}, "GET");
                         }

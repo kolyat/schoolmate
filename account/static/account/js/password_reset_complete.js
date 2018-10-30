@@ -31,7 +31,7 @@ webix.ui({
                     {
                         view: "button", value: gettext("Back to login page"),
                         name: "back_to_login_btn", id: "back_to_login_btn",
-                        href: "/login/",
+                        href: "/profile/login/",
                         click: function() {
                             webix.send(this.config.href, {}, "GET") },
                         align: "center", minWidth: 250, width: 250

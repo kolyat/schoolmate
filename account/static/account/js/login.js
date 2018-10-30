@@ -58,7 +58,7 @@ webix.ui({
             {
                 view: "button", value: gettext("Forgot password"),
                 name: "forgot_password_btn", id: "forgot_password_btn",
-                href: "/password_reset/",
+                href: "/profile/password_reset/",
                 click: function() {webix.send(this.config.href, {}, "GET");},
                 minWidth: 165, width: 165,
                 minHeight: 30, height: 30

@@ -15,7 +15,6 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 from django.urls import path
-from django.views import generic
 from django.contrib.auth import views as auth_views
 
 from . import views
@@ -34,7 +33,7 @@ urlpatterns = [
              template_name='password_reset.html.j2',
              email_template_name='password_reset_email.html.j2',
              subject_template_name='password_reset_subj.txt',
-             success_url='/password_reset/sent/'
+             success_url='/profile/password_reset/sent/'
          ),
          name='password_reset'),
     path('password_reset/sent/',
@@ -45,7 +44,7 @@ urlpatterns = [
          auth_views.PasswordResetConfirmView.as_view(
              template_name='password_reset_confirm.html.j2',
              post_reset_login=False,
-             success_url='/password_reset/complete/'
+             success_url='/profile/password_reset/complete/'
          ),
          name='password_reset_confirm'),
     path('password_reset/complete/',
@@ -56,17 +55,15 @@ urlpatterns = [
     # Password change
     path('password_change/',
          auth_views.PasswordChangeView.as_view(
-             success_url='/password_change/done/'),
+             success_url='/profile/password_change/done/'),
          name='password_change'),
     path('password_change/done/', views.password_change_done,
          name='password_change_done'),
 
     # Profile
-    path('profile/', views.account, name='account'),
-    path('', generic.RedirectView.as_view(url='/profile')),
-    path('login/undefined', generic.RedirectView.as_view(url='/profile')),
+    path('', views.account, name='account'),
 
     # API
-    path('profile/user/', views.user),
-    path('profile/user/info', views.UserInfo.as_view())
+    path('user/', views.user),
+    path('user/info', views.UserInfo.as_view())
 ]
