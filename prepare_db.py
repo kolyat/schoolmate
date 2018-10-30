@@ -30,7 +30,7 @@ if __name__ == '__main__':
     print('OK')
     print('Re-creating migration directories... ', end='')
     dirs = [os.path.join(BASE_DIR, app, 'migrations') for app in APPS]
-    [shutil.rmtree(d) for d in dirs]
+    [shutil.rmtree(d) if os.path.exists(d) else None for d in dirs]
     [os.mkdir(d) for d in dirs]
     [open(os.path.join(d, '__init__.py'), 'w').close() for d in dirs]
     print('OK')
