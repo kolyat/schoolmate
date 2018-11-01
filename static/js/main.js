@@ -32,7 +32,7 @@ userMenu = {
                 { $template: "Separator" },
                 {
                     value: gettext("Log out"),
-                     name: "logout_item", id: "logout_item",
+                    name: "logout_item", id: "logout_item",
                     href: "/profile/logout/", config: {
                         click: function(id) {
                             webix.send(this.config.href, {}, "GET");

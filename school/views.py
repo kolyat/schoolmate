@@ -14,13 +14,23 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
+from django import shortcuts
 from django.contrib.auth import decorators as auth_decorators
+from django.views.decorators import http as http_decorators
 from django.utils.decorators import method_decorator
 from django.utils import timezone
 
 from rest_framework import views, serializers, response, status
 
 from . import models
+
+
+@auth_decorators.login_required()
+@http_decorators.require_http_methods(['GET'])
+def index(request):
+    """Main page
+    """
+    return shortcuts.render(request, 'index.html.j2')
 
 
 class DailyScheduleSerializer(serializers.ModelSerializer):

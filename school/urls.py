@@ -21,7 +21,7 @@ from . import views
 
 
 urlpatterns = [
-    # path('main/', views.index, name='index'),
+    path('main/', views.index, name='index'),
     path('', generic.RedirectView.as_view(url='/main')),
 
     # API
