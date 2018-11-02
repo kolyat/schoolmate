@@ -54,7 +54,7 @@ webix.ui({
                 },
                 width: 360, margin: 9,
             },
-            {view: "label", minHeight: 6, height: 6},
+            {minHeight: 6, height: 6},
             {
                 view: "button", value: gettext("Forgot password"),
                 name: "forgot_password_btn", id: "forgot_password_btn",

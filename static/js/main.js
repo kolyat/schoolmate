@@ -49,7 +49,18 @@ userMenu = {
 webix.ui({
     view: "toolbar", id: "main_toolbar",
     cols: [
-        {view: "label", label: "SCHOOLMATE", align: "left"},
+        {
+            view: "label", label: "SCHOOLMATE", align: "center",
+            minWidth: 150, width: 150,
+        },
+        {},
+        {
+            view: "button", value: gettext("Main"), align: "left",
+            name: "main_page_btn", id: "main_page_btn", href: "/main",
+            click: function() {webix.send(this.config.href, {}, "GET");},
+            minWidth: 90, width: 90, minHeight: 40, height: 40
+        },
+        {},
         userMenu
     ],
     minHeight: 60, height: 60
