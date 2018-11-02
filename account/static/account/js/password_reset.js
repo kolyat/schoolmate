@@ -30,7 +30,7 @@ function multipleValidator() {
     }
 }
 
-webix.ui({
+webix.ui({ type: "space", rows: [{
     align: "center,middle",
     body: {
         rows: [
@@ -72,7 +72,7 @@ webix.ui({
             }
         ]
     }
-});
+}]});
 var password_reset_form = $$("password_reset_form");
 
 
