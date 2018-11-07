@@ -162,7 +162,7 @@ var language_select = $$("language_select");
 
 
 function loadPersonalInfoForm() {
-    var response = webix.ajax().sync().get("/profile/user/info");
+    var response = webix.ajax().sync().get("/profile/user/info/");
     var user_info = JSON.parse(response.responseText);
     if (!user_info) {
         webix.message({
@@ -187,7 +187,7 @@ function loadPersonalInfoForm() {
 
 function patchLanguage(newv, oldv) {
     webix.ajax().headers(headers).patch(
-        "/profile/user/info",
+        "/profile/user/info/",
         { language: newv }, {
             success: function(text, data, xhr) {
                 webix.message({

@@ -57,7 +57,7 @@ webix.ui({
         {},
         {
             view: "button", value: gettext("Main"), align: "left",
-            name: "main_page_btn", id: "main_page_btn", href: "/main",
+            name: "main_page_btn", id: "main_page_btn", href: "/main/",
             click: function() {webix.send(this.config.href, {}, "GET");},
             minWidth: 90, width: 90, minHeight: 40, height: 40
         },
@@ -70,7 +70,7 @@ var user_menu = $$("user_menu");
 
 
 webix.ajax().get(
-    "/profile/user",
+    "/profile/user/",
     function(text, data, xhr) {
         var item = user_menu.getItem("user_item");
         item["value"] = data.json().username;
