@@ -55,7 +55,7 @@ webix.ui({ type: "space", rows: [{
                     "new_password1": webix.rules.isNotEmpty,
                     "new_password2": webix.rules.isNotEmpty,
                     $obj: function(data) {
-                        if (data.new_password1 != data.new_password2) {
+                        if (data.new_password1 !== data.new_password2) {
                             webix.message({
                                 text: gettext("Passwords are not the same"),
                                 type: "error",

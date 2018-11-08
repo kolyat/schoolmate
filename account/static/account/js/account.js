@@ -72,8 +72,7 @@ personalInfoForm = {
                     {
                         view: "select", label: gettext("Language"), value: "",
                         name: "language_select", id: "language_select",
-                        labelWidth: personalInfoFormLabelWidth,
-                        options: []
+                        labelWidth: personalInfoFormLabelWidth, options: []
                     }
                 ],
                 type: "form", minWidth: 425, maxWidth: 490
@@ -130,7 +129,7 @@ passwordChangeForm = {
                     "new_password1": webix.rules.isNotEmpty,
                     "new_password2": webix.rules.isNotEmpty,
                     $obj: function(data) {
-                        if (data.new_password1 != data.new_password2) {
+                        if (data.new_password1 !== data.new_password2) {
                             webix.message({
                                 text: gettext("New passwords are not the same"),
                                 type: "error",
@@ -162,27 +161,24 @@ var language_select = $$("language_select");
 
 
 function loadPersonalInfoForm() {
-    var response = webix.ajax().sync().get("/profile/user/info/");
-    var user_info = JSON.parse(response.responseText);
-    if (!user_info) {
+    var promise = webix.ajax().get("/profile/user/info/");
+    promise.then(function(data) {
+        var user_info = data.json();
+        user_info.languages.forEach(function(language) {
+            language_select.config["options"].push(
+                {"id": language[0], "value": language[1]});
+        });
+        personal_info_form.parse(user_info, "json");
+        language_select.config["value"] = user_info.language;
+        language_select.refresh();
+    }).fail(function(err) {
         webix.message({
             text: gettext("Failed to retrieve user info from server"),
             type: "error",
             expire: 3000,
             id: "failed_user_info_msg"
         });
-        return false;
-    }
-    var languages = user_info.languages;
-    for (var i = 0; i < languages.length; i++) {
-        var language = languages[i];
-        language_select.config["options"].push(
-            {"id": language[0], "value": language[1]});
-    }
-    personal_info_form.parse(user_info, 'json');
-    language_select.config["value"] = user_info.language;
-    language_select.refresh();
-    return true;
+    });
 }
 
 function patchLanguage(newv, oldv) {
@@ -244,4 +240,4 @@ password_change_form.attachEvent("onSubmit", postPasswordChangeForm);
 password_change_form.elements["change_password_btn"].attachEvent(
     "onItemClick", postPasswordChangeForm);
 language_select.attachEvent("onChange", patchLanguage);
-loadPersonalInfoForm()
+loadPersonalInfoForm();
