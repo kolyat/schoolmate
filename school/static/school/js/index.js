@@ -16,7 +16,7 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
-var formWidth = 360;
+var statusFormWidth = 360;
 var timeForm = {
     body: {
         rows: [
@@ -27,7 +27,7 @@ var timeForm = {
                         css: {"font-size": "36px"},
                         format: webix.i18n.timeFormat
                     }
-                ], width: formWidth
+                ], width: statusFormWidth
             }
         ]
     }, align: "center"
@@ -41,7 +41,7 @@ var dateForm = {
                         view: "calendar", id: "main_calendar",
                         events: webix.Date.isHoliday, weekHeader: true
                     }
-                ], width: formWidth
+                ], width: statusFormWidth
             }
         ]
     }, align: "center"
@@ -61,76 +61,71 @@ var main_calendar = $$("main_calendar");
 
 var now = new Date();
 
+function updateClock(t) {
+    time_label.setValue(webix.i18n.timeFormatStr(t));
+}
+function updateTimeStatus(_status) {
+    time_form.getChildViews().filter(
+        function(e) { return e.config["id"] !== "time_label"; }).forEach(
+        function(e) { time_form.removeView(e.config["id"]); });
+    if (_status["time_description"]) {
+        _status["time_description"].forEach(function(el) {
+            time_form.addView({view: "label", align: "center",
+                               label: el["description"]});
+        });
+    }
+    time_form.refresh();
+}
+
+function updateCalendar(d) {
+    main_calendar.setValue(d);
+}
+function updateDateStatus(_status) {
+    date_form.getChildViews().filter(
+        function(e) { return e.config["id"] !== "main_calendar"; }).forEach(
+        function(e) { date_form.removeView(e.config["id"]); });
+    if (_status["date_description"]) {
+        _status["date_description"].forEach(function(el) {
+            date_form.addView({view: "label", align: "center",
+                               label: el["description"]});
+        });
+    }
+    date_form.refresh();
+}
+
 function updateStatus() {
-    var response = webix.ajax().sync().get("/main/status/");
-    var status = JSON.parse(response.responseText);
-    if (status) {
-        now.setFullYear(status["year"], status["month"] - 1, status["day"]);
-        now.setHours(status["hour"], status["minute"], status["second"]);
-    } else {
+    var promise = webix.ajax().get("/main/status/");
+    promise.then(function(data) {
+        var _status = data.json();
+        now.setFullYear(_status["year"], _status["month"] - 1, _status["day"]);
+        now.setHours(_status["hour"], _status["minute"], _status["second"]);
+        updateClock(now);
+        updateTimeStatus(_status);
+        updateCalendar(now);
+        updateDateStatus(_status);
+    }).fail(function(err) {
         webix.message({
             text: gettext("Failed to retrieve date/time info from server"),
             type: "error",
             expire: 3000,
             id: "failed_status_info_msg"
         });
-    }
-    return status;
+        updateTimeStatus({});
+        updateDateStatus({});
+    });
 }
 
-function updateTime(status) {
-    time_label.setValue(webix.i18n.timeFormatStr(now));
-    var views = time_form.getChildViews();
-    for (var i = 0; i < views.length; i++) {
-        if (views[i].config["id"] !== "time_label") {
-            time_form.removeView(views[i].config["id"]);
-        }
-    }
-    if (status["time_description"]) {
-        var time_description = status["time_description"];
-        for (var i = 0; i < time_description.length; i++) {
-            time_form.addView({
-                view: "label", align: "center",
-                label: time_description[i]["description"]
-            });
-        }
-    }
-    time_form.refresh();
-}
-
-function updateDate(status) {
-    main_calendar.setValue(now);
-    var views = date_form.getChildViews();
-    for (var i = 0; i < views.length; i++) {
-        if (views[i].config["id"] !== "main_calendar") {
-            date_form.removeView(views[i].config["id"]);
-        }
-    }
-    if (status["date_description"]) {
-        var date_description = status["date_description"];
-        for (var i = 0; i < date_description.length; i++) {
-            date_form.addView({
-                view: "label", align: "center",
-                label: date_description[i]["description"]
-            });
-        }
-    }
-    date_form.refresh();
-}
-
-time_label.setValue(webix.i18n.timeFormatStr(now));
-var s = updateStatus();
-updateTime(s);
-updateDate(s);
+updateClock(now);
+updateStatus();
 window.setInterval(function() {
     var prev_minute = now.getMinutes();
     var prev_day = now.getDay();
     now.setSeconds(now.getSeconds() + 1);
     if (now.getMinutes() !== prev_minute) {
-        s = updateStatus();
-        updateTime(s);
+        updateStatus();
+        updateClock(now);
         if (now.getDay() !== prev_day) {
-            updateDate(s);
+            updateCalendar(now);
         }
     }
 }, 1000);
