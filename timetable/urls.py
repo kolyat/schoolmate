@@ -20,4 +20,8 @@ from . import views
 
 
 urlpatterns = [
+    path('', views.timetable, name='timetable'),
+
+    # API
+    # path('data/', views.Data.as_view()),
 ]

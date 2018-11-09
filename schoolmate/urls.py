@@ -25,6 +25,7 @@ from schoolmate import settings
 urlpatterns = [
     path('', include('school.urls')),
     path('profile/', include('account.urls')),
+    path('timetable/', include('timetable.urls')),
     path('grappelli/', include('grappelli.urls')),
     path('admin/', admin.site.urls),
     path('favicon.ico', generic.RedirectView.as_view(

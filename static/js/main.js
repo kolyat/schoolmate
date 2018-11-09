@@ -61,6 +61,12 @@ webix.ui({
             click: function() {webix.send(this.config.href, {}, "GET");},
             minWidth: 90, width: 90, minHeight: 40, height: 40
         },
+        {
+            view: "button", value: gettext("Timetable"), align: "left",
+            name: "timetable_btn", id: "timetable_btn", href: "/timetable/",
+            click: function() {webix.send(this.config.href, {}, "GET");},
+            minWidth: 90, width: 90, minHeight: 40, height: 40
+        },
         {},
         userMenu
     ],
