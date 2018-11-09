@@ -26,4 +26,5 @@ urlpatterns = [
 
     # API
     path('main/status/', views.Status.as_view()),
+    path('main/forms/', views.Forms.as_view())
 ]

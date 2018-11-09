@@ -20,7 +20,7 @@ from django.views.decorators import http as http_decorators
 from django.utils.decorators import method_decorator
 from django.utils import timezone
 
-from rest_framework import views, serializers, response, status
+from rest_framework import generics, views, serializers, response, status
 
 from . import models
 
@@ -72,3 +72,16 @@ class Status(views.APIView):
             'hour': time.hour, 'minute': time.minute, 'second': time.second
         })
         return response.Response(status_info, status=status.HTTP_200_OK)
+
+
+class SchoolFormSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.SchoolForm
+        fields = ('form_number', 'form_letter')
+
+
+@method_decorator(auth_decorators.login_required, name='dispatch')
+class Forms(generics.ListAPIView):
+    queryset = models.SchoolForm.objects.all().order_by(
+        'form_number', 'form_letter')
+    serializer_class = SchoolFormSerializer
