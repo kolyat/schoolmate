@@ -28,6 +28,7 @@ DAYS_OF_WEEK = (
     (6, _('Friday')),
     (7, _('Saturday'))
 )
+days_of_week = dict(DAYS_OF_WEEK)
 
 
 class TimetableYear(models.Model):
@@ -78,6 +79,25 @@ class Timetable(models.Model):
         choices=tuple(zip(school_models.PERIOD_NUMBERS,
                           [str(n) for n in school_models.PERIOD_NUMBERS])),
         verbose_name=_('Lesson number')
+    )
+
+    def __str__(self):
+        return '{} - {} {}'.format(days_of_week[self.day_of_week],
+                                   self.lesson_number, _('lesson'))
+
+    def __unicode__(self):
+        return '{} - {} {}'.format(days_of_week[self.day_of_week],
+                                   self.lesson_number, _('lesson'))
+
+    class Meta:
+        verbose_name = _('Lesson')
+        verbose_name_plural = _('Lessons')
+
+
+class TimetableSubject(models.Model):
+    lesson = models.ForeignKey(
+        Timetable, on_delete=models.PROTECT, related_name='subjects',
+        verbose_name=_('Lesson')
     )
     subject = models.ForeignKey(
         school_models.SchoolSubject, on_delete=models.PROTECT,

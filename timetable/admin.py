@@ -19,9 +19,16 @@ from django.contrib import admin
 from . import models
 
 
+class TimetableSubjectInline(admin.TabularInline):
+    model = models.TimetableSubject
+    fields = ('subject', 'classroom')
+    extra = 0
+
+
 class TimetableInline(admin.TabularInline):
     model = models.Timetable
-    fields = ('day_of_week', 'lesson_number', 'subject', 'classroom')
+    show_change_link = True
+    fields = ('day_of_week', 'lesson_number')
     ordering = ('day_of_week', 'lesson_number')
     extra = 0
 
@@ -46,6 +53,16 @@ class TimetableSchoolFormAdmin(admin.ModelAdmin):
     inlines = (TimetableInline,)
     fields = ('school_form',)
     ordering = ('-school_form',)
+
+    def has_module_permission(self, request):
+        return False
+
+
+@admin.register(models.Timetable)
+class TimetableAdmin(admin.ModelAdmin):
+    inlines = (TimetableSubjectInline,)
+    fields = ('day_of_week', 'lesson_number')
+    ordering = ('day_of_week', 'lesson_number')
 
     def has_module_permission(self, request):
         return False
