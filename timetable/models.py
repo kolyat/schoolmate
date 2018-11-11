@@ -68,7 +68,7 @@ class TimetableSchoolForm(models.Model):
 
 class Timetable(models.Model):
     form = models.ForeignKey(TimetableSchoolForm, on_delete=models.PROTECT,
-                             verbose_name=_('Form'))
+                             verbose_name=_('Form'), related_name='lessons')
     day_of_week = models.PositiveSmallIntegerField(
         blank=False, null=False, choices=DAYS_OF_WEEK,
         verbose_name=_('Day of week')

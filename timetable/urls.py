@@ -23,5 +23,5 @@ urlpatterns = [
     path('', views.timetable, name='timetable'),
 
     # API
-    # path('data/', views.Data.as_view()),
+    path('data/', views.TimetableData.as_view()),
 ]

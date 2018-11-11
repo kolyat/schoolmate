@@ -18,7 +18,8 @@ from django import shortcuts
 from django.contrib.auth import decorators as auth_decorators
 from django.views.decorators import http as http_decorators
 from django.utils.decorators import method_decorator
-from rest_framework import views, serializers, response, status
+from django.utils import timezone
+from rest_framework import generics, serializers
 
 from . import models
 
@@ -29,3 +30,35 @@ def timetable(request):
     """Timetable page
     """
     return shortcuts.render(request, 'timetable.html.j2')
+
+
+class TimetableSerializer(serializers.ModelSerializer):
+    subject = serializers.StringRelatedField()
+    classroom = serializers.SlugRelatedField(slug_field='room_id',
+                                             read_only=True)
+
+    class Meta:
+        model = models.Timetable
+        fields = ('day_of_week', 'lesson_number', 'subject', 'classroom')
+
+
+class TimetableSchoolFormSerializer(serializers.ModelSerializer):
+    lessons = TimetableSerializer(many=True)
+    form_number = serializers.IntegerField(source='school_form.form_number')
+    form_letter = serializers.CharField(source='school_form.form_letter')
+
+    class Meta:
+        model = models.TimetableSchoolForm
+        fields = ('form_number', 'form_letter', 'lessons')
+
+
+@method_decorator(auth_decorators.login_required, name='dispatch')
+class TimetableData(generics.ListAPIView):
+    serializer_class = TimetableSchoolFormSerializer
+
+    def get_queryset(self):
+        _date = timezone.localtime(timezone.now()).date()
+        return models.TimetableSchoolForm.objects.filter(
+            year__school_year__start_date__lte=_date,
+            year__school_year__end_date__gte=_date
+        )
