@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Schoolmate 0.1\n"
 "Report-Msgid-Bugs-To: kks.pub@gmail.com\n"
-"POT-Creation-Date: 2018-10-29 15:50+0300\n"
-"PO-Revision-Date: 2018-10-29 15:51+0300\n"
+"POT-Creation-Date: 2018-11-11 22:07+0300\n"
+"PO-Revision-Date: 2018-11-11 22:19+0300\n"
 "Last-Translator: Kirill 'Kolyat' Kiselnikov <kks.pub@gmail.com>\n"
 "Language: ru\n"
 "Language-Team: ru <LL@li.org>\n"
@@ -18,9 +18,9 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.6.0\n"
-"X-Generator: Poedit 2.2\n"
+"X-Generator: Poedit 1.8.12\n"
 
-#: timetable/apps.py:23 timetable/models.py:46 timetable/models.py:47
+#: timetable/apps.py:23 timetable/models.py:47 timetable/models.py:48
 msgid "Timetable"
 msgstr "Расписание уроков"
 
@@ -48,41 +48,65 @@ msgstr "Пятница"
 msgid "Saturday"
 msgstr "Суббота"
 
-#: timetable/models.py:36
+#: timetable/models.py:37
 msgid "School year"
 msgstr "Год"
 
-#: timetable/models.py:52
+#: timetable/models.py:53
 msgid "Year"
 msgstr "Год"
 
-#: timetable/models.py:55
+#: timetable/models.py:56
 msgid "School form"
 msgstr "Класс"
 
-#: timetable/models.py:65 timetable/models.py:66 timetable/models.py:71
+#: timetable/models.py:66 timetable/models.py:67 timetable/models.py:72
 msgid "Form"
 msgstr "Класс"
 
-#: timetable/models.py:74
+#: timetable/models.py:75
 msgid "Day of week"
 msgstr "День недели"
 
-#: timetable/models.py:80
+#: timetable/models.py:81
 msgid "Lesson number"
 msgstr "Номер урока"
 
-#: timetable/models.py:84 timetable/models.py:98
+#: timetable/models.py:86 timetable/models.py:90
+msgid "lesson"
+msgstr "урок"
+
+#: timetable/models.py:93 timetable/models.py:100
+msgid "Lesson"
+msgstr "Урок"
+
+#: timetable/models.py:94
+msgid "Lessons"
+msgstr "Уроки"
+
+#: timetable/models.py:104 timetable/models.py:118
 msgid "Subject"
 msgstr "Предмет"
 
-#: timetable/models.py:88
+#: timetable/models.py:108
 msgid "Classroom"
 msgstr "Кабинет"
 
-#: timetable/models.py:99
+#: timetable/models.py:119
 msgid "Subjects"
 msgstr "Предметы"
+
+#: timetable/static/timetable/js/timetable.js:42
+msgid "Forms"
+msgstr "Классы"
+
+#: timetable/static/timetable/js/timetable.js:43
+msgid "All"
+msgstr "Все"
+
+#: timetable/static/timetable/js/timetable.js:51
+msgid "Unable to get list of forms"
+msgstr "Не удалось получить список классов"
 
 #~ msgid "Timetables"
 #~ msgstr "Расписания уроков"

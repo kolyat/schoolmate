@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Schoolmate 0.1\n"
 "Report-Msgid-Bugs-To: kks.pub@gmail.com\n"
-"POT-Creation-Date: 2018-10-29 15:50+0300\n"
+"POT-Creation-Date: 2018-11-11 22:07+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.6.0\n"
 
-#: timetable/apps.py:23 timetable/models.py:46 timetable/models.py:47
+#: timetable/apps.py:23 timetable/models.py:47 timetable/models.py:48
 msgid "Timetable"
 msgstr ""
 
@@ -45,39 +45,63 @@ msgstr ""
 msgid "Saturday"
 msgstr ""
 
-#: timetable/models.py:36
+#: timetable/models.py:37
 msgid "School year"
 msgstr ""
 
-#: timetable/models.py:52
+#: timetable/models.py:53
 msgid "Year"
 msgstr ""
 
-#: timetable/models.py:55
+#: timetable/models.py:56
 msgid "School form"
 msgstr ""
 
-#: timetable/models.py:65 timetable/models.py:66 timetable/models.py:71
+#: timetable/models.py:66 timetable/models.py:67 timetable/models.py:72
 msgid "Form"
 msgstr ""
 
-#: timetable/models.py:74
+#: timetable/models.py:75
 msgid "Day of week"
 msgstr ""
 
-#: timetable/models.py:80
+#: timetable/models.py:81
 msgid "Lesson number"
 msgstr ""
 
-#: timetable/models.py:84 timetable/models.py:98
+#: timetable/models.py:86 timetable/models.py:90
+msgid "lesson"
+msgstr ""
+
+#: timetable/models.py:93 timetable/models.py:100
+msgid "Lesson"
+msgstr ""
+
+#: timetable/models.py:94
+msgid "Lessons"
+msgstr ""
+
+#: timetable/models.py:104 timetable/models.py:118
 msgid "Subject"
 msgstr ""
 
-#: timetable/models.py:88
+#: timetable/models.py:108
 msgid "Classroom"
 msgstr ""
 
-#: timetable/models.py:99
+#: timetable/models.py:119
 msgid "Subjects"
+msgstr ""
+
+#: timetable/static/timetable/js/timetable.js:42
+msgid "Forms"
+msgstr ""
+
+#: timetable/static/timetable/js/timetable.js:43
+msgid "All"
+msgstr ""
+
+#: timetable/static/timetable/js/timetable.js:51
+msgid "Unable to get list of forms"
 msgstr ""
 

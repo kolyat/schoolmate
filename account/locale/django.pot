@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Schoolmate 0.1\n"
 "Report-Msgid-Bugs-To: kks.pub@gmail.com\n"
-"POT-Creation-Date: 2018-10-29 15:50+0300\n"
+"POT-Creation-Date: 2018-11-11 22:07+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -87,18 +87,18 @@ msgstr ""
 msgid "Form"
 msgstr ""
 
-#: account/static/account/js/account.js:88
-#: account/static/account/js/account.js:122
+#: account/static/account/js/account.js:87
+#: account/static/account/js/account.js:121
 msgid "Change password"
 msgstr ""
 
-#: account/static/account/js/account.js:101
+#: account/static/account/js/account.js:100
 msgid "Current password"
 msgstr ""
 
-#: account/static/account/js/account.js:104
-#: account/static/account/js/account.js:111
-#: account/static/account/js/account.js:118
+#: account/static/account/js/account.js:103
+#: account/static/account/js/account.js:110
+#: account/static/account/js/account.js:117
 #: account/static/account/js/password_reset_confirm.js:39
 #: account/static/account/js/password_reset_confirm.js:46
 #: account/tests/data_test_password_change.py:29
@@ -109,39 +109,39 @@ msgstr ""
 msgid "Field can not be empty"
 msgstr ""
 
-#: account/static/account/js/account.js:108
+#: account/static/account/js/account.js:107
 #: account/static/account/js/password_reset_confirm.js:36
 msgid "New password"
 msgstr ""
 
-#: account/static/account/js/account.js:115
+#: account/static/account/js/account.js:114
 #: account/static/account/js/password_reset_confirm.js:43
 msgid "Retype new password"
 msgstr ""
 
-#: account/static/account/js/account.js:135
+#: account/static/account/js/account.js:134
 #: account/tests/test_password_change.py:120
 msgid "New passwords are not the same"
 msgstr ""
 
-#: account/static/account/js/account.js:169
+#: account/static/account/js/account.js:176
 msgid "Failed to retrieve user info from server"
 msgstr ""
 
-#: account/static/account/js/account.js:194
+#: account/static/account/js/account.js:190
 msgid "Language changed"
 msgstr ""
 
-#: account/static/account/js/account.js:203
+#: account/static/account/js/account.js:199
 msgid "Language change failed"
 msgstr ""
 
-#: account/static/account/js/account.js:223
+#: account/static/account/js/account.js:220
 #: account/tests/test_password_change.py:49
 msgid "Password changed"
 msgstr ""
 
-#: account/static/account/js/account.js:231
+#: account/static/account/js/account.js:228
 #: account/tests/test_password_change.py:139
 msgid "Password change failed"
 msgstr ""

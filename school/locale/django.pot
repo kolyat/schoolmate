@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Schoolmate 0.1\n"
 "Report-Msgid-Bugs-To: kks.pub@gmail.com\n"
-"POT-Creation-Date: 2018-10-29 15:50+0300\n"
+"POT-Creation-Date: 2018-11-11 22:07+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -139,5 +139,9 @@ msgstr ""
 
 #: school/models.py:197
 msgid "Classrooms"
+msgstr ""
+
+#: school/static/school/js/index.js:108
+msgid "Failed to retrieve date/time info from server"
 msgstr ""
 
