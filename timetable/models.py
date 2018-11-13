@@ -63,6 +63,7 @@ class TimetableSchoolForm(models.Model):
         return str(self.school_form)
 
     class Meta:
+        ordering = ('school_form',)
         verbose_name = _('Form')
         verbose_name_plural = _('Form')
 
@@ -90,6 +91,7 @@ class Timetable(models.Model):
                                    self.lesson_number, _('lesson'))
 
     class Meta:
+        ordering = ('day_of_week', 'lesson_number')
         verbose_name = _('Lesson')
         verbose_name_plural = _('Lessons')
 

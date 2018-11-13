@@ -32,12 +32,19 @@ class Command(base.BaseCommand):
         school_models.DailySchedule.objects.all().delete()
         school_models.SchoolSubject.objects.all().delete()
         school_models.SchoolForm.objects.all().delete()
+        school_models.FormNumber.objects.all().delete()
+        school_models.FormLetter.objects.all().delete()
         print('OK')
         print('Create new data:')
         print('    {:.<25}...'.format('School forms'), end='')
-        [school_models.SchoolForm(form_number=n, form_letter=l).save()
-         for n in school_models.FORM_NUMBERS.__reversed__()
+        [school_models.FormLetter(letter=l).save()
          for l in _db_data.FORM_LETTERS]
+        _letters = school_models.FormLetter.objects.all()
+        for n in school_models.FORM_NUMBERS:
+            _number = school_models.FormNumber(number=n)
+            _number.save()
+            [school_models.SchoolForm(form_number=_number,
+                                      form_letter=l).save() for l in _letters]
         print('OK')
         print('    {:.<25}...'.format('School subjects'), end='')
         [school_models.SchoolSubject(subject=s).save()

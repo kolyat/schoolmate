@@ -37,7 +37,6 @@ class TimetableSchoolFormInline(admin.StackedInline):
     model = models.TimetableSchoolForm
     show_change_link = True
     fields = ('school_form',)
-    ordering = ('-school_form',)
     extra = 0
 
 
@@ -52,7 +51,6 @@ class TimetableYearAdmin(admin.ModelAdmin):
 class TimetableSchoolFormAdmin(admin.ModelAdmin):
     inlines = (TimetableInline,)
     fields = ('school_form',)
-    ordering = ('-school_form',)
 
     def has_module_permission(self, request):
         return False

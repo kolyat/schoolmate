@@ -32,19 +32,53 @@ YEAR_PERIOD_TYPES = (
 )
 
 
-class SchoolForm(models.Model):
-    """Represents school form
-    """
-    form_number = models.PositiveSmallIntegerField(
-        blank=False, null=False,
-        choices=tuple(zip(FORM_NUMBERS, [str(n) for n in FORM_NUMBERS])),
-        verbose_name=_('Form number')
-    )
-    form_letter = models.CharField(
+class FormLetter(models.Model):
+    letter = models.CharField(
         max_length=2, blank=False, null=False,
         choices=tuple(zip(FORM_LETTERS, FORM_LETTERS)),
         verbose_name=_('Form letter')
     )
+
+    def __str__(self):
+        return self.letter
+
+    def __unicode__(self):
+        return self.letter
+
+    class Meta:
+        ordering = ('letter',)
+        verbose_name = _('Form letter')
+        verbose_name_plural = _('Form letters')
+
+
+class FormNumber(models.Model):
+    number = models.PositiveSmallIntegerField(
+        blank=False, null=False,
+        choices=tuple(zip(FORM_NUMBERS, [str(n) for n in FORM_NUMBERS])),
+        verbose_name=_('Form number')
+    )
+    letters = models.ManyToManyField(FormLetter, through='SchoolForm',
+                                     verbose_name='Form letter')
+
+    def __str__(self):
+        return str(self.number)
+
+    def __unicode__(self):
+        return str(self.number)
+
+    class Meta:
+        ordering = ('number',)
+        verbose_name = _('Form number')
+        verbose_name_plural = _('Form numbers')
+
+
+class SchoolForm(models.Model):
+    """Represents school form
+    """
+    form_number = models.ForeignKey(FormNumber, on_delete=models.PROTECT,
+                                    verbose_name='Form number')
+    form_letter = models.ForeignKey(FormLetter, on_delete=models.PROTECT,
+                                    verbose_name='Form letter')
 
     def __str__(self):
         return '{}{}'.format(self.form_number, self.form_letter)
@@ -53,6 +87,7 @@ class SchoolForm(models.Model):
         return '{}{}'.format(self.form_number, self.form_letter)
 
     class Meta:
+        ordering = ('form_number', 'form_letter')
         verbose_name = _('School form')
         verbose_name_plural = _('School forms')
 

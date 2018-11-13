@@ -31,19 +31,18 @@ var subject_table = $$("subject_table");
 
 
 var school_forms;
-var form_numbers = new Set();
 
 function getForms() {
     var promise = webix.ajax().get("/main/forms/");
     promise.then(function(data) {
         school_forms = data.json();
-        school_forms.forEach(
-            function(el) { form_numbers.add(el["form_number"]); });
         form_tree.add({id: "form_numbers", value: gettext("Forms")});
         form_tree.add({id: "all", value: gettext("All")}, -1, "form_numbers");
-        form_numbers.forEach(function(el) {
-            form_tree.add({id: el.toString(), value: el.toString()},
-                          -1, "form_numbers");
+        school_forms.forEach(function(el) {
+            form_tree.add(
+                {id: el["number"].toString(), value: el["number"].toString()},
+                -1, "form_numbers"
+            );
         });
         form_tree.open("form_numbers");
     }).fail(function(err) {

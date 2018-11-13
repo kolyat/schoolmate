@@ -74,14 +74,15 @@ class Status(views.APIView):
         return response.Response(status_info, status=status.HTTP_200_OK)
 
 
-class SchoolFormSerializer(serializers.ModelSerializer):
+class FormNumberSerializer(serializers.ModelSerializer):
+    letters = serializers.StringRelatedField(many=True)
+
     class Meta:
-        model = models.SchoolForm
-        fields = ('form_number', 'form_letter')
+        model = models.FormNumber
+        fields = ('number', 'letters')
 
 
 @method_decorator(auth_decorators.login_required, name='dispatch')
 class Forms(generics.ListAPIView):
-    queryset = models.SchoolForm.objects.all().order_by(
-        'form_number', 'form_letter')
-    serializer_class = SchoolFormSerializer
+    serializer_class = FormNumberSerializer
+    queryset = models.FormNumber.objects.all()

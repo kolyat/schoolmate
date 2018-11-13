@@ -17,7 +17,7 @@
 from datetime import date, time, timedelta
 
 
-FORM_LETTERS = 'БА'
+FORM_LETTERS = 'АБ'
 SUBJECTS = [
     'Русский язык',
     'Английский язык',

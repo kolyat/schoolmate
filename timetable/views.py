@@ -52,8 +52,10 @@ class TimetableSerializer(serializers.ModelSerializer):
 
 class TimetableSchoolFormSerializer(serializers.ModelSerializer):
     lessons = TimetableSerializer(many=True)
-    form_number = serializers.IntegerField(source='school_form.form_number')
-    form_letter = serializers.CharField(source='school_form.form_letter')
+    form_number = serializers.IntegerField(
+        source='school_form.form_number.number')
+    form_letter = serializers.CharField(
+        source='school_form.form_letter.letter')
 
     class Meta:
         model = models.TimetableSchoolForm
