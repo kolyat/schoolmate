@@ -17,27 +17,46 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
 var formTree = {view: "tree", id: "form_tree", width: 125};
-var subjectTable = {view: "datatable", id: "subject_table"};
+var timeTable = {view: "datatable", id: "timetable"};
 webix.ui({
     id: "timetable_layout", type: "space", padding: 0,
     rows: [{cols: [
         formTree,
         {view: "resizer"},
-        subjectTable,
+        timeTable,
     ]}]
 });
 var form_tree = $$("form_tree");
-var subject_table = $$("subject_table");
+var timetable = $$("timetable");
 
 
 var school_forms;
+
+function getTimetable(number) {
+    if (number > 0) {
+        params = {form_number: number};
+    } else {
+        params = {};
+    }
+    var promise = webix.ajax().get("/timetable/data/", params);
+    promise.then(function(data) {
+        // TODO: write logic
+    }).fail(function(err) {
+        webix.message({
+            text: gettext("Unable to retrieve timetable"),
+            type: "error",
+            expire: 3000,
+            id: "unable_get_timetable_msg"
+        });
+    });
+}
 
 function getForms() {
     var promise = webix.ajax().get("/main/forms/");
     promise.then(function(data) {
         school_forms = data.json();
         form_tree.add({id: "form_numbers", value: gettext("Forms")});
-        form_tree.add({id: "all", value: gettext("All")}, -1, "form_numbers");
+        form_tree.add({id: "0", value: gettext("All")}, -1, "form_numbers");
         school_forms.forEach(function(el) {
             form_tree.add(
                 {id: el["number"].toString(), value: el["number"].toString()},
@@ -56,3 +75,9 @@ function getForms() {
 }
 
 getForms();
+form_tree.attachEvent("onItemClick", function(id) {
+    var _number = parseInt(id);
+    if (Number.isInteger(_number)) {
+        getTimetable(_number);
+    }
+});
