@@ -16,7 +16,10 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
-var statusFormWidth = 360;
+var statusFormWidth = 300;
+var statusLayoutMargin = 5;
+var statusLayoutMaxWidth;
+statusLayoutMaxWidth = statusFormWidth + statusLayoutMargin * 2;
 var timeForm = {
     body: {
         rows: [
@@ -30,7 +33,7 @@ var timeForm = {
                 ], width: statusFormWidth
             }
         ]
-    }, align: "center"
+    }, align: "left"
 };
 var dateForm = {
     body: {
@@ -44,13 +47,27 @@ var dateForm = {
                 ], width: statusFormWidth
             }
         ]
-    }, align: "center"
+    }, align: "left"
+};
+var infoTab = {
+    id: "info_tab", view: "tabview", responsive: "index_layout", cells: [
+        {header: "News", body: {}},
+        {header: "Schedules", body: {}}
+    ]
 };
 webix.ui({
-    id: "index_layout", type: "space", paddingY: 30,
+    type: "space", paddingY: 30,
     rows: [
-        {responsive: "index_layout", margin: 5, cols: [timeForm]},
-        {responsive: "index_layout", margin: 5, cols: [dateForm]},
+        {
+            id: "index_layout", cols: [
+                {
+                    id: "status_layout", responsive: "index_layout",
+                    maxWidth: statusLayoutMaxWidth, margin: statusLayoutMargin,
+                    rows: [timeForm, dateForm]
+                },
+                infoTab
+            ]
+        },
     ]
 });
 var time_form = $$("time_form");
