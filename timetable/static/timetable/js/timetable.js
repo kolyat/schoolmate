@@ -18,7 +18,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 var formTree = {view: "tree", id: "form_tree", width: 125};
 var timeTable = {
-    view: "datatable", id: "timetable", columns: [
+    view: "datatable", id: "timetable", fixedRowHeight: false, columns: [
         {id: "root", header: "", fillspace: true}
     ]
 };
@@ -30,38 +30,103 @@ var form_tree = $$("form_tree");
 var timetable = $$("timetable");
 
 
-var DAYS_OF_WEEK = {
-    2: gettext("Monday"),
-    3: gettext("Tuesday"),
-    4: gettext("Wednesday"),
-    5: gettext("Thursday"),
-    6: gettext("Friday"),
-    7: gettext("Saturday")
-};
+var DAYS_OF_WEEK = new Map([
+    [2, gettext("Monday")],
+    [3, gettext("Tuesday")],
+    [4, gettext("Wednesday")],
+    [5, gettext("Thursday")],
+    [6, gettext("Friday")],
+    [7, gettext("Saturday")]
+]);
+var lessons_num = 7;
 var school_forms = new Map();
 
 function getTimetable(number) {
-    if (number > 0) {
-        params = {form_number: number};
-    } else {
-        params = {};
-    }
+    timetable.clearAll(false);
     timetable.config.columns.splice(1, timetable.config.columns.length - 1);
     timetable.config.columns[0].fillspace = true;
     timetable.refreshColumns();
     timetable.refresh();
     timetable.hideOverlay();
     timetable.showOverlay(gettext("Loading..."));
+    if (number > 0) {
+        params = {form_number: number};
+    } else {
+        params = {};
+    }
     var promise = webix.ajax().get("/timetable/data/", params);
+    var rows = new Object();
+    DAYS_OF_WEEK.forEach(function(_, d) {
+        var lessons = new Array();
+        for (var i = 0; i < lessons_num; i++) {
+            var lesson = {root: i + 1};
+            lessons.push(lesson);
+        }
+        rows[d] = lessons;
+    });
     promise.then(function(data) {
         var tt = data.json();
         timetable.config.columns[0].fillspace = false;
-        timetable.config.columns[0].width = 90;
         tt.forEach(function(form) {
             var f = [form.form_number.toString(), form.form_letter].join("");
-            timetable.config.columns.push({id: f, header: f});
+            var f_subj = ["subj", f].join("_")
+            var f_room = ["room", f].join("_")
+            timetable.config.columns.push({
+                id: f_subj,
+                header: {text: f, colspan: 2, css: {"text-align": "center"}}
+            });
+            timetable.config.columns.push({id: f_room, header: "", width: 45});
+            DAYS_OF_WEEK.forEach(function(_, d) {
+                var _lessons = form.lessons.filter(
+                    function(l) { return l.day_of_week === d});
+                if (!_lessons) { return; }
+                for (var i = 0; i < lessons_num; i++) {
+                    var _subjects = _lessons.filter(
+                        function(s) { return s.lesson_number === i + 1});
+                    if (!_subjects) { return; }
+                    var _subjs = new Array();
+                    var _rooms = new Array();
+                    _subjects.forEach(function(s) {
+                        _subjs.push(s.subjects[0].subject);
+                        var _room = s.subjects[0].classroom;
+                        if (_room) {
+                            _rooms.push(_room);
+                        } else {
+                            _rooms.push(" ");
+                        }
+                    });
+                    rows[d][i][f_subj] = _subjs.join("\n");
+                    rows[d][i][f_room] = _rooms.join("\n");
+                }
+            });
         });
+        timetable.config.columns.push(
+            {id: "extra", header: "", fillspace: true});
+        timetable.config.columns[0].width = 100;
         timetable.refreshColumns();
+        DAYS_OF_WEEK.forEach(function(day_name, day_number) {
+            timetable.add(
+                {root: day_name, $css: {"background-color": "#424242"}});
+            rows[day_number].forEach(function(lesson) {
+                timetable.add(lesson);
+            });
+        });
+        var max_width = 0;
+        timetable.eachColumn(function(id) {
+            if (id.includes("subj")) {
+                timetable.adjustColumn(id);
+                var _width = timetable.getColumnConfig(id).width;
+                if (_width > max_width) {
+                    max_width = _width;
+                }
+            }
+        });
+        timetable.eachColumn(function(id) {
+            if (id.includes("subj")) {
+                timetable.setColumnWidth(id, max_width - 15);
+            }
+        });
+        timetable.adjustRowHeight();
         timetable.refresh();
         timetable.hideOverlay();
     }).fail(function(err) {
