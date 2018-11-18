@@ -49,10 +49,71 @@ var dateForm = {
         ]
     }, align: "left"
 };
+var yearScheduleList = {
+    view: "list", id: "year_schedule_list",
+    url: "/main/schedule/year/", datatype: "json",
+    template: function(obj) {
+        return "<div style='float:left;'>"+obj.description+"</div>"+
+               "<div style='float:right;'>"+
+               webix.i18n.dateFormatStr(webix.i18n.parseFormatDate(obj.start_date))+
+               " – "+
+               webix.i18n.dateFormatStr(webix.i18n.parseFormatDate(obj.end_date))+
+               "</div>";
+    },
+    ready: function() {
+        this.hideOverlay();
+        if (!this.count()) {
+            this.showOverlay(gettext("No data"));
+            webix.message({
+                text: gettext("Failed to get year schedule"),
+                type: "error",
+                expire: 3000,
+                id: "filed_get_year_schedule_msg"
+            });
+        }
+    }
+};
+var dailyScheduleList = {
+    view: "list", id: "daily_schedule_list",
+    url: "/main/schedule/day/", datatype: "json",
+    template: function(obj) {
+        return "<div style='float:left;'>"+obj.description+"</div>"+
+               "<div style='float:right;'>"+
+               webix.i18n.timeFormatStr(webix.i18n.parseTimeFormatDate(obj.start_time))+
+               " – "+
+               webix.i18n.timeFormatStr(webix.i18n.parseTimeFormatDate(obj.end_time))+
+               "</div>";
+    },
+    ready: function() {
+        this.hideOverlay();
+        if (!this.count()) {
+            this.showOverlay(gettext("No data"));
+            webix.message({
+                text: gettext("Failed to get daily schedule"),
+                type: "error",
+                expire: 3000,
+                id: "filed_get_daily_schedule_msg"
+            });
+        }
+    }
+};
 var infoTab = {
     id: "info_tab", view: "tabview", responsive: "index_layout", cells: [
-        {header: "News", body: {}},
-        {header: "Schedules", body: {}}
+        {header: gettext("News"), body: {}},
+        {header: gettext("Schedules"), body: {
+            rows: [
+                {
+                    view: "template", template: gettext("Year schedule"),
+                    type: "header"
+                },
+                yearScheduleList,
+                {
+                    view: "template", template: gettext("Daily schedule"),
+                    type: "header"
+                },
+                dailyScheduleList
+            ]
+        }}
     ]
 };
 webix.ui({
@@ -74,6 +135,16 @@ var time_form = $$("time_form");
 var time_label = $$("time_label");
 var date_form = $$("date_form");
 var main_calendar = $$("main_calendar");
+var year_schedule_list = $$("year_schedule_list");
+var daily_schedule_list = $$("daily_schedule_list");
+webix.extend(year_schedule_list, webix.OverlayBox);
+webix.extend(daily_schedule_list, webix.OverlayBox);
+year_schedule_list.attachEvent("onBeforeLoad", function() {
+    year_schedule_list.showOverlay(gettext("Loading..."));
+});
+daily_schedule_list.attachEvent("onBeforeLoad", function() {
+    daily_schedule_list.showOverlay(gettext("Loading..."));
+});
 
 
 var now = new Date();

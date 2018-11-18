@@ -86,3 +86,33 @@ class FormNumberSerializer(serializers.ModelSerializer):
 class Forms(generics.ListAPIView):
     serializer_class = FormNumberSerializer
     queryset = models.FormNumber.objects.all()
+
+
+class YearScheduleViewSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.YearSchedule
+        fields = ('description', 'start_date', 'end_date')
+
+
+@method_decorator(auth_decorators.login_required, name='dispatch')
+class YearScheduleView(generics.ListAPIView):
+    serializer_class = YearScheduleViewSerializer
+
+    def get_queryset(self):
+        _date = timezone.localtime(timezone.now()).date()
+        return models.YearSchedule.objects.filter(
+            school_year__start_date__lte=_date,
+            school_year__end_date__gte=_date
+        ).order_by('start_date')
+
+
+class DailyScheduleViewSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.DailySchedule
+        fields = ('description', 'start_time', 'end_time')
+
+
+@method_decorator(auth_decorators.login_required, name='dispatch')
+class DailyScheduleView(generics.ListAPIView):
+    serializer_class = DailyScheduleViewSerializer
+    queryset = models.DailySchedule.objects.all().order_by('start_time')
