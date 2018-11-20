@@ -29,14 +29,23 @@ class SchoolmateAdminDashboard(Dashboard):
             collapsible=False,
             models=('account.models.SchoolUser', 'django.contrib.*')
         ))
-        self.children.append(modules.ModelList(
+        self.children.append(modules.Group(
             _('General'),
             column=1,
             collapsible=False,
-            models=(
-                'school.models.SchoolForm',
-                'school.models.SchoolSubject',
-                'school.models.Classroom'
+            children=(
+                modules.ModelList(
+                    title='',
+                    models=(
+                        'school.models.SchoolForm',
+                        'school.models.SchoolSubject',
+                        'school.models.Classroom'
+                    )
+                ),
+                modules.ModelList(
+                    title='',
+                    models=('news.models.Article',)
+                ),
             )
         ))
         self.children.append(modules.ModelList(

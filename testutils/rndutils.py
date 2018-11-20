@@ -87,3 +87,16 @@ def new_schooluser():
         'is_staff': False,
         'is_superuser': False
     }
+
+
+def new_article():
+    """Generate news article
+
+    :return: dict with header and text
+    """
+    random.seed()
+    _text = mimesis.Text()
+    return {
+        'header': _text.title(),
+        'content': _text.text(random.randint(3, 9))
+    }

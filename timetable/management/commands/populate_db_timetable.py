@@ -27,10 +27,6 @@ class Command(base.BaseCommand):
 
     def handle(self, *args, **options):
         print('TIMETABLE app')
-        print('Clean up... ', end='')
-        timetable_models.Timetable.objects.all().delete()
-        timetable_models.TimetableSchoolForm.objects.all().delete()
-        print('OK')
         print('Create new data:')
         print('    {:.<25}...'.format('School forms in timetable'), end='')
         _year = school_models.SchoolYear.objects.get(

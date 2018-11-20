@@ -17,6 +17,7 @@
 from django.core.management import base
 
 from school import models as school_models
+from timetable import models as timetable_models
 from . import _db_data
 
 
@@ -25,16 +26,6 @@ class Command(base.BaseCommand):
 
     def handle(self, *args, **options):
         print('SCHOOL app')
-        print('Clean up... ', end='')
-        school_models.Classroom.objects.all().delete()
-        school_models.YearSchedule.objects.all().delete()
-        school_models.SchoolYear.objects.all().delete()
-        school_models.DailySchedule.objects.all().delete()
-        school_models.SchoolSubject.objects.all().delete()
-        school_models.SchoolForm.objects.all().delete()
-        school_models.FormNumber.objects.all().delete()
-        school_models.FormLetter.objects.all().delete()
-        print('OK')
         print('Create new data:')
         print('    {:.<25}...'.format('School forms'), end='')
         [school_models.FormLetter(letter=l).save()

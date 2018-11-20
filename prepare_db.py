@@ -4,7 +4,12 @@ import shutil
 from schoolmate.settings import BASE_DIR, DATABASES
 
 
-APPS = ('school', 'account', 'timetable')
+APPS = (
+    'school',
+    'account',
+    'news',
+    'timetable'
+)
 
 
 if __name__ == '__main__':
@@ -34,6 +39,7 @@ if __name__ == '__main__':
     [os.mkdir(d) for d in dirs]
     [open(os.path.join(d, '__init__.py'), 'w').close() for d in dirs]
     print('OK')
-    [os.system('manage.py makemigrations {}'.format(a)) for a in APPS]
+    [os.system('manage.py makemigrations {}'.format(app)) for app in APPS]
     os.system('manage.py migrate')
+    [os.system('manage.py clear_db_{}'.format(app)) for app in reversed(APPS)]
     [os.system('manage.py populate_db_{}'.format(app)) for app in APPS]

@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     # Project apps
     'school.apps.SchoolConfig',
     'account.apps.AccountConfig',
+    'news.apps.NewsConfig',
     'timetable.apps.TimetableConfig'
 ]
 MIDDLEWARE = [
@@ -168,6 +169,7 @@ LOCALE_PATHS = [
     os.path.join(BASE_DIR, 'locale'),
     os.path.join(BASE_DIR, 'school', 'locale'),
     os.path.join(BASE_DIR, 'account', 'locale'),
+    os.path.join(BASE_DIR, 'news', 'locale'),
     os.path.join(BASE_DIR, 'timetable', 'locale')
 ]
 TIME_ZONE = 'Europe/Moscow'

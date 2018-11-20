@@ -49,6 +49,43 @@ var dateForm = {
         ]
     }, align: "left"
 };
+var newsPager = {
+    view: "pager", id: "news_pager", size: 10, limit: 10, group: 5,
+    template: "{common.first()}{common.prev()}{common.pages()}"+
+              "{common.next()}{common.last()}"
+}
+var newsView = {
+    view: "dataview", id: "news_view", url: "/news/", datatype: "json",
+    xCount: 1, yCount: 10, datafetch: 50, datathrottle: 500, loadahead: 100,
+    template: function(obj) {
+        var _header;
+        var _author;
+        if (obj.header) {
+            _header = obj.header;
+        } else {
+            _header = "";
+        }
+        if (obj.author) {
+            _author = obj.author;
+        } else {
+            _author = "<br>";
+        }
+        return "<div style='float:right;margin-top:6px;'>"+
+               webix.i18n.dateFormatStr(webix.i18n.parseFormatDate(obj.created))+
+               "</div><br>"+
+               "<div style='float:left;'><b>"+_header+"</b></div><br>"+
+               "<div style='float:left;'>"+obj.content+"</div><br>"+
+               "<div style='float:right;margin-bottom:6px;'><i>"+_author+"</i></div>";
+    },
+    pager: "news_pager", type: {width: "auto", height: "auto"},
+    autoheight: true, scroll: "y",
+    ready: function() {
+        this.hideOverlay();
+        if (!this.count()) {
+            this.showOverlay(gettext("No data"));
+        }
+    }
+};
 var yearScheduleList = {
     view: "list", id: "year_schedule_list",
     url: "/main/schedule/year/", datatype: "json",
@@ -99,7 +136,7 @@ var dailyScheduleList = {
 };
 var infoTab = {
     id: "info_tab", view: "tabview", responsive: "index_layout", cells: [
-        {header: gettext("News"), body: {}},
+        {header: gettext("News"), body: {rows: [newsView, newsPager]}},
         {header: gettext("Schedules"), body: {
             rows: [
                 {
@@ -135,10 +172,23 @@ var time_form = $$("time_form");
 var time_label = $$("time_label");
 var date_form = $$("date_form");
 var main_calendar = $$("main_calendar");
+var news_view = $$("news_view");
 var year_schedule_list = $$("year_schedule_list");
 var daily_schedule_list = $$("daily_schedule_list");
+webix.extend(news_view, webix.OverlayBox);
 webix.extend(year_schedule_list, webix.OverlayBox);
 webix.extend(daily_schedule_list, webix.OverlayBox);
+news_view.attachEvent("onBeforeLoad", function() {
+    news_view.showOverlay(gettext("Loading..."));
+});
+news_view.attachEvent("onLoadError", function() {
+    webix.message({
+        text: gettext("Failed to load news"),
+        type: "error",
+        expire: 3000,
+        id: "filed_load_news_msg"
+    });
+});
 year_schedule_list.attachEvent("onBeforeLoad", function() {
     year_schedule_list.showOverlay(gettext("Loading..."));
 });

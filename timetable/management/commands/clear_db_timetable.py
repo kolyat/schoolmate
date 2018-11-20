@@ -14,25 +14,19 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-from django.contrib import admin
-from django.urls import include, path
-from django.conf.urls.i18n import i18n_patterns
-from django.views import generic, i18n
+from django.core.management import base
 
-from schoolmate import settings
+from timetable import models as timetable_models
 
 
-urlpatterns = [
-    path('', include('school.urls')),
-    path('profile/', include('account.urls')),
-    path('news/', include('news.urls')),
-    path('timetable/', include('timetable.urls')),
-    path('grappelli/', include('grappelli.urls')),
-    path('admin/', admin.site.urls),
-    path('favicon.ico', generic.RedirectView.as_view(
-        url='{}img/favicon.ico'.format(settings.STATIC_URL))),
-]
-urlpatterns += i18n_patterns(path(
-    'jsi18n/', i18n.JavaScriptCatalog.as_view(domain='django'),
-    name='javascript-catalog'
-))
+class Command(base.BaseCommand):
+    requires_migrations_checks = True
+
+    def handle(self, *args, **options):
+        print('TIMETABLE app')
+        print('Clean up... ', end='')
+        timetable_models.TimetableSubject.objects.all().delete()
+        timetable_models.Timetable.objects.all().delete()
+        timetable_models.TimetableSchoolForm.objects.all().delete()
+        timetable_models.TimetableYear.objects.all().delete()
+        print('OK')

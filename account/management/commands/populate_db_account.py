@@ -25,9 +25,6 @@ class Command(base.BaseCommand):
 
     def handle(self, *args, **options):
         print('ACCOUNT app')
-        print('Clean up... ', end='')
-        account_models.SchoolUser.objects.all().delete()
-        print('OK')
         print('Create new data:')
         print('    {:.<25}...'.format('Users'), end='')
         account_models.SchoolUser.objects.create_superuser(
