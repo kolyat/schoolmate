@@ -53,10 +53,10 @@ var newsPager = {
     view: "pager", id: "news_pager", size: 10, limit: 10, group: 5,
     template: "{common.first()}{common.prev()}{common.pages()}"+
               "{common.next()}{common.last()}"
-}
+};
 var newsView = {
     view: "dataview", id: "news_view", url: "/news/", datatype: "json",
-    xCount: 1, yCount: 10, datafetch: 50, datathrottle: 500, loadahead: 100,
+    xCount: 1, yCount: 10, datafetch: 10, datathrottle: 500, loadahead: 30,
     template: function(obj) {
         var _header;
         var _author;
@@ -175,9 +175,8 @@ var main_calendar = $$("main_calendar");
 var news_view = $$("news_view");
 var year_schedule_list = $$("year_schedule_list");
 var daily_schedule_list = $$("daily_schedule_list");
+
 webix.extend(news_view, webix.OverlayBox);
-webix.extend(year_schedule_list, webix.OverlayBox);
-webix.extend(daily_schedule_list, webix.OverlayBox);
 news_view.attachEvent("onBeforeLoad", function() {
     news_view.showOverlay(gettext("Loading..."));
 });
@@ -186,12 +185,16 @@ news_view.attachEvent("onLoadError", function() {
         text: gettext("Failed to load news"),
         type: "error",
         expire: 3000,
-        id: "filed_load_news_msg"
+        id: "failed_load_news_msg"
     });
 });
+
+webix.extend(year_schedule_list, webix.OverlayBox);
 year_schedule_list.attachEvent("onBeforeLoad", function() {
     year_schedule_list.showOverlay(gettext("Loading..."));
 });
+
+webix.extend(daily_schedule_list, webix.OverlayBox);
 daily_schedule_list.attachEvent("onBeforeLoad", function() {
     daily_schedule_list.showOverlay(gettext("Loading..."));
 });

@@ -28,5 +28,5 @@ class Command(base.BaseCommand):
         print('Create new data:')
         print('    {:.<25}...'.format('News articles'), end='')
         [news_models.Article(**rndutils.new_article()).save()
-         for _ in range(33)]
+         for _ in range(150)]
         print('OK')
