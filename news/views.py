@@ -16,29 +16,39 @@
 
 from django.contrib.auth import decorators as auth_decorators
 from django.utils.decorators import method_decorator
-from rest_framework import serializers, views, response, status
+from rest_framework import serializers, generics, views, response, status
 
 from . import models
 
 
 class ArticleSerializer(serializers.ModelSerializer):
     created = serializers.DateTimeField(format='%Y-%m-%d')
+    author = serializers.CharField(read_only=True)
 
     class Meta:
         model = models.Article
         fields = ('created', 'header', 'content', 'author')
 
 
-class ArticleView(views.APIView):
-    @method_decorator(auth_decorators.login_required)
-    def get(self, request):
-        """:return: certain number of articles from defined position
-        """
-        count = request.data.get('count', 10)
-        start = request.data.get('start', 0)
-        queryset = models.Article.objects.all()[start:start+count]
-        serializer = ArticleSerializer(queryset, many=True)
-        total_records = models.Article.objects.all().count()
-        data = {'data': serializer.data, 'pos': start,
-                'total_count': total_records}
-        return response.Response(data, status=status.HTTP_200_OK)
+@method_decorator(auth_decorators.login_required, name='dispatch')
+class ArticleView(generics.ListAPIView):
+    serializer_class = ArticleSerializer
+    queryset = models.Article.objects.all()
+
+
+# class ArticleView(views.APIView):
+#     @method_decorator(auth_decorators.login_required)
+#     def get(self, request):
+#         """:return: certain number of articles from defined position
+#         """
+#         count = int(request.query_params.get('count', 10))
+#         start = int(request.query_params.get('start', 0))
+#         total_records = models.Article.objects.all().count()
+#         queryset = models.Article.objects.all()[start:start+count]
+#         serializer = ArticleSerializer(queryset, many=True)
+#         ids = range(start, start+count)
+#         data = serializer.data
+#         for i in range(count):
+#             data[i].update({'id': ids[i]})
+#         resp = {'data': data, 'pos': start, 'total_count': total_records}
+#         return response.Response(resp, status=status.HTTP_200_OK)

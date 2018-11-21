@@ -55,10 +55,13 @@ var newsPager = {
               "{common.next()}{common.last()}"
 };
 var newsView = {
-    view: "dataview", id: "news_view", url: "/news/", datatype: "json",
-    xCount: 1, yCount: 10, datafetch: 10, datathrottle: 500, loadahead: 30,
+    view: "list", id: "news_view", url: "/news/", datatype: "json",
+    datafetch: 10, datathrottle: 1000, loadahead: 30,
     template: function(obj) {
+        var _created = webix.i18n.dateFormatStr(
+            webix.i18n.parseFormatDate(obj.created));
         var _header;
+        var _content = obj.content;
         var _author;
         if (obj.header) {
             _header = obj.header;
@@ -70,15 +73,14 @@ var newsView = {
         } else {
             _author = "<br>";
         }
-        return "<div style='float:right;margin-top:6px;'>"+
-               webix.i18n.dateFormatStr(webix.i18n.parseFormatDate(obj.created))+
-               "</div><br>"+
-               "<div style='float:left;'><b>"+_header+"</b></div><br>"+
-               "<div style='float:left;'>"+obj.content+"</div><br>"+
-               "<div style='float:right;margin-bottom:6px;'><i>"+_author+"</i></div>";
+        return "<div style='display:block;margin-top:6px;margin-bottom:6px;'>"+
+               "<p style='text-align:right;'>"+_created+"</p>"+
+               "<p style='text-align:left;font-weight:bold;'>"+_header+"</p>"+
+               "<p style='text-align:left;'>"+_content+"</p>"+
+               "<p style='text-align:right;font-style:italic;'>"+_author+"</p>"+
+               "</div>";
     },
-    pager: "news_pager", type: {width: "auto", height: "auto"},
-    autoheight: true, scroll: "y",
+    pager: "news_pager", type: {height: "auto"}, scroll: "y",
     ready: function() {
         this.hideOverlay();
         if (!this.count()) {
