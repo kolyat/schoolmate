@@ -1,0 +1,48 @@
+# German translations for Schoolmate.
+# Copyright (C) 2018 Kirill 'Kolyat' Kiselnikov
+# This file is distributed under the same license as the Schoolmate project.
+# Kirill 'Kolyat' Kiselnikov <kks.pub@gmail.com>, 2018.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Schoolmate 0.1\n"
+"Report-Msgid-Bugs-To: kks.pub@gmail.com\n"
+"POT-Creation-Date: 2018-11-22 22:13+0300\n"
+"PO-Revision-Date: 2018-11-22 22:23+0300\n"
+"Language: de\n"
+"Language-Team: de <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.6.0\n"
+"Last-Translator: Kirill 'Kolyat' Kiselnikov <kks.pub@gmail.com>\n"
+"X-Generator: Poedit 1.8.12\n"
+
+#: news/apps.py:23 news/models.py:48
+msgid "News"
+msgstr "Nachrichten"
+
+#: news/models.py:28
+msgid "Author"
+msgstr "Autor"
+
+#: news/models.py:31
+msgid "Creation date"
+msgstr "Erstellungsdatum"
+
+#: news/models.py:33
+msgid "Last modification date"
+msgstr "Datum der letzten Änderung"
+
+#: news/models.py:35
+msgid "Header"
+msgstr "Titel"
+
+#: news/models.py:37
+msgid "Content"
+msgstr "Inhalt"
+
+#: news/models.py:47
+msgid "Article"
+msgstr "Gegenstand"

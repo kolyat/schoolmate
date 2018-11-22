@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Schoolmate 0.1\n"
 "Report-Msgid-Bugs-To: kks.pub@gmail.com\n"
-"POT-Creation-Date: 2018-11-11 22:07+0300\n"
-"PO-Revision-Date: 2018-11-11 22:19+0300\n"
+"POT-Creation-Date: 2018-11-22 22:13+0300\n"
+"PO-Revision-Date: 2018-11-22 22:36+0300\n"
 "Last-Translator: Kirill 'Kolyat' Kiselnikov <kks.pub@gmail.com>\n"
 "Language: de\n"
 "Language-Team: de <LL@li.org>\n"
@@ -23,27 +23,27 @@ msgstr ""
 msgid "Timetable"
 msgstr "Zeitplan"
 
-#: timetable/models.py:24
+#: timetable/models.py:24 timetable/static/timetable/js/timetable.js:34
 msgid "Monday"
 msgstr "Montag"
 
-#: timetable/models.py:25
+#: timetable/models.py:25 timetable/static/timetable/js/timetable.js:35
 msgid "Tuesday"
 msgstr "Dienstag"
 
-#: timetable/models.py:26
+#: timetable/models.py:26 timetable/static/timetable/js/timetable.js:36
 msgid "Wednesday"
 msgstr "Mittwoch"
 
-#: timetable/models.py:27
+#: timetable/models.py:27 timetable/static/timetable/js/timetable.js:37
 msgid "Thursday"
 msgstr "Donnerstag"
 
-#: timetable/models.py:28
+#: timetable/models.py:28 timetable/static/timetable/js/timetable.js:38
 msgid "Friday"
 msgstr "Freitag"
 
-#: timetable/models.py:29
+#: timetable/models.py:29 timetable/static/timetable/js/timetable.js:39
 msgid "Saturday"
 msgstr "Samstag"
 
@@ -59,53 +59,69 @@ msgstr "Jahre"
 msgid "School form"
 msgstr "Klasse"
 
-#: timetable/models.py:66 timetable/models.py:67 timetable/models.py:72
+#: timetable/models.py:67 timetable/models.py:68 timetable/models.py:73
 msgid "Form"
 msgstr "Klasse"
 
-#: timetable/models.py:75
+#: timetable/models.py:76
 msgid "Day of week"
 msgstr "Wochentag"
 
-#: timetable/models.py:81
+#: timetable/models.py:82
 msgid "Lesson number"
 msgstr "Schulstundenummer"
 
-#: timetable/models.py:86 timetable/models.py:90
+#: timetable/models.py:87 timetable/models.py:91
 msgid "lesson"
 msgstr "Schulstunde"
 
-#: timetable/models.py:93 timetable/models.py:100
+#: timetable/models.py:95 timetable/models.py:102
 msgid "Lesson"
 msgstr "Schulstunde"
 
-#: timetable/models.py:94
+#: timetable/models.py:96
 msgid "Lessons"
 msgstr "Schulstunden"
 
-#: timetable/models.py:104 timetable/models.py:118
+#: timetable/models.py:106 timetable/models.py:120
 msgid "Subject"
 msgstr "Schulfach"
 
-#: timetable/models.py:108
+#: timetable/models.py:110
 msgid "Classroom"
 msgstr "Klassenzimmer"
 
-#: timetable/models.py:119
+#: timetable/models.py:121
 msgid "Subjects"
 msgstr "Schulfächer"
 
-#: timetable/static/timetable/js/timetable.js:42
+#: timetable/static/timetable/js/timetable.js:51
+msgid "Loading..."
+msgstr "Laden..."
+
+#: timetable/static/timetable/js/timetable.js:134
+msgid "No data"
+msgstr "Keine Daten"
+
+#: timetable/static/timetable/js/timetable.js:136
+msgid "Unable to retrieve timetable"
+msgstr "Zeitplan kann nicht abgerufen werden"
+
+#: timetable/static/timetable/js/timetable.js:148
 msgid "Forms"
 msgstr "Klassen"
 
-#: timetable/static/timetable/js/timetable.js:43
+#: timetable/static/timetable/js/timetable.js:149
 msgid "All"
 msgstr "Alle"
 
-#: timetable/static/timetable/js/timetable.js:51
+#: timetable/static/timetable/js/timetable.js:160
 msgid "Unable to get list of forms"
 msgstr "Liste der Klassen konnte nicht abgerufen werden"
+
+#: timetable/static/timetable/js/timetable.js:175
+msgid "Select form to load timetable"
+msgstr "Wählen Sie die Klassennummer zum Laden des Zeitplans"
 
 #~ msgid "Timetables"
 #~ msgstr "Zeitpläne"

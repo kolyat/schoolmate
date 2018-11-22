@@ -17,35 +17,31 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.6.0\n"
 
-#: schoolmate/dashboard.py:27
-msgid "Administration"
+#: news/apps.py:23 news/models.py:48
+msgid "News"
 msgstr ""
 
-#: schoolmate/dashboard.py:33
-msgid "General"
+#: news/models.py:28
+msgid "Author"
 msgstr ""
 
-#: schoolmate/dashboard.py:52
-msgid "Schedules"
+#: news/models.py:31
+msgid "Creation date"
 msgstr ""
 
-#: schoolmate/settings.py:192
-msgid "Schoolmate maintenance"
+#: news/models.py:33
+msgid "Last modification date"
 msgstr ""
 
-#: static/js/main.js:24
-msgid "Profile"
+#: news/models.py:35
+msgid "Header"
 msgstr ""
 
-#: static/js/main.js:34
-msgid "Log out"
+#: news/models.py:37
+msgid "Content"
 msgstr ""
 
-#: static/js/main.js:59
-msgid "Main"
-msgstr ""
-
-#: static/js/main.js:65
-msgid "Timetable"
+#: news/models.py:47
+msgid "Article"
 msgstr ""
 
