@@ -52,7 +52,10 @@ webix.ui({
     cols: [
         {
             view: "label", label: "SCHOOLMATE", align: "center",
-            minWidth: 150, width: 150,
+            minWidth: 150, width: 150, css: {
+                "font-size": "16px",
+                "letter-spacing": "1px"
+            }
         },
         {},
         {
