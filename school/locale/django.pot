@@ -1,7 +1,7 @@
 # Translations template for Schoolmate.
-# Copyright (C) 2018 Kirill 'Kolyat' Kiselnikov
+# Copyright (C) 2018-2019 Kirill 'Kolyat' Kiselnikov
 # This file is distributed under the same license as the Schoolmate project.
-# Kirill 'Kolyat' Kiselnikov <kks.pub@gmail.com>, 2018.
+# Kirill 'Kolyat' Kiselnikov <kks.pub@gmail.com>, 2018-2019.
 #
 #, fuzzy
 msgid ""
