@@ -16,7 +16,6 @@
 
 import time
 import logging
-from seleniumbase.config import settings as sbsettings
 from django.utils.translation import gettext_lazy as _
 
 from testutils import settings, webutils
@@ -30,12 +29,9 @@ class TestLogout(webutils.SchoolmateClient):
         """
         logging.info('Normal logout procedure test')
         self.login(settings.ADMIN_USER, settings.ADMIN_PASS)
-        time.sleep(sbsettings.SMALL_TIMEOUT)
-        self.wait_for_ready_state_complete()
+        time.sleep(3)
         try:
-            self.logout()
-            time.sleep(sbsettings.SMALL_TIMEOUT)
-            self.wait_for_ready_state_complete()
+            self.logout(by_url=False)
             self.assertEqual(_('Sign in'), self.get_page_title())
             logging.info('Logout successful')
         except Exception as e:
@@ -48,14 +44,12 @@ class TestLogout(webutils.SchoolmateClient):
         """
         logging.info('Logout without login test')
         self.open(settings.BASE_URL)
-        time.sleep(sbsettings.MINI_TIMEOUT)
         try:
             self.wait_for_ready_state_complete()
-            self.assertEqual('Sign in', self.get_page_title())
-            self.open(settings.LOGOUT_URL)
-            time.sleep(sbsettings.MINI_TIMEOUT)
+            self.assertEqual(_('Sign in'), self.get_page_title())
+            self.logout()
             self.wait_for_ready_state_complete()
-            self.assertEqual('Sign in', self.get_page_title())
+            self.assertEqual(_('Sign in'), self.get_page_title())
             logging.info('Logout without login passed')
         except Exception as e:
             logging.error('Logout without login failed')

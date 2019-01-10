@@ -22,10 +22,13 @@ ADMIN_PASS = 'nimda'
 #
 PROTOCOL = 'http://'
 HOST = 'localhost:8000'
-BASE_URL = '{}{}'.format(PROTOCOL, HOST)
+BASE_URL = ''.join((PROTOCOL, HOST))
 
-LOGIN_PATH = '/login/'
-LOGIN_URL = '{}{}'.format(BASE_URL, LOGIN_PATH)
+LOGIN_PATH = '/profile/login/'
+LOGIN_URL = ''.join((BASE_URL, LOGIN_PATH))
 
-LOGOUT_PATH = '/logout/'
-LOGOUT_URL = '{}{}'.format(BASE_URL, LOGOUT_PATH)
+LOGOUT_PATH = '/profile/logout/'
+LOGOUT_URL = ''.join((BASE_URL, LOGOUT_PATH))
+
+PROFILE_PATH = '/profile/'
+PROFILE_URL = ''.join((BASE_URL, PROFILE_PATH))

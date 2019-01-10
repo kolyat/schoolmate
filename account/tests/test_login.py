@@ -14,11 +14,9 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-import time
 import logging
 import ddt
 from selenium.webdriver.common.by import By
-from seleniumbase.config import settings as sbsettings
 from django.utils.translation import gettext_lazy as _
 
 from testutils import settings, ddtutils, webutils
@@ -33,16 +31,9 @@ class TestLogin(webutils.SchoolmateClient):
         """
         logging.info('Log in as administrator')
         self.login(settings.ADMIN_USER, settings.ADMIN_PASS)
-        time.sleep(sbsettings.SMALL_TIMEOUT)
         try:
-            self.wait_for_ready_state_complete()
-            self.assertEqual(_('Profile'), self.get_page_title())
-            time.sleep(sbsettings.MINI_TIMEOUT)
-            username = self.get_attribute(
-                '//div[@view_id="username"]/div/input',
-                'value',
-                by=By.XPATH
-            )
+            self.assertEqual(_('Main'), self.get_page_title())
+            username = self.wait_for_element(self.USER_MENU).text
             self.assertEqual(settings.ADMIN_USER, username)
             logging.info('Login successful')
         except Exception as e:
@@ -65,9 +56,10 @@ class TestLoginError(webutils.SchoolmateClient):
         :param message: text with validation message
         """
         logging.info('Trying {}'.format(creds))
-        self.login(creds['username'], creds['password'])
+        self.login(creds['username'], creds['password'], wait=False)
         try:
-            self.wait_for_text_visible(message, selector, by=By.XPATH)
+            msg = self.wait_for_element(selector, by=By.XPATH).text
+            self.assertEqual(message, msg)
             logging.info('Validation passed')
         except Exception as e:
             logging.error('Error in form validation: {}'.format(creds))
@@ -82,12 +74,10 @@ class TestLoginError(webutils.SchoolmateClient):
         :param creds: dict with form data
         """
         logging.info('Trying {}'.format(creds))
-        self.login(creds['username'], creds['password'])
+        self.login(creds['username'], creds['password'], wait=False)
         try:
-            self.wait_for_text_visible(
-                _('Wrong username/password'),
-                '//div[@class="webix_message_area"]/div/div', by=By.XPATH
-            )
+            msg = self.wait_for_element(self.MESSAGE, by=By.XPATH).text
+            self.assertEqual(_('Wrong username/password'), msg)
             logging.info('Wrong credentials handling passed')
         except Exception as e:
             logging.error('Error in handling wrong credentials: {}'
