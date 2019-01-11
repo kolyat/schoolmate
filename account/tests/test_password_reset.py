@@ -27,21 +27,25 @@ from . import data_test_password_reset
 
 
 class TestPasswordReset(webutils.SchoolmateClient):
-    """Test password reset procedure"""
+    """Test password reset procedure
+    """
     FORGOT_PASSWORD_BUTTON = '//div[@view_id="forgot_password_btn"]/div/button'
+
     EMAIL_FIELD = '//div[@view_id="email"]/div/input'
     EMAIL_FIELD_MSG = '//div[@view_id="email"]/div[@role="alert"]'
     RESET_BUTTON = '//div[@view_id="reset_btn"]/div/button'
+
     EMAIL_SENT_FORM = '[view_id=password_reset_sent_form]'
+    PASSWORD_RESET_COMPLETE_FORM = '[view_id=password_reset_complete_form]'
     BACK_TO_LOGIN_BUTTON = '//div[@view_id="back_to_login_btn"]/div/button'
-    RESET_CONFIRM_BUTTON = '//div[@view_id="confirm_btn"]/div/button'
+
     RESET_NEW_PASSWORD1_FIELD = '//div[@view_id="new_password1"]/div/input'
     RESET_NEW_PASSWORD1_FIELD_MSG = \
         '//div[@view_id="new_password1"]/div[@role="alert"]'
     RESET_NEW_PASSWORD2_FIELD = '//div[@view_id="new_password2"]/div/input'
     RESET_NEW_PASSWORD2_FIELD_MSG = \
         '//div[@view_id="new_password2"]/div[@role="alert"]'
-    PASSWORD_RESET_COMPLETE_FORM = '[view_id=password_reset_complete_form]'
+    RESET_CONFIRM_BUTTON = '//div[@view_id="confirm_btn"]/div/button'
 
     @pytest.mark.usefixtures('mailoutbox')
     def test_password_reset_scenario(self):

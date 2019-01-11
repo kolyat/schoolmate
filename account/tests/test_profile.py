@@ -24,7 +24,8 @@ from account import models as account_models
 
 
 class TestProfile(webutils.SchoolmateClient):
-    """Test profile info"""
+    """Test profile info
+    """
     PROFILE_MENU_ITEM = '[webix_l_id=profile_item]'
     PROFILE_USERNAME_FIELD = '//div[@view_id="username"]/div/input'
     PROFILE_FIRST_NAME_FIELD = '//div[@view_id="first_name"]/div/input'
