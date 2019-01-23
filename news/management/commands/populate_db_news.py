@@ -18,6 +18,7 @@ from django.core.management import base
 from testutils import rndutils
 
 from news import models as news_models
+from schoolmate import settings
 
 
 class Command(base.BaseCommand):
@@ -28,5 +29,5 @@ class Command(base.BaseCommand):
         print('Create new data:')
         print('    {:.<25}...'.format('News articles'), end='')
         [news_models.Article(**rndutils.new_article()).save()
-         for _ in range(150)]
+         for _ in range(settings.LATEST_NEWS_COUNT*2)]
         print('OK')
