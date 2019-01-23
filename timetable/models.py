@@ -83,12 +83,14 @@ class Timetable(models.Model):
     )
 
     def __str__(self):
-        return '{} - {} {}'.format(days_of_week[self.day_of_week],
-                                   self.lesson_number, _('lesson'))
+        return '{} - {} - {} {}'.format(self.form,
+                                        days_of_week[self.day_of_week],
+                                        self.lesson_number, _('lesson'))
 
     def __unicode__(self):
-        return '{} - {} {}'.format(days_of_week[self.day_of_week],
-                                   self.lesson_number, _('lesson'))
+        return '{} - {} - {} {}'.format(self.form,
+                                        days_of_week[self.day_of_week],
+                                        self.lesson_number, _('lesson'))
 
     class Meta:
         ordering = ('day_of_week', 'lesson_number')

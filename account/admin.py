@@ -46,4 +46,4 @@ class SchoolUserAdmin(auth_admin.UserAdmin):
                     'is_staff', 'is_active')
     list_filter = ('is_staff', 'is_active')
     search_fields = ('username', 'first_name', 'patronymic_name', 'last_name',
-                     'birth_date', 'school_form', 'email')
+                     'birth_date', 'email')

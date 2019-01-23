@@ -33,10 +33,11 @@ class TimetableInline(admin.TabularInline):
     extra = 0
 
 
-class TimetableSchoolFormInline(admin.StackedInline):
+class TimetableSchoolFormInline(admin.TabularInline):
     model = models.TimetableSchoolForm
     show_change_link = True
     fields = ('school_form',)
+    readonly_fields = ('school_form',)
     extra = 0
 
 
@@ -59,8 +60,8 @@ class TimetableSchoolFormAdmin(admin.ModelAdmin):
 @admin.register(models.Timetable)
 class TimetableAdmin(admin.ModelAdmin):
     inlines = (TimetableSubjectInline,)
-    fields = ('day_of_week', 'lesson_number')
-    ordering = ('day_of_week', 'lesson_number')
+    fields = ('form', 'day_of_week', 'lesson_number')
+    ordering = ('form', 'day_of_week', 'lesson_number')
 
     def has_module_permission(self, request):
         return False
