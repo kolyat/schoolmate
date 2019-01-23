@@ -163,11 +163,12 @@ webix.ui({
                 {
                     id: "status_layout", responsive: "index_layout",
                     maxWidth: statusLayoutMaxWidth, margin: statusLayoutMargin,
-                    rows: [timeForm, dateForm]
+                    rows: [timeForm, dateForm, {}]
                 },
                 infoTab
             ]
         },
+        {gravity: 0.1}
     ]
 });
 var time_form = $$("time_form");
