@@ -24,7 +24,7 @@ var timeTable = {
 };
 webix.ui({
     id: "timetable_layout", type: "space", padding: 0,
-    rows: [{cols: [formTree, {view: "resizer"}, timeTable]}]
+    rows: [{cols: [formTree, {view: "resizer"}, timeTable]}, {gravity: 0.08}]
 });
 var form_tree = $$("form_tree");
 var timetable = $$("timetable");
