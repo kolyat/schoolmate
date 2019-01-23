@@ -31,16 +31,16 @@ class Article(models.Model):
                                    verbose_name=_('Creation date'))
     modified = models.DateTimeField(blank=False, null=False, auto_now=True,
                                     verbose_name=_('Last modification date'))
-    header = models.CharField(max_length=254, blank=True, null=True,
-                              verbose_name=_('Header'))
+    title = models.CharField(max_length=254, blank=True, null=True,
+                             verbose_name=_('Title'))
     content = models.TextField(max_length=30000, blank=False, null=False,
                                verbose_name=_('Content'))
 
     def __str__(self):
-        return self.header if self.header else self.content
+        return self.title if self.title else self.content
 
     def __unicode__(self):
-        return self.header if self.header else self.content
+        return self.title if self.title else self.content
 
     class Meta:
         ordering = ('-created',)

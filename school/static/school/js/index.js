@@ -50,7 +50,7 @@ var dateForm = {
     }, align: "left"
 };
 var newsPager = {
-    view: "pager", id: "news_pager", size: 10, limit: 10, group: 5,
+    view: "pager", id: "news_pager", size: 10, group: 5,
     template: "{common.first()}{common.prev()}{common.pages()}"+
               "{common.next()}{common.last()}"
 };
@@ -60,11 +60,11 @@ var newsView = {
     template: function(obj) {
         var _created = webix.i18n.dateFormatStr(
             webix.i18n.parseFormatDate(obj.created));
-        var _header;
+        var _title;
         var _content = obj.content;
         var _author;
-        if (obj.header) {
-            _header = obj.header;
+        if (obj.title) {
+            _title = obj.title;
         } else {
             _header = "";
         }
@@ -75,7 +75,7 @@ var newsView = {
         }
         return "<div style='display:block;margin-top:6px;margin-bottom:6px;'>"+
                "<p style='text-align:right;'>"+_created+"</p>"+
-               "<p style='text-align:left;font-weight:bold;'>"+_header+"</p>"+
+               "<p style='text-align:left;font-weight:bold;'>"+_title+"</p>"+
                "<p style='text-align:left;'>"+_content+"</p>"+
                "<p style='text-align:right;font-style:italic;'>"+_author+"</p>"+
                "</div>";

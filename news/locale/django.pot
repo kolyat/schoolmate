@@ -1,5 +1,5 @@
 # Translations template for Schoolmate.
-# Copyright (C) 2018-2019 Kirill 'Kolyat' Kiselnikov
+# Copyright (C) 2019 Kirill 'Kolyat' Kiselnikov
 # This file is distributed under the same license as the Schoolmate project.
 # Kirill 'Kolyat' Kiselnikov <kks.pub@gmail.com>, 2018-2019.
 #
@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Schoolmate 0.1\n"
 "Report-Msgid-Bugs-To: kks.pub@gmail.com\n"
-"POT-Creation-Date: 2018-11-22 22:13+0300\n"
+"POT-Creation-Date: 2019-01-23 17:06+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,7 +34,7 @@ msgid "Last modification date"
 msgstr ""
 
 #: news/models.py:35
-msgid "Header"
+msgid "Title"
 msgstr ""
 
 #: news/models.py:37

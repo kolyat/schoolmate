@@ -27,7 +27,7 @@ class ArticleSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.Article
-        fields = ('created', 'header', 'content', 'author')
+        fields = ('created', 'title', 'content', 'author')
 
 
 @method_decorator(auth_decorators.login_required, name='dispatch')

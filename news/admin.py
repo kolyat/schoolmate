@@ -21,8 +21,8 @@ from . import models
 
 @admin.register(models.Article)
 class ArticleAdmin(admin.ModelAdmin):
-    list_display = ('header', 'created', 'modified', 'author')
-    search_fields = ('header', 'content', 'created', 'modified', 'author')
+    list_display = ('title', 'created', 'modified', 'author')
+    search_fields = ('title', 'content', 'created', 'modified', 'author')
 
     def save_model(self, request, obj, form, change):
         if not obj.author:

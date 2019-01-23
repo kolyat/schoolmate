@@ -97,6 +97,6 @@ def new_article():
     random.seed()
     _text = mimesis.Text()
     return {
-        'header': _text.title(),
+        'title': _text.title(),
         'content': _text.text(random.randint(3, 9))
     }

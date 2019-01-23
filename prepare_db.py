@@ -57,5 +57,5 @@ if __name__ == '__main__':
     print('OK')
     [os.system('manage.py makemigrations {}'.format(app)) for app in APPS]
     os.system('manage.py migrate')
-    [os.system('manage.py clear_db_{}'.format(app)) for app in reversed(APPS)]
+    # [os.system('manage.py clear_db_{}'.format(app)) for app in reversed(APPS)]
     [os.system('manage.py populate_db_{}'.format(app)) for app in APPS]

@@ -7,8 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Schoolmate 0.1\n"
 "Report-Msgid-Bugs-To: kks.pub@gmail.com\n"
-"POT-Creation-Date: 2018-11-22 22:13+0300\n"
-"PO-Revision-Date: 2018-11-22 22:23+0300\n"
+"POT-Creation-Date: 2019-01-23 17:06+0300\n"
+"PO-Revision-Date: 2019-01-23 17:09+0300\n"
+"Last-Translator: Kirill 'Kolyat' Kiselnikov <kks.pub@gmail.com>\n"
 "Language: de\n"
 "Language-Team: de <LL@li.org>\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -16,8 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.6.0\n"
-"Last-Translator: Kirill 'Kolyat' Kiselnikov <kks.pub@gmail.com>\n"
-"X-Generator: Poedit 1.8.12\n"
+"X-Generator: Poedit 2.2\n"
 
 #: news/apps.py:23 news/models.py:48
 msgid "News"
@@ -36,7 +36,7 @@ msgid "Last modification date"
 msgstr "Datum der letzten Änderung"
 
 #: news/models.py:35
-msgid "Header"
+msgid "Title"
 msgstr "Titel"
 
 #: news/models.py:37
@@ -46,3 +46,6 @@ msgstr "Inhalt"
 #: news/models.py:47
 msgid "Article"
 msgstr "Gegenstand"
+
+#~ msgid "Header"
+#~ msgstr "Titel"
