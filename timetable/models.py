@@ -81,28 +81,6 @@ class Timetable(models.Model):
                           [str(n) for n in school_models.PERIOD_NUMBERS])),
         verbose_name=_('Lesson number')
     )
-
-    def __str__(self):
-        return '{} - {} - {} {}'.format(self.form,
-                                        days_of_week[self.day_of_week],
-                                        self.lesson_number, _('lesson'))
-
-    def __unicode__(self):
-        return '{} - {} - {} {}'.format(self.form,
-                                        days_of_week[self.day_of_week],
-                                        self.lesson_number, _('lesson'))
-
-    class Meta:
-        ordering = ('day_of_week', 'lesson_number')
-        verbose_name = _('Lesson')
-        verbose_name_plural = _('Lessons')
-
-
-class TimetableSubject(models.Model):
-    lesson = models.ForeignKey(
-        Timetable, on_delete=models.PROTECT, related_name='subjects',
-        verbose_name=_('Lesson')
-    )
     subject = models.ForeignKey(
         school_models.SchoolSubject, on_delete=models.PROTECT,
         verbose_name=_('Subject')
@@ -113,11 +91,16 @@ class TimetableSubject(models.Model):
     )
 
     def __str__(self):
-        return str(self.subject)
+        return ' - '.join((days_of_week[self.day_of_week],
+                           str(self.lesson_number),
+                           str(self.subject)))
 
     def __unicode__(self):
-        return str(self.subject)
+        return ' - '.join((days_of_week[self.day_of_week],
+                           str(self.lesson_number),
+                           str(self.subject)))
 
     class Meta:
-        verbose_name = _('Subject')
-        verbose_name_plural = _('Subjects')
+        ordering = ('day_of_week', 'lesson_number')
+        verbose_name = _('Lesson')
+        verbose_name_plural = _('Lessons')

@@ -87,16 +87,16 @@ function getTimetable(number) {
                     var _subjs = new Array();
                     var _rooms = new Array();
                     _subjects.forEach(function(s) {
-                        _subjs.push(s.subjects[0].subject);
-                        var _room = s.subjects[0].classroom;
+                        _subjs.push(s.subject);
+                        var _room = s.classroom;
                         if (_room) {
                             _rooms.push(_room);
                         } else {
                             _rooms.push(" ");
                         }
                     });
-                    rows[d][i][f_subj] = _subjs.join("\n");
-                    rows[d][i][f_room] = _rooms.join("\n");
+                    rows[d][i][f_subj] = _subjs.join("<br>");
+                    rows[d][i][f_room] = _rooms.join("<br>");
                 }
             });
         });

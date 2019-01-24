@@ -25,7 +25,6 @@ class Command(base.BaseCommand):
     def handle(self, *args, **options):
         print('TIMETABLE app')
         print('Clean up... ', end='')
-        timetable_models.TimetableSubject.objects.all().delete()
         timetable_models.Timetable.objects.all().delete()
         timetable_models.TimetableSchoolForm.objects.all().delete()
         timetable_models.TimetableYear.objects.all().delete()

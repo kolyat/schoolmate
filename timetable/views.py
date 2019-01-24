@@ -32,22 +32,14 @@ def timetable(request):
     return shortcuts.render(request, 'timetable.html.j2')
 
 
-class TimetableSubjectSerializer(serializers.ModelSerializer):
+class TimetableSerializer(serializers.ModelSerializer):
     subject = serializers.StringRelatedField()
     classroom = serializers.SlugRelatedField(slug_field='room_id',
                                              read_only=True)
 
     class Meta:
-        model = models.TimetableSubject
-        fields = ('subject', 'classroom')
-
-
-class TimetableSerializer(serializers.ModelSerializer):
-    subjects = TimetableSubjectSerializer(many=True)
-
-    class Meta:
         model = models.Timetable
-        fields = ('day_of_week', 'lesson_number', 'subjects')
+        fields = ('day_of_week', 'lesson_number', 'subject', 'classroom')
 
 
 class TimetableSchoolFormSerializer(serializers.ModelSerializer):

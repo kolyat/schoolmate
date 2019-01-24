@@ -215,9 +215,5 @@ YEAR_SCHEDULE = [
         'description': 'Дополнительные каникулы для первоклассников'
     }
 ].__reversed__()
-CLASSROOMS = [
-    {
-        'room_id': '1',
-        'room_name': 'Кабинет'
-    }
-]
+CLASSROOMS = [{'room_id': i, 'room_name': '{} кабинет'.format(i)}
+              for i in range(1, 50)]

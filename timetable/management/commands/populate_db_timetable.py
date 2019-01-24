@@ -40,15 +40,16 @@ class Command(base.BaseCommand):
         print('OK')
         print('    {:.<25}...'.format('Timetable'), end='')
         _subjects = school_models.SchoolSubject.objects.all()
+        _classrooms = school_models.Classroom.objects.all()
         random.seed()
         for tt_form in _timetable_forms:
             for d in timetable_models.DAYS_OF_WEEK:
                 lessons = range(1, random.randint(6, 8))
                 for l in lessons:
                     s = random.choice(_subjects)
-                    tt = timetable_models.Timetable(
-                        form=tt_form, day_of_week=d[0], lesson_number=l)
-                    tt.save()
-                    timetable_models.TimetableSubject(
-                        lesson=tt, subject=s).save()
+                    c = random.choice(_classrooms)
+                    timetable_models.Timetable(
+                        form=tt_form, day_of_week=d[0], lesson_number=l,
+                        subject=s, classroom=c
+                    ).save()
         print('OK')
