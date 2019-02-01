@@ -118,6 +118,10 @@ WSGI_APPLICATION = 'schoolmate.wsgi.application'
 # Database
 DATABASES = {
     'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'schoolmate.db'
+    },
+    'postgres': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'schoolmate',
         'USER': 'postgres',
