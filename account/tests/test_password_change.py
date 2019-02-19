@@ -40,13 +40,13 @@ class TestPasswordChange(webutils.SchoolmateClient):
         try:
             logging.info('Change password to: {}'.format(new_password))
             self.change_password(user['password'], new_password, new_password)
-            msg = self.wait_for_element(self.MESSAGE, by=By.XPATH).text
+            msg = self.wait_for_element(**self.MESSAGE).text
             self.assertEqual(_('Password changed'), msg)
             logging.info('Log out')
             self.logout()
             logging.info('Trying old password: {}'.format(user['password']))
             self.login(user['username'], user['password'], wait=False)
-            msg = self.wait_for_element(self.MESSAGE, by=By.XPATH).text
+            msg = self.wait_for_element(**self.MESSAGE).text
             self.assertEqual(_('Wrong username/password'), msg)
             logging.info('Passed')
             logging.info('Log in (with new password) as {}:{}'.format(
@@ -82,7 +82,7 @@ class PasswordChangeError(webutils.SchoolmateClient):
             self.change_password(passwords['old_password'],
                                  passwords['new_password1'],
                                  passwords['new_password2'])
-            msg = self.wait_for_element(selector, by=By.XPATH).text
+            msg = self.wait_for_element(**selector).text
             self.assertEqual(message, msg)
             logging.info('Validation passed')
         except Exception as e:
@@ -102,7 +102,7 @@ class PasswordChangeError(webutils.SchoolmateClient):
         try:
             self.change_password(data.user['password'],
                                  new_password1, new_password2)
-            msg = self.wait_for_element(self.MESSAGE, by=By.XPATH).text
+            msg = self.wait_for_element(**self.MESSAGE).text
             self.assertEqual(_('New passwords are not the same'), msg)
             logging.info('Test passed')
         except Exception as e:
@@ -119,7 +119,7 @@ class PasswordChangeError(webutils.SchoolmateClient):
                      ''.format(old_password))
         try:
             self.change_password(old_password, new_password, new_password)
-            msg = self.wait_for_element(self.MESSAGE, by=By.XPATH).text
+            msg = self.wait_for_element(**self.MESSAGE).text
             self.assertEqual(_('Password change failed'), msg)
             logging.info('Test passed')
         except Exception as e:

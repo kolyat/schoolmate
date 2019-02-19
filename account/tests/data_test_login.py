@@ -15,6 +15,7 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 from django.utils.translation import gettext_lazy as _
+from selenium.webdriver.common.by import By
 
 from testutils import settings, rndutils
 
@@ -22,12 +23,14 @@ from testutils import settings, rndutils
 validation_data = {
     'user-empty_pass-correct': [
         {'username': '', 'password': settings.ADMIN_PASS},
-        '//div[@view_id="username"]/div[@role="alert"]',
+        {'selector': '//div[@view_id="username"]/div[@role="alert"]',
+         'by': By.XPATH},
         _('Username can not be empty')
     ],
     'user-correct_pass-empty': [
         {'username': settings.ADMIN_USER, 'password': ''},
-        '//div[@view_id="password"]/div[@role="alert"]',
+        {'selector': '//div[@view_id="password"]/div[@role="alert"]',
+         'by': By.XPATH},
         _('Password can not be empty')
     ]
 }

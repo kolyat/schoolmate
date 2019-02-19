@@ -29,23 +29,50 @@ from . import data_test_password_reset
 class TestPasswordReset(webutils.SchoolmateClient):
     """Test password reset procedure
     """
-    FORGOT_PASSWORD_BUTTON = '//div[@view_id="forgot_password_btn"]/div/button'
+    FORGOT_PASSWORD_BUTTON = {
+        'selector': '//div[@view_id="forgot_password_btn"]/div/button',
+        'by': By.XPATH
+    }
 
-    EMAIL_FIELD = '//div[@view_id="email"]/div/input'
-    EMAIL_FIELD_MSG = '//div[@view_id="email"]/div[@role="alert"]'
-    RESET_BUTTON = '//div[@view_id="reset_btn"]/div/button'
+    EMAIL_FIELD = {'selector': '//div[@view_id="email"]/div/input',
+                   'by': By.XPATH}
+    EMAIL_FIELD_MSG = {
+        'selector': '//div[@view_id="email"]/div[@role="alert"]',
+        'by': By.XPATH}
+    RESET_BUTTON = {'selector': '//div[@view_id="reset_btn"]/div/button',
+                    'by': By.XPATH}
 
-    EMAIL_SENT_FORM = '[view_id=password_reset_sent_form]'
-    PASSWORD_RESET_COMPLETE_FORM = '[view_id=password_reset_complete_form]'
-    BACK_TO_LOGIN_BUTTON = '//div[@view_id="back_to_login_btn"]/div/button'
+    EMAIL_SENT_FORM = {'selector': '[view_id="password_reset_sent_form"]',
+                       'by': By.CSS_SELECTOR}
+    PASSWORD_RESET_COMPLETE_FORM = {
+        'selector': '[view_id="password_reset_complete_form"]',
+        'by': By.CSS_SELECTOR
+    }
+    BACK_TO_LOGIN_BUTTON = {
+        'selector': '//div[@view_id="back_to_login_btn"]/div/button',
+        'by': By.XPATH
+    }
 
-    RESET_NEW_PASSWORD1_FIELD = '//div[@view_id="new_password1"]/div/input'
-    RESET_NEW_PASSWORD1_FIELD_MSG = \
-        '//div[@view_id="new_password1"]/div[@role="alert"]'
-    RESET_NEW_PASSWORD2_FIELD = '//div[@view_id="new_password2"]/div/input'
-    RESET_NEW_PASSWORD2_FIELD_MSG = \
-        '//div[@view_id="new_password2"]/div[@role="alert"]'
-    RESET_CONFIRM_BUTTON = '//div[@view_id="confirm_btn"]/div/button'
+    RESET_NEW_PASSWORD1_FIELD = {
+        'selector': '//div[@view_id="new_password1"]/div/input',
+        'by': By.XPATH
+    }
+    RESET_NEW_PASSWORD1_FIELD_MSG = {
+        'selector': '//div[@view_id="new_password1"]/div[@role="alert"]',
+        'by': By.XPATH
+    }
+    RESET_NEW_PASSWORD2_FIELD = {
+        'selector': '//div[@view_id="new_password2"]/div/input',
+        'by': By.XPATH
+    }
+    RESET_NEW_PASSWORD2_FIELD_MSG = {
+        'selector': '//div[@view_id="new_password2"]/div[@role="alert"]',
+        'by': By.XPATH
+    }
+    RESET_CONFIRM_BUTTON = {
+        'selector': '//div[@view_id="confirm_btn"]/div/button',
+        'by': By.XPATH
+    }
 
     @pytest.mark.usefixtures('mailoutbox')
     def test_password_reset_scenario(self):
@@ -53,19 +80,19 @@ class TestPasswordReset(webutils.SchoolmateClient):
         """
         self.open(settings.LOGIN_URL)
         self.wait_for_ready_state_complete()
-        self.click(self.FORGOT_PASSWORD_BUTTON, by=By.XPATH)
+        self.click(**self.FORGOT_PASSWORD_BUTTON)
         try:
-            self.wait_for_element(self.RESET_BUTTON, by=By.XPATH)
+            self.wait_for_element(**self.RESET_BUTTON)
             self.assertEqual(_('Password reset'), self.get_page_title())
             logging.info('Trying to send e-mail to {} ...'.format(
                 data_test_password_reset.user['email']))
             self.send_keys(
-                self.EMAIL_FIELD, data_test_password_reset.user['email'],
-                by=By.XPATH
+                new_value=data_test_password_reset.user['email'],
+                **self.EMAIL_FIELD
             )
-            self.click(self.RESET_BUTTON, by=By.XPATH)
+            self.click(**self.RESET_BUTTON)
             self.wait_for_ready_state_complete()
-            self.wait_for_element(self.EMAIL_SENT_FORM)
+            self.wait_for_element(**self.EMAIL_SENT_FORM)
             self.assertEqual(_('Password reset sent'), self.get_page_title())
             logging.info('Passed')
             logging.info('Mail count in dummy outbox: {}'.format(
@@ -90,7 +117,7 @@ class TestPasswordReset(webutils.SchoolmateClient):
                 mail.outbox[0].body
             ).group('link')
             logging.info('Back to login page')
-            self.click(self.BACK_TO_LOGIN_BUTTON, by=By.XPATH)
+            self.click(**self.BACK_TO_LOGIN_BUTTON)
             self.wait_for_ready_state_complete()
             self.assertEqual(_('Sign in'), self.get_page_title())
             logging.info('Go to {}'.format(link))
@@ -99,40 +126,40 @@ class TestPasswordReset(webutils.SchoolmateClient):
             self.assertEqual(_('Password reset confirmation'),
                              self.get_page_title())
             logging.info('Check empty fields validation...')
-            self.click(self.RESET_CONFIRM_BUTTON, by=By.XPATH)
-            msg = self.wait_for_element(self.RESET_NEW_PASSWORD1_FIELD_MSG,
-                                        by=By.XPATH).text
+            self.click(**self.RESET_CONFIRM_BUTTON)
+            msg = self.wait_for_element(
+                **self.RESET_NEW_PASSWORD1_FIELD_MSG).text
             self.assertEqual(_('Field can not be empty'), msg)
-            msg = self.wait_for_element(self.RESET_NEW_PASSWORD2_FIELD_MSG,
-                                        by=By.XPATH).text
+            msg = self.wait_for_element(
+                **self.RESET_NEW_PASSWORD2_FIELD_MSG).text
             self.assertEqual(_('Field can not be empty'), msg)
             logging.info('Done')
             new_password = 'new_password'
             logging.info('Check new password mismatch handling...')
-            self.send_keys(self.RESET_NEW_PASSWORD1_FIELD, new_password,
-                           by=By.XPATH)
-            self.click(self.RESET_CONFIRM_BUTTON, by=By.XPATH)
-            msg = self.wait_for_element(self.MESSAGE, by=By.XPATH).text
+            self.send_keys(new_value=new_password,
+                           **self.RESET_NEW_PASSWORD1_FIELD)
+            self.click(**self.RESET_CONFIRM_BUTTON)
+            msg = self.wait_for_element(**self.MESSAGE).text
             self.assertEqual(_('Passwords are not the same'), msg)
             logging.info('Done')
             logging.info('Set up new password: {}'.format(new_password))
-            self.send_keys(self.RESET_NEW_PASSWORD2_FIELD, new_password,
-                           by=By.XPATH)
-            self.click(self.RESET_CONFIRM_BUTTON, by=By.XPATH)
+            self.send_keys(new_value=new_password,
+                           **self.RESET_NEW_PASSWORD2_FIELD)
+            self.click(**self.RESET_CONFIRM_BUTTON)
             self.wait_for_ready_state_complete()
-            self.wait_for_element(self.PASSWORD_RESET_COMPLETE_FORM)
+            self.wait_for_element(**self.PASSWORD_RESET_COMPLETE_FORM)
             self.assertEqual(_('Password reset complete'),
                              self.get_page_title())
             logging.info('Done')
             logging.info('Back to login page')
-            self.click(self.BACK_TO_LOGIN_BUTTON, by=By.XPATH)
+            self.click(**self.BACK_TO_LOGIN_BUTTON)
             self.wait_for_ready_state_complete()
             self.assertEqual(_('Sign in'), self.get_page_title())
             logging.info('Trying old password: {}'.format(
                 data_test_password_reset.user['password']))
             self.login(data_test_password_reset.user['username'],
                        data_test_password_reset.user['password'], wait=False)
-            msg = self.wait_for_element(self.MESSAGE, by=By.XPATH).text
+            msg = self.wait_for_element(**self.MESSAGE).text
             self.assertEqual(_('Wrong username/password'), msg)
             logging.info('Passed')
             logging.info('Trying to log in with new password: {}'
@@ -149,20 +176,20 @@ class TestPasswordReset(webutils.SchoolmateClient):
         """
         self.open(settings.LOGIN_URL)
         self.wait_for_ready_state_complete()
-        self.click(self.FORGOT_PASSWORD_BUTTON, by=By.XPATH)
+        self.click(**self.FORGOT_PASSWORD_BUTTON)
         try:
             self.wait_for_ready_state_complete()
-            self.wait_for_element(self.RESET_BUTTON, by=By.XPATH)
+            self.wait_for_element(**self.RESET_BUTTON)
             self.assertEqual(_('Password reset'), self.get_page_title())
             logging.info('Check empty e-mail field validation...')
-            self.click(self.RESET_BUTTON, by=By.XPATH)
-            msg = self.wait_for_element(self.EMAIL_FIELD_MSG, by=By.XPATH).text
+            self.click(**self.RESET_BUTTON)
+            msg = self.wait_for_element(**self.EMAIL_FIELD_MSG).text
             self.assertEqual(_('E-mail can not be empty'), msg)
             logging.info('Done')
             logging.info('Check with invalid e-mail address...')
-            self.send_keys(self.EMAIL_FIELD, 'email', by=By.XPATH)
-            self.click(self.RESET_BUTTON, by=By.XPATH)
-            msg = self.wait_for_element(self.EMAIL_FIELD_MSG, by=By.XPATH).text
+            self.send_keys(new_value='email', **self.EMAIL_FIELD)
+            self.click(**self.RESET_BUTTON)
+            msg = self.wait_for_element(**self.EMAIL_FIELD_MSG).text
             self.assertEqual(_('Must be valid e-mail address'), msg)
             logging.info('Done')
             logging.info('E-mail validation passed')

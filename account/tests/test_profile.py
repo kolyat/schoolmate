@@ -26,15 +26,24 @@ from account import models as account_models
 class TestProfile(webutils.SchoolmateClient):
     """Test profile info
     """
-    PROFILE_MENU_ITEM = '[webix_l_id=profile_item]'
-    PROFILE_USERNAME_FIELD = '//div[@view_id="username"]/div/input'
-    PROFILE_FIRST_NAME_FIELD = '//div[@view_id="first_name"]/div/input'
-    PROFILE_LAST_NAME_FIELD = '//div[@view_id="last_name"]/div/input'
-    PROFILE_PATRONYMIC_NAME_FIELD = \
-        '//div[@view_id="patronymic_name"]/div/input'
-    PROFILE_BIRTH_DATE_FIELD = '//div[@view_id="birth_date"]/div/input'
-    PROFILE_EMAIL_FIELD = '//div[@view_id="email"]/div/input'
-    PROFILE_SCHOOL_FORM_FIELD = '//div[@view_id="school_form"]/div/input'
+    PROFILE_MENU_ITEM = {'selector': '[webix_l_id="profile_item"]',
+                         'by': By.CSS_SELECTOR}
+    PROFILE_USERNAME_FIELD = \
+        {'selector': '//div[@view_id="username"]/div/input', 'by': By.XPATH}
+    PROFILE_FIRST_NAME_FIELD = \
+        {'selector': '//div[@view_id="first_name"]/div/input', 'by': By.XPATH}
+    PROFILE_LAST_NAME_FIELD = \
+        {'selector': '//div[@view_id="last_name"]/div/input', 'by': By.XPATH}
+    PROFILE_PATRONYMIC_NAME_FIELD = {
+        'selector': '//div[@view_id="patronymic_name"]/div/input',
+        'by': By.XPATH
+    }
+    PROFILE_BIRTH_DATE_FIELD = \
+        {'selector': '//div[@view_id="birth_date"]/div/input', 'by': By.XPATH}
+    PROFILE_EMAIL_FIELD = \
+        {'selector': '//div[@view_id="email"]/div/input', 'by': By.XPATH}
+    PROFILE_SCHOOL_FORM_FIELD = \
+        {'selector': '//div[@view_id="school_form"]/div/input', 'by': By.XPATH}
 
     def test_user_info(self):
         """Check data in user info form
@@ -59,36 +68,29 @@ class TestProfile(webutils.SchoolmateClient):
         self.login(username, password)
         time.sleep(3)
         try:
-            self.hover_on_element(self.USER_MENU)
-            self.click(self.USER_MENU)
-            self.wait_for_element_visible(self.PROFILE_MENU_ITEM)
-            self.click(self.PROFILE_MENU_ITEM)
-            self.wait_for_element(self.PROFILE_SCHOOL_FORM_FIELD, by=By.XPATH)
+            self.hover_on_element(**self.USER_MENU)
+            self.click(**self.USER_MENU)
+            self.wait_for_element_visible(**self.PROFILE_MENU_ITEM)
+            self.click(**self.PROFILE_MENU_ITEM)
+            self.wait_for_element(**self.PROFILE_SCHOOL_FORM_FIELD)
             time.sleep(1)
             self.assertEqual(username, self.get_attribute(
-               self.PROFILE_USERNAME_FIELD, 'value', by=By.XPATH
-            ))
-
+                attribute='value', **self.PROFILE_USERNAME_FIELD))
             self.assertEqual(user_info['first_name'], self.get_attribute(
-                self.PROFILE_FIRST_NAME_FIELD, 'value', by=By.XPATH
-            ))
+                attribute='value', **self.PROFILE_FIRST_NAME_FIELD))
             self.assertEqual(user_info['last_name'], self.get_attribute(
-                self.PROFILE_LAST_NAME_FIELD, 'value', by=By.XPATH
-            ))
+                attribute='value', **self.PROFILE_LAST_NAME_FIELD))
             self.assertEqual(user_info['patronymic_name'], self.get_attribute(
-                self.PROFILE_PATRONYMIC_NAME_FIELD, 'value', by=By.XPATH
-            ))
+                attribute='value', **self.PROFILE_PATRONYMIC_NAME_FIELD))
             self.assertEqual(user_info['birth_date'], self.get_attribute(
-                self.PROFILE_BIRTH_DATE_FIELD, 'value', by=By.XPATH
-            ))
+                attribute='value', **self.PROFILE_BIRTH_DATE_FIELD))
             self.assertEqual(email, self.get_attribute(
-                self.PROFILE_EMAIL_FIELD, 'value', by=By.XPATH
-            ))
+                attribute='value', **self.PROFILE_EMAIL_FIELD))
             self.assertEqual(
                 ''.join((str(school_form['form_number']),
                          school_form['form_letter'])),
-                self.get_attribute(self.PROFILE_SCHOOL_FORM_FIELD, 'value',
-                                   by=By.XPATH)
+                self.get_attribute(attribute='value',
+                                   **self.PROFILE_SCHOOL_FORM_FIELD)
             )
             logging.info('Profile check successful')
         except Exception as e:

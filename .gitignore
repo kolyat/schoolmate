@@ -1,5 +1,7 @@
 .idea
+.pytest-cache
 __pycache__
 migrations
+latest_logs
 *.log
 *.db

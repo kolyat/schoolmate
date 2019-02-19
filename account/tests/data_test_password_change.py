@@ -15,6 +15,7 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 from django.utils.translation import gettext_lazy as _
+from selenium.webdriver.common.by import By
 
 from testutils import rndutils
 
@@ -25,19 +26,22 @@ validation_data = {
     'empty_old_password': [
         {'old_password': '',
          'new_password1': 'new_password', 'new_password2': 'new_password'},
-        '//div[@view_id="old_password"]/div[@role="alert"]',
+        {'selector': '//div[@view_id="old_password"]/div[@role="alert"]',
+         'by': By.XPATH},
         _('Field can not be empty')
     ],
     'empty_new_password1': [
         {'old_password': user['password'],
          'new_password1': '', 'new_password2': 'new_password'},
-        '//div[@view_id="new_password1"]/div[@role="alert"]',
+        {'selector': '//div[@view_id="new_password1"]/div[@role="alert"]',
+         'by': By.XPATH},
         _('Field can not be empty')
     ],
     'empty_new_password2': [
         {'old_password': user['password'],
          'new_password1': 'new_password', 'new_password2': ''},
-        '//div[@view_id="new_password2"]/div[@role="alert"]',
+        {'selector': '//div[@view_id="new_password2"]/div[@role="alert"]',
+         'by': By.XPATH},
         _('Field can not be empty')
     ]
 }

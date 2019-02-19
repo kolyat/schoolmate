@@ -33,7 +33,7 @@ class TestLogin(webutils.SchoolmateClient):
         self.login(settings.ADMIN_USER, settings.ADMIN_PASS)
         try:
             self.assertEqual(_('Main'), self.get_page_title())
-            username = self.wait_for_element(self.USER_MENU).text
+            username = self.wait_for_element(**self.USER_MENU).text
             self.assertEqual(settings.ADMIN_USER, username)
             logging.info('Login successful')
         except Exception as e:
@@ -58,7 +58,7 @@ class TestLoginError(webutils.SchoolmateClient):
         logging.info('Trying {}'.format(creds))
         self.login(creds['username'], creds['password'], wait=False)
         try:
-            msg = self.wait_for_element(selector, by=By.XPATH).text
+            msg = self.wait_for_element(**selector).text
             self.assertEqual(message, msg)
             logging.info('Validation passed')
         except Exception as e:
@@ -76,7 +76,7 @@ class TestLoginError(webutils.SchoolmateClient):
         logging.info('Trying {}'.format(creds))
         self.login(creds['username'], creds['password'], wait=False)
         try:
-            msg = self.wait_for_element(self.MESSAGE, by=By.XPATH).text
+            msg = self.wait_for_element(**self.MESSAGE).text
             self.assertEqual(_('Wrong username/password'), msg)
             logging.info('Wrong credentials handling passed')
         except Exception as e:

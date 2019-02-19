@@ -21,19 +21,36 @@ from . import settings
 
 
 class SchoolmateClient(seleniumbase.BaseCase):
-    MESSAGE = '//div[@class="webix_message_area"]/div/div'
+    MESSAGE = {'selector': '//div[@class="webix_message_area"]/div/div',
+               'by': By.XPATH}
 
-    LOGIN_USERNAME_FIELD = '//div[@view_id="username"]/div/input'
-    LOGIN_PASSWORD_FIELD = '//div[@view_id="password"]/div/input'
-    LOGIN_BUTTON = '//div[@view_id="login_btn"]/div/button'
+    LOGIN_USERNAME_FIELD = \
+        {'selector': '//div[@view_id="username"]/div/input', 'by': By.XPATH}
+    LOGIN_PASSWORD_FIELD = \
+        {'selector': '//div[@view_id="password"]/div/input', 'by': By.XPATH}
+    LOGIN_BUTTON = \
+        {'selector': '//div[@view_id="login_btn"]/div/button', 'by': By.XPATH}
 
-    USER_MENU = '[webix_l_id=user_item]'
-    LOGOUT_MENU_ITEM = '[webix_l_id=logout_item]'
+    USER_MENU = {'selector': '[webix_l_id="user_item"]', 'by': By.CSS_SELECTOR}
+    LOGOUT_MENU_ITEM = \
+        {'selector': '[webix_l_id="logout_item"]', 'by': By.CSS_SELECTOR}
 
-    OLD_PASSWORD_FIELD = '//div[@view_id="old_password"]/div/input'
-    NEW_PASSWORD1_FIELD = '//div[@view_id="new_password1"]/div/input'
-    NEW_PASSWORD2_FIELD = '//div[@view_id="new_password2"]/div/input'
-    CHANGE_PASSWORD_BUTTON = '//div[@view_id="change_password_btn"]/div/button'
+    OLD_PASSWORD_FIELD = {
+        'selector': '//div[@view_id="old_password"]/div/input',
+        'by': By.XPATH
+    }
+    NEW_PASSWORD1_FIELD = {
+        'selector': '//div[@view_id="new_password1"]/div/input',
+        'by': By.XPATH
+    }
+    NEW_PASSWORD2_FIELD = {
+        'selector': '//div[@view_id="new_password2"]/div/input',
+        'by': By.XPATH
+    }
+    CHANGE_PASSWORD_BUTTON = {
+        'selector': '//div[@view_id="change_password_btn"]/div/button',
+        'by': By.XPATH
+    }
 
     def login(self, user, passwd, wait=True):
         """Log in to system
@@ -43,12 +60,12 @@ class SchoolmateClient(seleniumbase.BaseCase):
         :param wait: wait for main page load (True by default)
         """
         self.open(settings.LOGIN_URL)
-        self.send_keys(self.LOGIN_USERNAME_FIELD, user, by=By.XPATH)
-        self.send_keys(self.LOGIN_PASSWORD_FIELD, passwd, by=By.XPATH)
-        self.click(self.LOGIN_BUTTON, by=By.XPATH)
+        self.send_keys(new_value=user, **self.LOGIN_USERNAME_FIELD)
+        self.send_keys(new_value=passwd, **self.LOGIN_PASSWORD_FIELD)
+        self.click(**self.LOGIN_BUTTON)
         if wait:
             self.wait_for_ready_state_complete()
-            self.wait_for_element(self.USER_MENU)
+            self.wait_for_element(**self.USER_MENU)
 
     def logout(self, by_url=True):
         """Log out
@@ -58,12 +75,12 @@ class SchoolmateClient(seleniumbase.BaseCase):
         if by_url:
             self.open(settings.LOGOUT_URL)
         else:
-            self.hover_on_element(self.USER_MENU)
-            self.click(self.USER_MENU)
-            self.wait_for_element_visible(self.LOGOUT_MENU_ITEM)
-            self.click(self.LOGOUT_MENU_ITEM)
+            self.hover_on_element(**self.USER_MENU)
+            self.click(**self.USER_MENU)
+            self.wait_for_element_visible(**self.LOGOUT_MENU_ITEM)
+            self.click(**self.LOGOUT_MENU_ITEM)
         self.wait_for_ready_state_complete()
-        self.wait_for_element_visible(self.LOGIN_BUTTON, by=By.XPATH)
+        self.wait_for_element_visible(**self.LOGIN_BUTTON)
 
     def change_password(self, old, new1, new2):
         """Change password
@@ -73,7 +90,7 @@ class SchoolmateClient(seleniumbase.BaseCase):
         :param new2: repeat new password
         """
         self.open(settings.PROFILE_URL)
-        self.send_keys(self.OLD_PASSWORD_FIELD, old, by=By.XPATH)
-        self.send_keys(self.NEW_PASSWORD1_FIELD, new1, by=By.XPATH)
-        self.send_keys(self.NEW_PASSWORD2_FIELD, new2, by=By.XPATH)
-        self.click(self.CHANGE_PASSWORD_BUTTON, by=By.XPATH)
+        self.send_keys(new_value=old, **self.OLD_PASSWORD_FIELD)
+        self.send_keys(new_value=new1, **self.NEW_PASSWORD1_FIELD)
+        self.send_keys(new_value=new2, **self.NEW_PASSWORD2_FIELD)
+        self.click(**self.CHANGE_PASSWORD_BUTTON)
