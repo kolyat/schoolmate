@@ -24,7 +24,7 @@ class Command(base.BaseCommand):
 
     def handle(self, *args, **options):
         print('SCHOOL app')
-        print('Clean up... ', end='')
+        print('Clean up...', end=' ', flush=True)
         school_models.Classroom.objects.all().delete()
         school_models.YearSchedule.objects.all().delete()
         school_models.SchoolYear.objects.all().delete()

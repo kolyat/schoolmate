@@ -31,8 +31,8 @@ APPS = (
 if __name__ == '__main__':
     db_info = DATABASES['default']
     if 'sqlite' in db_info['ENGINE']:
-        print('Re-creating SQLite database file "{}"... '
-              ''.format(db_info['NAME']), end='')
+        print('Re-creating SQLite database file "{}"...'
+              ''.format(db_info['NAME']), end='', flush=True)
         open(db_info['NAME'], mode='w').close()
         print('OK')
     if 'postgresql' in db_info['ENGINE']:
@@ -48,14 +48,15 @@ if __name__ == '__main__':
         from django.db import connection
         cursor = connection.cursor()
     if 'sqlite' not in db_info['ENGINE']:
-        print('Deleting database "{}"... '.format(db_info['NAME']), end='')
+        print('Deleting database "{}"...'.format(db_info['NAME']),
+              end=' ', flush=True)
         cursor.execute('DROP DATABASE {}'.format(db_info['NAME']))
         print('OK')
-        print('Re-creating database... ', end='')
+        print('Re-creating database...', end=' ', flush=True)
         cursor.execute('CREATE DATABASE {} WITH ENCODING \'UTF8\''
                        ''.format(db_info['NAME']))
         print('OK')
-    print('Re-creating migration directories... ', end='')
+    print('Re-creating migration directories...', end=' ', flush=True)
     dirs = [os.path.join(BASE_DIR, app, 'migrations') for app in APPS]
     [shutil.rmtree(d) if os.path.exists(d) else None for d in dirs]
     [os.mkdir(d) for d in dirs]

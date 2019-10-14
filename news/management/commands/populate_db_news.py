@@ -27,7 +27,7 @@ class Command(base.BaseCommand):
     def handle(self, *args, **options):
         print('NEWS app')
         print('Create new data:')
-        print('    {:.<25}...'.format('News articles'), end='')
+        print('    {:.<25}...'.format('News articles'), end='', flush=True)
         [news_models.Article(**rndutils.new_article()).save()
          for _ in range(settings.LATEST_NEWS_COUNT*2)]
         print('OK')

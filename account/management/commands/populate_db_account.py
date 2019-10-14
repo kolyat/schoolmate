@@ -26,7 +26,7 @@ class Command(base.BaseCommand):
     def handle(self, *args, **options):
         print('ACCOUNT app')
         print('Create new data:')
-        print('    {:.<25}...'.format('Users'), end='')
+        print('    {:.<25}...'.format('Users'), end='', flush=True)
         account_models.SchoolUser.objects.create_superuser(
             username=settings.ADMIN_USER,
             email=settings.ADMIN_EMAIL,

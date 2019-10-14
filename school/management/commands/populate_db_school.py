@@ -27,7 +27,7 @@ class Command(base.BaseCommand):
     def handle(self, *args, **options):
         print('SCHOOL app')
         print('Create new data:')
-        print('    {:.<25}...'.format('School forms'), end='')
+        print('    {:.<25}...'.format('School forms'), end='', flush=True)
         [school_models.FormLetter(letter=l).save()
          for l in _db_data.FORM_LETTERS]
         _letters = school_models.FormLetter.objects.all()
@@ -37,20 +37,20 @@ class Command(base.BaseCommand):
             [school_models.SchoolForm(form_number=_number,
                                       form_letter=l).save() for l in _letters]
         print('OK')
-        print('    {:.<25}...'.format('School subjects'), end='')
+        print('    {:.<25}...'.format('School subjects'), end='', flush=True)
         [school_models.SchoolSubject(subject=s).save()
          for s in _db_data.SUBJECTS]
         print('OK')
-        print('    {:.<25}...'.format('Daily schedule'), end='')
+        print('    {:.<25}...'.format('Daily schedule'), end='', flush=True)
         [school_models.DailySchedule(**d).save()
          for d in _db_data.DAILY_SCHEDULE]
         print('OK')
-        print('    {:.<25}...'.format('Year schedule'), end='')
+        print('    {:.<25}...'.format('Year schedule'), end='', flush=True)
         _sy = school_models.SchoolYear(**_db_data.SCHOOL_YEAR)
         _sy.save()
         [school_models.YearSchedule(school_year=_sy, **y).save()
          for y in _db_data.YEAR_SCHEDULE]
         print('OK')
-        print('    {:.<25}...'.format('Classrooms'), end='')
+        print('    {:.<25}...'.format('Classrooms'), end='', flush=True)
         [school_models.Classroom(**c).save() for c in _db_data.CLASSROOMS]
         print('OK')

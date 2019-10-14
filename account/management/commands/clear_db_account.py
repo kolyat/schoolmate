@@ -24,6 +24,6 @@ class Command(base.BaseCommand):
 
     def handle(self, *args, **options):
         print('ACCOUNT app')
-        print('Clean up... ', end='')
+        print('Clean up...', end=' ', flush=True)
         account_models.SchoolUser.objects.all().delete()
         print('OK')
