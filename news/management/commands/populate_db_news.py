@@ -28,6 +28,6 @@ class Command(base.BaseCommand):
         print('NEWS app')
         print('Create new data:')
         print('    {:.<25}...'.format('News articles'), end='', flush=True)
-        [news_models.Article(**rndutils.new_article()).save()
-         for _ in range(settings.LATEST_NEWS_COUNT*2)]
+        for _ in range(settings.LATEST_NEWS_COUNT * 2):
+            news_models.Article(**rndutils.new_article()).save()
         print('OK')
