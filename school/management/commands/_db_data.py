@@ -146,57 +146,57 @@ DAILY_SCHEDULE = [
     }
 ].__reversed__()
 SCHOOL_YEAR = {
-    'name': '2018-2019',
-    'start_date': date(2018, 9, 1),
-    'end_date': date(2019, 5, 25)
+    'name': '2019-2020',
+    'start_date': date(2019, 9, 1),
+    'end_date': date(2020, 5, 25)
 }
 YEAR_SCHEDULE = [
     {
         'number': 1,
         'period_type': 'Q',
         'start_date': SCHOOL_YEAR['start_date'],
-        'end_date': date(2018, 10, 26),
+        'end_date': date(2019, 10, 26),
         'description': 'I четверть'
     },
     {
         'number': 1,
         'period_type': 'H',
-        'start_date': date(2018, 10, 27),
-        'end_date': date(2018, 11, 3),
+        'start_date': date(2019, 10, 27),
+        'end_date': date(2019, 11, 3),
         'description': 'Осенние каникулы'
     },
     {
         'number': 2,
         'period_type': 'Q',
-        'start_date': date(2018, 11, 4),
-        'end_date': date(2018, 12, 28),
+        'start_date': date(2019, 11, 4),
+        'end_date': date(2019, 12, 28),
         'description': 'II четверть'
     },
     {
         'number': 2,
         'period_type': 'H',
-        'start_date': date(2018, 12, 29),
-        'end_date': date(2019, 1, 12),
+        'start_date': date(2019, 12, 29),
+        'end_date': date(2020, 1, 12),
         'description': 'Зимние каникулы'
     },
     {
         'number': 3,
         'period_type': 'Q',
-        'start_date': date(2019, 1, 13),
-        'end_date': date(2019, 3, 22),
+        'start_date': date(2020, 1, 13),
+        'end_date': date(2020, 3, 22),
         'description': 'III четверть'
     },
     {
         'number': 3,
         'period_type': 'H',
-        'start_date': date(2019, 3, 23),
-        'end_date': date(2019, 3, 31),
+        'start_date': date(2020, 3, 23),
+        'end_date': date(2020, 3, 31),
         'description': 'Весенние каникулы'
     },
     {
         'number': 4,
         'period_type': 'Q',
-        'start_date': date(2019, 4, 1),
+        'start_date': date(2020, 4, 1),
         'end_date': SCHOOL_YEAR['end_date'],
         'description': 'IV четверть'
     },
@@ -210,8 +210,8 @@ YEAR_SCHEDULE = [
     {
         'number': 5,
         'period_type': 'H',
-        'start_date': date(2019, 2, 4),
-        'end_date': date(2019, 2, 10),
+        'start_date': date(2020, 2, 4),
+        'end_date': date(2020, 2, 10),
         'description': 'Дополнительные каникулы для первоклассников'
     }
 ].__reversed__()
