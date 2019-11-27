@@ -24,7 +24,8 @@ APPS = (
     'school',
     'account',
     'news',
-    'timetable'
+    'timetable',
+    'diary'
 )
 
 

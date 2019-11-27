@@ -70,6 +70,12 @@ webix.ui({
             click: function() {webix.send(this.config.href, {}, "GET");},
             minWidth: 90, width: 90, minHeight: 40, height: 40
         },
+        {
+            view: "button", value: gettext("Diary"), align: "left",
+            name: "diary_btn", id: "diary_btn", href: "/diary/",
+            click: function() {webix.send(this.config.href, {}, "GET");},
+            minWidth: 90, width: 90, minHeight: 40, height: 40
+        },
         {},
         userMenu
     ],

@@ -51,6 +51,8 @@ if __name__ == '__main__':
                   ' -o news/locale/django.pot {} .'.format(opts))
         os.system('pybabel extract -F babelcfg/babel.timetable.cfg'
                   ' -o timetable/locale/django.pot {} .'.format(opts))
+        os.system('pybabel extract -F babelcfg/babel.diary.cfg'
+                  ' -o diary/locale/django.pot {} .'.format(opts))
 
     if args.init:
         # os.system('pybabel init -D django -i locale/django.pot'
@@ -73,6 +75,10 @@ if __name__ == '__main__':
         #           ' -d timetable/locale -l ru')
         # os.system('pybabel init -D django -i timetable/locale/django.pot'
         #           ' -d timetable/locale -l de')
+        # os.system('pybabel init -D django -i diary/locale/django.pot'
+        #           ' -d diary/locale -l ru')
+        # os.system('pybabel init -D django -i diary/locale/django.pot'
+        #           ' -d diary/locale -l de')
         pass
 
     if args.update:
@@ -86,6 +92,8 @@ if __name__ == '__main__':
                   ' -d news/locale --previous')
         os.system('pybabel update -D django -i timetable/locale/django.pot'
                   ' -d timetable/locale --previous')
+        os.system('pybabel update -D django -i diary/locale/django.pot'
+                  ' -d diary/locale --previous')
 
     if args.compile:
         os.system('pybabel compile -D django -d locale')
@@ -93,6 +101,7 @@ if __name__ == '__main__':
         os.system('pybabel compile -D django -d account/locale')
         os.system('pybabel compile -D django -d news/locale')
         os.system('pybabel compile -D django -d timetable/locale')
+        os.system('pybabel compile -D django -d diary/locale')
 
     if len(sys.argv) < 2:
         print('Nothing to do')

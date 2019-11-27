@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'school.apps.SchoolConfig',
     'account.apps.AccountConfig',
     'news.apps.NewsConfig',
-    'timetable.apps.TimetableConfig'
+    'timetable.apps.TimetableConfig',
+    'diary.apps.DiaryConfig'
 ]
 MIDDLEWARE = [
     # Django middleware
@@ -174,7 +175,8 @@ LOCALE_PATHS = [
     os.path.join(BASE_DIR, 'school', 'locale'),
     os.path.join(BASE_DIR, 'account', 'locale'),
     os.path.join(BASE_DIR, 'news', 'locale'),
-    os.path.join(BASE_DIR, 'timetable', 'locale')
+    os.path.join(BASE_DIR, 'timetable', 'locale'),
+    os.path.join(BASE_DIR, 'diary', 'locale')
 ]
 TIME_ZONE = 'Europe/Moscow'
 USE_I18N = True
@@ -188,7 +190,8 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
     os.path.join(BASE_DIR, 'school', 'static'),
     os.path.join(BASE_DIR, 'account', 'static'),
-    os.path.join(BASE_DIR, 'timetable', 'static')
+    os.path.join(BASE_DIR, 'timetable', 'static'),
+    os.path.join(BASE_DIR, 'diary', 'static')
 ]
 
 
