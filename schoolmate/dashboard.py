@@ -58,3 +58,11 @@ class SchoolmateAdminDashboard(Dashboard):
                 'timetable.models.TimetableYear'
             )
         ))
+        self.children.append(modules.ModelList(
+            _('Diary'),
+            column=1,
+            collapsible=False,
+            models=(
+                'diary.models.DiaryRecord',
+            )
+        ))

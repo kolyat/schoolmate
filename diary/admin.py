@@ -15,5 +15,19 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 from django.contrib import admin
+from related_admin import RelatedFieldAdmin
 
 from . import models
+
+
+@admin.register(models.DiaryRecord)
+class DiaryRecordAdmin(RelatedFieldAdmin):
+    list_display = (
+        'date', 'user__username', 'user__first_name', 'user__last_name',
+        'lesson__lesson_number', 'lesson__subject'
+    )
+    search_fields = (
+        'user__username', 'user__first_name', 'user__last_name',
+        'user__school_form', 'date', 'lesson__lesson_number',
+        'lesson__subject', 'text'
+    )

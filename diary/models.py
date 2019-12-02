@@ -17,4 +17,32 @@
 from django.db import models
 from django.utils.translation import gettext as _
 
-from school import models as school_models
+from account import models as account_models
+from timetable import models as timetable_models
+
+
+class DiaryRecord(models.Model):
+    user = models.ForeignKey(
+        account_models.SchoolUser, on_delete=models.PROTECT,
+        verbose_name=_('Diary record'), related_name='diary_records'
+    )
+    date = models.DateField(blank=False, null=False, verbose_name=_('Date'))
+    lesson = models.ForeignKey(
+        timetable_models.Timetable, on_delete=models.PROTECT,
+        verbose_name=_('Lesson'), related_name='diary_records'
+    )
+    text = models.TextField(blank=True, null=True,
+                            verbose_name=_('Diary record text'))
+
+    def __str__(self):
+        return ' - '.join((str(self.user), str(self.date), str(self.lesson),
+                           self.text))
+
+    def __unicode__(self):
+        return ' - '.join((str(self.user), str(self.date), str(self.lesson),
+                           self.text))
+
+    class Meta:
+        ordering = ('date',)
+        verbose_name = _('Diary record')
+        verbose_name_plural = _('Diary records')
