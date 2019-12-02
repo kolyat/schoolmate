@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'grappelli.dashboard',
     'grappelli',
+    'related_admin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.sessions',

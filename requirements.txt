@@ -9,3 +9,4 @@ seleniumbase==1.16.15
 pytest-django==3.4.3
 mimesis==1.0.4
 django-grappelli==2.11.1
+django-related-admin==0.7.0
