@@ -15,3 +15,30 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
+
+var layoutMargin = 5;
+webix.ui({
+    type: "space", paddingY: 30,
+    rows: [
+        {
+            id: "toolbar_layout", margin: layoutMargin, cols: [
+                {
+                    // TODO: add toolbar elements
+                }
+            ]
+        },
+        {
+            id: "records_layout", margin: layoutMargin, cols: [
+                {
+                    id: "left_layout", responsive: "records_layout",
+                    margin: layoutMargin, rows: [{}, {}, {}] // TODO: add tables
+                },
+                {
+                    id: "right_layout", responsive: "records_layout",
+                    margin: layoutMargin, rows: [{}, {}, {}] // TODO: add tables
+                }
+            ]
+        },
+        {gravity: 0.1}
+    ]
+});
