@@ -19,35 +19,36 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 var statusFormWidth = 300;
 var statusLayoutMargin = 5;
 var statusLayoutMaxWidth;
-statusLayoutMaxWidth = statusFormWidth + statusLayoutMargin * 2;
-var timeForm = {
-    body: {
+var statusLayoutMaxWidth = statusFormWidth + statusLayoutMargin * 2;
+var timeBlock = {
+    align: "center", body: {
         rows: [
             {
-                view: "form", name: "time_form", id: "time_form", elements: [
+                view: "form", name: "time_form", id: "time_form",
+                width: statusFormWidth, elements: [
                     {
                         view: "label", id: "time_label", align: "center",
-                        css: {"font-size": "36px"},
-                        format: webix.i18n.timeFormat
+                        css: "timeLabel", format: webix.i18n.timeFormat
                     }
-                ], width: statusFormWidth
+                ]
             }
         ]
-    }, align: "left"
+    }
 };
-var dateForm = {
-    body: {
+var dateBlock = {
+    align: "center", body: {
         rows: [
             {
-                view: "form", name: "date_form", id: "date_form", elements: [
+                view: "form", name: "date_form", id: "date_form",
+                width: statusFormWidth, elements: [
                     {
                         view: "calendar", id: "main_calendar",
                         events: webix.Date.isHoliday, weekHeader: true
                     }
-                ], width: statusFormWidth
+                ]
             }
         ]
-    }, align: "left"
+    }
 };
 var newsPager = {
     view: "pager", id: "news_pager", size: 10, group: 5,
@@ -136,8 +137,9 @@ var dailyScheduleList = {
         }
     }
 };
-var infoTab = {
-    id: "info_tab", view: "tabview", responsive: "index_layout", cells: [
+var infoBlock = {
+    id: "info_tab", view: "tabview", responsive: "index_layout",
+    type: "space", borderless: false, margin: 0, cells: [
         {header: gettext("News"), body: {rows: [newsView, newsPager]}},
         {header: gettext("Schedules"), body: {
             rows: [
@@ -156,16 +158,20 @@ var infoTab = {
     ]
 };
 webix.ui({
-    type: "space", paddingY: 30,
-    rows: [
+    type: "space", paddingY: 30, borderless: true, rows: [
         {
             id: "index_layout", cols: [
                 {
                     id: "status_layout", responsive: "index_layout",
+                    type: "space", borderless: true,
                     maxWidth: statusLayoutMaxWidth, margin: statusLayoutMargin,
-                    rows: [timeForm, dateForm, {}]
+                    rows: [
+                        timeBlock,
+                        dateBlock,
+                        {}
+                    ]
                 },
-                infoTab
+                infoBlock
             ]
         },
         {gravity: 0.1}
