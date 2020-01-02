@@ -16,56 +16,59 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
-webix.ui({ type: "space", rows: [{
-    align: "center,middle",
-    body: {
-        rows: [
-            {
-                view: "template", type: "header", name: "login_header",
-                template: gettext("Log in to system")
-            },
-            {
-                view: "form", name: "login_form", id: "login_form", elements: [
-                    {
-                        view: "text", type: "text", value: csrfToken,
-                        name: "csrfmiddlewaretoken", id: "csrfmiddlewaretoken",
-                        hidden: true
-                    },
-                    {
-                        view: "text", placeholder: gettext("Username"),
-                        name: "username", id: "username",
-                        invalidMessage: gettext("Username can not be empty")
-                    },
-                    {
-                        view: "text", placeholder: gettext("Password"),
-                        type: "password",
-                        name: "password", id: "password",
-                        invalidMessage: gettext("Password can not be empty")
-                    },
-                    {
-                        view: "button", value: gettext("Log in"),
-                        type: "form", name: "login_btn", id: "login_btn",
-                        align: "center", minWidth: 120, width: 120
-                    },
-                ],
-                rules: {
-                    "username": webix.rules.isNotEmpty,
-                    "password": webix.rules.isNotEmpty
-                },
-                width: 360, margin: 9,
-            },
-            {minHeight: 6, height: 6},
-            {
-                view: "button", value: gettext("Forgot password"),
-                name: "forgot_password_btn", id: "forgot_password_btn",
-                href: "/profile/password_reset/",
-                click: function() {webix.send(this.config.href, {}, "GET");},
-                minWidth: 165, width: 165,
-                minHeight: 30, height: 30
-            }
-        ]
+var formHeader = {
+    view: "template", type: "header", name: "login_header",
+    template: gettext("Log in to system")
+}
+var loginForm = {
+    view: "form", name: "login_form", id: "login_form",
+    width: 360, css: {"margin-top": "0px !important"}, elements: [
+        {
+            view: "text", type: "text", value: csrfToken,
+            name: "csrfmiddlewaretoken", id: "csrfmiddlewaretoken",
+            hidden: true
+        },
+        {
+            view: "text", placeholder: gettext("Username"),
+            name: "username", id: "username",
+            invalidMessage: gettext("Username can not be empty"),
+        },
+        {
+            view: "text", placeholder: gettext("Password"),
+            type: "password", name: "password", id: "password",
+            invalidMessage: gettext("Password can not be empty")
+        },
+        {
+            view: "button", value: gettext("Log in"),
+            type: "form", name: "login_btn", id: "login_btn",
+            align: "center", minWidth: 120, width: 140
+        },
+    ],
+    rules: {
+        "username": webix.rules.isNotEmpty,
+        "password": webix.rules.isNotEmpty
     }
-}]});
+}
+var passwdButton = {
+    view: "button", value: gettext("Forgot password"),
+    name: "forgot_password_btn", id: "forgot_password_btn",
+    href: "/profile/password_reset/",
+    click: function() {webix.send(this.config.href, {}, "GET");},
+    minWidth: 165, width: 170, minHeight: 28, height: 30,
+    css: {"margin-top": "4px !important", "margin-left": "8px !important"}
+}
+webix.ui({
+    type: "space", rows: [{
+        align: "center,middle", body: {
+            type: "space", borderless: true, rows: [
+                formHeader,
+                loginForm,
+                passwdButton
+            ]
+        }
+    }]
+});
+
 var login_form = $$("login_form");
 
 
