@@ -17,22 +17,17 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
 var personalInfoFormLabelWidth = 200;
-personalInfoForm = {
-    body: {
-        rows: [
+var personalInfoBlock = {
+    align: "center", body: {
+        type: "space", borderless: true, rows: [
             {
                 view: "template", template: gettext("User info"),
                 type: "header", name: "user_info_header"
             },
             {
-                view: "form",
+                view: "form", type: "form", minWidth: 425, maxWidth: 490,
                 name: "personal_info_form", id: "personal_info_form",
-                elements: [
-                    {
-                        view: "text", type: "text", value: csrfToken,
-                        name: "csrfmiddlewaretoken", id: "csrfmiddlewaretoken",
-                        hidden: true
-                    },
+                css: {"margin-top": "0px !important"}, elements: [
                     {
                         view: "text", label: gettext("Username"),
                         name: "username", id: "username",
@@ -57,7 +52,7 @@ personalInfoForm = {
                         view: "text", label: gettext("Date of birth"),
                         name: "birth_date", id: "birth_date",
                         readonly: true, labelWidth: personalInfoFormLabelWidth,
-                        format: webix.i18n.dateFormatStr
+                        // format: webix.i18n.dateFormatStr
                     },
                     {
                         view: "text", label: gettext("E-mail"),
@@ -74,23 +69,22 @@ personalInfoForm = {
                         name: "language_select", id: "language_select",
                         labelWidth: personalInfoFormLabelWidth, options: []
                     }
-                ],
-                type: "form", minWidth: 425, maxWidth: 490
+                ]
             }
         ]
-    }, align: "center"
-};
-passwordChangeForm = {
-    body: {
-        rows: [
+    }
+}
+var passwordChangeBlock = {
+    align: "center", body: {
+        type: "space", borderless: true, rows: [
             {
                 view: "template", template: gettext("Change password"),
                 type: "header", name: "change_password_header"
             },
             {
-                view: "form",
+                view: "form", type: "form", minWidth: 250, maxWidth: 350,
                 name: "password_change_form", id: "password_change_form",
-                elements: [
+                css: {"margin-top": "0px !important"}, elements: [
                     {
                         view: "text", type: "text", value: csrfToken,
                         name: "csrfmiddlewaretoken", id: "csrfmiddlewaretoken",
@@ -121,8 +115,8 @@ passwordChangeForm = {
                         view: "button", value: gettext("Change password"),
                         type: "form",
                         name: "change_password_btn", id: "change_password_btn",
-                        align: "center", minWidth: 150, width: 150
-                    },
+                        align: "center", minWidth: 150, width: 160
+                    }
                 ],
                 rules: {
                     "old_password": webix.rules.isNotEmpty,
@@ -140,18 +134,16 @@ passwordChangeForm = {
                         }
                         return true;
                     }
-                },
-                type: "form", minWidth: 250, maxWidth: 350
+                }
             }
         ]
-    }, align: "center"
-};
+    }
+}
 webix.ui({
-    id: "account_layout", type: "space", paddingY: 30,
-    rows: [
+    id: "account_layout", type: "space", paddingY: 30, rows: [
         {
-            responsive: "account_layout", margin: 5,
-            cols: [personalInfoForm, passwordChangeForm]
+            responsive: "account_layout", type: "space", borderless: true,
+            cols: [personalInfoBlock, passwordChangeBlock]
         }
     ]
 });
