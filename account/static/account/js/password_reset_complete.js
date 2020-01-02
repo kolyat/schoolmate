@@ -16,29 +16,29 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
-webix.ui({ type: "space", rows: [{
-    align: "center,middle",
-    body: {
-        rows: [
-            {
-                view: "form", name: "password_reset_complete_form",
-                id: "password_reset_complete_form", elements: [
-                    {
-                        view: "label",
-                        label: gettext("Password reset complete"),
-                        align: "center"
-                    },
-                    {
-                        view: "button", value: gettext("Back to login page"),
-                        name: "back_to_login_btn", id: "back_to_login_btn",
-                        href: "/profile/login/",
-                        click: function() {
-                            webix.send(this.config.href, {}, "GET") },
-                        align: "center", minWidth: 250, width: 250
-                    },
-                ],
-                width: 400, margin: 9
-            }
-        ]
-    }
-}]});
+var resetCompleteForm = {
+    view: "form", name: "password_reset_complete_form",
+    id: "password_reset_complete_form", width: 400, elements: [
+        {
+            view: "label", align: "center",
+            label: gettext("Password reset complete")
+        },
+        {
+            view: "button", value: gettext("Back to login page"),
+            name: "back_to_login_btn", id: "back_to_login_btn",
+            href: "/profile/login/",
+            click: function() {
+                webix.send(this.config.href, {}, "GET") },
+            align: "center", minWidth: 250, width: 260
+        }
+    ]
+}
+webix.ui({
+    type: "space", rows: [{
+        align: "center,middle", body: {
+            type: "space", borderless: true, rows: [
+                resetCompleteForm
+            ]
+        }
+    }]
+});

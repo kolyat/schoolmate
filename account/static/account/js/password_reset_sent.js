@@ -16,28 +16,29 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
-webix.ui({ type: "space", rows: [{
-    align: "center,middle",
-    body: {
-        rows: [
-            {
-                view: "form", name: "password_reset_sent_form",
-                id: "password_reset_sent_form", elements: [
-                    {
-                        view: "label", label: gettext("Password reset confirmation has been sent to your e-mail"),
-                        align: "center"
-                    },
-                    {
-                        view: "button", value: gettext("Back to login page"),
-                        name: "back_to_login_btn", id: "back_to_login_btn",
-                        href: "/profile/login/",
-                        click: function() {
-                            webix.send(this.config.href, {}, "GET") },
-                        align: "center", minWidth: 300, width: 300
-                    },
-                ],
-                width: 660, margin: 9
-            }
-        ]
-    }
-}]});
+var sentForm = {
+    view: "form", name: "password_reset_sent_form", width: 660,
+    id: "password_reset_sent_form", elements: [
+        {
+            view: "label", align: "center",
+            label: gettext("Password reset confirmation has been sent to your e-mail"),
+        },
+        {
+            view: "button", value: gettext("Back to login page"),
+            name: "back_to_login_btn", id: "back_to_login_btn",
+            href: "/profile/login/",
+            click: function() {
+                webix.send(this.config.href, {}, "GET") },
+            align: "center", minWidth: 300, width: 310
+        }
+    ]
+}
+webix.ui({
+    type: "space", rows: [{
+        align: "center,middle", body: {
+            type: "space", borderless: true, rows: [
+                sentForm
+            ]
+        }
+    }]
+});

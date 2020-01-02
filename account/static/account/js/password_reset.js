@@ -30,49 +30,49 @@ function multipleValidator() {
     }
 }
 
-webix.ui({ type: "space", rows: [{
-    align: "center,middle",
-    body: {
-        rows: [
+var resetForm = {
+    view: "form", name: "password_reset_form", id: "password_reset_form",
+    css: {"margin-top": "0px !important"}, width: 360, elements: [
+        {
+            view: "text", type: "text", value: csrfToken, hidden: true,
+            name: "csrfmiddlewaretoken", id: "csrfmiddlewaretoken"
+        },
+        {
+            view: "text", placeholder: gettext("E-mail"),
+            name: "email", id: "email"
+        },
+        {
+            view: "button", value: gettext("Reset"),
+            type: "form", name: "reset_btn", id: "reset_btn",
+            align: "center", minWidth: 120, width: 130
+        },
+    ],
+    rules: {
+        "email": multipleValidator(
             {
-                view: "template", type: "header",
-                template: gettext("Password reset")
+                rule: webix.rules.isNotEmpty,
+                message: gettext("E-mail can not be empty")
             },
             {
-                view: "form", name: "password_reset_form",
-                id: "password_reset_form", elements: [
-                    {
-                        view: "text", type: "text", value: csrfToken,
-                        name: "csrfmiddlewaretoken", id: "csrfmiddlewaretoken",
-                        hidden: true
-                    },
-                    {
-                        view: "text", placeholder: gettext("E-mail"),
-                        name: "email", id: "email"
-                    },
-                    {
-                        view: "button", value: gettext("Reset"),
-                        type: "form", name: "reset_btn", id: "reset_btn",
-                        align: "center", minWidth: 120, width: 120
-                    },
-                ],
-                rules: {
-                    "email": multipleValidator(
-                        {
-                            rule: webix.rules.isNotEmpty,
-                            message: gettext("E-mail can not be empty")
-                        },
-                        {
-                            rule: webix.rules.isEmail,
-                            message: gettext("Must be valid e-mail address")
-                        }
-                    )
-                },
-                width: 360, margin: 9,
+                rule: webix.rules.isEmail,
+                message: gettext("Must be valid e-mail address")
             }
-        ]
+        )
     }
-}]});
+}
+webix.ui({
+    type: "space", rows: [{
+        align: "center,middle", body: {
+            type: "space", borderless: true, rows: [
+                {
+                    view: "template", type: "header",
+                    template: gettext("Password reset")
+                },
+                resetForm
+            ]
+        }
+    }]
+});
 var password_reset_form = $$("password_reset_form");
 
 
