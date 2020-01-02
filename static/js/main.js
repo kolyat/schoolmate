@@ -16,7 +16,7 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
-userMenu = {
+var userMenu = {
     view: "menu", id: "user_menu", layout: "x", data: [
         {
             value: "", name: "user_item", id: "user_item", submenu: [
@@ -52,10 +52,7 @@ webix.ui({
     cols: [
         {
             view: "label", label: "SCHOOLMATE", align: "center",
-            minWidth: 150, width: 150, css: {
-                "font-size": "16px",
-                "letter-spacing": "1px"
-            }
+            minWidth: 160, width: 180, css: "headerSecondaryLabel"
         },
         {},
         {

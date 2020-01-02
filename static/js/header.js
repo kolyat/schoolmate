@@ -18,9 +18,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 webix.ui({
     view: "toolbar", id: "header_toolbar", minHeight: 60, height: 60, cols: [{
-        view: "label", label: "SCHOOLMATE", align: "center", css: {
-            "font-size": "24px !important",
-            "letter-spacing": "4px"
-        }
+        view: "label", label: "SCHOOLMATE", align: "center", css: "headerLabel"
     }]
 });
