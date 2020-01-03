@@ -1,7 +1,7 @@
 # Russian translations for Schoolmate.
-# Copyright (C) 2018-2019 Kirill 'Kolyat' Kiselnikov
+# Copyright (C) 2018-2020 Kirill 'Kolyat' Kiselnikov
 # This file is distributed under the same license as the Schoolmate project.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2018-2019.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2018-2020.
 #
 msgid ""
 msgstr ""
