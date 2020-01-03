@@ -16,7 +16,6 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
-var layoutMargin = 5;
 var navBar = {
     view: "toolbar", id: "navbar", cols: [
         {},
@@ -29,7 +28,7 @@ var navBar = {
         },
         {
             view: "datepicker", id: "current_date", stringResult: false,
-            value: new Date(), icons: false, // TODO: define icon
+            value: new Date(), icons: false,
             invalid: true, invalidMessage: gettext("Invalid date"),
             minWidth: 80, width: 120, minHeight: 30, height: 30, align: "center"
         },
@@ -44,24 +43,69 @@ var navBar = {
     ],
     minHeight: 40, height: 40
 };
-webix.ui({
-    type: "space", paddingY: 30,
-    rows: [
+var dayTableTemplate = {
+    view: "datatable", autowidth: false, autoheight: true,
+    fixedRowHeight: false, scrollX: false, rowHeight: 26, columns: [
         {
-            id: "navbar_layout", margin: layoutMargin, cols: [navBar]
+            id: "lesson_num", fillspace: 0.25, header: {
+                text: "lesson_num", colspan: 2, height: 30,
+                css: {"text-align": "center"}
+            },
+            // minWidth: 26, width: 28,
         },
         {
-            id: "records_layout", margin: layoutMargin, cols: [
+            id: "subject", header: "subject", fillspace: 1,
+            // minWidth: 100, width: 140,
+        },
+        {
+            id: "record", fillspace: 3.8, header: {
+                text: "record", colspan: 3, css: {"text-align": "center"}
+            },
+            // minWidth: 140,
+        },
+        {
+            id: "marks", header: "marks", fillspace: 0.5
+            // minWidth: 50, width: 60,
+        },
+        {
+            id: "signature", header: "signature", fillspace: 0.8
+            // minWidth: 80, width: 100,
+        }
+    ],
+    data: [ // TODO: remove test data
+        {"id": 1, "lesson_num": 1, "subject": "Subject", "record": "Some records here", "marks": "3 5", "signature": "Signature"},
+        {"id": 2, "lesson_num": 2, "subject": "Subject", "record": "Some records here", "marks": "3 5", "signature": "Signature"},
+        {"id": 3, "lesson_num": 3, "subject": "Subject", "record": "Some records here", "marks": "3 5", "signature": "Signature"},
+        {"id": 4, "lesson_num": 4, "subject": "Subject", "record": "Some records here; 0 1 2 3 4 5 6 7 8 9", "marks": "3 5 4", "signature": "Long signature"},
+        {"id": 5, "lesson_num": 5, "subject": "Subject", "record": "Some records here", "marks": "3 5", "signature": "Signature"},
+        {"id": 6, "lesson_num": 6, "subject": "Subject", "record": "Some records here", "marks": "3 5", "signature": "Signature"},
+        {"id": 7, "lesson_num": 7, "subject": "Subject", "record": "Some records here", "marks": "3 5", "signature": "Signature"},
+    ]
+}
+webix.ui({
+    type: "line", paddingY: 2, rows: [
+        {
+            id: "navbar_layout", cols: [navBar]
+        },
+        {
+            id: "records_layout", cols: [
                 {
                     id: "left_layout", responsive: "records_layout",
-                    margin: layoutMargin, rows: [{}, {}, {}] // TODO: add tables
+                    type: "space", borderless: true, rows: [
+                        dayTableTemplate,
+                        dayTableTemplate,
+                        dayTableTemplate
+                    ] // TODO: add proper tables
                 },
                 {
                     id: "right_layout", responsive: "records_layout",
-                    margin: layoutMargin, rows: [{}, {}, {}] // TODO: add tables
+                    type: "space", borderless: true, rows: [
+                        dayTableTemplate,
+                        dayTableTemplate,
+                        dayTableTemplate
+                    ] // TODO: add proper tables
                 }
             ]
-        },
-        {gravity: 0.1}
+        }
     ]
 });
