@@ -18,7 +18,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 var formTree = {view: "tree", id: "form_tree", width: 125};
 var timeTable = {
-    view: "datatable", id: "timetable", fixedRowHeight: false, columns: [
+    view: "datatable", id: "timetable", fixedRowHeight: false,
+    leftSplit: 1, columns: [
         {id: "root", header: "", fillspace: true}
     ]
 };
@@ -106,7 +107,7 @@ function getTimetable(number) {
         timetable.refreshColumns();
         DAYS_OF_WEEK.forEach(function(day_name, day_number) {
             timetable.add(
-                {root: day_name, $css: {"background-color": "#424242"}});
+                {root: day_name, $css: {"background-color": "#383838"}});
             rows[day_number].forEach(function(lesson) {
                 timetable.add(lesson);
             });
@@ -123,7 +124,7 @@ function getTimetable(number) {
         });
         timetable.eachColumn(function(id) {
             if (id.includes("subj")) {
-                timetable.setColumnWidth(id, max_width - 15);
+                timetable.setColumnWidth(id, max_width);
             }
         });
         timetable.adjustRowHeight();
