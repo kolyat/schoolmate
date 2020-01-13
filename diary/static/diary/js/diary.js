@@ -44,7 +44,7 @@ var navBar = {
     minHeight: 40, height: 40
 };
 var dayTableTemplate = {
-    view: "datatable", autowidth: false, autoheight: true,
+    view: "datatable", id: "", autowidth: false, autoheight: true,
     fixedRowHeight: false, scrollX: false, rowHeight: 26, columns: [
         {
             id: "lesson_num", fillspace: 0.25, header: {
@@ -64,7 +64,7 @@ var dayTableTemplate = {
             // minWidth: 140,
         },
         {
-            id: "marks", header: "marks", fillspace: 0.5
+            id: "marks", header: "marks", fillspace: 0.55
             // minWidth: 50, width: 60,
         },
         {
@@ -72,15 +72,24 @@ var dayTableTemplate = {
             // minWidth: 80, width: 100,
         }
     ],
-    data: [ // TODO: remove test data
-        {"id": 1, "lesson_num": 1, "subject": "Subject", "record": "Some records here", "marks": "3 5", "signature": "Signature"},
-        {"id": 2, "lesson_num": 2, "subject": "Subject", "record": "Some records here", "marks": "3 5", "signature": "Signature"},
-        {"id": 3, "lesson_num": 3, "subject": "Subject", "record": "Some records here", "marks": "3 5", "signature": "Signature"},
-        {"id": 4, "lesson_num": 4, "subject": "Subject", "record": "Some records here; 0 1 2 3 4 5 6 7 8 9", "marks": "3 5 4", "signature": "Long signature"},
-        {"id": 5, "lesson_num": 5, "subject": "Subject", "record": "Some records here", "marks": "3 5", "signature": "Signature"},
-        {"id": 6, "lesson_num": 6, "subject": "Subject", "record": "Some records here", "marks": "3 5", "signature": "Signature"},
-        {"id": 7, "lesson_num": 7, "subject": "Subject", "record": "Some records here", "marks": "3 5", "signature": "Signature"},
-    ]
+    data: []
+};
+var dayTables = new Array();
+var tablesNum = 6;
+var lessons_num = 7;
+for (var d = 0; d < tablesNum; d++) {
+    dayTables.push(webix.copy(dayTableTemplate));
+    dayTables[d].id = "daytable" + d;
+    for (var l = 1; l < lessons_num+1; l++) {
+        dayTables[d].data.push({
+            "id": l,
+            "lesson_num": l,
+            "subject": "",
+            "record": "",
+            "marks": "",
+            "signature": ""
+        });
+    }
 }
 webix.ui({
     type: "line", paddingY: 2, rows: [
@@ -92,18 +101,20 @@ webix.ui({
                 {
                     id: "left_layout", responsive: "records_layout",
                     type: "space", borderless: true, rows: [
-                        dayTableTemplate,
-                        dayTableTemplate,
-                        dayTableTemplate
-                    ] // TODO: add proper tables
+                        dayTables[0],
+                        dayTables[1],
+                        dayTables[2],
+                        {}
+                    ]
                 },
                 {
                     id: "right_layout", responsive: "records_layout",
                     type: "space", borderless: true, rows: [
-                        dayTableTemplate,
-                        dayTableTemplate,
-                        dayTableTemplate
-                    ] // TODO: add proper tables
+                        dayTables[3],
+                        dayTables[4],
+                        dayTables[5],
+                        {}
+                    ]
                 }
             ]
         }
