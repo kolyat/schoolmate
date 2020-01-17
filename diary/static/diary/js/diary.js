@@ -21,10 +21,9 @@ var navBar = {
         {},
         {
             view: "button", id: "prev_button", name: "prev_button",
-            value: gettext("Previous"), label: "",
-            type: "icon", css: "fas fa-angle-double-left",
-            minWidth: 40, width: 50, minHeight: 30, height: 30, align: "right",
-            click: function() {} // TODO: implement
+            value: gettext("Previous"), tooltip: gettext("Previous"),
+            type: "iconTop", css: "fas fa-angle-double-left",
+            minWidth: 40, width: 50, minHeight: 30, height: 30, align: "right"
         },
         {
             view: "datepicker", id: "current_date", stringResult: false,
@@ -34,18 +33,19 @@ var navBar = {
         },
         {
             view: "button", id: "next_button", name: "next_button",
-            value: gettext("Next"), label: "",
+            value: gettext("Next"), tooltip: gettext("Next"),
             type: "icon", css: "fas fa-angle-double-right",
-            minWidth: 40, width: 50, minHeight: 30, height: 30, align: "left",
-            click: function() {} // TODO: implement
+            minWidth: 40, width: 50, minHeight: 30, height: 30, align: "left"
         },
         {}
     ],
     minHeight: 40, height: 40
 };
+
 var dayTableTemplate = {
     view: "datatable", id: "", autowidth: false, autoheight: true,
-    fixedRowHeight: false, scrollX: false, rowHeight: 26, columns: [
+    fixedRowHeight: false, scrollX: false, rowHeight: 26,
+    editable: true, editaction: "dblclick", columns: [
         {
             id: "lesson_num", fillspace: 0.25, header: {
                 text: "lesson_num", colspan: 2, height: 30,
@@ -54,21 +54,24 @@ var dayTableTemplate = {
             // minWidth: 26, width: 28,
         },
         {
-            id: "subject", header: "subject", fillspace: 1,
+            id: "subject", header: "subject", fillspace: 1, editor: "select",
+            options: [], // TODO: implement
             // minWidth: 100, width: 140,
         },
         {
             id: "record", fillspace: 3.8, header: {
                 text: "record", colspan: 3, css: {"text-align": "center"}
+            }, editor: "popup", suggest: {
+                type: "textarea", height: 100 // TODO: width auto adjust
             },
             // minWidth: 140,
         },
         {
-            id: "marks", header: "marks", fillspace: 0.55
+            id: "marks", header: "marks", fillspace: 0.55,
             // minWidth: 50, width: 60,
         },
         {
-            id: "signature", header: "signature", fillspace: 0.8
+            id: "signature", header: "signature", fillspace: 0.8,
             // minWidth: 80, width: 100,
         }
     ],
@@ -91,6 +94,7 @@ for (var d = 0; d < tablesNum; d++) {
         });
     }
 }
+
 webix.ui({
     type: "line", paddingY: 2, rows: [
         {
@@ -120,3 +124,22 @@ webix.ui({
         }
     ]
 });
+
+var current_date = $$("current_date");
+var prev_button = $$("prev_button");
+var next_button = $$("next_button");
+
+
+prev_button.attachEvent("onItemClick", function() {
+    var _date = current_date.getValue();
+    _date.setDate(_date.getDate() - 7);
+    current_date.setValue(_date);
+});
+next_button.attachEvent("onItemClick", function() {
+    var _date = current_date.getValue();
+    _date.setDate(_date.getDate() + 7);
+    current_date.setValue(_date);
+});
+//current_date.attachEvent("onChange", function() {
+//    TODO: implement
+//});
