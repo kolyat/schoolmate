@@ -55,7 +55,7 @@ var dayTableTemplate = {
         },
         {
             id: "subject", header: "subject", fillspace: 1, editor: "select",
-            options: [], // TODO: implement
+            options: [],
             // minWidth: 100, width: 140,
         },
         {
@@ -89,9 +89,10 @@ var dayTableTemplate = {
 var dayTables = new Array();
 var tablesNum = 6;
 var lessons_num = 7;
+var daytable_id = "daytable";
 for (var d = 0; d < tablesNum; d++) {
     dayTables.push(webix.copy(dayTableTemplate));
-    dayTables[d].id = "daytable" + d;
+    dayTables[d].id = daytable_id + d;
     for (var l = 1; l < lessons_num+1; l++) {
         dayTables[d].data.push({
             "id": l,
@@ -137,6 +138,31 @@ webix.ui({
 var current_date = $$("current_date");
 var prev_button = $$("prev_button");
 var next_button = $$("next_button");
+var daytable = new Array();
+for (var d = 0; d < tablesNum; d++) {
+    daytable.push($$(daytable_id + d));
+}
+
+
+function getSubjects() {
+    var promise = webix.ajax().get("/main/subjects/");
+    promise.then(function(data) {
+        var _subjects = new Array();
+        data.json().forEach(element => _subjects.push(element.subject));
+        for (var d = 0; d < tablesNum; d++) {
+            var config = daytable[d].getColumnConfig("subject");
+            config.collection.clearAll();
+            config.collection.parse(_subjects);
+        }
+    }).fail(function(err) {
+        webix.message({
+            text: gettext("Failed to retrieve list of school subjects"),
+            type: "error",
+            expire: 3000,
+            id: "failed_status_info_msg"
+        });
+    });
+}
 
 
 prev_button.attachEvent("onItemClick", function() {
@@ -152,3 +178,4 @@ next_button.attachEvent("onItemClick", function() {
 //current_date.attachEvent("onChange", function() {
 //    TODO: implement
 //});
+getSubjects();
