@@ -61,9 +61,7 @@ var dayTableTemplate = {
         {
             id: "record", fillspace: 3.8, header: {
                 text: "record", colspan: 3, css: {"text-align": "center"}
-            }, editor: "popup", suggest: {
-                type: "textarea", height: 100 // TODO: width auto adjust
-            },
+            }, editor: "popup",
             // minWidth: 140,
         },
         {
@@ -75,6 +73,17 @@ var dayTableTemplate = {
             // minWidth: 80, width: 100,
         }
     ],
+    on: {
+        onAfterEditStart: function(id) {
+            var editor = this.getEditor(id);
+            var popup = editor.getPopup();
+            if(popup) {
+                popup.config.width = this.getColumnConfig("record").width;
+                popup.config.height = 120;
+                popup.resize();
+            }
+        }
+    },
     data: []
 };
 var dayTables = new Array();
