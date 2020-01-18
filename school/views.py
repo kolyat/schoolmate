@@ -116,3 +116,14 @@ class DailyScheduleViewSerializer(serializers.ModelSerializer):
 class DailyScheduleView(generics.ListAPIView):
     serializer_class = DailyScheduleViewSerializer
     queryset = models.DailySchedule.objects.all().order_by('start_time')
+
+
+class SubjectSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.SchoolSubject
+        fields = ('subject',)
+
+
+class Subjects(generics.ListAPIView):
+    serializer_class = SubjectSerializer
+    queryset = models.SchoolSubject.objects.all().order_by('subject')

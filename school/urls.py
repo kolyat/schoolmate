@@ -29,4 +29,5 @@ urlpatterns = [
     path('main/forms/', views.Forms.as_view()),
     path('main/schedule/year/', views.YearScheduleView.as_view()),
     path('main/schedule/day/', views.DailyScheduleView.as_view()),
+    path('main/subjects/', views.Subjects.as_view()),
 ]
