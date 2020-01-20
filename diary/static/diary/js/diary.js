@@ -16,6 +16,12 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
+var lessons_num = 7;
+// For array comparison
+var isequal = (a, b) => a.every((v, i) => v === b[i]);
+                        // a.reduce((x, y) => x && b.includes(y), true);
+
+
 var navBar = {
     view: "toolbar", id: "navbar", cols: [
         {},
@@ -77,7 +83,7 @@ var dayTableTemplate = {
         onAfterEditStart: function(id) {
             var editor = this.getEditor(id);
             var popup = editor.getPopup();
-            if(popup) {
+            if (popup) {
                 popup.config.width = this.getColumnConfig("record").width;
                 popup.config.height = 120;
                 popup.resize();
@@ -88,7 +94,6 @@ var dayTableTemplate = {
 };
 var dayTables = new Array();
 var tablesNum = 6;
-var lessons_num = 7;
 var daytable_id = "daytable";
 for (var d = 0; d < tablesNum; d++) {
     dayTables.push(webix.copy(dayTableTemplate));
@@ -159,9 +164,38 @@ function getSubjects() {
             text: gettext("Failed to retrieve list of school subjects"),
             type: "error",
             expire: 3000,
-            id: "failed_status_info_msg"
+            id: "failed_retrieve_subjects_msg"
         });
     });
+}
+
+var monday = 0;
+function updateDates() {
+    // Calculate dates of week
+    var now = current_date.getValue();
+    var delta = [0, 1, 2, 3, 4, 5, 6];
+    delta = delta.map(val => val - now.getDay());
+    var days_of_week = delta.map(val => {
+        var _current_date = new Date(now);
+        _current_date.setDate(_current_date.getDate() + val);
+        return _current_date;
+    });
+    days_of_week.shift();
+    var monday_now = days_of_week[0].getDate();
+    // Set date for each table
+    for (var d = 0; d < tablesNum; d++) {
+        var _to_day_of_week = webix.Date.dateToStr("%l");
+        var _to_month_day = webix.Date.dateToStr("%F, %j");
+        daytable[d].getColumnConfig("lesson_num").header[0]
+        .text = _to_day_of_week(days_of_week[d]);
+        daytable[d].getColumnConfig("record").header[0]
+        .text = _to_month_day(days_of_week[d]);
+        daytable[d].refreshColumns();
+    }
+    if (monday_now !== monday) {
+        // TODO: implement record retrieval
+    }
+    monday = monday_now;
 }
 
 
@@ -175,7 +209,6 @@ next_button.attachEvent("onItemClick", function() {
     _date.setDate(_date.getDate() + 7);
     current_date.setValue(_date);
 });
-//current_date.attachEvent("onChange", function() {
-//    TODO: implement
-//});
 getSubjects();
+updateDates();
+current_date.attachEvent("onChange", updateDates);
