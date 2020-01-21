@@ -24,7 +24,7 @@ class Article(models.Model):
     """News article
     """
     author = models.ForeignKey(
-        account_models.SchoolUser, on_delete=models.PROTECT,
+        account_models.SchoolUser, on_delete=models.DO_NOTHING,
         blank=True, null=True, editable=False, verbose_name=_('Author')
     )
     created = models.DateTimeField(blank=False, null=False, auto_now_add=True,

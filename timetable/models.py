@@ -91,12 +91,12 @@ class Timetable(models.Model):
     )
 
     def __str__(self):
-        return ' - '.join((days_of_week[self.day_of_week],
+        return ' | '.join((days_of_week[self.day_of_week],
                            str(self.lesson_number),
                            str(self.subject)))
 
     def __unicode__(self):
-        return ' - '.join((days_of_week[self.day_of_week],
+        return ' | '.join((days_of_week[self.day_of_week],
                            str(self.lesson_number),
                            str(self.subject)))
 
