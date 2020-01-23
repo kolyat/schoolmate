@@ -15,6 +15,7 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 import datetime
+import collections
 
 from django import shortcuts
 from django.contrib.auth import decorators as auth_decorators
@@ -72,5 +73,23 @@ class Record(views.APIView):
         object_rec = models.DiaryRecord.objects.filter(**params)
         serializer_rec = RecordSerializer(object_rec, many=True)
         data_rec = serializer_rec.data
-        # TODO: continue here
-        return response.Response(data_tt)
+        # Combine timetable with diary records
+        response_data = []
+        data_rec_d = {
+            it['lesson_number']: {'subject': it['subject'], 'text': it['text']}
+            for it in data_rec
+        }
+        for i in range(1, 8):
+            item = collections.OrderedDict()
+            item.update({'id': i})
+            item.update({'lesson_num': i})
+            subjects = ' / '.join(
+                [it['subject'] for it in data_tt if it['lesson_num'] == i])
+            item.update({'subject': subjects})
+            if data_rec_d.get(i, None):
+                item.update({'subject': data_rec_d[i]['subject']})
+                item.update({'record': data_rec_d[i]['text']})
+            item.update({'marks': ''})
+            item.update({'signature': ''})
+            response_data.append(item)
+        return response.Response(response_data)

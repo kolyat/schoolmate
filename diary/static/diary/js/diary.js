@@ -169,23 +169,6 @@ function getSubjects() {
     });
 }
 
-function updateDayTable(day) {
-    var _d = day.getDate();
-    var _m = day.getMonth();
-    var _y = day.getYear();
-    var promise = webix.ajax().get(`/diary/${_y}/${_m}/${_d}/`);
-    promise.then(function(data) {
-        // TODO: implement
-    }).fail(function(err) {
-        webix.message({
-            text: gettext("Failed to get records dated ") + `${_y}.${_m}.${_d}/`,
-            type: "error",
-            expire: 3000,
-            id: "failed_get_records_msg"
-        });
-    });
-}
-
 var monday = 0;
 function updateDates() {
     // Calculate dates of week
@@ -208,9 +191,20 @@ function updateDates() {
         daytable[d].getColumnConfig("record").header[0]
         .text = _to_month_day(days_of_week[d]);
         daytable[d].refreshColumns();
-    }
-    if (monday_now !== monday) {
-        days_of_week.forEach(day => Promise.resolve(updateDayTable(day)));
+        if (monday_now !== monday) {
+            var _d = days_of_week[d].getDate();
+            var _m = days_of_week[d].getMonth()+1;
+            var _y = days_of_week[d].getFullYear();
+            daytable[d].load(`/diary/${_y}/${_m}/${_d}/`).then().fail(err => {
+                webix.message({
+                    text: gettext("Failed to get records dated ") +
+                        `${_y}.${_m}.${_d}/`,
+                    type: "error",
+                    expire: 3000,
+                    id: "failed_get_records_msg"
+                });
+            });
+        }
     }
     monday = monday_now;
 }
