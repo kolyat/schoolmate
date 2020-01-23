@@ -23,5 +23,5 @@ urlpatterns = [
     path('', views.diary, name='diary'),
 
     # API
-    # path('data/', views.DiaryData.as_view()),
+    path('<int:year>/<int:month>/<int:day>/', views.Record.as_view())
 ]

@@ -169,6 +169,23 @@ function getSubjects() {
     });
 }
 
+function updateDayTable(day) {
+    var _d = day.getDate();
+    var _m = day.getMonth();
+    var _y = day.getYear();
+    var promise = webix.ajax().get(`/diary/${_y}/${_m}/${_d}/`);
+    promise.then(function(data) {
+        // TODO: implement
+    }).fail(function(err) {
+        webix.message({
+            text: gettext("Failed to get records dated ") + `${_y}.${_m}.${_d}/`,
+            type: "error",
+            expire: 3000,
+            id: "failed_get_records_msg"
+        });
+    });
+}
+
 var monday = 0;
 function updateDates() {
     // Calculate dates of week
@@ -193,7 +210,7 @@ function updateDates() {
         daytable[d].refreshColumns();
     }
     if (monday_now !== monday) {
-        // TODO: implement record retrieval
+        days_of_week.forEach(day => Promise.resolve(updateDayTable(day)));
     }
     monday = monday_now;
 }
