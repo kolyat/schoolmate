@@ -24,7 +24,7 @@ from . import models
 class DiaryRecordAdmin(RelatedFieldAdmin):
     list_display = (
         'date', 'user__username', 'user__first_name', 'user__last_name',
-        'lesson__lesson_number', 'lesson__subject'
+        'lesson_number', 'subject'
     )
     search_fields = (
         'user__username', 'user__first_name', 'user__last_name',
