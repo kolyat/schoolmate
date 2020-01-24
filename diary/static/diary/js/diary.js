@@ -50,7 +50,7 @@ var navBar = {
 
 var dayTableTemplate = {
     view: "datatable", id: "", autowidth: false, autoheight: true,
-    fixedRowHeight: false, scrollX: false, rowHeight: 26,
+    fixedRowHeight: false, scrollX: false, rowHeight: 26, date: new Date(),
     editable: true, tooltip: true, editaction: "dblclick", columns: [
         {
             id: "lesson_num", fillspace: 0.25, header: {
@@ -88,6 +88,22 @@ var dayTableTemplate = {
                 popup.config.height = 120;
                 popup.resize();
             }
+        },
+        onBeforeEditStop: function(state, editor) {
+            var _d = this.config.date.getDate();
+            var _m = this.config.date.getMonth()+1;
+            var _y = this.config.date.getFullYear();
+            webix.ajax().post(`/diary/${_y}/${_m}/${_d}/`).then(
+                // TODO: continue here
+            ).fail(err => {
+                webix.message({
+                    text: gettext("Failed to save record dated ") +
+                        `${_y}.${_m}.${_d}/`,
+                    type: "error",
+                    expire: 3000,
+                    id: "failed_save_record_msg"
+                });
+            });
         }
     },
     data: []
@@ -186,6 +202,7 @@ function updateDates() {
     for (var d = 0; d < tablesNum; d++) {
         var _to_day_of_week = webix.Date.dateToStr("%l");
         var _to_month_day = webix.Date.dateToStr("%F, %j");
+        daytable[d].config.date.setDate(days_of_week[d].getDate());
         daytable[d].getColumnConfig("lesson_num").header[0]
         .text = _to_day_of_week(days_of_week[d]);
         daytable[d].getColumnConfig("record").header[0]
