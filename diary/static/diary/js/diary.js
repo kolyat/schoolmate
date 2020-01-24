@@ -71,11 +71,11 @@ var dayTableTemplate = {
             // minWidth: 140,
         },
         {
-            id: "marks", header: "marks", fillspace: 0.55,
+            id: "marks", header: "marks", width: 1, //fillspace: 0.55,
             // minWidth: 50, width: 60,
         },
         {
-            id: "signature", header: "signature", fillspace: 0.8,
+            id: "signature", header: "signature", width: 1, //fillspace: 0.8,
             // minWidth: 80, width: 100,
         }
     ],
@@ -151,7 +151,7 @@ for (var d = 0; d < tablesNum; d++) {
 
 function getSubjects() {
     var promise = webix.ajax().get("/main/subjects/");
-    promise.then(function(data) {
+    promise.then(data => {
         var _subjects = new Array();
         data.json().forEach(element => _subjects.push(element.subject));
         for (var d = 0; d < tablesNum; d++) {
@@ -159,7 +159,7 @@ function getSubjects() {
             config.collection.clearAll();
             config.collection.parse(_subjects);
         }
-    }).fail(function(err) {
+    }).fail(err => {
         webix.message({
             text: gettext("Failed to retrieve list of school subjects"),
             type: "error",
@@ -195,6 +195,7 @@ function updateDates() {
             var _d = days_of_week[d].getDate();
             var _m = days_of_week[d].getMonth()+1;
             var _y = days_of_week[d].getFullYear();
+            daytable[d].clearAll();
             daytable[d].load(`/diary/${_y}/${_m}/${_d}/`).then().fail(err => {
                 webix.message({
                     text: gettext("Failed to get records dated ") +
@@ -210,15 +211,17 @@ function updateDates() {
 }
 
 
-prev_button.attachEvent("onItemClick", function() {
+prev_button.attachEvent("onItemClick", () => {
     var _date = current_date.getValue();
     _date.setDate(_date.getDate() - 7);
     current_date.setValue(_date);
+    updateDates();
 });
-next_button.attachEvent("onItemClick", function() {
+next_button.attachEvent("onItemClick", () => {
     var _date = current_date.getValue();
     _date.setDate(_date.getDate() + 7);
     current_date.setValue(_date);
+    updateDates();
 });
 getSubjects();
 updateDates();

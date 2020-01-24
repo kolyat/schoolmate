@@ -46,6 +46,8 @@ class TimetableRecordSerializer(serializers.ModelSerializer):
 
 
 class RecordSerializer(serializers.ModelSerializer):
+    subject = serializers.StringRelatedField()
+
     class Meta:
         model = models.DiaryRecord
         fields = ('lesson_number', 'subject', 'text')
