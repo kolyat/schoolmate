@@ -47,7 +47,10 @@ class Command(base.BaseCommand):
             for d in timetable_models.DAYS_OF_WEEK:
                 lessons = range(1, random.randint(6, 8))
                 for l in lessons:
-                    s = random.choice(_subjects)
+                    while True:
+                        s = random.choice(_subjects)
+                        if str(s) != '':
+                            break
                     c = random.choice(_classrooms)
                     timetable_models.Timetable(
                         form=tt_form, day_of_week=d[0], lesson_number=l,
