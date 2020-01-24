@@ -51,7 +51,7 @@ var navBar = {
 var dayTableTemplate = {
     view: "datatable", id: "", autowidth: false, autoheight: true,
     fixedRowHeight: false, scrollX: false, rowHeight: 26,
-    editable: true, editaction: "dblclick", columns: [
+    editable: true, tooltip: true, editaction: "dblclick", columns: [
         {
             id: "lesson_num", fillspace: 0.25, header: {
                 text: "lesson_num", colspan: 2, height: 30,
