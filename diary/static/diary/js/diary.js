@@ -90,7 +90,7 @@ var dayTableTemplate = {
             }
         },
         onAfterEditStop: function(state, editor, ignoreUpdate) {
-            if (ignoreUpdate) return ignoreUpdate;
+            if ((state.value == state.old) || ignoreUpdate) return false;
             var _d = this.config.date.getDate();
             var _m = this.config.date.getMonth()+1;
             var _y = this.config.date.getFullYear();
@@ -101,19 +101,21 @@ var dayTableTemplate = {
                 "text": _record.record
             }).then(() => {
                 webix.message({
-                    text: gettext("Record saved to ") + `${_y}.${_m}.${_d}`,
+                    text: gettext("Record saved"),
                     type: "success",
                     expire: 3000,
                     id: "saved_record_msg"
                 });
+                return true;
             }).fail(err => {
                 webix.message({
                     text: gettext("Failed to save record to ") +
-                        `${_y}.${_m}.${_d}`,
+                        `${_d}.${_m}.${_y}`,
                     type: "error",
                     expire: 3000,
                     id: "failed_save_record_msg"
                 });
+                return false;
             });
         }
     },
