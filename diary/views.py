@@ -18,13 +18,16 @@ import datetime
 import collections
 
 from django import shortcuts
+from django.core import exceptions
+from django.core import serializers as renderers
 from django.contrib.auth import decorators as auth_decorators
 from django.views.decorators import http as http_decorators
 from django.utils.decorators import method_decorator
-from rest_framework import views, serializers, response
+from rest_framework import views, serializers, response, status
 
 from . import models
 from account import models as account_models
+from school import models as school_models
 from timetable import models as tt_models
 
 
@@ -45,8 +48,19 @@ class TimetableRecordSerializer(serializers.ModelSerializer):
         fields = ('lesson_num', 'subject')
 
 
-class RecordSerializer(serializers.ModelSerializer):
+class RecordRetrieveSerializer(serializers.ModelSerializer):
     subject = serializers.StringRelatedField()
+
+    class Meta:
+        model = models.DiaryRecord
+        fields = ('lesson_number', 'subject', 'text')
+
+
+class RecordWriteSerializer(serializers.ModelSerializer):
+    subject = serializers.PrimaryKeyRelatedField(
+        read_only=False, many=False,
+        queryset=school_models.SchoolSubject.objects.all()
+    )
 
     class Meta:
         model = models.DiaryRecord
@@ -73,7 +87,7 @@ class Record(views.APIView):
         # Get diary records from requested date
         params = {'user': request.user, 'date': _date}
         object_rec = models.DiaryRecord.objects.filter(**params)
-        serializer_rec = RecordSerializer(object_rec, many=True)
+        serializer_rec = RecordRetrieveSerializer(object_rec, many=True)
         data_rec = serializer_rec.data
         # Combine timetable with diary records
         response_data = []
@@ -95,3 +109,28 @@ class Record(views.APIView):
             item.update({'signature': ''})
             response_data.append(item)
         return response.Response(response_data)
+
+    def post(self, request, *args, **kwargs):
+        _date = datetime.date(kwargs['year'], kwargs['month'], kwargs['day'])
+        _data = request.data
+        subj = school_models.SchoolSubject.objects.get(
+            subject__exact=_data['subject'])
+        _data['subject'] = subj.id
+        serializer = RecordWriteSerializer(data=_data)
+        if not serializer.is_valid():
+            return response.Response(serializer.errors,
+                                     status=status.HTTP_400_BAD_REQUEST)
+        try:
+            r = models.DiaryRecord.objects.get(
+                user__exact=request.user, date=_date,
+                lesson_number=serializer.validated_data['lesson_number']
+            )
+            r.subject = subj
+            r.text = serializer.validated_data['text']
+            r.save()
+            return response.Response(renderers.serialize('json', (r,)),
+                                     status=status.HTTP_202_ACCEPTED)
+        except exceptions.ObjectDoesNotExist:
+            serializer.save(user=request.user, date=_date)
+            return response.Response(serializer.data,
+                                     status=status.HTTP_201_CREATED)

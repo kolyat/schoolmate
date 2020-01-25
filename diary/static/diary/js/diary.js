@@ -89,16 +89,27 @@ var dayTableTemplate = {
                 popup.resize();
             }
         },
-        onBeforeEditStop: function(state, editor) {
+        onAfterEditStop: function(state, editor, ignoreUpdate) {
+            if (ignoreUpdate) return ignoreUpdate;
             var _d = this.config.date.getDate();
             var _m = this.config.date.getMonth()+1;
             var _y = this.config.date.getFullYear();
-            webix.ajax().post(`/diary/${_y}/${_m}/${_d}/`).then(
-                // TODO: continue here
-            ).fail(err => {
+            var _record = this.getItem(editor.row);
+            webix.ajax().headers(headers).post(`/diary/${_y}/${_m}/${_d}/`, {
+                "lesson_number": editor.row,
+                "subject": _record.subject,
+                "text": _record.record
+            }).then(() => {
                 webix.message({
-                    text: gettext("Failed to save record dated ") +
-                        `${_y}.${_m}.${_d}/`,
+                    text: gettext("Record saved to ") + `${_y}.${_m}.${_d}`,
+                    type: "success",
+                    expire: 3000,
+                    id: "saved_record_msg"
+                });
+            }).fail(err => {
+                webix.message({
+                    text: gettext("Failed to save record to ") +
+                        `${_y}.${_m}.${_d}`,
                     type: "error",
                     expire: 3000,
                     id: "failed_save_record_msg"
@@ -216,7 +227,7 @@ function updateDates() {
             daytable[d].load(`/diary/${_y}/${_m}/${_d}/`).then().fail(err => {
                 webix.message({
                     text: gettext("Failed to get records dated ") +
-                        `${_y}.${_m}.${_d}/`,
+                        `${_y}.${_m}.${_d}`,
                     type: "error",
                     expire: 3000,
                     id: "failed_get_records_msg"
