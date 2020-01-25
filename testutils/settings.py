@@ -1,4 +1,5 @@
 import logging
+import datetime
 
 #
 # Logging
@@ -13,9 +14,24 @@ LOG_OPTIONS = {
 #
 # Credentials
 #
-ADMIN_USER = 'admin'
-ADMIN_EMAIL = 'admin@school.edu'
-ADMIN_PASS = 'nimda'
+USER_ADMIN = {
+    'username': 'admin',
+    'password': 'nimda',
+    'email': 'admin@school.edu'
+}
+USER_STUDENT = {
+    'username': 'sam',
+    'password': 'sam',
+    'email': 'sam@school.edu',
+    'first_name': 'Sam',
+    'patronymic_name': 'J.',
+    'last_name': 'Smith',
+    'birth_date': datetime.datetime.now(),
+    'school_form': {'form_number': 9, 'form_letter': 'Б'},
+    'is_superuser': False,
+    'is_staff': False,
+    'is_active': True
+}
 
 #
 # Endpoints

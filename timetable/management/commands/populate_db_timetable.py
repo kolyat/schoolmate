@@ -49,7 +49,7 @@ class Command(base.BaseCommand):
                 for l in lessons:
                     while True:
                         s = random.choice(_subjects)
-                        if str(s) != '':
+                        if str(s) != ' ':
                             break
                     c = random.choice(_classrooms)
                     timetable_models.Timetable(

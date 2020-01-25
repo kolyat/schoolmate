@@ -14,9 +14,12 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
+import copy
+
 from django.core.management import base
 
 from testutils import settings
+from school import models as school_models
 from account import models as account_models
 
 
@@ -28,8 +31,15 @@ class Command(base.BaseCommand):
         print('Create new data:')
         print('    {:.<25}...'.format('Users'), end='', flush=True)
         account_models.SchoolUser.objects.create_superuser(
-            username=settings.ADMIN_USER,
-            email=settings.ADMIN_EMAIL,
-            password=settings.ADMIN_PASS
-        )
+            **settings.USER_ADMIN)
+        student = copy.deepcopy(settings.USER_STUDENT)
+        form = student.pop('school_form')
+        form_number = school_models.FormNumber.objects.get(
+            number=form['form_number'])
+        form_letter = school_models.FormLetter.objects.get(
+            letter=form['form_letter'])
+        school_form = school_models.SchoolForm.objects.get(
+            form_number=form_number, form_letter=form_letter)
+        account_models.SchoolUser.objects.create_user(
+            **student, school_form=school_form)
         print('OK')
