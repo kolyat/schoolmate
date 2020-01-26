@@ -16,10 +16,22 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
+//
+// General
+//
+var URL_NEWS = "/news/";
+var URL_YEAR_SCHEDULE = "/main/schedule/year/";
+var URL_DAY_SCHEDULE = "/main/schedule/day/";
+var URL_STATUS = "/main/status/";
+
+//
+// Widget description
+//
 var statusFormWidth = 300;
 var statusLayoutMargin = 5;
 var statusLayoutMaxWidth;
 var statusLayoutMaxWidth = statusFormWidth + statusLayoutMargin * 2;
+
 var timeBlock = {
     align: "center", body: {
         rows: [
@@ -35,6 +47,7 @@ var timeBlock = {
         ]
     }
 };
+
 var dateBlock = {
     align: "center", body: {
         rows: [
@@ -50,13 +63,14 @@ var dateBlock = {
         ]
     }
 };
+
 var newsPager = {
     view: "pager", id: "news_pager", size: 10, group: 5,
     template: "{common.first()}{common.prev()}{common.pages()}"+
               "{common.next()}{common.last()}"
 };
 var newsView = {
-    view: "list", id: "news_view", url: "/news/", datatype: "json",
+    view: "list", id: "news_view", url: URL_NEWS, datatype: "json",
     datafetch: 10, datathrottle: 1000, loadahead: 30,
     template: function(obj) {
         var _created = webix.i18n.dateFormatStr(
@@ -89,9 +103,10 @@ var newsView = {
         }
     }
 };
+
 var yearScheduleList = {
     view: "list", id: "year_schedule_list",
-    url: "/main/schedule/year/", datatype: "json",
+    url: URL_YEAR_SCHEDULE, datatype: "json",
     template: function(obj) {
         return "<div style='float:left;'>"+obj.description+"</div>"+
                "<div style='float:right;'>"+
@@ -115,7 +130,7 @@ var yearScheduleList = {
 };
 var dailyScheduleList = {
     view: "list", id: "daily_schedule_list",
-    url: "/main/schedule/day/", datatype: "json",
+    url: URL_DAY_SCHEDULE, datatype: "json",
     template: function(obj) {
         return "<div style='float:left;'>"+obj.description+"</div>"+
                "<div style='float:right;'>"+
@@ -137,6 +152,7 @@ var dailyScheduleList = {
         }
     }
 };
+
 var infoBlock = {
     id: "info_tab", view: "tabview", responsive: "index_layout",
     type: "space", borderless: false, margin: 0, cells: [
@@ -157,6 +173,10 @@ var infoBlock = {
         }}
     ]
 };
+
+//
+// UI init
+//
 webix.ui({
     type: "space", paddingY: 30, borderless: true, rows: [
         {
@@ -177,6 +197,7 @@ webix.ui({
         {gravity: 0.1}
     ]
 });
+
 var time_form = $$("time_form");
 var time_label = $$("time_label");
 var date_form = $$("date_form");
@@ -208,18 +229,21 @@ daily_schedule_list.attachEvent("onBeforeLoad", function() {
     daily_schedule_list.showOverlay(gettext("Loading..."));
 });
 
-
+//
+// UI logic
+//
 var now = new Date();
 
 function updateClock(t) {
     time_label.setValue(webix.i18n.timeFormatStr(t));
 }
+
 function updateTimeStatus(_status) {
     time_form.getChildViews().filter(
         function(e) { return e.config["id"] !== "time_label"; }).forEach(
         function(e) { time_form.removeView(e.config["id"]); });
     if (_status["time_description"]) {
-        _status["time_description"].forEach(function(el) {
+        _status["time_description"].forEach(el => {
             time_form.addView({view: "label", align: "center",
                                label: el["description"]});
         });
@@ -230,12 +254,13 @@ function updateTimeStatus(_status) {
 function updateCalendar(d) {
     main_calendar.setValue(d);
 }
+
 function updateDateStatus(_status) {
     date_form.getChildViews().filter(
         function(e) { return e.config["id"] !== "main_calendar"; }).forEach(
         function(e) { date_form.removeView(e.config["id"]); });
     if (_status["date_description"]) {
-        _status["date_description"].forEach(function(el) {
+        _status["date_description"].forEach(el => {
             date_form.addView({view: "label", align: "center",
                                label: el["description"]});
         });
@@ -244,8 +269,8 @@ function updateDateStatus(_status) {
 }
 
 function updateStatus() {
-    var promise = webix.ajax().get("/main/status/");
-    promise.then(function(data) {
+    var promise = webix.ajax().get(URL_STATUS);
+    promise.then(data => {
         var _status = data.json();
         now.setFullYear(_status["year"], _status["month"] - 1, _status["day"]);
         now.setHours(_status["hour"], _status["minute"], _status["second"]);
@@ -253,7 +278,7 @@ function updateStatus() {
         updateTimeStatus(_status);
         updateCalendar(now);
         updateDateStatus(_status);
-    }).fail(function(err) {
+    }).fail(err => {
         webix.message({
             text: gettext("Failed to retrieve date/time info from server"),
             type: "error",
@@ -265,6 +290,9 @@ function updateStatus() {
     });
 }
 
+//
+// Start-up
+//
 updateClock(now);
 updateStatus();
 window.setInterval(function() {

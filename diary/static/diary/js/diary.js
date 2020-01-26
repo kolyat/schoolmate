@@ -16,12 +16,18 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
+//
+// General
+//
 var lessons_num = 7;
-// For array comparison
+// Function for array comparison
 var isequal = (a, b) => a.every((v, i) => v === b[i]);
                         // a.reduce((x, y) => x && b.includes(y), true);
+var URL_SUBJECTS = "/main/subjects/";
 
-
+//
+// Widget description
+//
 var navBar = {
     view: "toolbar", id: "navbar", cols: [
         {},
@@ -48,6 +54,8 @@ var navBar = {
     minHeight: 40, height: 40
 };
 
+var tablesNum = 6;
+var daytable_id = "daytable";
 var dayTableTemplate = {
     view: "datatable", id: "", autowidth: false, autoheight: true,
     fixedRowHeight: false, scrollX: false, rowHeight: 26, date: new Date(),
@@ -121,9 +129,8 @@ var dayTableTemplate = {
     },
     data: []
 };
+
 var dayTables = new Array();
-var tablesNum = 6;
-var daytable_id = "daytable";
 for (var d = 0; d < tablesNum; d++) {
     dayTables.push(webix.copy(dayTableTemplate));
     dayTables[d].id = daytable_id + d;
@@ -139,6 +146,9 @@ for (var d = 0; d < tablesNum; d++) {
     }
 }
 
+//
+// UI init
+//
 webix.ui({
     type: "line", paddingY: 2, rows: [
         {
@@ -177,9 +187,11 @@ for (var d = 0; d < tablesNum; d++) {
     daytable.push($$(daytable_id + d));
 }
 
-
+//
+// UI logic
+//
 function getSubjects() {
-    var promise = webix.ajax().get("/main/subjects/");
+    var promise = webix.ajax().get(URL_SUBJECTS);
     promise.then(data => {
         var _subjects = new Array();
         data.json().forEach(element => _subjects.push(element.subject));
@@ -240,7 +252,9 @@ function updateDates() {
     monday = monday_now;
 }
 
-
+//
+// Event handling
+//
 prev_button.attachEvent("onItemClick", () => {
     var _date = current_date.getValue();
     _date.setDate(_date.getDate() - 7);
@@ -253,6 +267,10 @@ next_button.attachEvent("onItemClick", () => {
     current_date.setValue(_date);
     updateDates();
 });
+
+//
+// Start-up
+//
 getSubjects();
 updateDates();
 current_date.attachEvent("onChange", updateDates);
