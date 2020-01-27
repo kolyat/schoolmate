@@ -16,6 +16,21 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
+//
+// General
+//
+var URL_MAIN = "/main/";
+var URL_TIMETABLE = "/timetable/";
+var URL_DIARY = "/diary/";
+
+var URL_GET_USERNAME = "/profile/user/";
+
+var URL_PROFILE = "/profile/";
+var URL_LOGOUT = "/profile/logout/";
+
+//
+// Widget description
+//
 var userMenu = {
     view: "menu", id: "user_menu", layout: "x", data: [
         {
@@ -23,7 +38,7 @@ var userMenu = {
                 {
                     value: gettext("Profile"),
                     name: "profile_item", id: "profile_item",
-                    href: "/profile/", config: {
+                    href: URL_PROFILE, config: {
                         click: function(id) {
                             webix.send(this.config.href, {}, "GET");
                         }
@@ -33,7 +48,7 @@ var userMenu = {
                 {
                     value: gettext("Log out"),
                     name: "logout_item", id: "logout_item",
-                    href: "/profile/logout/", config: {
+                    href: URL_LOGOUT, config: {
                         click: function(id) {
                             webix.send(this.config.href, {}, "GET");
                         }
@@ -47,6 +62,10 @@ var userMenu = {
     autowidth: true, autoheight: true, minWidth: 90, maxWidth: 150,
     align: "right", css: {"text-align": "right", "padding": "9px 0px"}
 };
+
+//
+// UI init
+//
 webix.ui({
     view: "toolbar", id: "main_toolbar",
     cols: [
@@ -57,19 +76,19 @@ webix.ui({
         {},
         {
             view: "button", value: gettext("Main"), align: "left",
-            name: "main_page_btn", id: "main_page_btn", href: "/main/",
+            name: "main_page_btn", id: "main_page_btn", href: URL_MAIN,
             click: function() {webix.send(this.config.href, {}, "GET");},
             minWidth: 90, width: 90, minHeight: 40, height: 40
         },
         {
             view: "button", value: gettext("Timetable"), align: "left",
-            name: "timetable_btn", id: "timetable_btn", href: "/timetable/",
+            name: "timetable_btn", id: "timetable_btn", href: URL_TIMETABLE,
             click: function() {webix.send(this.config.href, {}, "GET");},
             minWidth: 90, width: 90, minHeight: 40, height: 40
         },
         {
             view: "button", value: gettext("Diary"), align: "left",
-            name: "diary_btn", id: "diary_btn", href: "/diary/",
+            name: "diary_btn", id: "diary_btn", href: URL_DIARY,
             click: function() {webix.send(this.config.href, {}, "GET");},
             minWidth: 90, width: 90, minHeight: 40, height: 40
         },
@@ -78,11 +97,14 @@ webix.ui({
     ],
     minHeight: 60, height: 60
 });
+
 var user_menu = $$("user_menu");
 
-
+//
+// Start-up
+//
 webix.ajax().get(
-    "/profile/user/",
+    URL_GET_USERNAME,
     function(text, data, xhr) {
         var item = user_menu.getItem("user_item");
         item["value"] = data.json().username;
