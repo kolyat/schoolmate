@@ -16,10 +16,18 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
+//
+// General
+//
+var URL_PASSWD_RESET = "/profile/password_reset/";
+
+//
+// Widget description
+//
 var formHeader = {
     view: "template", type: "header", name: "login_header",
     template: gettext("Log in to system")
-}
+};
 var loginForm = {
     view: "form", name: "login_form", id: "login_form",
     width: 360, css: {"margin-top": "0px !important"}, elements: [
@@ -48,15 +56,19 @@ var loginForm = {
         "username": webix.rules.isNotEmpty,
         "password": webix.rules.isNotEmpty
     }
-}
+};
 var passwdButton = {
     view: "button", value: gettext("Forgot password"),
     name: "forgot_password_btn", id: "forgot_password_btn",
-    href: "/profile/password_reset/",
+    href: URL_PASSWD_RESET,
     click: function() {webix.send(this.config.href, {}, "GET");},
     minWidth: 165, width: 170, minHeight: 28, height: 30,
     css: {"margin-top": "4px !important", "margin-left": "8px !important"}
-}
+};
+
+//
+// UI init
+//
 webix.ui({
     type: "space", rows: [{
         align: "center,middle", body: {
@@ -71,13 +83,13 @@ webix.ui({
 
 var login_form = $$("login_form");
 
-
+//
+// UI logic
+//
 function postLoginForm() {
     var loginURL = window.location.href;
     if (login_form.validate()) {
-        webix.ajax().post(
-            loginURL,
-            login_form.getValues(),
+        webix.ajax().post(loginURL, login_form.getValues(),
             function(text, data, xhr) {
                 if (xhr["responseURL"] !== loginURL) {
                     webix.send(xhr["responseURL"], {}, "GET");
@@ -94,5 +106,8 @@ function postLoginForm() {
     }
 }
 
+//
+// Event handling
+//
 login_form.attachEvent("onSubmit", postLoginForm);
 login_form.elements["login_btn"].attachEvent("onItemClick", postLoginForm);

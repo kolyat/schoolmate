@@ -16,6 +16,16 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
+//
+// General
+//
+var URL_USER_INFO = "/profile/user/info/";
+var URL_PASSWD_CHANGE = "/profile/password_change/";
+var URL_PASSWD_CHANGE_DONE = "/profile/password_change/done/";
+
+//
+// Widget description
+//
 var personalInfoFormLabelWidth = 200;
 var personalInfoBlock = {
     align: "center", body: {
@@ -73,7 +83,8 @@ var personalInfoBlock = {
             }
         ]
     }
-}
+};
+
 var passwordChangeBlock = {
     align: "center", body: {
         type: "space", borderless: true, rows: [
@@ -138,7 +149,11 @@ var passwordChangeBlock = {
             }
         ]
     }
-}
+};
+
+//
+// UI init
+//
 webix.ui({
     id: "account_layout", type: "space", paddingY: 30, rows: [
         {
@@ -147,23 +162,26 @@ webix.ui({
         }
     ]
 });
+
 var personal_info_form = $$("personal_info_form");
 var password_change_form = $$("password_change_form");
 var language_select = $$("language_select");
 
-
+//
+// UI logic
+//
 function loadPersonalInfoForm() {
-    var promise = webix.ajax().get("/profile/user/info/");
-    promise.then(function(data) {
+    var promise = webix.ajax().get(URL_USER_INFO);
+    promise.then(data => {
         var user_info = data.json();
-        user_info.languages.forEach(function(language) {
+        user_info.languages.forEach(language => {
             language_select.config["options"].push(
                 {"id": language[0], "value": language[1]});
         });
         personal_info_form.parse(user_info, "json");
         language_select.config["value"] = user_info.language;
         language_select.refresh();
-    }).fail(function(err) {
+    }).fail(err => {
         webix.message({
             text: gettext("Failed to retrieve user info from server"),
             type: "error",
@@ -174,40 +192,34 @@ function loadPersonalInfoForm() {
 }
 
 function patchLanguage(newv, oldv) {
-    webix.ajax().headers(headers).patch(
-        "/profile/user/info/",
-        { language: newv }, {
-            success: function(text, data, xhr) {
-                webix.message({
-                    text: gettext("Language changed"),
-                    type: "success",
-                    expire: 3000,
-                    id: "language_changed_msg"
-                });
-                location.reload(true);
-            },
-            error: function(text, data, xhr) {
-                webix.message({
-                    text: gettext("Language change failed"),
-                    type: "error",
-                    expire: 3000,
-                    id: "language_change_failed_msg"
-                });
-                language_select.config["value"] = oldv;
-                language_select.refresh();
-            }
+    webix.ajax().headers(headers).patch(URL_USER_INFO, { language: newv }, {
+        success: function(text, data, xhr) {
+            webix.message({
+                text: gettext("Language changed"),
+                type: "success",
+                expire: 3000,
+                id: "language_changed_msg"
+            });
+            location.reload(true);
+        },
+        error: function(text, data, xhr) {
+            webix.message({
+                text: gettext("Language change failed"),
+                type: "error",
+                expire: 3000,
+                id: "language_change_failed_msg"
+            });
+            language_select.config["value"] = oldv;
+            language_select.refresh();
         }
-    )
+    });
 }
 
 function postPasswordChangeForm() {
     if (password_change_form.validate()) {
-        webix.ajax().post(
-            "/profile/password_change/",
-            password_change_form.getValues(),
+        webix.ajax().post(URL_PASSWD_CHANGE, password_change_form.getValues(),
             function(text, data, xhr) {
-                if (xhr["responseURL"].includes(
-                        "/profile/password_change/done/")) {
+                if (xhr["responseURL"].includes(URL_PASSWD_CHANGE_DONE)) {
                     webix.message({
                         text: gettext("Password changed"),
                         type: "success",
@@ -228,8 +240,15 @@ function postPasswordChangeForm() {
     }
 }
 
+//
+// Event handling
+//
 password_change_form.attachEvent("onSubmit", postPasswordChangeForm);
 password_change_form.elements["change_password_btn"].attachEvent(
     "onItemClick", postPasswordChangeForm);
 language_select.attachEvent("onChange", patchLanguage);
+
+//
+// Start-up
+//
 loadPersonalInfoForm();
