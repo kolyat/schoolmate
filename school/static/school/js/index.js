@@ -29,7 +29,6 @@ var URL_STATUS = "/main/status/";
 //
 var statusFormWidth = 300;
 var statusLayoutMargin = 5;
-var statusLayoutMaxWidth;
 var statusLayoutMaxWidth = statusFormWidth + statusLayoutMargin * 2;
 
 var timeBlock = {
@@ -155,7 +154,8 @@ var dailyScheduleList = {
 
 var infoBlock = {
     id: "info_tab", view: "tabview", responsive: "index_layout",
-    type: "space", borderless: false, margin: 0, cells: [
+    type: "space", borderless: false, margin: 0, minWidth: statusFormWidth,
+    cells: [
         {header: gettext("News"), body: {rows: [newsView, newsPager]}},
         {header: gettext("Schedules"), body: {
             rows: [
@@ -178,11 +178,10 @@ var infoBlock = {
 // UI init
 //
 webix.ui({
-    type: "space", paddingY: 30, borderless: true, rows: [
+    id: "index_layout", type: "space", paddingY: 30, borderless: true, rows: [
         {
-            id: "index_layout", cols: [
+            id: "status_layout", responsive: "index_layout", cols: [
                 {
-                    id: "status_layout", responsive: "index_layout",
                     type: "space", borderless: true,
                     maxWidth: statusLayoutMaxWidth, margin: statusLayoutMargin,
                     rows: [
@@ -194,7 +193,7 @@ webix.ui({
                 infoBlock
             ]
         },
-        {gravity: 0.1}
+        {gravity: 0.05}
     ]
 });
 
