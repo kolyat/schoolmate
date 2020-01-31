@@ -16,6 +16,9 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
+//
+// Widget description
+//
 var newPasswordForm = {
     view: "form", name: "new_password_form", id: "new_password_form",
     width: 360, css: {"margin-top": "0px !important"}, elements: [
@@ -56,7 +59,11 @@ var newPasswordForm = {
             return true;
         }
     }
-}
+};
+
+//
+// UI init
+//
 webix.ui({
     type: "space", rows: [{
         align: "center,middle", body: {
@@ -70,15 +77,16 @@ webix.ui({
         }
     }]
 });
+
 var new_password_form = $$("new_password_form");
 
-
+//
+// UI logic
+//
 function postNewPasswordForm() {
     var newPasswordUrl = window.location.pathname;
     if (new_password_form.validate()) {
-        webix.ajax().post(
-            newPasswordUrl,
-            new_password_form.getValues(),
+        webix.ajax().post(newPasswordUrl, new_password_form.getValues(),
             function(text, data, xhr) {
                 if (xhr["responseURL"] !== newPasswordUrl) {
                     webix.send(xhr["responseURL"], {}, "GET");
@@ -95,6 +103,9 @@ function postNewPasswordForm() {
     }
 }
 
+//
+// Event handling
+//
 new_password_form.attachEvent("onSubmit", postNewPasswordForm);
 new_password_form.elements["confirm_btn"].attachEvent(
     "onItemClick", postNewPasswordForm);

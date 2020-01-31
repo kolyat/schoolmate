@@ -16,6 +16,9 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
+//
+// General
+//
 function multipleValidator() {
     var args = arguments;
     return function(value, row, name) {
@@ -30,6 +33,11 @@ function multipleValidator() {
     }
 }
 
+var URL_PASSWD_RESET = "/profile/password_reset/";
+
+//
+// Widget description
+//
 var resetForm = {
     view: "form", name: "password_reset_form", id: "password_reset_form",
     css: {"margin-top": "0px !important"}, width: 360, elements: [
@@ -59,7 +67,11 @@ var resetForm = {
             }
         )
     }
-}
+};
+
+//
+// UI init
+//
 webix.ui({
     type: "space", rows: [{
         align: "center,middle", body: {
@@ -73,15 +85,16 @@ webix.ui({
         }
     }]
 });
+
 var password_reset_form = $$("password_reset_form");
 
-
+//
+// UI logic
+//
 function postPasswordResetForm() {
-    var passwordResetURL = "/profile/password_reset/";
+    var passwordResetURL = URL_PASSWD_RESET;
     if (password_reset_form.validate()) {
-        webix.ajax().post(
-            passwordResetURL,
-            password_reset_form.getValues(),
+        webix.ajax().post(passwordResetURL, password_reset_form.getValues(),
             function(text, data, xhr) {
                 if (xhr["responseURL"] !== passwordResetURL) {
                     webix.send(xhr["responseURL"], {}, "GET");
@@ -96,8 +109,11 @@ function postPasswordResetForm() {
             }
         )
     }
-}
+};
 
+//
+// Event handling
+//
 password_reset_form.attachEvent("onSubmit", postPasswordResetForm);
 password_reset_form.elements["reset_btn"].attachEvent(
     "onItemClick", postPasswordResetForm);

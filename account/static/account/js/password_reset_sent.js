@@ -16,6 +16,14 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
+//
+// General
+//
+var URL_LOGIN = "/profile/login/";
+
+//
+// Widget description
+//
 var sentForm = {
     view: "form", name: "password_reset_sent_form", width: 660,
     id: "password_reset_sent_form", elements: [
@@ -26,19 +34,21 @@ var sentForm = {
         {
             view: "button", value: gettext("Back to login page"),
             name: "back_to_login_btn", id: "back_to_login_btn",
-            href: "/profile/login/",
-            click: function() {
-                webix.send(this.config.href, {}, "GET") },
+            href: URL_LOGIN, click: function() {
+                webix.send(this.config.href, {}, "GET")
+            },
             align: "center", minWidth: 300, width: 310
         }
     ]
-}
+};
+
+//
+// UI init
+//
 webix.ui({
     type: "space", rows: [{
         align: "center,middle", body: {
-            type: "space", borderless: true, rows: [
-                sentForm
-            ]
+            type: "space", borderless: true, rows: [sentForm]
         }
     }]
 });
