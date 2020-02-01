@@ -150,15 +150,15 @@ for (var d = 0; d < tablesNum; d++) {
 // UI init
 //
 webix.ui({
-    type: "line", paddingY: 2, rows: [
+    id: "diary_layout", type: "line", paddingY: 2, rows: [
         {
             id: "navbar_layout", cols: [navBar]
         },
         {
-            id: "records_layout", cols: [
+            view: "flexlayout", id: "records_layout", cols: [
                 {
-                    id: "left_layout", responsive: "records_layout",
-                    type: "space", borderless: true, rows: [
+                    id: "left_layout", type: "space",
+                    borderless: true, minWidth: 300, rows: [
                         dayTables[0],
                         dayTables[1],
                         dayTables[2],
@@ -166,8 +166,8 @@ webix.ui({
                     ]
                 },
                 {
-                    id: "right_layout", responsive: "records_layout",
-                    type: "space", borderless: true, rows: [
+                    id: "right_layout", type: "space",
+                    borderless: true, minWidth: 300, rows: [
                         dayTables[3],
                         dayTables[4],
                         dayTables[5],
