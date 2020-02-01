@@ -70,7 +70,7 @@ webix.ui({
     view: "toolbar", id: "main_toolbar",
     cols: [
         {
-            view: "label", label: "SCHOOLMATE", align: "center",
+            view: "label", label: "<a href='/'>SCHOOLMATE</a>", align: "center",
             minWidth: 160, width: 180, css: "headerSecondaryLabel"
         },
         {},
