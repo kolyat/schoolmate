@@ -29,29 +29,26 @@ var URL_SUBJECTS = "/main/subjects/";
 // Widget description
 //
 var navBar = {
-    view: "toolbar", id: "navbar", cols: [
-        {},
+    id: "navbar", borderless: true, paddingY: 8, margin: 8, cols: [
         {
             view: "button", id: "prev_button", name: "prev_button",
             value: gettext("Previous"), tooltip: gettext("Previous"),
             type: "iconTop", css: "fas fa-angle-double-left",
-            minWidth: 40, width: 50, minHeight: 30, height: 30, align: "right"
+            minWidth: 30, width: 35
         },
         {
             view: "datepicker", id: "current_date", stringResult: false,
             value: new Date(), icons: false,
             invalid: true, invalidMessage: gettext("Invalid date"),
-            minWidth: 80, width: 120, minHeight: 30, height: 30, align: "center"
+            minWidth: 100, width: 120
         },
         {
             view: "button", id: "next_button", name: "next_button",
             value: gettext("Next"), tooltip: gettext("Next"),
             type: "icon", css: "fas fa-angle-double-right",
-            minWidth: 40, width: 50, minHeight: 30, height: 30, align: "left"
+            minWidth: 30, width: 35
         },
-        {}
-    ],
-    minHeight: 40, height: 40
+    ]
 };
 
 var tablesNum = 6;
@@ -149,20 +146,21 @@ for (var d = 0; d < tablesNum; d++) {
 //
 // UI init
 //
+main_toolbar.removeView("toolbar_block_centre");
+var pos = main_toolbar.index($$("toolbar_block_right"));
+main_toolbar.addView(navBar, pos);
+
 webix.ui({
-    id: "diary_layout", type: "line", paddingY: 2, rows: [
+    id: "diary_layout", type: "space", rows: [
         {
-            id: "navbar_layout", cols: [navBar]
-        },
-        {
-            view: "flexlayout", id: "records_layout", cols: [
+            id: "records_layout", view: "flexlayout", type: "space",
+            css: "layout_align", borderless: true, cols: [
                 {
                     id: "left_layout", type: "space",
                     borderless: true, minWidth: 300, rows: [
                         dayTables[0],
                         dayTables[1],
-                        dayTables[2],
-                        {}
+                        dayTables[2]
                     ]
                 },
                 {
@@ -170,8 +168,7 @@ webix.ui({
                     borderless: true, minWidth: 300, rows: [
                         dayTables[3],
                         dayTables[4],
-                        dayTables[5],
-                        {}
+                        dayTables[5]
                     ]
                 }
             ]
@@ -274,3 +271,4 @@ next_button.attachEvent("onItemClick", () => {
 getSubjects();
 updateDates();
 current_date.attachEvent("onChange", updateDates);
+$$("diary_layout").adjust();
