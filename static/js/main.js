@@ -105,7 +105,7 @@ webix.ui({
         },
         {
             view: "label", label: "<a href='/'>SCHOOLMATE</a>", align: "center",
-            minWidth: 160, width: 180, css: "headerSecondaryLabel"
+            width: 140, css: "headerSecondaryLabel", align: "left"
         },
         {id: "toolbar_block_left"},
         {id: "toolbar_block_centre"},
