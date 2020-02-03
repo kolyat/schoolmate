@@ -31,6 +31,8 @@ var URL_LOGOUT = "/profile/logout/";
 //
 // Widget description
 //
+var toolbarHeight = 60;
+
 var userMenu = {
     view: "menu", id: "user_menu", layout: "x", data: [
         {
@@ -67,38 +69,62 @@ var userMenu = {
 // UI init
 //
 webix.ui({
+    view: "sidemenu", id: "app_menu", position: "left", hidden: true,
+    width: 210, borderless: true,
+    state: function(state) {
+        state.top = toolbarHeight;
+        state.height -= toolbarHeight;
+    },
+    body: {
+        view: "list", id: "app_menu_list", borderless: true, scroll: false,
+        template: "<span class='menu_item_icon #icon#'></span> #value#",
+        type: {height: toolbarHeight, css: "app_menu_item"},
+        data: [
+            {id: 1, value: gettext("Main"), icon: "fas fa-school", href: URL_MAIN,},
+            {id: 2, value: gettext("Timetable"), icon: "fas fa-table", href: URL_TIMETABLE},
+            {id: 3, value: gettext("Diary"), icon: "fas fa-book-open", href: URL_DIARY},
+        ]
+    }
+});
+var app_menu = $$("app_menu");
+
+webix.ui({
     view: "toolbar", id: "main_toolbar",
+    minHeight: toolbarHeight, height: toolbarHeight,
     cols: [
+        {
+            view: "icon", icon: "fas fa-bars",
+            minWidth: 50, width: 50, minHeight: 50, height: 50,
+            click: function() {
+                if (app_menu.config.hidden) {
+                    app_menu.show();
+                } else {
+                    app_menu.hide();
+                }
+            }
+        },
         {
             view: "label", label: "<a href='/'>SCHOOLMATE</a>", align: "center",
             minWidth: 160, width: 180, css: "headerSecondaryLabel"
         },
-        {},
-        {
-            view: "button", value: gettext("Main"), align: "left",
-            name: "main_page_btn", id: "main_page_btn", href: URL_MAIN,
-            click: function() {webix.send(this.config.href, {}, "GET");},
-            minWidth: 90, width: 90, minHeight: 40, height: 40
-        },
-        {
-            view: "button", value: gettext("Timetable"), align: "left",
-            name: "timetable_btn", id: "timetable_btn", href: URL_TIMETABLE,
-            click: function() {webix.send(this.config.href, {}, "GET");},
-            minWidth: 90, width: 90, minHeight: 40, height: 40
-        },
-        {
-            view: "button", value: gettext("Diary"), align: "left",
-            name: "diary_btn", id: "diary_btn", href: URL_DIARY,
-            click: function() {webix.send(this.config.href, {}, "GET");},
-            minWidth: 90, width: 90, minHeight: 40, height: 40
-        },
-        {},
+        {id: "toolbar_block_left"},
+        {id: "toolbar_block_centre"},
+        {id: "toolbar_block_right"},
         userMenu
-    ],
-    minHeight: 60, height: 60
+    ]
 });
 
+var main_toolbar = $$("main_toolbar");
 var user_menu = $$("user_menu");
+var app_menu_list = $$("app_menu_list");
+
+//
+// Event handling
+//
+app_menu_list.attachEvent("onItemClick", function(id, e, node) {
+    var item = this.getItem(id);
+    webix.send(item.href, {}, "GET");
+});
 
 //
 // Start-up
