@@ -146,7 +146,6 @@ for (var d = 0; d < tablesNum; d++) {
 //
 // UI init
 //
-main_toolbar.removeView("toolbar_block_centre");
 var pos = main_toolbar.index($$("toolbar_block_right"));
 main_toolbar.addView(navBar, pos);
 

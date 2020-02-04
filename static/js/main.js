@@ -89,42 +89,47 @@ webix.ui({
 var app_menu = $$("app_menu");
 
 webix.ui({
-    view: "toolbar", id: "main_toolbar",
+    view: "toolbar", id: "main_toolbar", responsive: true,
     minHeight: toolbarHeight, height: toolbarHeight,
     cols: [
+        {width: 1},
         {
-            view: "icon", icon: "fas fa-bars",
-            minWidth: 50, width: 50, minHeight: 50, height: 50,
-            click: function() {
-                if (app_menu.config.hidden) {
-                    app_menu.show();
-                } else {
-                    app_menu.hide();
-                }
-            }
+            view: "label", id: "app_menu_button", label: "", align: "center",
+            css: "fas fa-bars appMenuButton", width: 40, height: 40
         },
         {
-            view: "label", label: "<a href='/'>SCHOOLMATE</a>", align: "center",
-            width: 140, css: "headerSecondaryLabel", align: "left"
+            view: "label", id: "app_label", label: "SCHOOLMATE",
+            width: 140, css: "headerSecondaryLabel", align: "right"
         },
         {id: "toolbar_block_left"},
-        {id: "toolbar_block_centre"},
         {id: "toolbar_block_right"},
         userMenu
     ]
 });
 
 var main_toolbar = $$("main_toolbar");
+var app_menu_button = $$("app_menu_button");
+var app_label = $$("app_label");
 var user_menu = $$("user_menu");
 var app_menu_list = $$("app_menu_list");
 
 //
 // Event handling
 //
+function toggleAppMenu() {
+    if (app_menu.config.hidden) {
+        app_menu.show();
+    } else {
+        app_menu.hide();
+    }
+}
+
 app_menu_list.attachEvent("onItemClick", function(id, e, node) {
     var item = this.getItem(id);
     webix.send(item.href, {}, "GET");
 });
+app_menu_button.attachEvent("onItemClick", toggleAppMenu);
+app_label.attachEvent("onItemClick", toggleAppMenu);
 
 //
 // Start-up
