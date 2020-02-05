@@ -89,8 +89,8 @@ webix.ui({
 var app_menu = $$("app_menu");
 
 webix.ui({
-    view: "toolbar", id: "main_toolbar", responsive: true,
-    minHeight: toolbarHeight, height: toolbarHeight,
+    view: "toolbar", id: "main_toolbar", container: "div_header",
+    responsive: true, minHeight: toolbarHeight, height: toolbarHeight,
     cols: [
         {width: 1},
         {

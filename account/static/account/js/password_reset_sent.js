@@ -46,7 +46,7 @@ var sentForm = {
 // UI init
 //
 webix.ui({
-    type: "space", rows: [{
+     id: "auth_layout", type: "space", container: "div_main", rows: [{
         align: "center,middle", body: {
             type: "space", borderless: true, rows: [sentForm]
         }

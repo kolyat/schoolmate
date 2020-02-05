@@ -178,7 +178,8 @@ var infoBlock = {
 // UI init
 //
 webix.ui({
-    id: "index_layout", type: "space", paddingY: 30, borderless: true, rows: [
+    id: "index_layout", type: "space", container: "div_main",
+    paddingY: 30, borderless: true, rows: [
         {
             id: "status_layout", responsive: "index_layout", cols: [
                 {
@@ -192,8 +193,7 @@ webix.ui({
                 },
                 infoBlock
             ]
-        },
-        {gravity: 0.05}
+        }
     ]
 });
 

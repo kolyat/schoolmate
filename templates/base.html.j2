@@ -19,6 +19,8 @@
   <title>{% block title %}{% endblock title %}</title>
 </head>
 <body>
+  <div id="div_header" class="div_base"></div>
+  <div id="div_main" class="div_base"></div>
   {% csrf_token %}
   {% if request.session['_language'] %}
     {% set lang = request.session['_language'] %}

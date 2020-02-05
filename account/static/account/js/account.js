@@ -155,11 +155,13 @@ var passwordChangeBlock = {
 // UI init
 //
 webix.ui({
-    id: "account_layout", type: "space", paddingY: 30, rows: [
+    id: "account_layout", type: "space", container: "div_main", paddingY: 30,
+    rows: [
         {
             responsive: "account_layout", type: "space", borderless: true,
             cols: [personalInfoBlock, passwordChangeBlock]
-        }
+        },
+        {}
     ]
 });
 

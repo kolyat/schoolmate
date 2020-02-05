@@ -17,7 +17,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
 webix.ui({
-    view: "toolbar", id: "header_toolbar", minHeight: 60, height: 60, cols: [{
+    view: "toolbar", id: "header_toolbar", container: "div_header",
+    minHeight: 60, height: 60, cols: [{
         view: "label", label: "<a href='/'>SCHOOLMATE</a>",
         align: "center", css: "headerLabel"
     }]

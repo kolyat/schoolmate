@@ -150,7 +150,7 @@ var pos = main_toolbar.index($$("toolbar_block_right"));
 main_toolbar.addView(navBar, pos);
 
 webix.ui({
-    id: "diary_layout", type: "space", rows: [
+    id: "diary_layout", type: "space", container: "div_main", rows: [
         {
             id: "records_layout", view: "flexlayout", type: "space",
             css: "layout_align", borderless: true, cols: [
