@@ -1,3 +1,7 @@
 .layout_align {
   	align-items: center;
 }
+
+.weekChangeButton:hover {
+    cursor: pointer;
+}

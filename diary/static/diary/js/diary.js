@@ -31,22 +31,19 @@ var URL_SUBJECTS = "/main/subjects/";
 var navBar = {
     id: "navbar", borderless: true, paddingY: 8, margin: 8, cols: [
         {
-            view: "button", id: "prev_button", name: "prev_button",
-            value: gettext("Previous"), tooltip: gettext("Previous"),
-            type: "iconTop", css: "fas fa-angle-double-left",
-            minWidth: 30, width: 35
+            view: "label", id: "prev_button", label: "", align: "center",
+            css: "fas fa-angle-double-left weekChangeButton",
+            width: 30, height: 30, tooltip: gettext("Previous week")
         },
         {
             view: "datepicker", id: "current_date", stringResult: false,
-            value: new Date(), icons: false,
-            invalid: true, invalidMessage: gettext("Invalid date"),
-            minWidth: 100, width: 120
+            value: new Date(), icons: false, minWidth: 100, width: 120,
+            invalid: true, invalidMessage: gettext("Invalid date")
         },
         {
-            view: "button", id: "next_button", name: "next_button",
-            value: gettext("Next"), tooltip: gettext("Next"),
-            type: "icon", css: "fas fa-angle-double-right",
-            minWidth: 30, width: 35
+            view: "label", id: "next_button", label: "", align: "center",
+            css: "fas fa-angle-double-right weekChangeButton",
+            width: 30, height: 30, tooltip: gettext("Next week")
         },
     ]
 };
