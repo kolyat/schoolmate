@@ -260,8 +260,11 @@ function updateDateStatus(_status) {
         function(e) { date_form.removeView(e.config["id"]); });
     if (_status["date_description"]) {
         _status["date_description"].forEach(el => {
-            date_form.addView({view: "label", align: "center",
-                               label: el["description"]});
+            date_form.addView({
+                view: "template", template: el["description"],
+                autoheight: true, borderless: true, type: "clean",
+                css: {"text-align": "center", "margin": "10px"}
+            });
         });
     }
     date_form.refresh();
