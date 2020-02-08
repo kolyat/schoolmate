@@ -69,12 +69,9 @@ function getTimetable(number) {
     timetable.refresh();
     timetable.hideOverlay();
     timetable.showOverlay(gettext("Loading..."));
-    if (number > 0) {
-        params = {form_number: number};
-    } else {
-        params = {};
-    }
-    var promise = webix.ajax().get(URL_TIMETABLE_DATA, params);
+    var params = 0;
+    if (number > 0) params = number;
+    var promise = webix.ajax().get(URL_TIMETABLE_DATA + params);
     var rows = new Object();
     DAYS_OF_WEEK.forEach((_, d) => {
         var lessons = new Array();

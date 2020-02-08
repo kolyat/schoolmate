@@ -24,4 +24,5 @@ urlpatterns = [
 
     # API
     path('data/', views.TimetableData.as_view()),
+    path('data/<int:form_number>', views.TimetableData.as_view()),
 ]

@@ -12,26 +12,25 @@
 `GET`
   
 * **URL parameters**:
-`none`
+    * Required:
+    `form_number=[integer]` (0 - get whole timetable for all school forms)
 
-* **Data parameters**
-    * Optional:
-    `form_number: integer`
+* **Data parameters**:
+`none`
 
 * **Success response**
     * Code: `200 OK`
  
-* **Error response**
+* **Error response**:
+    * Code: `404 PAGE NOT FOUND` if `form_number` less than zero or not integer
 
 ##### Sample call
 
 Request:
 ```
 webix.ajax().get(
-    "/data/",
-    {
-        form_number: 9
-    }
+    "/data/9",
+    {}
 );
 ```
 

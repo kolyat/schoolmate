@@ -62,7 +62,20 @@ class TimetableData(generics.ListAPIView):
         _date = timezone.localtime(timezone.now()).date()
         params = {'year__school_year__start_date__lte': _date,
                   'year__school_year__end_date__gte': _date}
-        if self.request.query_params.get('form_number'):
-            params.update({'school_form__form_number__number':
-                          int(self.request.query_params['form_number'])})
-        return models.TimetableSchoolForm.objects.filter(**params)
+        _form_number = self.kwargs.get('form_number', None)
+        try:
+            _form_number = int(_form_number)
+        except ValueError:
+            _form_number = None
+        except TypeError:
+            _form_number = None
+        if _form_number == None:
+            queryset = models.TimetableSchoolForm.objects.none()
+        elif _form_number > 0:
+            params.update({'school_form__form_number__number': _form_number})
+            queryset = models.TimetableSchoolForm.objects.filter(**params)
+        elif _form_number == 0:
+            queryset = models.TimetableSchoolForm.objects.filter(**params)
+        else:
+            queryset = models.TimetableSchoolForm.objects.none()
+        return queryset
