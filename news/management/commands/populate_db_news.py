@@ -21,13 +21,17 @@ from news import models as news_models
 from schoolmate import settings
 
 
+def prepare_news():
+    print('NEWS app')
+    print('Create new data:')
+    print('    {:.<25}...'.format('News articles'), end='', flush=True)
+    for _ in range(settings.LATEST_NEWS_COUNT * 2):
+        news_models.Article(**rndutils.new_article()).save()
+    print('OK')
+
+
 class Command(base.BaseCommand):
     requires_migrations_checks = True
 
     def handle(self, *args, **options):
-        print('NEWS app')
-        print('Create new data:')
-        print('    {:.<25}...'.format('News articles'), end='', flush=True)
-        for _ in range(settings.LATEST_NEWS_COUNT * 2):
-            news_models.Article(**rndutils.new_article()).save()
-        print('OK')
+        prepare_news()

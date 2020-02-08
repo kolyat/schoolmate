@@ -23,23 +23,27 @@ from school import models as school_models
 from account import models as account_models
 
 
+def prepare_account():
+    print('ACCOUNT app')
+    print('Create new data:')
+    print('    {:.<25}...'.format('Users'), end='', flush=True)
+    account_models.SchoolUser.objects.create_superuser(
+        **settings.USER_ADMIN)
+    student = copy.deepcopy(settings.USER_STUDENT)
+    form = student.pop('school_form')
+    form_number = school_models.FormNumber.objects.get(
+        number=form['form_number'])
+    form_letter = school_models.FormLetter.objects.get(
+        letter=form['form_letter'])
+    school_form = school_models.SchoolForm.objects.get(
+        form_number=form_number, form_letter=form_letter)
+    account_models.SchoolUser.objects.create_user(
+        **student, school_form=school_form)
+    print('OK')
+
+
 class Command(base.BaseCommand):
     requires_migrations_checks = True
 
     def handle(self, *args, **options):
-        print('ACCOUNT app')
-        print('Create new data:')
-        print('    {:.<25}...'.format('Users'), end='', flush=True)
-        account_models.SchoolUser.objects.create_superuser(
-            **settings.USER_ADMIN)
-        student = copy.deepcopy(settings.USER_STUDENT)
-        form = student.pop('school_form')
-        form_number = school_models.FormNumber.objects.get(
-            number=form['form_number'])
-        form_letter = school_models.FormLetter.objects.get(
-            letter=form['form_letter'])
-        school_form = school_models.SchoolForm.objects.get(
-            form_number=form_number, form_letter=form_letter)
-        account_models.SchoolUser.objects.create_user(
-            **student, school_form=school_form)
-        print('OK')
+        prepare_account()

@@ -17,10 +17,14 @@
 from django.core.management import base
 
 
+def prepare_diary():
+    print('DIARY app')
+    print('Create new data...', end='', flush=True)
+    print('OK')
+
+
 class Command(base.BaseCommand):
     requires_migrations_checks = True
 
     def handle(self, *args, **options):
-        print('DIARY app')
-        print('Create new data...', end='', flush=True)
-        print('OK')
+        prepare_diary()
