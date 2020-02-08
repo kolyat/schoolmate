@@ -16,9 +16,11 @@
 
 import pytest
 
-from account import models
-from testutils import settings
-from . import data_test_password_change, data_test_password_reset
+from school.management.commands.populate_db_school import prepare_school
+from account.management.commands.populate_db_account import prepare_account
+from news.management.commands.populate_db_news import prepare_news
+from timetable.management.commands.populate_db_timetable import prepare_timetable
+from diary.management.commands.populate_db_diary import prepare_diary
 
 
 @pytest.fixture(autouse=True)
@@ -26,21 +28,11 @@ def enable_db_access_for_all_tests(db):
     pass
 
 
-@pytest.fixture()
+@pytest.fixture(scope='session')
 def django_db_setup(django_db_setup, django_db_blocker):
     with django_db_blocker.unblock():
-        models.SchoolUser.objects.create_superuser(
-            username=settings.ADMIN_USER,
-            email=settings.ADMIN_EMAIL,
-            password=settings.ADMIN_PASS
-        )
-        models.SchoolUser.objects.create_user(
-            data_test_password_change.user['username'],
-            data_test_password_change.user['email'],
-            data_test_password_change.user['password']
-        )
-        models.SchoolUser.objects.create_user(
-            data_test_password_reset.user['username'],
-            data_test_password_reset.user['email'],
-            data_test_password_reset.user['password']
-        )
+        prepare_school()
+        prepare_account()
+        prepare_news()
+        prepare_timetable()
+        prepare_diary()

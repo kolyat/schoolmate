@@ -22,6 +22,7 @@ from django.conf import settings as django_settings
 from django.core import mail
 import pytest
 
+from account import models
 from testutils import settings, webutils
 from . import data_test_password_reset
 
@@ -78,6 +79,7 @@ class TestPasswordReset(webutils.SchoolmateClient):
     def test_password_reset_scenario(self):
         """Password reset scenario
         """
+        models.SchoolUser.objects.create_user(**data_test_password_reset.user)
         self.open(settings.LOGIN_URL)
         self.wait_for_ready_state_complete()
         self.click(**self.FORGOT_PASSWORD_BUTTON)

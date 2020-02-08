@@ -48,3 +48,5 @@ LOGOUT_URL = ''.join((BASE_URL, LOGOUT_PATH))
 
 PROFILE_PATH = '/profile/'
 PROFILE_URL = ''.join((BASE_URL, PROFILE_PATH))
+
+TIMETABLE_DATA_PATH = '/timetable/data/'

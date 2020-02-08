@@ -16,7 +16,6 @@
 
 import logging
 import ddt
-from selenium.webdriver.common.by import By
 from django.utils.translation import gettext_lazy as _
 
 from testutils import settings, ddtutils, webutils
@@ -30,11 +29,12 @@ class TestLogin(webutils.SchoolmateClient):
         """Log in as administrator
         """
         logging.info('Log in as administrator')
-        self.login(settings.ADMIN_USER, settings.ADMIN_PASS)
+        self.login(settings.USER_ADMIN['username'],
+                   settings.USER_ADMIN['password'])
         try:
             self.assertEqual(_('Main'), self.get_page_title())
             username = self.wait_for_element(**self.USER_MENU).text
-            self.assertEqual(settings.ADMIN_USER, username)
+            self.assertEqual(settings.USER_ADMIN['username'], username)
             logging.info('Login successful')
         except Exception as e:
             logging.error('Error while logging in as administrator')

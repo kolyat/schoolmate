@@ -28,7 +28,8 @@ class TestLogout(webutils.SchoolmateClient):
         """Normal logout
         """
         logging.info('Normal logout procedure test')
-        self.login(settings.ADMIN_USER, settings.ADMIN_PASS)
+        self.login(settings.USER_ADMIN['username'],
+                   settings.USER_ADMIN['password'])
         time.sleep(3)
         try:
             self.logout(by_url=False)

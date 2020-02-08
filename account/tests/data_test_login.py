@@ -22,13 +22,13 @@ from testutils import settings, rndutils
 
 validation_data = {
     'user-empty_pass-correct': [
-        {'username': '', 'password': settings.ADMIN_PASS},
+        {'username': '', 'password': settings.USER_ADMIN['password']},
         {'selector': '//div[@view_id="username"]/div[@role="alert"]',
          'by': By.XPATH},
         _('Username can not be empty')
     ],
     'user-correct_pass-empty': [
-        {'username': settings.ADMIN_USER, 'password': ''},
+        {'username': settings.USER_ADMIN['username'], 'password': ''},
         {'selector': '//div[@view_id="password"]/div[@role="alert"]',
          'by': By.XPATH},
         _('Password can not be empty')
@@ -37,12 +37,12 @@ validation_data = {
 
 wrong_creds = {
     'user-wrong_pass-correct': [{'username': 'a',
-                                 'password': settings.ADMIN_PASS}],
-    'user-correct_pass-wrong': [{'username': settings.ADMIN_USER,
+                                 'password': settings.USER_ADMIN['password']}],
+    'user-correct_pass-wrong': [{'username': settings.USER_ADMIN['username'],
                                  'password': 'n'}],
     'user-wrong_pass-wrong': [{'username': 'a', 'password': 'a'}],
-    'swapped_userpass': [{'username': settings.ADMIN_PASS,
-                          'password': settings.ADMIN_USER}],
+    'swapped_userpass': [{'username': settings.USER_ADMIN['username'],
+                          'password': settings.USER_ADMIN['password']}],
     'random_userpass': [{'username': rndutils.random_str(),
                          'password': rndutils.random_str()}]
 }

@@ -69,7 +69,7 @@ def new_schooluser():
     :return: dict with person data
     """
     random.seed()
-    _person = mimesis.Person(locale='ru')
+    _person = mimesis.Personal(locale='ru')
     _person_ru = mimesis.builtins.RussiaSpecProvider()
     _date = mimesis.Datetime()
     _gender = random.choice((enums.Gender.MALE, enums.Gender.FEMALE))

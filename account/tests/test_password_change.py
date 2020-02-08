@@ -16,8 +16,8 @@
 
 import logging
 import ddt
-from selenium.webdriver.common.by import By
 from django.utils.translation import gettext_lazy as _
+import pytest
 
 from testutils import ddtutils, rndutils, webutils
 from account import models
@@ -60,7 +60,13 @@ class TestPasswordChange(webutils.SchoolmateClient):
             self.fail(e)
 
 
+@pytest.fixture
+def password_change_error_user():
+    models.SchoolUser.objects.create_user(**data.user)
+
+
 @ddt.ddt
+@pytest.mark.usefixtures('password_change_error_user')
 class PasswordChangeError(webutils.SchoolmateClient):
     """Test password change errors"""
 
