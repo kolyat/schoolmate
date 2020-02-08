@@ -3,16 +3,25 @@
 
 ### API description
 
-|       |       |
-| ----- | ----- |
-| Title | Get timetable |
-| URL | /data/ |
-| Method | GET |
-| URL parameters | None |
-| Data parameters | **Optional:**<br>form_number: integer |
-| Success response | Code: 200 OK |
-| Error Response |       |
-| Notes |       |
+#### Get timetable
+
+* **URL**:
+`/data/`
+
+* **Method**:
+`GET`
+  
+* **URL parameters**:
+`none`
+
+* **Data parameters**
+    * Optional:
+    `form_number: integer`
+
+* **Success response**
+    * Code: `200 OK`
+ 
+* **Error response**
 
 ##### Sample call
 
@@ -44,8 +53,7 @@ Response data:
                 "lesson_number": 2,
                 "subject": "Physics",
                 "classroom": "2"
-            },
-            ...
+            }
         ]
     },
     {
@@ -57,8 +65,7 @@ Response data:
                 "lesson_number": 1,
                 "subject": "P.E.",
                 "classroom": ""
-            },
-            ...
+            }
         ]
     }
 ]
