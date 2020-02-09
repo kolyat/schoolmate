@@ -19,17 +19,21 @@ from django.core.management import base
 from school import models as school_models
 
 
+def clear_school():
+    print('SCHOOL app')
+    print('Clean up...', end=' ', flush=True)
+    school_models.Classroom.objects.all().delete()
+    school_models.YearSchedule.objects.all().delete()
+    school_models.SchoolYear.objects.all().delete()
+    school_models.DailySchedule.objects.all().delete()
+    school_models.SchoolForm.objects.all().delete()
+    school_models.FormNumber.objects.all().delete()
+    school_models.FormLetter.objects.all().delete()
+    print('OK')
+
+
 class Command(base.BaseCommand):
     requires_migrations_checks = True
 
     def handle(self, *args, **options):
-        print('SCHOOL app')
-        print('Clean up...', end=' ', flush=True)
-        school_models.Classroom.objects.all().delete()
-        school_models.YearSchedule.objects.all().delete()
-        school_models.SchoolYear.objects.all().delete()
-        school_models.DailySchedule.objects.all().delete()
-        school_models.SchoolForm.objects.all().delete()
-        school_models.FormNumber.objects.all().delete()
-        school_models.FormLetter.objects.all().delete()
-        print('OK')
+        clear_school()

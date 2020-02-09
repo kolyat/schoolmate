@@ -6,7 +6,7 @@ django-babel==0.6.2
 django-user-language-middleware==0.0.3
 ddt==1.2.0
 seleniumbase==1.16.15
-pytest-django==3.4.3
+pytest-django==3.8.0
 mimesis==1.0.4
 django-grappelli==2.11.1
 django-related-admin==0.7.0

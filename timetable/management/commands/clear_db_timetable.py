@@ -19,13 +19,17 @@ from django.core.management import base
 from timetable import models as timetable_models
 
 
+def clear_timetable():
+    print('TIMETABLE app')
+    print('Clean up...', end=' ', flush=True)
+    timetable_models.Timetable.objects.all().delete()
+    timetable_models.TimetableSchoolForm.objects.all().delete()
+    timetable_models.TimetableYear.objects.all().delete()
+    print('OK')
+
+
 class Command(base.BaseCommand):
     requires_migrations_checks = True
 
     def handle(self, *args, **options):
-        print('TIMETABLE app')
-        print('Clean up...', end=' ', flush=True)
-        timetable_models.Timetable.objects.all().delete()
-        timetable_models.TimetableSchoolForm.objects.all().delete()
-        timetable_models.TimetableYear.objects.all().delete()
-        print('OK')
+        clear_timetable()

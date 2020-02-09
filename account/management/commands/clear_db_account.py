@@ -19,11 +19,15 @@ from django.core.management import base
 from account import models as account_models
 
 
+def clear_account():
+    print('ACCOUNT app')
+    print('Clean up...', end=' ', flush=True)
+    account_models.SchoolUser.objects.all().delete()
+    print('OK')
+
+
 class Command(base.BaseCommand):
     requires_migrations_checks = True
 
     def handle(self, *args, **options):
-        print('ACCOUNT app')
-        print('Clean up...', end=' ', flush=True)
-        account_models.SchoolUser.objects.all().delete()
-        print('OK')
+        clear_account()

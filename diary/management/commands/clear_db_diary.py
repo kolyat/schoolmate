@@ -17,10 +17,14 @@
 from django.core.management import base
 
 
+def clear_diary():
+    print('TIMETABLE app')
+    print('Clean up...', end=' ', flush=True)
+    print('OK')
+
+
 class Command(base.BaseCommand):
     requires_migrations_checks = True
 
     def handle(self, *args, **options):
-        print('TIMETABLE app')
-        print('Clean up...', end=' ', flush=True)
-        print('OK')
+        clear_diary()

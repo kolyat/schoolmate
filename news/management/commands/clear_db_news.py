@@ -19,11 +19,15 @@ from django.core.management import base
 from news import models as news_models
 
 
+def clear_news():
+    print('NEWS app')
+    print('Clean up...', end=' ', flush=True)
+    news_models.Article.objects.all().delete()
+    print('OK')
+
+
 class Command(base.BaseCommand):
     requires_migrations_checks = True
 
     def handle(self, *args, **options):
-        print('NEWS app')
-        print('Clean up...', end=' ', flush=True)
-        news_models.Article.objects.all().delete()
-        print('OK')
+        clear_news()

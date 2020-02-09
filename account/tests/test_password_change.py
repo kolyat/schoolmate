@@ -17,9 +17,8 @@
 import logging
 import ddt
 from django.utils.translation import gettext_lazy as _
-import pytest
 
-from testutils import ddtutils, rndutils, webutils
+from testutils import ddtutils, rndutils, webutils, settings
 from account import models
 from . import data_test_password_change as data
 
@@ -60,19 +59,14 @@ class TestPasswordChange(webutils.SchoolmateClient):
             self.fail(e)
 
 
-@pytest.fixture
-def password_change_error_user():
-    models.SchoolUser.objects.create_user(**data.user)
-
-
 @ddt.ddt
-@pytest.mark.usefixtures('password_change_error_user')
 class PasswordChangeError(webutils.SchoolmateClient):
     """Test password change errors"""
 
     def setUp(self):
         super().setUp()
-        self.login(data.user['username'], data.user['password'])
+        self.login(settings.USER_STUDENT['username'],
+                   settings.USER_STUDENT['password'])
 
     @ddt.data(*ddtutils.prepare(data.validation_data))
     @ddt.unpack
@@ -106,7 +100,7 @@ class PasswordChangeError(webutils.SchoolmateClient):
             ''.format(new_password1, new_password2)
         )
         try:
-            self.change_password(data.user['password'],
+            self.change_password(settings.USER_STUDENT['password'],
                                  new_password1, new_password2)
             msg = self.wait_for_element(**self.MESSAGE).text
             self.assertEqual(_('New passwords are not the same'), msg)

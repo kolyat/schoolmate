@@ -17,10 +17,8 @@
 from django.utils.translation import gettext_lazy as _
 from selenium.webdriver.common.by import By
 
-from testutils import rndutils
+from testutils import settings
 
-
-user = rndutils.new_schooluser()
 
 validation_data = {
     'empty_old_password': [
@@ -31,14 +29,14 @@ validation_data = {
         _('Field can not be empty')
     ],
     'empty_new_password1': [
-        {'old_password': user['password'],
+        {'old_password': settings.USER_STUDENT['password'],
          'new_password1': '', 'new_password2': 'new_password'},
         {'selector': '//div[@view_id="new_password1"]/div[@role="alert"]',
          'by': By.XPATH},
         _('Field can not be empty')
     ],
     'empty_new_password2': [
-        {'old_password': user['password'],
+        {'old_password': settings.USER_STUDENT['password'],
          'new_password1': 'new_password', 'new_password2': ''},
         {'selector': '//div[@view_id="new_password2"]/div[@role="alert"]',
          'by': By.XPATH},

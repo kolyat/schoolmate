@@ -15,12 +15,9 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 import pytest
+from django.core import management
 
-from school.management.commands.populate_db_school import prepare_school
-from account.management.commands.populate_db_account import prepare_account
-from news.management.commands.populate_db_news import prepare_news
-from timetable.management.commands.populate_db_timetable import prepare_timetable
-from diary.management.commands.populate_db_diary import prepare_diary
+import prepare_db
 
 
 @pytest.fixture(autouse=True)
@@ -31,8 +28,5 @@ def enable_db_access_for_all_tests(db):
 @pytest.fixture(scope='session')
 def django_db_setup(django_db_setup, django_db_blocker):
     with django_db_blocker.unblock():
-        prepare_school()
-        prepare_account()
-        prepare_news()
-        prepare_timetable()
-        prepare_diary()
+        for app in prepare_db.APPS:
+            management.call_command('populate_db_{}'.format(app))
