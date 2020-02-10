@@ -17,6 +17,7 @@
 import time
 import logging
 from selenium.webdriver.common.by import By
+import pytest
 
 from testutils import rndutils, webutils
 from school import models as school_models
@@ -100,5 +101,4 @@ class TestProfile(webutils.SchoolmateClient):
 
 
 if __name__ == '__main__':
-    import pytest
     pytest.main()

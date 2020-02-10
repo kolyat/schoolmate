@@ -17,6 +17,7 @@
 import logging
 import ddt
 from django.utils.translation import gettext_lazy as _
+import pytest
 
 from testutils import settings, ddtutils, webutils
 from . import data_test_login
@@ -25,6 +26,7 @@ from . import data_test_login
 class TestLogin(webutils.SchoolmateClient):
     """Test normal login"""
 
+    @pytest.mark.usefixtures('prepare_test_accounts')
     def test_admin_login(self):
         """Log in as administrator
         """
@@ -87,5 +89,4 @@ class TestLoginError(webutils.SchoolmateClient):
 
 
 if __name__ == '__main__':
-    import pytest
     pytest.main()

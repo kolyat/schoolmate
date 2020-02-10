@@ -17,6 +17,7 @@
 import logging
 import ddt
 from django.utils.translation import gettext_lazy as _
+import pytest
 
 from testutils import ddtutils, rndutils, webutils, settings
 from account import models
@@ -59,6 +60,7 @@ class TestPasswordChange(webutils.SchoolmateClient):
             self.fail(e)
 
 
+@pytest.mark.usefixtures('prepare_test_accounts')
 @ddt.ddt
 class PasswordChangeError(webutils.SchoolmateClient):
     """Test password change errors"""
@@ -129,5 +131,4 @@ class PasswordChangeError(webutils.SchoolmateClient):
 
 
 if __name__ == '__main__':
-    import pytest
     pytest.main()

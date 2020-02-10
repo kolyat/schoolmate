@@ -15,18 +15,21 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 import pytest
-from django.core import management
 
-import prepare_db
-
-
-@pytest.fixture(autouse=True)
-def enable_db_access_for_all_tests(db):
-    pass
+from school.management.commands.populate_db_school import prepare_school
+from account.management.commands.populate_db_account import prepare_account
 
 
-@pytest.fixture(scope='session')
-def django_db_setup(django_db_setup, django_db_blocker):
-    with django_db_blocker.unblock():
-        for app in prepare_db.APPS:
-            management.call_command('populate_db_{}'.format(app))
+# @pytest.fixture(autouse=True)
+# def enable_db_access_for_all_tests(db):
+#     pass
+
+
+@pytest.fixture
+def prepare_test_school(db):
+    prepare_school()
+
+
+@pytest.fixture
+def prepare_test_accounts(db, prepare_test_school):
+    prepare_account()

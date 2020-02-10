@@ -17,8 +17,12 @@
 import time
 import logging
 from django.utils.translation import gettext_lazy as _
+import pytest
 
 from testutils import settings, webutils
+
+
+pytestmark = pytest.mark.usefixtures('prepare_test_accounts')
 
 
 class TestLogout(webutils.SchoolmateClient):
@@ -59,5 +63,4 @@ class TestLogout(webutils.SchoolmateClient):
 
 
 if __name__ == '__main__':
-    import pytest
     pytest.main()
