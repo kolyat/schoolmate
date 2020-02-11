@@ -22,7 +22,7 @@ from timetable import models as timetable_models
 from school.management.commands import _db_data
 
 
-def prepare_timetable():
+def prepare_timetable(forms=None):
     print('TIMETABLE app')
     print('Create new data:')
     print('    {:.<25}...'.format('School forms in timetable'),
@@ -31,7 +31,13 @@ def prepare_timetable():
         name=_db_data.SCHOOL_YEAR['name'])
     _timetable_year = timetable_models.TimetableYear(school_year=_year)
     _timetable_year.save()
-    _forms = school_models.SchoolForm.objects.all()
+    if forms:
+        numbers = [school_models.FormNumber.objects.get(number=f)
+                   for f in forms]
+        _forms = school_models.SchoolForm.objects.filter(
+            form_number__in=numbers)
+    else:
+        _forms = school_models.SchoolForm.objects.all()
     _timetable_forms = [timetable_models.TimetableSchoolForm(
         year=_timetable_year, school_form=f) for f in _forms]
     [f.save() for f in _timetable_forms]
