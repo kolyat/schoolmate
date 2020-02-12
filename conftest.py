@@ -18,6 +18,7 @@ import pytest
 
 from school.management.commands.populate_db_school import prepare_school
 from account.management.commands.populate_db_account import prepare_account
+from timetable.management.commands.populate_db_timetable import prepare_timetable
 
 
 # @pytest.fixture(autouse=True)
@@ -33,3 +34,8 @@ def prepare_test_school(db):
 @pytest.fixture
 def prepare_test_accounts(db, prepare_test_school):
     prepare_account()
+
+
+@pytest.fixture
+def prepare_test_timetable(db):
+    prepare_timetable(forms=[9, 10, 11])

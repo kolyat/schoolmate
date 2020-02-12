@@ -15,11 +15,17 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 import logging
+import json
 import ddt
 from rest_framework import test
+import pytest
 
 from testutils import settings, ddtutils
 from . import data_test_api_timetable
+
+
+pytestmark = pytest.mark.usefixtures('prepare_test_accounts',
+                                     'prepare_test_timetable')
 
 
 @ddt.ddt
@@ -27,24 +33,73 @@ class TestTimetableApi(test.APITestCase):
     """Test timetable API"""
 
     def setUp(self):
+        super().setUp()
         self.client.login(username=settings.USER_STUDENT['username'],
                           password=settings.USER_STUDENT['password'])
 
     def tearDown(self):
+        super().tearDown()
         self.client.logout()
+
+    @ddt.data(*ddtutils.prepare(data_test_api_timetable.positive_cases))
+    @ddt.unpack
+    def test_positive_cases(self, url, code, data):
+        """positive cases with response data
+
+        :param url: URL
+        :param code: expected code
+        :param data: expected response data
+        """
+        logging.info('Request: {}'.format(url))
+        try:
+            response = self.client.get(url)
+            response_data = json.dumps(response.data)
+            logging.info('Response code: {}'.format(response.status_code))
+            logging.info('Response data: {}'.format(response_data))
+            self.assertEqual(response.status_code, code)
+            # TODO: continue here
+        except Exception as e:
+            logging.error(e)
+            self.fail(e)
+
+    @ddt.data(*ddtutils.prepare(data_test_api_timetable.empty_cases))
+    @ddt.unpack
+    def test_empty_cases(self, url, code, data):
+        """Cases with empty response data
+
+        :param url: URL
+        :param code: expected code
+        :param data: expected response data
+        """
+        logging.info('Request: {}'.format(url))
+        try:
+            response = self.client.get(url)
+            response_data = json.dumps(response.data)
+            logging.info('Response code: {}'.format(response.status_code))
+            logging.info('Response data: {}'.format(response_data))
+            self.assertEqual(response.status_code, code)
+            self.assertJSONEqual(response_data, data)
+        except Exception as e:
+            logging.error(e)
+            self.fail(e)
 
     @ddt.data(*ddtutils.prepare(data_test_api_timetable.error_cases))
     @ddt.unpack
-    def test_login_validation(self, url, code):
+    def test_error_cases(self, url, code):
         """Test behaviour with invalid url
 
         :param url: wrong URL
         :param code: expected error code
         """
-        response = self.client.get(url)
-        self.assertEqual(response.status_code, code)
+        logging.info('Request: {}'.format(url))
+        try:
+            response = self.client.get(url)
+            logging.info('Response code: {}'.format(response.status_code))
+            self.assertEqual(response.status_code, code)
+        except Exception as e:
+            logging.error(e)
+            self.fail(e)
 
 
 if __name__ == '__main__':
-    import pytest
     pytest.main()

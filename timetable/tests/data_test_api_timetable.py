@@ -20,15 +20,15 @@ from testutils.settings import TIMETABLE_DATA_PATH as p
 
 
 positive_cases = {
-    '9': [p + '9', ],
-    '0': [p + '0', ],
+    '9': [p + '9', status.HTTP_200_OK, None],
+    '0': [p + '0', status.HTTP_200_OK, None],
 }
 empty_cases = {
-    '999': [p + '999', ],
-    'empty': [p, ],
-    'qp_minus1': [p + '?form_number=-1', ],
-    'qp_abc': [p + '?form_number=abc', ],
-    'qp_empty': [p + '?form_number=', ]
+    '999': [p + '999', status.HTTP_200_OK, []],
+    'empty': [p, status.HTTP_200_OK, []],
+    'qp_minus1': [p + '?form_number=-1', status.HTTP_200_OK, []],
+    'qp_abc': [p + '?form_number=abc', status.HTTP_200_OK, []],
+    'qp_empty': [p + '?form_number=', status.HTTP_200_OK, []]
 }
 error_cases = {
     'minus1': [p + '-1', status.HTTP_404_NOT_FOUND],
