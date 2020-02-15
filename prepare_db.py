@@ -32,7 +32,7 @@ APPS = (
 if __name__ == '__main__':
     db_info = DATABASES['default']
     if 'sqlite' in db_info['ENGINE']:
-        print('Re-creating SQLite database file "{}"...'
+        print('Re-creating SQLite database file "{}"... '
               ''.format(db_info['NAME']), end='', flush=True)
         open(db_info['NAME'], mode='w').close()
         print('OK')
