@@ -37,8 +37,8 @@ def prepare_account():
         letter=form['form_letter'])
     school_form = school_models.SchoolForm.objects.get(
         form_number=form_number, form_letter=form_letter)
-    account_models.SchoolUser.objects.create_user(
-        **student, school_form=school_form)
+    student['school_form'] = school_form
+    account_models.SchoolUser.objects.create_user(student)
     print('OK')
 
 
