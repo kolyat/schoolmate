@@ -123,14 +123,14 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': 'schoolmate.db'
     },
-    'postgres': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'schoolmate',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
-        'HOST': 'localhost',
-        'PORT': '5432'
-    }
+    # 'postgres': {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'NAME': 'schoolmate',
+    #     'USER': 'postgres',
+    #     'PASSWORD': 'postgres',
+    #     'HOST': 'localhost',
+    #     'PORT': '5432'
+    # }
 }
 
 
