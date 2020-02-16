@@ -5,6 +5,9 @@ django-jinja==2.6.0
 django-babel==0.6.2
 django-user-language-middleware==0.0.3
 ddt==1.2.2
+zipp==0.5.2
+more_itertools==7.2.0
+pytest_html==1.13.0
 pytest==4.6.9
 seleniumbase==1.22.6
 pytest-django==3.8.0
