@@ -27,18 +27,34 @@ def prepare_account():
     print('ACCOUNT app')
     print('Create new data:')
     print('    {:.<25}...'.format('Users'), end='', flush=True)
+    # Python 3.4.4 support
     account_models.SchoolUser.objects.create_superuser(
-        **settings.USER_ADMIN)
+        username=settings.USER_ADMIN['username'],
+        password=settings.USER_ADMIN['password'],
+        email=settings.USER_ADMIN['email']
+    )
     student = copy.deepcopy(settings.USER_STUDENT)
-    form = student.pop('school_form')
     form_number = school_models.FormNumber.objects.get(
-        number=form['form_number'])
+        number=student['school_form']['form_number'])
     form_letter = school_models.FormLetter.objects.get(
-        letter=form['form_letter'])
+        letter=student['school_form']['form_letter'])
     school_form = school_models.SchoolForm.objects.get(
         form_number=form_number, form_letter=form_letter)
     student['school_form'] = school_form
-    account_models.SchoolUser.objects.create_user(student)
+    # Python 3.4.4 support
+    account_models.SchoolUser.objects.create_user(
+        username=student['username'],
+        password=student['password'],
+        email=student['email'],
+        first_name=student['first_name'],
+        patronymic_name=student['patronymic_name'],
+        last_name=student['last_name'],
+        birth_date=student['birth_date'],
+        school_form=student['school_form'],
+        is_superuser=student['is_superuser'],
+        is_staff=student['is_staff'],
+        is_active=student['is_active']
+    )
     print('OK')
 
 
