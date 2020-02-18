@@ -66,16 +66,18 @@ class Db(object):
                                 ''.format(self.db_info['NAME']))
             print('OK')
 
-    def makemigrations(self, app, remove_dir=False):
-        if remove_dir:
-            print('Re-creating migration directory for {}...'.format(app),
-                  end=' ', flush=True)
-            _dir = os.path.join(self.project_root, app, 'migrations')
-            if os.path.exists(_dir):
-                shutil.rmtree(_dir)
-            os.mkdir(_dir)
-            open(os.path.join(_dir, '__init__.py'), 'w').close()
-            print('OK')
+    def remove_migrations(self, app):
+        print('Re-creating migration directory for {}...'.format(app),
+              end=' ', flush=True)
+        _dir = os.path.join(self.project_root, app, 'migrations')
+        if os.path.exists(_dir):
+            shutil.rmtree(_dir)
+        os.mkdir(_dir)
+        open(os.path.join(_dir, '__init__.py'), 'w').close()
+        print('OK')
+
+    @staticmethod
+    def make_migrations(app):
         management.call_command('makemigrations', app)
 
     @staticmethod
@@ -98,7 +100,9 @@ if __name__ == '__main__':
     db = Db(settings.DATABASES['default'], settings.BASE_DIR)
     db.create()
     for a in APPS:
-        db.makemigrations(a, remove_dir=True)
+        db.remove_migrations(a)
+    for a in APPS:
+        db.make_migrations(a)
     db.migrate()
     for a in APPS:
         db.populate(a)
