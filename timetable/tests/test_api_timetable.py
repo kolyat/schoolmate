@@ -43,12 +43,12 @@ class TestTimetableApi(test.APITestCase):
 
     @ddt.data(*ddtutils.prepare(data_test_api_timetable.positive_cases))
     @ddt.unpack
-    def test_positive_cases(self, url, code, data):
+    def test_positive_cases(self, url, code, validate):
         """positive cases with response data
 
         :param url: URL
         :param code: expected code
-        :param data: expected response data
+        :param validate: validation function for response data
         """
         logging.info('Request: {}'.format(url))
         try:
@@ -57,7 +57,7 @@ class TestTimetableApi(test.APITestCase):
             logging.info('Response code: {}'.format(response.status_code))
             logging.info('Response data: {}'.format(response_data))
             self.assertEqual(response.status_code, code)
-            # TODO: continue here
+            self.assertIsNotNone(validate(response_data))
         except Exception as e:
             logging.error(e)
             self.fail(e)

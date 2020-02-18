@@ -15,13 +15,45 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 from rest_framework import status
+import fastjsonschema
 
 from testutils.settings import TIMETABLE_DATA_PATH as p
 
 
+validate = fastjsonschema.compile({
+    '$schema': 'http://json-schema.org/draft-07/schema#',
+    'type': 'array',
+    'minItems': 0,
+    'uniqueItems': True,
+    'items': {
+        'type': 'object',
+        'properties': {
+            'form_number': {'type': 'integer', 'minimum': 0},
+            'form_letter': {'type': 'string'},
+            'lessons': {
+                'type': 'array',
+                'minItems': 0,
+                'maxItems': 42,
+                'uniqueItems': True,
+                'items': {
+                    'type': 'object',
+                    'properties': {
+                        'day_of_week': {'type': 'integer', 'minimum': 1, 'maximum': 8},
+                        'lesson_number': {'type': 'integer', 'minimum': 1, 'maximum': 7},
+                        'subject': {'type': 'string', 'minLength': 1},
+                        'classroom': {'type': 'string', 'minLength': 0}
+                    },
+                    'additionalProperties': False,
+                    'required': ['day_of_week', 'lesson_number', 'subject', 'classroom']
+                }
+            }
+        }
+    }
+})
+
 positive_cases = {
-    '9': [p + '9', status.HTTP_200_OK, None],
-    '0': [p + '0', status.HTTP_200_OK, None],
+    '9': [p + '9', status.HTTP_200_OK, validate],
+    '0': [p + '0', status.HTTP_200_OK, validate],
 }
 empty_cases = {
     '999': [p + '999', status.HTTP_200_OK, []],
