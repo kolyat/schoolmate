@@ -20,8 +20,7 @@ from news import models as news_models
 
 
 def clear_news():
-    print('NEWS app')
-    print('Clean up...', end=' ', flush=True)
+    print('Remove NEWS app data...', end=' ', flush=True)
     news_models.Article.objects.all().delete()
     print('OK')
 

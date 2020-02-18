@@ -18,8 +18,7 @@ from django.core.management import base
 
 
 def prepare_diary():
-    print('DIARY app')
-    print('Create new data...', end='', flush=True)
+    print('Create data for DIARY app:', end=' ', flush=True)
     print('OK')
 
 

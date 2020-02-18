@@ -18,8 +18,7 @@ from django.core.management import base
 
 
 def clear_diary():
-    print('TIMETABLE app')
-    print('Clean up...', end=' ', flush=True)
+    print('Remove DIARY app data...', end=' ', flush=True)
     print('OK')
 
 

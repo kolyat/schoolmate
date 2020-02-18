@@ -20,8 +20,7 @@ from account import models as account_models
 
 
 def clear_account():
-    print('ACCOUNT app')
-    print('Clean up...', end=' ', flush=True)
+    print('Remove ACCOUNT app data...', end=' ', flush=True)
     account_models.SchoolUser.objects.all().delete()
     print('OK')
 

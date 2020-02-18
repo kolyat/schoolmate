@@ -20,8 +20,7 @@ from timetable import models as timetable_models
 
 
 def clear_timetable():
-    print('TIMETABLE app')
-    print('Clean up...', end=' ', flush=True)
+    print('Remove TIMETABLE app data...', end=' ', flush=True)
     timetable_models.Timetable.objects.all().delete()
     timetable_models.TimetableSchoolForm.objects.all().delete()
     timetable_models.TimetableYear.objects.all().delete()

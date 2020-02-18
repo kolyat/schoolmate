@@ -23,8 +23,7 @@ from school.management.commands import _db_data
 
 
 def prepare_timetable(forms=None):
-    print('TIMETABLE app')
-    print('Create new data:')
+    print('Create data for TIMETABLE app:')
     print('    {:.<25}...'.format('School forms in timetable'),
           end='', flush=True)
     _year = school_models.SchoolYear.objects.get(

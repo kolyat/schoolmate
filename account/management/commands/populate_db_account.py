@@ -24,8 +24,7 @@ from account import models as account_models
 
 
 def prepare_account():
-    print('ACCOUNT app')
-    print('Create new data:')
+    print('Create data for ACCOUNT app:')
     print('    {:.<25}...'.format('Users'), end='', flush=True)
     # Python 3.4.4 support
     account_models.SchoolUser.objects.create_superuser(

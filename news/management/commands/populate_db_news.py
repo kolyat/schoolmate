@@ -22,8 +22,7 @@ from schoolmate import settings
 
 
 def prepare_news():
-    print('NEWS app')
-    print('Create new data:')
+    print('Create data for NEWS app:')
     print('    {:.<25}...'.format('News articles'), end='', flush=True)
     for _ in range(settings.LATEST_NEWS_COUNT * 2):
         news_models.Article(**rndutils.new_article()).save()
