@@ -58,7 +58,7 @@ class Db(object):
         else:
             print('Deleting database "{}"...'.format(self.db_info['NAME']),
                   end=' ', flush=True)
-            self.cursor.execute('DROP DATABASE {}'
+            self.cursor.execute('DROP DATABASE IF EXISTS {}'
                                 ''.format(self.db_info['NAME']))
             print('OK')
             print('Re-creating database...', end=' ', flush=True)
