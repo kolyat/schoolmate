@@ -16,10 +16,10 @@
 
 import os
 import shutil
+from django.core import management
 
-from schoolmate.settings import BASE_DIR, DATABASES
 
-
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'schoolmate.settings')
 APPS = (
     'school',
     'account',
@@ -29,41 +29,76 @@ APPS = (
 )
 
 
+class Db(object):
+    def __init__(self, db_info, project_root):
+        self.db_info = db_info
+        self.project_root = project_root
+        if 'postgresql' in self.db_info['ENGINE']:
+            import psycopg2
+            self.connection = psycopg2.connect(
+                user=db_info['USER'], password=db_info['PASSWORD'],
+                host=db_info['HOST'], port=db_info['PORT']
+            )
+            self.connection.autocommit = True
+            self.cursor = self.connection.cursor()
+        else:
+            from django.db import connection
+            self.connection = connection
+            self.cursor = self.connection.cursor()
+
+    def __del__(self):
+        self.connection.close()
+
+    def create(self):
+        if 'sqlite' in self.db_info['ENGINE']:
+            print('Re-creating SQLite database file "{}"...'
+                  ''.format(self.db_info['NAME']), end=' ', flush=True)
+            open(self.db_info['NAME'], mode='w').close()
+            print('OK')
+        else:
+            print('Deleting database "{}"...'.format(self.db_info['NAME']),
+                  end=' ', flush=True)
+            self.cursor.execute('DROP DATABASE {}'
+                                ''.format(self.db_info['NAME']))
+            print('OK')
+            print('Re-creating database...', end=' ', flush=True)
+            self.cursor.execute('CREATE DATABASE {} WITH ENCODING \'UTF8\''
+                                ''.format(self.db_info['NAME']))
+            print('OK')
+
+    def makemigrations(self, app, remove_dir=False):
+        if remove_dir:
+            print('Re-creating migration directory for {}...'.format(app),
+                  end=' ', flush=True)
+            _dir = os.path.join(self.project_root, app, 'migrations')
+            if os.path.exists(_dir):
+                shutil.rmtree(_dir)
+            os.mkdir(_dir)
+            open(os.path.join(_dir, '__init__.py'), 'w').close()
+            print('OK')
+        management.call_command('makemigrations', app)
+
+    @staticmethod
+    def migrate(*args):
+        management.call_command('migrate', *args)
+
+    @staticmethod
+    def clear(app):
+        management.call_command('clear_db_{}'.format(app))
+
+    @staticmethod
+    def populate(app):
+        management.call_command('populate_db_{}'.format(app))
+
+
 if __name__ == '__main__':
-    db_info = DATABASES['default']
-    if 'sqlite' in db_info['ENGINE']:
-        print('Re-creating SQLite database file "{}"... '
-              ''.format(db_info['NAME']), end='', flush=True)
-        open(db_info['NAME'], mode='w').close()
-        print('OK')
-    if 'postgresql' in db_info['ENGINE']:
-        import psycopg2
-        connection = psycopg2.connect(
-            user=db_info['USER'], password=db_info['PASSWORD'],
-            host=db_info['HOST'], port=db_info['PORT']
-        )
-        connection.autocommit = True
-        cursor = connection.cursor()
-    else:
-        os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'schoolmate.settings')
-        from django.db import connection
-        cursor = connection.cursor()
-    if 'sqlite' not in db_info['ENGINE']:
-        print('Deleting database "{}"...'.format(db_info['NAME']),
-              end=' ', flush=True)
-        cursor.execute('DROP DATABASE {}'.format(db_info['NAME']))
-        print('OK')
-        print('Re-creating database...', end=' ', flush=True)
-        cursor.execute('CREATE DATABASE {} WITH ENCODING \'UTF8\''
-                       ''.format(db_info['NAME']))
-        print('OK')
-    print('Re-creating migration directories...', end=' ', flush=True)
-    dirs = [os.path.join(BASE_DIR, app, 'migrations') for app in APPS]
-    [shutil.rmtree(d) if os.path.exists(d) else None for d in dirs]
-    [os.mkdir(d) for d in dirs]
-    [open(os.path.join(d, '__init__.py'), 'w').close() for d in dirs]
-    print('OK')
-    [os.system('manage.py makemigrations {}'.format(app)) for app in APPS]
-    os.system('manage.py migrate')
-    # [os.system('manage.py clear_db_{}'.format(app)) for app in reversed(APPS)]
-    [os.system('manage.py populate_db_{}'.format(app)) for app in APPS]
+    import django
+    django.setup()
+    from django.conf import settings
+    db = Db(settings.DATABASES['default'], settings.BASE_DIR)
+    db.create()
+    for a in APPS:
+        db.makemigrations(a, remove_dir=True)
+    db.migrate()
+    for a in APPS:
+        db.populate(a)
