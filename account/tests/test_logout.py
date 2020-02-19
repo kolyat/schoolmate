@@ -22,9 +22,6 @@ import pytest
 from testutils import settings, webutils
 
 
-pytestmark = pytest.mark.usefixtures('prepare_test_accounts')
-
-
 class TestLogout(webutils.SchoolmateClient):
     """Test logout procedure"""
 

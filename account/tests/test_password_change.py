@@ -60,12 +60,11 @@ class TestPasswordChange(webutils.SchoolmateClient):
             self.fail(e)
 
 
-@pytest.mark.usefixtures('prepare_test_accounts')
 @ddt.ddt
 class PasswordChangeError(webutils.SchoolmateClient):
     """Test password change errors"""
 
-    def setUp(self):
+    def setUp(self, *args, **kwargs):
         super().setUp()
         self.login(settings.USER_STUDENT['username'],
                    settings.USER_STUDENT['password'])

@@ -26,7 +26,6 @@ from . import data_test_login
 class TestLogin(webutils.SchoolmateClient):
     """Test normal login"""
 
-    @pytest.mark.usefixtures('prepare_test_accounts')
     def test_admin_login(self):
         """Log in as administrator
         """

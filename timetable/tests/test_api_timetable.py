@@ -24,10 +24,6 @@ from testutils import settings, ddtutils
 from . import data_test_api_timetable
 
 
-pytestmark = pytest.mark.usefixtures('prepare_test_accounts',
-                                     'prepare_test_timetable')
-
-
 @ddt.ddt
 class TestTimetableApi(test.APITestCase):
     """Test timetable API"""
@@ -53,11 +49,10 @@ class TestTimetableApi(test.APITestCase):
         logging.info('Request: {}'.format(url))
         try:
             response = self.client.get(url)
-            response_data = json.dumps(response.data)
             logging.info('Response code: {}'.format(response.status_code))
-            logging.info('Response data: {}'.format(response_data))
+            logging.info('Response data: {}'.format(json.dumps(response.data)))
             self.assertEqual(response.status_code, code)
-            self.assertIsNotNone(validate(response_data))
+            self.assertIsNotNone(validate(response.data))
         except Exception as e:
             logging.error(e)
             self.fail(e)

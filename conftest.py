@@ -16,26 +16,37 @@
 
 import pytest
 
+import prepare_db
 from school.management.commands.populate_db_school import prepare_school
 from account.management.commands.populate_db_account import prepare_account
 from timetable.management.commands.populate_db_timetable import prepare_timetable
 
 
-# @pytest.fixture(autouse=True)
-# def enable_db_access_for_all_tests(db):
-#     pass
+@pytest.fixture(autouse=True)
+def enable_db_access_for_all_tests(db):
+    pass
 
 
-@pytest.fixture
-def prepare_test_school(db):
+@pytest.fixture(scope='session', autouse=True)
+def django_db_modify_db_settings():
+    pass
+
+
+@pytest.fixture(scope='session')
+def django_db_setup(django_db_blocker):
+    from django.conf import settings
+    db_name = settings.DATABASES['default']['NAME']
+    settings.DATABASES['default']['NAME'] = 'test_' + db_name
+    django_db_blocker.unblock()
+    db = prepare_db.Db(settings.DATABASES['default'], settings.BASE_DIR)
+    db.create()
+    for a in prepare_db.APPS:
+        db.remove_migrations(a)
+    for a in prepare_db.APPS:
+        db.make_migrations(a)
+    db.migrate()
+    # for a in prepare_db.APPS:
+    #     db.populate(a)
     prepare_school()
-
-
-@pytest.fixture
-def prepare_test_accounts(db, prepare_test_school):
     prepare_account()
-
-
-@pytest.fixture
-def prepare_test_timetable(db):
-    prepare_timetable(forms=[9, 10, 11])
+    prepare_timetable(forms=[9, 11])
