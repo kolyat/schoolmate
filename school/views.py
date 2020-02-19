@@ -45,28 +45,27 @@ class YearScheduleSerializer(serializers.ModelSerializer):
         fields = ('period_type', 'description')
 
 
+@method_decorator(auth_decorators.login_required, name='dispatch')
 class Status(views.APIView):
-    @method_decorator(auth_decorators.login_required)
+
     def get(self, request):
-        """:return: server's date and time with period description
-        """
         now = timezone.localtime(timezone.now())
         date = now.date()
         time = now.timetz()
-        status_info = dict()
+        status_info = {}
         ys_obj = models.YearSchedule.objects.filter(
             start_date__lte=date, end_date__gte=date).order_by('-period_type')
         ys_serializer = YearScheduleSerializer(ys_obj, many=True)
         status_info.update({'date_description': ys_serializer.data})
         for ys in ys_serializer.data:
-            if ys['period_type'] == 'Q':
+            if ys.get('period_type', None) == 'Q':
                 ds_obj = models.DailySchedule.objects.filter(
                         start_time__lte=time, end_time__gte=time)
                 ds_serializer = DailyScheduleSerializer(ds_obj, many=True)
                 status_info.update({'time_description': ds_serializer.data})
                 break
         else:
-            status_info.update({'time_description': list()})
+            status_info.update({'time_description': []})
         status_info.update({
             'year': date.year, 'month': date.month, 'day': date.day,
             'hour': time.hour, 'minute': time.minute, 'second': time.second
