@@ -36,10 +36,10 @@ urlpatterns = [
              success_url='/profile/password_reset/sent/'
          ),
          name='password_reset'),
-    path('password_reset/sent/',
+    path('password_reset/email/',
          auth_views.PasswordResetDoneView.as_view(
-             template_name='password_reset_sent.html.j2'),
-         name='password_reset_sent'),
+             template_name='password_reset_email_sent.html.j2'),
+         name='password_reset_email_sent'),
     path('password_reset/<uidb64>/<token>/',
          auth_views.PasswordResetConfirmView.as_view(
              template_name='password_reset_confirm.html.j2',

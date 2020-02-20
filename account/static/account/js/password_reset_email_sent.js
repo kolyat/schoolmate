@@ -25,8 +25,8 @@ var URL_LOGIN = "/profile/login/";
 // Widget description
 //
 var sentForm = {
-    view: "form", name: "password_reset_sent_form", width: 660,
-    id: "password_reset_sent_form", elements: [
+    view: "form", name: "password_reset_email_sent_form", width: 660,
+    id: "password_reset_email_sent_form", elements: [
         {
             view: "label", align: "center",
             label: gettext("Password reset confirmation has been sent to your e-mail"),
