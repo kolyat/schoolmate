@@ -49,6 +49,8 @@ LOGOUT_URL = ''.join((BASE_URL, LOGOUT_PATH))
 PROFILE_PATH = '/profile/'
 PROFILE_URL = ''.join((BASE_URL, PROFILE_PATH))
 
+NEWS_PATH = '/news/'
+
 STATUS_PATH = '/main/status/'
 SCHOOL_FORMS_PATH = '/main/forms/'
 SCHEDULE_YEAR_PATH = '/main/schedule/year/'

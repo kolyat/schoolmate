@@ -19,6 +19,7 @@ import pytest
 import prepare_db
 from school.management.commands.populate_db_school import prepare_school
 from account.management.commands.populate_db_account import prepare_account
+from news.management.commands.populate_db_news import prepare_news
 from timetable.management.commands.populate_db_timetable import prepare_timetable
 
 
@@ -49,4 +50,5 @@ def django_db_setup(django_db_blocker):
     #     db.populate(a)
     prepare_school()
     prepare_account()
+    prepare_news(number_of_articles=9)
     prepare_timetable(forms=[9, 11])
