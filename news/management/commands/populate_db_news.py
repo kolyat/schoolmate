@@ -21,11 +21,17 @@ from news import models as news_models
 from schoolmate import settings
 
 
-def prepare_news():
+default_number = settings.LATEST_NEWS_COUNT * 2
+
+
+def prepare_news(number_of_articles=default_number):
     print('Create data for NEWS app:')
-    print('    {:.<25}...'.format('News articles'), end='', flush=True)
-    for _ in range(settings.LATEST_NEWS_COUNT * 2):
-        news_models.Article(**rndutils.new_article()).save()
+    print('    {:.<25}...'.format('{} articles'.format(number_of_articles)),
+          end='', flush=True)
+    for _ in range(number_of_articles):
+        article = rndutils.new_article()
+        news_models.Article(title=article['title'],
+                            content=article['content']).save()
     print('OK')
 
 
