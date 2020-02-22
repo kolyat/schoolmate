@@ -46,7 +46,7 @@ class TestTimetableApi(test.APITestCase):
         :param code: expected code
         :param validate: validation function for response data
         """
-        logging.info('Request: {}'.format(url))
+        logging.info('Request: GET {}'.format(url))
         try:
             response = self.client.get(url)
             logging.info('Response code: {}'.format(response.status_code))
@@ -66,7 +66,7 @@ class TestTimetableApi(test.APITestCase):
         :param code: expected code
         :param data: expected response data
         """
-        logging.info('Request: {}'.format(url))
+        logging.info('Request: GET {}'.format(url))
         try:
             response = self.client.get(url)
             response_data = json.dumps(response.data)
@@ -86,7 +86,7 @@ class TestTimetableApi(test.APITestCase):
         :param url: wrong URL
         :param code: expected error code
         """
-        logging.info('Request: {}'.format(url))
+        logging.info('Request: GET {}'.format(url))
         try:
             response = self.client.get(url)
             logging.info('Response code: {}'.format(response.status_code))

@@ -46,7 +46,7 @@ class TestSchoolApi(test.APITestCase):
         :param code: expected code
         :param validate: validation function for response data
         """
-        logging.info('Request: {}'.format(url))
+        logging.info('Request: GET {}'.format(url))
         try:
             response = self.client.get(url)
             logging.info('Response code: {}'.format(response.status_code))
