@@ -16,13 +16,15 @@
 
 import logging
 import json
+import ddt
 from rest_framework import test, status
 import pytest
 
-from testutils import settings
+from testutils import settings, ddtutils
 from . import data_test_api_user_info
 
 
+@ddt.ddt
 class TestUserInfoApi(test.APITestCase):
     """Test user info API"""
 
@@ -38,7 +40,7 @@ class TestUserInfoApi(test.APITestCase):
     def test_get_user_info(self):
         """Get user info
         """
-        logging.info('Request: {}'.format(settings.USER_INFO_PATH))
+        logging.info('Request: GET {}'.format(settings.USER_INFO_PATH))
         try:
             response = self.client.get(settings.USER_INFO_PATH)
             logging.info('Response code: {}'.format(response.status_code))
@@ -47,6 +49,32 @@ class TestUserInfoApi(test.APITestCase):
             self.assertIsNotNone(
                 data_test_api_user_info.validate_user_info(response.data)
             )
+        except Exception as e:
+            logging.error(e)
+            self.fail(e)
+
+    @ddt.data(*ddtutils.prepare(data_test_api_user_info.lang_cases))
+    @ddt.unpack
+    def test_patch_user_language(self, payload, code, data):
+        """Change user language
+
+        :param payload: request payload
+        :param code: expected code
+        :param data: expected response data
+        """
+        logging.info('Request: PATCH {}'.format(settings.USER_INFO_PATH))
+        logging.info('Payload: {}'.format(payload))
+        try:
+            response = self.client.patch(settings.USER_INFO_PATH,
+                                         data=payload)
+            logging.info('Response code: {}'.format(response.status_code))
+            logging.info('Response data: {}'.format(json.dumps(response.data)))
+            self.assertEqual(response.status_code, code)
+            if response.status_code == status.HTTP_202_ACCEPTED:
+                self.assertEqual(data['language'], response.data['language'])
+            else:
+                self.assertEqual(data['code'],
+                                 response.data['language'][0].code)
         except Exception as e:
             logging.error(e)
             self.fail(e)

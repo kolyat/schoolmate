@@ -15,6 +15,7 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 import fastjsonschema
+from rest_framework import status
 
 
 validate_user_info = fastjsonschema.compile({
@@ -46,7 +47,7 @@ validate_user_info = fastjsonschema.compile({
             'items': {
                 'type': 'object',
                 'properties': {
-                    'language_code': {'$ref': '#/language'},
+                    'language_code': {'type': 'string', 'minLength': 2},
                     'language_name': {'type': 'string', 'minLength': 2},
                 },
                 'additionalProperties': False,
@@ -67,3 +68,21 @@ validate_user_info = fastjsonschema.compile({
         'languages'
     ]
 })
+
+lang_cases = {
+    'positive': [
+        {'language': 'de'}, status.HTTP_202_ACCEPTED, {'language': 'de'}
+    ],
+    'wrong_language': [
+        {'language': 'xxx'}, status.HTTP_400_BAD_REQUEST, {'code': 'invalid_choice'}
+    ],
+    'wrong_type': [
+        {'language': 123}, status.HTTP_400_BAD_REQUEST, {'code': 'invalid_choice'}
+    ],
+    'empty_language': [
+        {'language': ''}, status.HTTP_400_BAD_REQUEST, {'code': 'invalid_choice'}
+    ],
+    'empty_payload': [
+        {}, status.HTTP_400_BAD_REQUEST, {'code': 'null'}
+    ],
+}
