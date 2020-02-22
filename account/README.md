@@ -114,3 +114,64 @@ Response data:
     ]
 }
 ```
+
+#### Set user language
+
+Change current user's language (locale).
+
+* **URL**:
+`/profile/user/info/`
+
+* **Method**:
+`PATCH`
+  
+* **URL parameters**:
+`none`
+
+* **Data parameters**:
+    * Required:
+    `{'language': 'string'}`
+
+* **Success response**
+    * Code: `200 OK`
+
+* **Error response**
+    * Code: `400 BAD REQUEST`
+ 
+##### Sample call
+
+Request:
+```
+webix.ajax().patch(
+    "/profile/user/info/",
+    {"language": "de"}
+);
+```
+
+Response data:
+```json
+{
+    "username": "sam",
+    "first_name": "Sam",
+    "last_name": "Smith",
+    "patronymic_name": "J.",
+    "birth_date": "2020-02-02",
+    "email": "sam@school.edu",
+    "school_form": "9B",
+    "language": "de",
+    "languages": [
+        [
+            "ru",
+            "Русский"
+        ],
+        [
+            "en",
+            "English"
+        ],
+        [
+            "de",
+            "Deutsch"
+        ]
+    ]
+}
+```

@@ -177,8 +177,10 @@ function loadPersonalInfoForm() {
     promise.then(data => {
         var user_info = data.json();
         user_info.languages.forEach(language => {
-            language_select.config["options"].push(
-                {"id": language[0], "value": language[1]});
+            language_select.config["options"].push({
+                "id": language["language_code"],
+                "value": language["language_name"]
+            });
         });
         personal_info_form.parse(user_info, "json");
         language_select.config["value"] = user_info.language;

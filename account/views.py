@@ -68,38 +68,39 @@ class UserInfoSerializer(serializers.ModelSerializer):
                   'birth_date', 'email', 'school_form', 'language')
 
 
+@method_decorator(auth_decorators.login_required, name='dispatch')
 class UserInfo(rest_views.APIView):
     model = models.SchoolUser
 
-    def get_object(self, username):
-        try:
-            return self.model.objects.get(username=username)
-        except self.model.objects.DoesNotExist:
-            raise http.Http404
-
-    @method_decorator(auth_decorators.login_required)
     def get(self, request):
         """:return: user info and available system languages
         """
-        user_obj = self.get_object(request.user.username)
+        user_obj = self.model.objects.get(username=request.user.username)
         serializer = UserInfoSerializer(user_obj)
         user_info = serializer.data
-        user_info.update({'languages': settings.LANGUAGES})
+        user_info.update({
+            'languages': [
+                {
+                    'language_code': lang[0],
+                    'language_name': lang[1]
+                } for lang in settings.LANGUAGES
+            ]
+        })
         return response.Response(user_info, status=status.HTTP_200_OK)
 
-    @method_decorator(auth_decorators.login_required)
     def patch(self, request):
         """Change user's language
 
         :return: 200 OK - actual user's data
         :return: 400 BAD REQUEST - serializer's errors
         """
-        user_obj = self.get_object(request.user.username)
-        new_lang = {
-            'username': request.user.username,
-            'language': request.data['language']
-        }
-        serializer = UserInfoSerializer(user_obj, data=new_lang)
+        user_obj = self.model.objects.get(username=request.user.username)
+        serializer = UserInfoSerializer(
+            user_obj, data={
+                'username': request.user.username,
+                'language': request.data.get('language', None)
+            }
+        )
         if serializer.is_valid():
             serializer.save()
             return response.Response(serializer.validated_data,
