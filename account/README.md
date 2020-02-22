@@ -133,7 +133,7 @@ Change current user's language (locale).
     `{'language': 'string'}`
 
 * **Success response**
-    * Code: `200 OK`
+    * Code: `202 ACCEPTED`
 
 * **Error response**
     * Code: `400 BAD REQUEST`
