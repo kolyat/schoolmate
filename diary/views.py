@@ -23,6 +23,7 @@ from django.core import serializers as renderers
 from django.contrib.auth import decorators as auth_decorators
 from django.views.decorators import http as http_decorators
 from django.utils.decorators import method_decorator
+from django.utils.translation import gettext as _
 from rest_framework import views, serializers, response, status
 
 from . import models
@@ -69,13 +70,20 @@ class RecordWriteSerializer(serializers.ModelSerializer):
 
 @method_decorator(auth_decorators.login_required, name='dispatch')
 class Record(views.APIView):
+
     def get(self, request, *args, **kwargs):
         _date = datetime.date(kwargs['year'], kwargs['month'], kwargs['day'])
         # Get timetable from requested date
         _form = account_models.SchoolUser.objects.get(
             username=request.user).school_form
-        _form_number = _form.form_number.number
-        _form_letter = _form.form_letter.letter
+        try:
+            _form_number = _form.form_number.number
+            _form_letter = _form.form_letter.letter
+        except AttributeError:
+            return response.Response(
+                {'error': _('Current user is not assigned to any of school forms')},
+                status=status.HTTP_424_FAILED_DEPENDENCY
+            )
         params = {'form__year__school_year__start_date__lte': _date,
                   'form__year__school_year__end_date__gte': _date,
                   'form__school_form__form_number__number': _form_number,
@@ -108,14 +116,20 @@ class Record(views.APIView):
             item.update({'marks': ''})
             item.update({'signature': ''})
             response_data.append(item)
-        return response.Response(response_data)
+        return response.Response(response_data, status.HTTP_200_OK)
 
     def post(self, request, *args, **kwargs):
         _date = datetime.date(kwargs['year'], kwargs['month'], kwargs['day'])
         _data = request.data
-        subj = school_models.SchoolSubject.objects.get(
-            subject__exact=_data['subject'])
-        _data['subject'] = subj.id
+        try:
+            subj = school_models.SchoolSubject.objects.get(
+                subject__exact=_data.get('subject', None))
+            _data['subject'] = subj.id
+        except exceptions.ObjectDoesNotExist:
+            return response.Response(
+                {'subject': _('Given school subject does not exist')},
+                status=status.HTTP_400_BAD_REQUEST
+            )
         serializer = RecordWriteSerializer(data=_data)
         if not serializer.is_valid():
             return response.Response(serializer.errors,
