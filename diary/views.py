@@ -49,6 +49,15 @@ class TimetableRecordSerializer(serializers.ModelSerializer):
         fields = ('lesson_num', 'subject')
 
 
+class RecordSerializer(serializers.ModelSerializer):
+    date = serializers.DateField()
+    subject = serializers.StringRelatedField()
+
+    class Meta:
+        model = models.DiaryRecord
+        fields = ('date', 'lesson_number', 'subject', 'text')
+
+
 class RecordRetrieveSerializer(serializers.ModelSerializer):
     subject = serializers.StringRelatedField()
 
@@ -134,7 +143,8 @@ class Record(views.APIView):
         :param request: client's request
         :param kwargs: 'year', 'month', 'day'
 
-        :return: 400 BAD REQUEST;
+        :return: 400 BAD REQUEST; school subject does not exist, serializer
+                 errors
         :return: 201 CREATED; new record
         :return: 202 ACCEPTED; update existing record
         """
@@ -161,9 +171,13 @@ class Record(views.APIView):
             r.subject = subj
             r.text = serializer.validated_data['text']
             r.save()
-            return response.Response(renderers.serialize('json', (r,)),
-                                     status=status.HTTP_202_ACCEPTED)
+            _status = status.HTTP_202_ACCEPTED
         except exceptions.ObjectDoesNotExist:
             serializer.save(user=request.user, date=_date)
-            return response.Response(serializer.data,
-                                     status=status.HTTP_201_CREATED)
+            _status = status.HTTP_201_CREATED
+        r = models.DiaryRecord.objects.get(
+            user__exact=request.user, date=_date,
+            lesson_number=serializer.validated_data['lesson_number']
+        )
+        s = RecordSerializer(r)
+        return response.Response(s.data, status=_status)
