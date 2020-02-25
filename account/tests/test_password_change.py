@@ -25,8 +25,8 @@ from . import data_test_password_change as data
 
 
 class TestPasswordChange(webutils.SchoolmateClient):
-    """Test normal password change"""
-
+    """Test normal password change
+    """
     def test_password_change_with_relogin(self):
         """Change password and re-login
         """
@@ -62,8 +62,8 @@ class TestPasswordChange(webutils.SchoolmateClient):
 
 @ddt.ddt
 class PasswordChangeError(webutils.SchoolmateClient):
-    """Test password change errors"""
-
+    """Test password change errors
+    """
     def setUp(self, *args, **kwargs):
         super().setUp()
         self.login(settings.USER_STUDENT['username'],

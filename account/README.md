@@ -60,7 +60,7 @@ Response data:
 
 #### Get user info
 
-Retrieves user info and available system languages.
+Retrieve user info and available system languages.
 
 * **URL**:
 `/profile/user/info/`

@@ -24,8 +24,8 @@ from . import data_test_login
 
 
 class TestLogin(webutils.SchoolmateClient):
-    """Test normal login"""
-
+    """Test normal login
+    """
     def test_admin_login(self):
         """Log in as administrator
         """
@@ -45,8 +45,8 @@ class TestLogin(webutils.SchoolmateClient):
 
 @ddt.ddt
 class TestLoginError(webutils.SchoolmateClient):
-    """Test login errors"""
-
+    """Test login errors
+    """
     @ddt.data(*ddtutils.prepare(data_test_login.validation_data))
     @ddt.unpack
     def test_login_validation(self, creds, selector, message):

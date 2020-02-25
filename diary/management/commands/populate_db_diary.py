@@ -18,6 +18,8 @@ from django.core.management import base
 
 
 def prepare_diary():
+    """Generate diary testing data
+    """
     print('Create data for DIARY app:', end=' ', flush=True)
     print('OK')
 

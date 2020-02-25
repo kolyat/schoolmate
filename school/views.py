@@ -47,8 +47,14 @@ class YearScheduleSerializer(serializers.ModelSerializer):
 
 @method_decorator(auth_decorators.login_required, name='dispatch')
 class Status(views.APIView):
-
+    """Retrieve server's date and time with period descriptions
+    """
     def get(self, request):
+        """
+        :param request: client's request
+        :return: 200 OK; JSON object with date/time and additional period
+                 description
+        """
         now = timezone.localtime(timezone.now())
         date = now.date()
         time = now.timetz()
@@ -83,6 +89,8 @@ class FormNumberSerializer(serializers.ModelSerializer):
 
 @method_decorator(auth_decorators.login_required, name='dispatch')
 class Forms(generics.ListAPIView):
+    """Retrieve list of school forms
+    """
     serializer_class = FormNumberSerializer
     queryset = models.FormNumber.objects.all()
 
@@ -95,6 +103,8 @@ class YearScheduleViewSerializer(serializers.ModelSerializer):
 
 @method_decorator(auth_decorators.login_required, name='dispatch')
 class YearScheduleView(generics.ListAPIView):
+    """Retrieve schedule of current year
+    """
     serializer_class = YearScheduleViewSerializer
 
     def get_queryset(self):
@@ -113,6 +123,8 @@ class DailyScheduleViewSerializer(serializers.ModelSerializer):
 
 @method_decorator(auth_decorators.login_required, name='dispatch')
 class DailyScheduleView(generics.ListAPIView):
+    """Retrieve daily schedule
+    """
     serializer_class = DailyScheduleViewSerializer
     queryset = models.DailySchedule.objects.all().order_by('start_time')
 
@@ -124,5 +136,7 @@ class SubjectSerializer(serializers.ModelSerializer):
 
 
 class Subjects(generics.ListAPIView):
+    """Retrieve list of school subjects
+    """
     serializer_class = SubjectSerializer
     queryset = models.SchoolSubject.objects.all().order_by('subject')

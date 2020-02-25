@@ -56,6 +56,8 @@ class TimetableSchoolFormSerializer(serializers.ModelSerializer):
 
 @method_decorator(auth_decorators.login_required, name='dispatch')
 class TimetableData(generics.ListAPIView):
+    """Retrieve timetable (full or for specified school form number)
+    """
     serializer_class = TimetableSchoolFormSerializer
 
     def get_queryset(self):

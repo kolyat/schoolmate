@@ -23,8 +23,8 @@ from testutils import settings, webutils
 
 
 class TestLogout(webutils.SchoolmateClient):
-    """Test logout procedure"""
-
+    """Test logout procedure
+    """
     def test_logout(self):
         """Normal logout
         """

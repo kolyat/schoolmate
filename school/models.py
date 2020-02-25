@@ -33,6 +33,8 @@ YEAR_PERIOD_TYPES = (
 
 
 class FormLetter(models.Model):
+    """Describes parallel of school form
+    """
     letter = models.CharField(
         max_length=2, blank=False, null=False,
         choices=tuple(zip(FORM_LETTERS, FORM_LETTERS)),
@@ -52,6 +54,8 @@ class FormLetter(models.Model):
 
 
 class FormNumber(models.Model):
+    """Describes year № of education
+    """
     number = models.PositiveSmallIntegerField(
         blank=False, null=False,
         choices=tuple(zip(FORM_NUMBERS, [str(n) for n in FORM_NUMBERS])),

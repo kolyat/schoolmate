@@ -25,6 +25,10 @@ default_number = settings.LATEST_NEWS_COUNT * 2
 
 
 def prepare_news(number_of_articles=default_number):
+    """Generate defined number of news articles
+
+    :param number_of_articles: number of news articles
+    """
     print('Create data for NEWS app:')
     print('    {:.<25}...'.format('{} articles'.format(number_of_articles)),
           end='', flush=True)

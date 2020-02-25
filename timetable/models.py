@@ -32,6 +32,8 @@ days_of_week = dict(DAYS_OF_WEEK)
 
 
 class TimetableYear(models.Model):
+    """Proxy model for school year
+    """
     school_year = models.ForeignKey(
         school_models.SchoolYear, on_delete=models.PROTECT,
         verbose_name=_('School year')
@@ -49,6 +51,8 @@ class TimetableYear(models.Model):
 
 
 class TimetableSchoolForm(models.Model):
+    """Link school year to school forms
+    """
     year = models.ForeignKey(TimetableYear, on_delete=models.PROTECT,
                              verbose_name=_('Year'))
     school_form = models.ForeignKey(
@@ -69,6 +73,8 @@ class TimetableSchoolForm(models.Model):
 
 
 class Timetable(models.Model):
+    """Represents timetable
+    """
     form = models.ForeignKey(TimetableSchoolForm, on_delete=models.PROTECT,
                              verbose_name=_('Form'), related_name='lessons')
     day_of_week = models.PositiveSmallIntegerField(

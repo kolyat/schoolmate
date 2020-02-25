@@ -21,6 +21,8 @@ from . import settings
 
 
 class SchoolmateClient(seleniumbase.BaseCase):
+    """Base class for testing using selenium
+    """
     MESSAGE = {'selector': '//div[@class="webix_message_area"]/div/div',
                'by': By.XPATH}
 

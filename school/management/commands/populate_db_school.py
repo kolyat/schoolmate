@@ -21,6 +21,8 @@ from . import _db_data
 
 
 def prepare_school():
+    """Generate model of a school
+    """
     print('Create data for SCHOOL app:')
     print('    {:.<25}...'.format('School forms'), end='', flush=True)
     for l in _db_data.FORM_LETTERS:

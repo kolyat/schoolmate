@@ -22,6 +22,8 @@ from account import models as account_models
 
 
 class DiaryRecord(models.Model):
+    """Represents diary record
+    """
     user = models.ForeignKey(
         account_models.SchoolUser, on_delete=models.CASCADE,
         verbose_name=_('Diary record'), related_name='diary_records'

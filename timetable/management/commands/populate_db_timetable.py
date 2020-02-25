@@ -23,8 +23,13 @@ from school.management.commands import _db_data
 
 
 def prepare_timetable(forms=None):
+    """Generate timetable
+
+    :param forms: list of form numbers; timetable will be generates for all
+                  school forms if not specified
+    """
     print('Create data for TIMETABLE app:')
-    print('    {:.<25}...'.format('School forms in timetable'),
+    print('    {:.<25}...'.format('School forms for timetable'),
           end='', flush=True)
     _year = school_models.SchoolYear.objects.get(
         name=_db_data.SCHOOL_YEAR['name'])

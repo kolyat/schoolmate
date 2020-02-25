@@ -30,7 +30,14 @@ APPS = (
 
 
 class Db(object):
+    """This class is used for operations with database and migrations, and to
+    prepare database with predefined testing data
+    """
     def __init__(self, db_info, project_root):
+        """
+        :param db_info: dict with database settings
+        :param project_root: root directory of the project
+        """
         self.db_info = db_info
         self.project_root = project_root
         if 'postgresql' in self.db_info['ENGINE']:
@@ -50,6 +57,8 @@ class Db(object):
         self.connection.close()
 
     def create(self):
+        """Database re-creation procedures
+        """
         if 'sqlite' in self.db_info['ENGINE']:
             print('Re-creating SQLite database file "{}"...'
                   ''.format(self.db_info['NAME']), end=' ', flush=True)
@@ -67,6 +76,10 @@ class Db(object):
             print('OK')
 
     def remove_migrations(self, app):
+        """Re-create migration directory of project's application
+
+        :param app: application name
+        """
         print('Re-creating migration directory for {}...'.format(app),
               end=' ', flush=True)
         _dir = os.path.join(self.project_root, app, 'migrations')
@@ -78,18 +91,35 @@ class Db(object):
 
     @staticmethod
     def make_migrations(app):
+        """Make migrations for project's application
+
+        :param app: application name
+        """
         management.call_command('makemigrations', app)
 
     @staticmethod
     def migrate(*args):
+        """Start migration procedure
+
+        :param args: _optional_ name of application
+        """
         management.call_command('migrate', *args)
 
     @staticmethod
     def clear(app):
+        """Remove any data from database related to specified application
+
+        :param app: application name
+        """
         management.call_command('clear_db_{}'.format(app))
 
     @staticmethod
     def populate(app):
+        """Populate database with predefined testing data related to specified
+        application
+
+        :param app: application name
+        """
         management.call_command('populate_db_{}'.format(app))
 
 

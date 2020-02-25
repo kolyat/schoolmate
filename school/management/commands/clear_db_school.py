@@ -20,6 +20,8 @@ from school import models as school_models
 
 
 def clear_school():
+    """Remove school's model from database
+    """
     print('Remove SCHOOL app data...', end=' ', flush=True)
     school_models.Classroom.objects.all().delete()
     school_models.YearSchedule.objects.all().delete()

@@ -18,6 +18,8 @@ from django.core.management import base
 
 
 def clear_diary():
+    """remove all diary records
+    """
     print('Remove DIARY app data...', end=' ', flush=True)
     print('OK')
 

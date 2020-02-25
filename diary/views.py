@@ -70,8 +70,18 @@ class RecordWriteSerializer(serializers.ModelSerializer):
 
 @method_decorator(auth_decorators.login_required, name='dispatch')
 class Record(views.APIView):
-
+    """Interface for operating with diary records
+    """
     def get(self, request, *args, **kwargs):
+        """Retrieve timetable and records for specified date
+
+        :param request: client's request
+        :param kwargs: 'year', 'month', 'day'
+
+        :return: 200 OK
+        :return: 424 FAILED DEPENDENCY; if user is not assigned to any
+                 of school forms
+        """
         _date = datetime.date(kwargs['year'], kwargs['month'], kwargs['day'])
         # Get timetable from requested date
         _form = account_models.SchoolUser.objects.get(
@@ -119,6 +129,15 @@ class Record(views.APIView):
         return response.Response(response_data, status.HTTP_200_OK)
 
     def post(self, request, *args, **kwargs):
+        """Create/update diary record
+
+        :param request: client's request
+        :param kwargs: 'year', 'month', 'day'
+
+        :return: 400 BAD REQUEST;
+        :return: 201 CREATED; new record
+        :return: 202 ACCEPTED; update existing record
+        """
         _date = datetime.date(kwargs['year'], kwargs['month'], kwargs['day'])
         _data = request.data
         try:

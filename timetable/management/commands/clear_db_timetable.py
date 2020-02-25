@@ -20,6 +20,8 @@ from timetable import models as timetable_models
 
 
 def clear_timetable():
+    """Remove timetable data from database
+    """
     print('Remove TIMETABLE app data...', end=' ', flush=True)
     timetable_models.Timetable.objects.all().delete()
     timetable_models.TimetableSchoolForm.objects.all().delete()

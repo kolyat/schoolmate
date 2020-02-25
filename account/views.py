@@ -70,6 +70,8 @@ class UserInfoSerializer(serializers.ModelSerializer):
 
 @method_decorator(auth_decorators.login_required, name='dispatch')
 class UserInfo(rest_views.APIView):
+    """User info interface
+    """
     model = models.SchoolUser
 
     def get(self, request):
@@ -91,8 +93,8 @@ class UserInfo(rest_views.APIView):
     def patch(self, request):
         """Change user's language
 
-        :return: 200 OK - actual user's data
-        :return: 400 BAD REQUEST - serializer's errors
+        :return: 202 ACCEPTED; username and current locale
+        :return: 400 BAD REQUEST; serializer's errors
         """
         user_obj = self.model.objects.get(username=request.user.username)
         serializer = UserInfoSerializer(

@@ -33,5 +33,7 @@ class ArticleSerializer(serializers.ModelSerializer):
 
 @method_decorator(auth_decorators.login_required, name='dispatch')
 class ArticleView(generics.ListAPIView):
+    """Retrieve list of news
+    """
     serializer_class = ArticleSerializer
     queryset = models.Article.objects.all()[:settings.LATEST_NEWS_COUNT]

@@ -5,7 +5,7 @@
 
 #### Get status
 
-Retrieves server's date and time with period description
+Retrieve server's date and time with period description
 
 * **URL**:
 `/main/status/`
@@ -58,7 +58,7 @@ Response data:
 
 #### Get school forms
 
-Retrieves list of school forms
+Retrieve list of school forms
 
 * **URL**:
 `/main/forms/`
@@ -196,7 +196,7 @@ Response data:
 
 #### Get school subjects
 
-Retrieves list of school subjects
+Retrieve list of school subjects
 
 * **URL**:
 `/main/subjects/`
