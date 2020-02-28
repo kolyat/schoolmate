@@ -60,3 +60,5 @@ SCHEDULE_DAY_PATH = '/main/schedule/day/'
 SCHOOL_SUBJECTS_PATH = '/main/subjects/'
 
 TIMETABLE_DATA_PATH = '/timetable/data/'
+
+DIARY_PATH = '/diary/'

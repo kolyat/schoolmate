@@ -21,10 +21,9 @@ validate = fastjsonschema.compile({
     '$schema': 'http://json-schema.org/draft-07/schema#',
     'definitions': {
         'record': {
-            '$id': '#record',
             'type': 'object',
             'properties': {
-                'date': {'type': 'string', 'pattern': '\d{4}-\d{2}-\d{2}'},
+                'date': {'type': 'string', 'format': 'date'},
                 'id': {'type': 'integer'},
                 'lesson_number': {'type': 'integer', 'minimum': 1, 'maximum': 7},
                 'subject': {'type': 'string'},
@@ -41,8 +40,8 @@ validate = fastjsonschema.compile({
             'type': 'array',
             'minItems': 6,
             'maxItems': 6,
-            'items': {'$ref': '#record'}
+            'items': {'$ref': '#/definitions/record'}
         },
-        {'$ref': '#record'}
+        {'$ref': '#/definitions/record'}
     ]
 })
