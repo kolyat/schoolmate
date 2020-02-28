@@ -26,8 +26,8 @@ from . import data_test_api_school
 
 @ddt.ddt
 class TestSchoolApi(test.APITestCase):
-    """Test school API"""
-
+    """Test school API
+    """
     def setUp(self):
         super().setUp()
         self.client.login(username=settings.USER_STUDENT['username'],

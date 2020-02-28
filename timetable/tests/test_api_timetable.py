@@ -26,8 +26,8 @@ from . import data_test_api_timetable
 
 @ddt.ddt
 class TestTimetableApi(test.APITestCase):
-    """Test timetable API"""
-
+    """Test timetable API
+    """
     def setUp(self):
         super().setUp()
         self.client.login(username=settings.USER_STUDENT['username'],
