@@ -21,8 +21,8 @@ validate = fastjsonschema.compile({
     '$schema': 'http://json-schema.org/draft-07/schema#',
     'definitions': {
         'record': {
-            'type': 'object',
             '$id': '#record',
+            'type': 'object',
             'properties': {
                 'date': {'type': 'string', 'pattern': '\d{4}-\d{2}-\d{2}'},
                 'id': {'type': 'integer'},
@@ -33,7 +33,7 @@ validate = fastjsonschema.compile({
                 'signature': {'type': 'string'},
             },
             'additionalProperties': False,
-            'required': ['date', 'lesson_num', 'subject', 'text']
+            'required': ['date', 'lesson_number', 'subject', 'text']
         }
     },
     'oneOf': [
