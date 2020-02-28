@@ -32,7 +32,7 @@ Retrieve diary records with timetable for specified date
 Request:
 ```
 webix.ajax().get(
-    "/diary/2019/02/29/",
+    "/diary/2020/02/29/",
     {}
 );
 ```
@@ -42,52 +42,64 @@ Response data:
 [
     {
         "id": 1,
-        "lesson_num": 1,
+        "date": "2020-02-29",
+        "lesson_number": 1,
         "subject": "Algebra",
-        "record": "Some records here",
+        "text": "Some records here",
         "marks": "",
         "signature": ""
     },
     {
         "id": 2,
-        "lesson_num": 2,
+        "date": "2020-02-29",
+        "lesson_number": 2,
         "subject": "Physics",
+        "text": "",
         "marks": "",
         "signature": ""
     },
     {
         "id": 3,
-        "lesson_num": 3,
+        "date": "2020-02-29",
+        "lesson_number": 3,
         "subject": "Chemistry",
-        "record": "Some records here",
+        "text": "Some records here",
         "marks": "",
         "signature": ""
     },
     {
         "id": 4,
-        "lesson_num": 4,
+        "date": "2020-02-29",
+        "lesson_number": 4,
         "subject": "Biology",
+        "text": "",
         "marks": "",
         "signature": ""
     },
     {
         "id": 5,
-        "lesson_num": 5,
+        "date": "2020-02-29",
+        "lesson_number": 5,
         "subject": "P.E.",
+        "text": "",
         "marks": "",
         "signature": ""
     },
     {
         "id": 6,
-        "lesson_num": 6,
-        "subject": "",
+        "date": "2020-02-29",
+        "lesson_number": 6,
+        "subject": " ",
+        "text": "",
         "marks": "",
         "signature": ""
     },
     {
         "id": 7,
-        "lesson_num": 7,
-        "subject": "",
+        "date": "2020-02-29",
+        "lesson_number": 7,
+        "subject": " ",
+        "text": "",
         "marks": "",
         "signature": ""
     }
@@ -124,7 +136,7 @@ Response data:
 Request:
 ```
 webix.ajax().post(
-    "/diary/2019/02/29/",
+    "/diary/2020/02/29/",
     {
         "lesson_number": 3,
         "subject": "Chemistry",
@@ -136,6 +148,7 @@ webix.ajax().post(
 Response data:
 ```json
 {
+    "user": "sam",
     "date": "2020-02-29",
     "lesson_number": 3,
     "subject": "Chemistry",
