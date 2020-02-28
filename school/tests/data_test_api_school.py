@@ -108,10 +108,8 @@ endpoints = {
                 'type': 'object',
                 'properties': {
                     'description': {'type': 'string', 'minLength': 1},
-                    'start_date': {'type': 'string',
-                                   'pattern': '\d{4}-\d{2}-\d{2}'},
-                    'end_date': {'type': 'string',
-                                 'pattern': '\d{4}-\d{2}-\d{2}'},
+                    'start_date': {'type': 'string', 'format': 'date'},
+                    'end_date': {'type': 'string', 'format': 'date'},
                 },
                 'additionalProperties': False,
                 'required': ['description', 'start_date', 'end_date']

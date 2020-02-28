@@ -38,8 +38,8 @@ validate = fastjsonschema.compile({
     'oneOf': [
         {
             'type': 'array',
-            'minItems': 6,
-            'maxItems': 6,
+            'minItems': 7,
+            'maxItems': 7,
             'items': {'$ref': '#/definitions/record'}
         },
         {'$ref': '#/definitions/record'}

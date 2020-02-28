@@ -28,11 +28,11 @@ validate_user_info = fastjsonschema.compile({
         'patronymic_name': {'type': ['string', 'null']},
         'birth_date': {
             'anyOf': [
-                {'type': 'string', 'pattern': '\d{4}-\d{2}-\d{2}'},
+                {'type': 'string', 'format': 'date'},
                 {'type': 'null'}
             ]
         },
-        'email': {'type': 'string', 'pattern': '[a-zA-Z-_.]{2,}@[a-zA-Z-_]{2,}(\.[a-zA-Z]{2,})+'},
+        'email': {'type': 'string', 'format': 'idn-email'},
         'school_form': {
             'anyOf': [
                 {'type': 'string', 'pattern': '\d+\D+'},

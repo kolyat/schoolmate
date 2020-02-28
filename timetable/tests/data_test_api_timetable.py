@@ -38,13 +38,16 @@ validate = fastjsonschema.compile({
                 'items': {
                     'type': 'object',
                     'properties': {
-                        'day_of_week': {'type': 'integer', 'minimum': 1, 'maximum': 8},
-                        'lesson_number': {'type': 'integer', 'minimum': 1, 'maximum': 7},
+                        'day_of_week': {'type': 'integer',
+                                        'minimum': 1, 'maximum': 8},
+                        'lesson_number': {'type': 'integer',
+                                          'minimum': 1, 'maximum': 7},
                         'subject': {'type': 'string', 'minLength': 1},
                         'classroom': {'type': 'string', 'minLength': 0}
                     },
                     'additionalProperties': False,
-                    'required': ['day_of_week', 'lesson_number', 'subject', 'classroom']
+                    'required': ['day_of_week', 'lesson_number',
+                                 'subject', 'classroom']
                 }
             }
         }

@@ -31,7 +31,7 @@ endpoints = {
             'items': {
                 'type': 'object',
                 'properties': {
-                    'created': {'type': 'string', 'pattern': '\d{4}-\d{2}-\d{2}'},
+                    'created': {'type': 'string', 'format': 'date'},
                     'title': {'type': 'string', 'minLength': 1},
                     'content': {'type': 'string', 'minLength': 1},
                     'author': {'type': ['string', 'null']},

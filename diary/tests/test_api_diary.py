@@ -15,6 +15,7 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 import logging
+import json
 from rest_framework import test, status
 import pytest
 
@@ -41,10 +42,11 @@ class TestDiaryApiRetrieve(test.APITestCase):
         logging.info('Request: GET {}'.format(url))
         try:
             response = self.client.get(url)
+            data = json.loads(response.content)
             logging.info('Response code: {}'.format(response.status_code))
-            logging.info('Response data: {}'.format(response.data))
+            logging.info('Response data: {}'.format(data))
             self.assertEqual(response.status_code, status.HTTP_200_OK)
-            self.assertIsNotNone(data_test_api_diary.validate(response.data))
+            self.assertIsNotNone(data_test_api_diary.validate(data))
         except Exception as e:
             logging.error(e)
             self.fail(e)
