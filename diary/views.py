@@ -19,7 +19,6 @@ import collections
 
 from django import shortcuts
 from django.core import exceptions
-from django.core import serializers as renderers
 from django.contrib.auth import decorators as auth_decorators
 from django.views.decorators import http as http_decorators
 from django.utils.decorators import method_decorator
@@ -49,7 +48,7 @@ class TimetableRecordSerializer(serializers.ModelSerializer):
         fields = ('lesson_num', 'subject')
 
 
-class RecordSerializer(serializers.ModelSerializer):
+class RecordRetrieveSerializer(serializers.ModelSerializer):
     date = serializers.DateField()
     subject = serializers.StringRelatedField()
 
@@ -58,15 +57,12 @@ class RecordSerializer(serializers.ModelSerializer):
         fields = ('date', 'lesson_number', 'subject', 'text')
 
 
-class RecordRetrieveSerializer(serializers.ModelSerializer):
-    subject = serializers.StringRelatedField()
-
-    class Meta:
-        model = models.DiaryRecord
-        fields = ('lesson_number', 'subject', 'text')
-
-
 class RecordWriteSerializer(serializers.ModelSerializer):
+    user = serializers.PrimaryKeyRelatedField(
+        read_only=False, many=False,
+        queryset=account_models.SchoolUser.objects.all()
+    )
+    date = serializers.DateField()
     subject = serializers.PrimaryKeyRelatedField(
         read_only=False, many=False,
         queryset=school_models.SchoolSubject.objects.all()
@@ -74,13 +70,15 @@ class RecordWriteSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.DiaryRecord
-        fields = ('lesson_number', 'subject', 'text')
+        fields = ('user', 'date', 'lesson_number', 'subject', 'text')
 
 
 @method_decorator(auth_decorators.login_required, name='dispatch')
 class Record(views.APIView):
     """Interface for operating with diary records
     """
+    model = models.DiaryRecord
+
     def get(self, request, *args, **kwargs):
         """Retrieve timetable and records for specified date
 
@@ -95,43 +93,44 @@ class Record(views.APIView):
         # Get timetable from requested date
         _form = account_models.SchoolUser.objects.get(
             username=request.user).school_form
-        try:
-            _form_number = _form.form_number.number
-            _form_letter = _form.form_letter.letter
-        except AttributeError:
+        if _form == None:
             return response.Response(
-                {'error': _('Current user is not assigned to any of school forms')},
+                {'school_form': _('Current user is not assigned '
+                                  'to any of school forms')},
                 status=status.HTTP_424_FAILED_DEPENDENCY
             )
         params = {'form__year__school_year__start_date__lte': _date,
                   'form__year__school_year__end_date__gte': _date,
-                  'form__school_form__form_number__number': _form_number,
-                  'form__school_form__form_letter__letter': _form_letter,
+                  'form__school_form': _form,
                   'day_of_week': _date.weekday()+2}
-        object_tt = tt_models.Timetable.objects.filter(**params)
-        serializer_tt = TimetableRecordSerializer(object_tt, many=True)
-        data_tt = serializer_tt.data
+        tt_object = tt_models.Timetable.objects.filter(**params)
+        tt_serializer = TimetableRecordSerializer(tt_object, many=True)
+        tt_data = tt_serializer.data
         # Get diary records from requested date
         params = {'user': request.user, 'date': _date}
-        object_rec = models.DiaryRecord.objects.filter(**params)
-        serializer_rec = RecordRetrieveSerializer(object_rec, many=True)
-        data_rec = serializer_rec.data
+        rec_object = self.model.objects.filter(**params)
+        rec_serializer = RecordRetrieveSerializer(rec_object, many=True)
+        rec_data = rec_serializer.data
+        rec_data_dict = {
+            it['lesson_number']: {'subject': it['subject'], 'text': it['text']}
+            for it in rec_data
+        }
         # Combine timetable with diary records
         response_data = []
-        data_rec_d = {
-            it['lesson_number']: {'subject': it['subject'], 'text': it['text']}
-            for it in data_rec
-        }
         for i in range(1, 8):
             item = collections.OrderedDict()
             item.update({'id': i})
-            item.update({'lesson_num': i})
+            item.update({'date': _date})
+            item.update({'lesson_number': i})
             subjects = ' / '.join(
-                [it['subject'] for it in data_tt if it['lesson_num'] == i])
+                [it['subject'] for it in tt_data if it['lesson_num'] == i])
+            if subjects == '':
+                subjects = ' '
             item.update({'subject': subjects})
-            if data_rec_d.get(i, None):
-                item.update({'subject': data_rec_d[i]['subject']})
-                item.update({'record': data_rec_d[i]['text']})
+            item.update({'text': ''})
+            if rec_data_dict.get(i, None):
+                item.update({'subject': rec_data_dict[i]['subject']})
+                item.update({'text': rec_data_dict[i]['text']})
             item.update({'marks': ''})
             item.update({'signature': ''})
             response_data.append(item)
@@ -150,34 +149,35 @@ class Record(views.APIView):
         """
         _date = datetime.date(kwargs['year'], kwargs['month'], kwargs['day'])
         _data = request.data
+        _data.update({'date': _date, 'user': request.user.id})
+        subject_name = _data.get('subject', None)
         try:
-            subj = school_models.SchoolSubject.objects.get(
-                subject__exact=_data.get('subject', None))
-            _data['subject'] = subj.id
+            subject_id = school_models.SchoolSubject.objects.get(
+                subject__exact=subject_name).id
         except exceptions.ObjectDoesNotExist:
             return response.Response(
                 {'subject': _('Given school subject does not exist')},
                 status=status.HTTP_400_BAD_REQUEST
             )
-        serializer = RecordWriteSerializer(data=_data)
-        if not serializer.is_valid():
-            return response.Response(serializer.errors,
-                                     status=status.HTTP_400_BAD_REQUEST)
+        _data['subject'] = subject_id
         try:
-            r = models.DiaryRecord.objects.get(
+            record = self.model.objects.get(
                 user__exact=request.user, date=_date,
-                lesson_number=serializer.validated_data['lesson_number']
+                lesson_number=_data.get('lesson_number', None)
             )
-            r.subject = subj
-            r.text = serializer.validated_data['text']
-            r.save()
-            _status = status.HTTP_202_ACCEPTED
         except exceptions.ObjectDoesNotExist:
-            serializer.save(user=request.user, date=_date)
+            record = None
+        if record:
+            serializer = RecordWriteSerializer(record, data=_data)
+            _status = status.HTTP_202_ACCEPTED
+        else:
+            serializer = RecordWriteSerializer(data=_data)
             _status = status.HTTP_201_CREATED
-        r = models.DiaryRecord.objects.get(
-            user__exact=request.user, date=_date,
-            lesson_number=serializer.validated_data['lesson_number']
-        )
-        s = RecordSerializer(r)
-        return response.Response(s.data, status=_status)
+        if serializer.is_valid():
+            serializer.save()
+            response_data = serializer.data
+            response_data['subject'] = subject_name
+        else:
+            _status = status.HTTP_400_BAD_REQUEST
+            response_data = serializer.errors
+        return response.Response(response_data, status=_status)

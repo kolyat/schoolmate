@@ -55,8 +55,8 @@ var dayTableTemplate = {
     fixedRowHeight: false, scrollX: false, rowHeight: 26, date: new Date(),
     editable: true, tooltip: true, editaction: "dblclick", columns: [
         {
-            id: "lesson_num", fillspace: 0.25, header: {
-                text: "lesson_num", colspan: 2, height: 30,
+            id: "lesson_number", fillspace: 0.25, header: {
+                text: "lesson_number", colspan: 2, height: 30,
                 css: {"text-align": "center"}
             },
             // minWidth: 26, width: 28,
@@ -67,8 +67,8 @@ var dayTableTemplate = {
             // minWidth: 100, width: 140,
         },
         {
-            id: "record", fillspace: 3.8, header: {
-                text: "record", colspan: 3, css: {"text-align": "center"}
+            id: "text", fillspace: 3.8, header: {
+                text: "text", colspan: 3, css: {"text-align": "center"}
             }, editor: "popup",
             // minWidth: 140,
         },
@@ -86,7 +86,7 @@ var dayTableTemplate = {
             var editor = this.getEditor(id);
             var popup = editor.getPopup();
             if (popup) {
-                popup.config.width = this.getColumnConfig("record").width;
+                popup.config.width = this.getColumnConfig("text").width;
                 popup.config.height = 120;
                 popup.resize();
             }
@@ -100,7 +100,7 @@ var dayTableTemplate = {
             webix.ajax().headers(headers).post(`/diary/${_y}/${_m}/${_d}/`, {
                 "lesson_number": editor.row,
                 "subject": _record.subject,
-                "text": _record.record
+                "text": _record.text
             }).then(() => {
                 webix.message({
                     text: gettext("Record saved"),
@@ -131,9 +131,9 @@ for (var d = 0; d < tablesNum; d++) {
     for (var l = 1; l < lessons_num+1; l++) {
         dayTables[d].data.push({
             "id": l,
-            "lesson_num": l,
-            "subject": "",
-            "record": "",
+            "lesson_number": l,
+            "subject": " ",
+            "text": "",
             "marks": "",
             "signature": ""
         });
@@ -221,9 +221,9 @@ function updateDates() {
         var _to_day_of_week = webix.Date.dateToStr("%l");
         var _to_month_day = webix.Date.dateToStr("%F, %j");
         daytable[d].config.date.setDate(days_of_week[d].getDate());
-        daytable[d].getColumnConfig("lesson_num").header[0]
+        daytable[d].getColumnConfig("lesson_number").header[0]
         .text = _to_day_of_week(days_of_week[d]);
-        daytable[d].getColumnConfig("record").header[0]
+        daytable[d].getColumnConfig("text").header[0]
         .text = _to_month_day(days_of_week[d]);
         daytable[d].refreshColumns();
         if (monday_now !== monday) {
