@@ -16,6 +16,7 @@
 
 import datetime
 import collections
+import copy
 
 from django import shortcuts
 from django.core import exceptions
@@ -148,7 +149,25 @@ class Record(views.APIView):
         :return: 202 ACCEPTED; update existing record
         """
         _date = datetime.date(kwargs['year'], kwargs['month'], kwargs['day'])
-        _data = request.data
+        _data = copy.deepcopy(request.data)
+        _lesson_number = _data.get('lesson_number', None)
+        if _lesson_number == None:
+            return response.Response(
+                {'lesson_number': _('Number of lesson must be specified')},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        elif not _lesson_number.isdigit():
+            return response.Response(
+                {'lesson_number': _('Must be integer')},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        elif (int(_lesson_number) < 1) or (int(_lesson_number) > 7):
+            return response.Response(
+                {'lesson_number': _('Must be in range from 1 to 7 inclusive')},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        else:
+            pass
         _data.update({'date': _date, 'user': request.user.id})
         subject_name = _data.get('subject', None)
         try:
@@ -163,7 +182,7 @@ class Record(views.APIView):
         try:
             record = self.model.objects.get(
                 user__exact=request.user, date=_date,
-                lesson_number=_data.get('lesson_number', None)
+                lesson_number=_lesson_number
             )
         except exceptions.ObjectDoesNotExist:
             record = None
@@ -177,6 +196,7 @@ class Record(views.APIView):
             serializer.save()
             response_data = serializer.data
             response_data['subject'] = subject_name
+            response_data['user'] = request.user.username
         else:
             _status = status.HTTP_400_BAD_REQUEST
             response_data = serializer.errors
