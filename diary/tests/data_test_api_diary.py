@@ -14,14 +14,18 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-import fastjsonschema
+import sys
 from rest_framework import status
 
 from testutils import settings
 from testutils.rndutils import random_str
 
+if sys.version_info < (3, 5):
+    from testutils.webutils import compile
+else:
+    from fastjsonschema import compile
 
-validate = fastjsonschema.compile({
+validate = compile({
     '$schema': 'http://json-schema.org/draft-07/schema#',
     'definitions': {
         'record': {

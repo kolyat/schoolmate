@@ -14,6 +14,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
+import sys
 import logging
 import json
 import ddt
@@ -24,6 +25,8 @@ from testutils import settings, ddtutils
 from . import data_test_api_timetable
 
 
+@pytest.mark.skipif(sys.version_info < (3, 5),
+                    reason='Requires Python 3.5 or higher')
 @ddt.ddt
 class TestTimetableApi(test.APITestCase):
     """Test timetable API
@@ -40,7 +43,7 @@ class TestTimetableApi(test.APITestCase):
     @ddt.data(*ddtutils.prepare(data_test_api_timetable.positive_cases))
     @ddt.unpack
     def test_positive_cases(self, url, code, validate):
-        """positive cases with response data
+        """Positive cases with response data
 
         :param url: URL
         :param code: expected code

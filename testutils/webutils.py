@@ -96,3 +96,11 @@ class SchoolmateClient(seleniumbase.BaseCase):
         self.send_keys(new_value=new1, **self.NEW_PASSWORD1_FIELD)
         self.send_keys(new_value=new2, **self.NEW_PASSWORD2_FIELD)
         self.click(**self.CHANGE_PASSWORD_BUTTON)
+
+
+def compile(schema):
+    """Stub for fastjsonschema.compile()
+
+    :param schema: dict with JSON schema
+    """
+    pass

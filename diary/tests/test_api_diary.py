@@ -14,6 +14,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
+import sys
 import logging
 import json
 import copy
@@ -25,6 +26,8 @@ from testutils import settings, ddtutils
 from . import data_test_api_diary
 
 
+@pytest.mark.skipif(sys.version_info < (3, 5),
+                    reason='Requires Python 3.5 or higher')
 @ddt.ddt
 class TestDiaryApiRetrieve(test.APITestCase):
     """Test diary API - retrieve records
@@ -54,6 +57,8 @@ class TestDiaryApiRetrieve(test.APITestCase):
             self.fail(e)
 
 
+@pytest.mark.skipif(sys.version_info < (3, 5),
+                    reason='Requires Python 3.5 or higher')
 @ddt.ddt
 class TestDiaryApiWrite(test.APITestCase):
     """Test timetable API - create/update records

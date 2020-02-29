@@ -14,6 +14,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
+import sys
 import logging
 import json
 import ddt
@@ -24,6 +25,8 @@ from testutils import settings, ddtutils
 from . import data_test_api_user_info
 
 
+@pytest.mark.skipif(sys.version_info < (3, 5),
+                    reason='Requires Python 3.5 or higher')
 @ddt.ddt
 class TestUserInfoApi(test.APITestCase):
     """Test user info API

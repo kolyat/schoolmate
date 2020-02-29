@@ -14,16 +14,20 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
+import sys
 from rest_framework import status
-import fastjsonschema
 
 from testutils import settings
 
+if sys.version_info < (3, 5):
+    from testutils.webutils import compile
+else:
+    from fastjsonschema import compile
 
 endpoints = {
     'news': [
         settings.NEWS_PATH, status.HTTP_200_OK,
-        fastjsonschema.compile({
+        compile({
             '$schema': 'http://json-schema.org/draft-07/schema#',
             'type': 'array',
             'minItems': 0,
