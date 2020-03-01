@@ -25,7 +25,7 @@ Retrieve diary records with timetable for specified date
 * **Error response**
     * Code: `424 FAILED DEPENDENCY` if current user is not assigned to any
             of school forms<br>
-      Content: `{ "error": "Current user is not assigned to any of school forms" }`
+      Content: `{ "subject": "Current user is not assigned to any of school forms" }`
  
 ##### Sample call
 
@@ -129,7 +129,10 @@ Response data:
 
 * **Error response**
     * Code: `400 BAD REQUEST`<br>
-      Content: `{ "subject": "Given school subject does not exist" }`
+        * `{ "lesson_number": "Number of lesson must be specified" }`
+        * `{ "lesson_number": "Must be integer" }`
+        * `{ "lesson_number": "Must be in range from 1 to 7 inclusive" },` 
+        * `{ "subject": "Given school subject does not exist" }`
  
 ##### Sample call
 

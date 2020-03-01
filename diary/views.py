@@ -143,8 +143,7 @@ class Record(views.APIView):
         :param request: client's request
         :param kwargs: 'year', 'month', 'day'
 
-        :return: 400 BAD REQUEST; school subject does not exist, serializer
-                 errors
+        :return: 400 BAD REQUEST; invalid incoming data
         :return: 201 CREATED; new record
         :return: 202 ACCEPTED; update existing record
         """
@@ -156,7 +155,7 @@ class Record(views.APIView):
                 {'lesson_number': _('Number of lesson must be specified')},
                 status=status.HTTP_400_BAD_REQUEST
             )
-        elif not _lesson_number.isdigit():
+        elif not isinstance(_lesson_number, int):
             return response.Response(
                 {'lesson_number': _('Must be integer')},
                 status=status.HTTP_400_BAD_REQUEST
