@@ -1,0 +1,97 @@
+# Russian translations for Schoolmate.
+# Copyright (C) 2020 Kirill 'Kolyat' Kiselnikov
+# This file is distributed under the same license as the Schoolmate project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2020.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Schoolmate 0.1\n"
+"Report-Msgid-Bugs-To: kks.pub@gmail.com\n"
+"POT-Creation-Date: 2020-03-01 12:51+0300\n"
+"PO-Revision-Date: 2020-03-01 13:30+0300\n"
+"Language: ru\n"
+"Language-Team: ru <LL@li.org>\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.8.0\n"
+"Last-Translator: Kirill 'Kolyat' Kiselnikov <kks.pub@gmail.com>\n"
+"X-Generator: Poedit 2.2\n"
+
+#: diary/apps.py:23
+msgid "Diary"
+msgstr "Дневник"
+
+#: diary/models.py:29 diary/models.py:57
+msgid "Diary record"
+msgstr "Запись"
+
+#: diary/models.py:31
+msgid "Date"
+msgstr "Дата"
+
+#: diary/models.py:36
+msgid "Lesson number"
+msgstr "Номер урока"
+
+#: diary/models.py:40
+msgid "Subject"
+msgstr "Предмет"
+
+#: diary/models.py:43
+msgid "Diary record text"
+msgstr "Текст записи"
+
+#: diary/models.py:58
+msgid "Diary records"
+msgstr "Записи"
+
+#: diary/views.py:99
+msgid "Current user is not assigned to any of school forms"
+msgstr "Текущий пользователь не прикреплен ни к одному из классов"
+
+#: diary/views.py:156
+msgid "Number of lesson must be specified"
+msgstr "Номер урока должен быть указан"
+
+#: diary/views.py:161
+msgid "Must be integer"
+msgstr "Должен быть типом integer"
+
+#: diary/views.py:166
+msgid "Must be in range from 1 to 7 inclusive"
+msgstr "Должен быть в диапазоне от 1 до 7 включительно"
+
+#: diary/views.py:178
+msgid "Given school subject does not exist"
+msgstr "Предмет не существует"
+
+#: diary/static/diary/js/diary.js:44
+msgid "Previous week"
+msgstr "Прошлая неделя"
+
+#: diary/static/diary/js/diary.js:49
+msgid "Invalid date"
+msgstr "Неправильная дата"
+
+#: diary/static/diary/js/diary.js:54
+msgid "Next week"
+msgstr "Следующая неделя"
+
+#: diary/static/diary/js/diary.js:121
+msgid "Record saved"
+msgstr "Запись сохранена"
+
+#: diary/static/diary/js/diary.js:129
+msgid "Failed to save record to "
+msgstr "Не удалось сохранить запись - "
+
+#: diary/static/diary/js/diary.js:219
+msgid "Failed to retrieve list of school subjects"
+msgstr "Не удалось загрузить список школьных предметов"
+
+#: diary/static/diary/js/diary.js:259
+msgid "Failed to get records dated "
+msgstr "Не удалось заргузить записи от"

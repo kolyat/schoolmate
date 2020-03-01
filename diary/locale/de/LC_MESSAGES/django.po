@@ -1,0 +1,96 @@
+# German translations for Schoolmate.
+# Copyright (C) 2020 Kirill 'Kolyat' Kiselnikov
+# This file is distributed under the same license as the Schoolmate project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2020.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Schoolmate 0.1\n"
+"Report-Msgid-Bugs-To: kks.pub@gmail.com\n"
+"POT-Creation-Date: 2020-03-01 12:51+0300\n"
+"PO-Revision-Date: 2020-03-01 13:30+0300\n"
+"Language: de\n"
+"Language-Team: de <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.8.0\n"
+"Last-Translator: Kirill 'Kolyat' Kiselnikov <kks.pub@gmail.com>\n"
+"X-Generator: Poedit 2.2\n"
+
+#: diary/apps.py:23
+msgid "Diary"
+msgstr "Tagebuch"
+
+#: diary/models.py:29 diary/models.py:57
+msgid "Diary record"
+msgstr "Tagebuchaufzeichnung"
+
+#: diary/models.py:31
+msgid "Date"
+msgstr "Datum"
+
+#: diary/models.py:36
+msgid "Lesson number"
+msgstr "Lektionnummer"
+
+#: diary/models.py:40
+msgid "Subject"
+msgstr "Schulfach"
+
+#: diary/models.py:43
+msgid "Diary record text"
+msgstr "Tagebuchaufzeichnungstext"
+
+#: diary/models.py:58
+msgid "Diary records"
+msgstr "Tagebuchaufzeichnungen"
+
+#: diary/views.py:99
+msgid "Current user is not assigned to any of school forms"
+msgstr "Der aktuelle Benutzer ist keinem Schulformular zugeordnet"
+
+#: diary/views.py:156
+msgid "Number of lesson must be specified"
+msgstr "Die Anzahl der Lektionen muss angegeben werden"
+
+#: diary/views.py:161
+msgid "Must be integer"
+msgstr "Muss eine ganze Zahl sein"
+
+#: diary/views.py:166
+msgid "Must be in range from 1 to 7 inclusive"
+msgstr "Muss im Bereich von 1 bis einschließlich 7 liegen"
+
+#: diary/views.py:178
+msgid "Given school subject does not exist"
+msgstr "Ein bestimmtes Schulfach existiert nicht"
+
+#: diary/static/diary/js/diary.js:44
+msgid "Previous week"
+msgstr "Letzte Woche"
+
+#: diary/static/diary/js/diary.js:49
+msgid "Invalid date"
+msgstr "Ungültiges Datum"
+
+#: diary/static/diary/js/diary.js:54
+msgid "Next week"
+msgstr "Nächste Woche"
+
+#: diary/static/diary/js/diary.js:121
+msgid "Record saved"
+msgstr "Aufzeichnung erfolgreich gespeichert"
+
+#: diary/static/diary/js/diary.js:129
+msgid "Failed to save record to "
+msgstr "Aufzeichnung konnte nicht gespeichert werden - "
+
+#: diary/static/diary/js/diary.js:219
+msgid "Failed to retrieve list of school subjects"
+msgstr "Liste der Schulfächer konnte nicht abgerufen werden"
+
+#: diary/static/diary/js/diary.js:259
+msgid "Failed to get records dated "
+msgstr "Aufzeichnungen konnte nicht abgerufen werden - "

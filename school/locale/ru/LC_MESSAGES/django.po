@@ -7,18 +7,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Schoolmate 0.1\n"
 "Report-Msgid-Bugs-To: kks.pub@gmail.com\n"
-"POT-Creation-Date: 2018-11-22 22:13+0300\n"
+"POT-Creation-Date: 2020-03-01 12:51+0300\n"
 "PO-Revision-Date: 2018-11-22 22:32+0300\n"
 "Last-Translator: Kirill 'Kolyat' Kiselnikov <kks.pub@gmail.com>\n"
 "Language: ru\n"
 "Language-Team: ru <LL@li.org>\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.6.0\n"
-"X-Generator: Poedit 1.8.12\n"
+"Generated-By: Babel 2.8.0\n"
 
 #: school/apps.py:23
 msgid "General"
@@ -40,153 +39,153 @@ msgstr "Четверть"
 msgid "Holidays"
 msgstr "Каникулы"
 
-#: school/models.py:39 school/models.py:50
+#: school/models.py:41 school/models.py:52
 msgid "Form letter"
 msgstr "Буква класса (параллель)"
 
-#: school/models.py:51
+#: school/models.py:53
 msgid "Form letters"
 msgstr "Параллели"
 
-#: school/models.py:58 school/models.py:71
+#: school/models.py:62 school/models.py:75
 msgid "Form number"
 msgstr "Номер класса"
 
-#: school/models.py:72
+#: school/models.py:76
 msgid "Form numbers"
 msgstr "Номера классов"
 
-#: school/models.py:91
+#: school/models.py:95
 msgid "School form"
 msgstr "Класс"
 
-#: school/models.py:92
+#: school/models.py:96
 msgid "School forms"
 msgstr "Классы"
 
-#: school/models.py:100 school/models.py:110
+#: school/models.py:103 school/models.py:112
 msgid "School subject"
 msgstr "Предмет"
 
-#: school/models.py:111
+#: school/models.py:113
 msgid "School subjects"
 msgstr "Предметы"
 
-#: school/models.py:121 school/models.py:184
+#: school/models.py:123 school/models.py:186
 msgid "Number of a period"
 msgstr "Номер периода"
 
-#: school/models.py:125 school/models.py:188
+#: school/models.py:127 school/models.py:190
 msgid "Period type"
 msgstr "Тип периода"
 
-#: school/models.py:128
+#: school/models.py:130
 msgid "Start time of a period"
 msgstr "Время начала периода"
 
-#: school/models.py:131
+#: school/models.py:133
 msgid "End time of a period"
 msgstr "Время окончания периода"
 
-#: school/models.py:135 school/models.py:198
+#: school/models.py:137 school/models.py:200
 msgid "Additional description"
 msgstr "Описание"
 
-#: school/models.py:145
+#: school/models.py:147
 msgid "Period"
 msgstr "Период"
 
-#: school/models.py:146 school/static/school/js/index.js:150
+#: school/models.py:148 school/static/school/js/index.js:174
 msgid "Daily schedule"
 msgstr "Расписание дня"
 
-#: school/models.py:154
+#: school/models.py:156
 msgid "Name of school year"
 msgstr "Название учебного года"
 
-#: school/models.py:157
+#: school/models.py:159
 msgid "Start date of a school year"
 msgstr "Дата начала учебного года"
 
-#: school/models.py:160
+#: school/models.py:162
 msgid "End date of a school year"
 msgstr "Дата окончания учебного года"
 
-#: school/models.py:170 school/models.py:180
+#: school/models.py:172 school/models.py:182
 msgid "School year"
 msgstr "Учебный год"
 
-#: school/models.py:171
+#: school/models.py:173
 msgid "Academic years"
 msgstr "Учебные года"
 
-#: school/models.py:191
+#: school/models.py:193
 msgid "Start date of a period"
 msgstr "Дата начала периода"
 
-#: school/models.py:194
+#: school/models.py:196
 msgid "End date of a period"
 msgstr "Дата окончания периода"
 
-#: school/models.py:208
+#: school/models.py:210
 msgid "School year schedule"
 msgstr "Расписание учебного года"
 
-#: school/models.py:209
+#: school/models.py:211
 msgid "Academic year schedules"
 msgstr "Расписания учебного года"
 
-#: school/models.py:217
+#: school/models.py:219
 msgid "Classroom ID"
 msgstr "Номер кабинета"
 
-#: school/models.py:221
+#: school/models.py:223
 msgid "Classroom name"
 msgstr "Название кабинета"
 
-#: school/models.py:231
+#: school/models.py:233
 msgid "Classroom"
 msgstr "Кабинет"
 
-#: school/models.py:232
+#: school/models.py:234
 msgid "Classrooms"
 msgstr "Классные комнаты"
 
-#: school/static/school/js/index.js:87 school/static/school/js/index.js:105
-#: school/static/school/js/index.js:129
+#: school/static/school/js/index.js:107 school/static/school/js/index.js:126
+#: school/static/school/js/index.js:150
 msgid "No data"
 msgstr "Нет данных"
 
-#: school/static/school/js/index.js:107
+#: school/static/school/js/index.js:128
 msgid "Failed to get year schedule"
 msgstr "Не удалось загрузить расписание учебного года"
 
-#: school/static/school/js/index.js:131
+#: school/static/school/js/index.js:152
 msgid "Failed to get daily schedule"
 msgstr "Не удалось загрузить расписание дня"
 
-#: school/static/school/js/index.js:141
+#: school/static/school/js/index.js:165
 msgid "News"
 msgstr "Новости"
 
-#: school/static/school/js/index.js:142
+#: school/static/school/js/index.js:166
 msgid "Schedules"
 msgstr "Расписания"
 
-#: school/static/school/js/index.js:145
+#: school/static/school/js/index.js:169
 msgid "Year schedule"
 msgstr "Расписание года"
 
-#: school/static/school/js/index.js:183 school/static/school/js/index.js:196
-#: school/static/school/js/index.js:201
+#: school/static/school/js/index.js:219 school/static/school/js/index.js:232
+#: school/static/school/js/index.js:237
 msgid "Loading..."
 msgstr "Загрузка..."
 
-#: school/static/school/js/index.js:187
+#: school/static/school/js/index.js:223
 msgid "Failed to load news"
 msgstr "Не удалось загрузить новости"
 
-#: school/static/school/js/index.js:251
+#: school/static/school/js/index.js:297
 msgid "Failed to retrieve date/time info from server"
 msgstr "Не удалось синхронизировать дату/время с сервером"
 
@@ -198,3 +197,4 @@ msgstr "Не удалось синхронизировать дату/время
 
 #~ msgid "Classroom's name"
 #~ msgstr "Название кабинета"
+

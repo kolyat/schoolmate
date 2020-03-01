@@ -7,122 +7,120 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Schoolmate 0.1\n"
 "Report-Msgid-Bugs-To: kks.pub@gmail.com\n"
-"POT-Creation-Date: 2018-11-22 22:13+0300\n"
+"POT-Creation-Date: 2020-03-01 12:51+0300\n"
 "PO-Revision-Date: 2018-11-22 22:37+0300\n"
 "Last-Translator: Kirill 'Kolyat' Kiselnikov <kks.pub@gmail.com>\n"
 "Language: ru\n"
 "Language-Team: ru <LL@li.org>\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.6.0\n"
-"X-Generator: Poedit 1.8.12\n"
+"Generated-By: Babel 2.8.0\n"
 
-#: timetable/apps.py:23 timetable/models.py:47 timetable/models.py:48
+#: timetable/apps.py:23 timetable/models.py:49 timetable/models.py:50
 msgid "Timetable"
 msgstr "Расписание уроков"
 
-#: timetable/models.py:24 timetable/static/timetable/js/timetable.js:34
+#: timetable/models.py:24 timetable/static/timetable/js/timetable.js:63
 msgid "Monday"
 msgstr "Понедельник"
 
-#: timetable/models.py:25 timetable/static/timetable/js/timetable.js:35
+#: timetable/models.py:25 timetable/static/timetable/js/timetable.js:64
 msgid "Tuesday"
 msgstr "Вторник"
 
-#: timetable/models.py:26 timetable/static/timetable/js/timetable.js:36
+#: timetable/models.py:26 timetable/static/timetable/js/timetable.js:65
 msgid "Wednesday"
 msgstr "Среда"
 
-#: timetable/models.py:27 timetable/static/timetable/js/timetable.js:37
+#: timetable/models.py:27 timetable/static/timetable/js/timetable.js:66
 msgid "Thursday"
 msgstr "Четверг"
 
-#: timetable/models.py:28 timetable/static/timetable/js/timetable.js:38
+#: timetable/models.py:28 timetable/static/timetable/js/timetable.js:67
 msgid "Friday"
 msgstr "Пятница"
 
-#: timetable/models.py:29 timetable/static/timetable/js/timetable.js:39
+#: timetable/models.py:29 timetable/static/timetable/js/timetable.js:68
 msgid "Saturday"
 msgstr "Суббота"
 
-#: timetable/models.py:37
+#: timetable/models.py:39
 msgid "School year"
 msgstr "Год"
 
-#: timetable/models.py:53
+#: timetable/models.py:57
 msgid "Year"
 msgstr "Год"
 
-#: timetable/models.py:56
+#: timetable/models.py:60
 msgid "School form"
 msgstr "Класс"
 
-#: timetable/models.py:67 timetable/models.py:68 timetable/models.py:73
+#: timetable/models.py:71 timetable/models.py:72 timetable/models.py:79
 msgid "Form"
 msgstr "Класс"
 
-#: timetable/models.py:76
+#: timetable/models.py:82
 msgid "Day of week"
 msgstr "День недели"
 
-#: timetable/models.py:82
+#: timetable/models.py:88
 msgid "Lesson number"
 msgstr "Номер урока"
 
-#: timetable/models.py:87 timetable/models.py:91
-msgid "lesson"
-msgstr "урок"
-
-#: timetable/models.py:95 timetable/models.py:102
-msgid "Lesson"
-msgstr "Урок"
-
-#: timetable/models.py:96
-msgid "Lessons"
-msgstr "Уроки"
-
-#: timetable/models.py:106 timetable/models.py:120
+#: timetable/models.py:92
 msgid "Subject"
 msgstr "Предмет"
 
-#: timetable/models.py:110
+#: timetable/models.py:96
 msgid "Classroom"
 msgstr "Кабинет"
 
-#: timetable/models.py:121
-msgid "Subjects"
-msgstr "Предметы"
+#: timetable/models.py:111
+msgid "Lesson"
+msgstr "Урок"
 
-#: timetable/static/timetable/js/timetable.js:51
+#: timetable/models.py:112
+msgid "Lessons"
+msgstr "Уроки"
+
+#: timetable/static/timetable/js/timetable.js:80
 msgid "Loading..."
 msgstr "Загрузка..."
 
-#: timetable/static/timetable/js/timetable.js:134
+#: timetable/static/timetable/js/timetable.js:157
 msgid "No data"
 msgstr "Нет данных"
 
-#: timetable/static/timetable/js/timetable.js:136
+#: timetable/static/timetable/js/timetable.js:159
 msgid "Unable to retrieve timetable"
 msgstr "Не удалось загрузить расписание"
 
-#: timetable/static/timetable/js/timetable.js:148
+#: timetable/static/timetable/js/timetable.js:171
 msgid "Forms"
 msgstr "Классы"
 
-#: timetable/static/timetable/js/timetable.js:149
+#: timetable/static/timetable/js/timetable.js:172
 msgid "All"
 msgstr "Все"
 
-#: timetable/static/timetable/js/timetable.js:160
+#: timetable/static/timetable/js/timetable.js:183
 msgid "Unable to get list of forms"
 msgstr "Не удалось получить список классов"
 
-#: timetable/static/timetable/js/timetable.js:175
+#: timetable/static/timetable/js/timetable.js:204
 msgid "Select form to load timetable"
 msgstr "Выберите класс для загрузки расписания"
 
 #~ msgid "Timetables"
 #~ msgstr "Расписания уроков"
+
+#~ msgid "lesson"
+#~ msgstr "урок"
+
+#~ msgid "Subjects"
+#~ msgstr "Предметы"
+
