@@ -128,7 +128,7 @@ Response data:
     * Code: `202 ACCEPTED` - update existing record
 
 * **Error response**
-    * Code: `400 BAD REQUEST`<br>
+    * Code: `400 BAD REQUEST`
         * `{ "lesson_number": "Number of lesson must be specified" }`
         * `{ "lesson_number": "Must be integer" }`
         * `{ "lesson_number": "Must be in range from 1 to 7 inclusive" },` 
