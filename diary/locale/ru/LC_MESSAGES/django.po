@@ -7,8 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Schoolmate 0.1\n"
 "Report-Msgid-Bugs-To: kks.pub@gmail.com\n"
-"POT-Creation-Date: 2020-03-01 12:51+0300\n"
-"PO-Revision-Date: 2020-03-01 13:30+0300\n"
+"POT-Creation-Date: 2020-03-01 17:01+0300\n"
+"PO-Revision-Date: 2020-03-01 17:03+0300\n"
+"Last-Translator: Kirill 'Kolyat' Kiselnikov <kks.pub@gmail.com>\n"
 "Language: ru\n"
 "Language-Team: ru <LL@li.org>\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
@@ -17,7 +18,6 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.8.0\n"
-"Last-Translator: Kirill 'Kolyat' Kiselnikov <kks.pub@gmail.com>\n"
 "X-Generator: Poedit 2.2\n"
 
 #: diary/apps.py:23
@@ -48,23 +48,23 @@ msgstr "Текст записи"
 msgid "Diary records"
 msgstr "Записи"
 
-#: diary/views.py:99
+#: diary/views.py:91
+msgid "lesson_number must be specified"
+msgstr "lesson_number должен быть указан"
+
+#: diary/views.py:96
+msgid "lesson_number must be integer"
+msgstr "lesson_number должен быть типа integer"
+
+#: diary/views.py:101
+msgid "lesson_number must be in range from 1 to 7 inclusive"
+msgstr "lesson_number должен быть в диапазоне от 1 до 7 включительно"
+
+#: diary/views.py:129
 msgid "Current user is not assigned to any of school forms"
 msgstr "Текущий пользователь не прикреплен ни к одному из классов"
 
-#: diary/views.py:156
-msgid "Number of lesson must be specified"
-msgstr "Номер урока должен быть указан"
-
-#: diary/views.py:161
-msgid "Must be integer"
-msgstr "Должен быть типом integer"
-
-#: diary/views.py:166
-msgid "Must be in range from 1 to 7 inclusive"
-msgstr "Должен быть в диапазоне от 1 до 7 включительно"
-
-#: diary/views.py:178
+#: diary/views.py:189
 msgid "Given school subject does not exist"
 msgstr "Предмет не существует"
 
@@ -95,3 +95,12 @@ msgstr "Не удалось загрузить список школьных п�
 #: diary/static/diary/js/diary.js:259
 msgid "Failed to get records dated "
 msgstr "Не удалось заргузить записи от"
+
+#~ msgid "Number of lesson must be specified"
+#~ msgstr "Номер урока должен быть указан"
+
+#~ msgid "Must be integer"
+#~ msgstr "Должен быть типом integer"
+
+#~ msgid "Must be in range from 1 to 7 inclusive"
+#~ msgstr "Должен быть в диапазоне от 1 до 7 включительно"

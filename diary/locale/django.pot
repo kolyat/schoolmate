@@ -1,14 +1,14 @@
 # Translations template for Schoolmate.
 # Copyright (C) 2020 Kirill 'Kolyat' Kiselnikov
 # This file is distributed under the same license as the Schoolmate project.
-# Kirill 'Kolyat' Kiselnikov <kks.pub@gmail.com>, 2020.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2020.
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Schoolmate 0.1\n"
 "Report-Msgid-Bugs-To: kks.pub@gmail.com\n"
-"POT-Creation-Date: 2020-03-01 12:51+0300\n"
+"POT-Creation-Date: 2020-03-01 17:01+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -45,23 +45,23 @@ msgstr ""
 msgid "Diary records"
 msgstr ""
 
-#: diary/views.py:99
+#: diary/views.py:91
+msgid "lesson_number must be specified"
+msgstr ""
+
+#: diary/views.py:96
+msgid "lesson_number must be integer"
+msgstr ""
+
+#: diary/views.py:101
+msgid "lesson_number must be in range from 1 to 7 inclusive"
+msgstr ""
+
+#: diary/views.py:129
 msgid "Current user is not assigned to any of school forms"
 msgstr ""
 
-#: diary/views.py:156
-msgid "Number of lesson must be specified"
-msgstr ""
-
-#: diary/views.py:161
-msgid "Must be integer"
-msgstr ""
-
-#: diary/views.py:166
-msgid "Must be in range from 1 to 7 inclusive"
-msgstr ""
-
-#: diary/views.py:178
+#: diary/views.py:189
 msgid "Given school subject does not exist"
 msgstr ""
 

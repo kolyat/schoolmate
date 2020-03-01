@@ -7,8 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Schoolmate 0.1\n"
 "Report-Msgid-Bugs-To: kks.pub@gmail.com\n"
-"POT-Creation-Date: 2020-03-01 12:51+0300\n"
-"PO-Revision-Date: 2020-03-01 13:30+0300\n"
+"POT-Creation-Date: 2020-03-01 17:01+0300\n"
+"PO-Revision-Date: 2020-03-01 17:05+0300\n"
+"Last-Translator: Kirill 'Kolyat' Kiselnikov <kks.pub@gmail.com>\n"
 "Language: de\n"
 "Language-Team: de <LL@li.org>\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -16,7 +17,6 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.8.0\n"
-"Last-Translator: Kirill 'Kolyat' Kiselnikov <kks.pub@gmail.com>\n"
 "X-Generator: Poedit 2.2\n"
 
 #: diary/apps.py:23
@@ -47,23 +47,23 @@ msgstr "Tagebuchaufzeichnungstext"
 msgid "Diary records"
 msgstr "Tagebuchaufzeichnungen"
 
-#: diary/views.py:99
+#: diary/views.py:91
+msgid "lesson_number must be specified"
+msgstr "lesson_number muss angegeben werden"
+
+#: diary/views.py:96
+msgid "lesson_number must be integer"
+msgstr "lesson_number muss vom Typ Integer sein"
+
+#: diary/views.py:101
+msgid "lesson_number must be in range from 1 to 7 inclusive"
+msgstr "lesson_number muss im Bereich von 1 bis einschließlich 7 liegen"
+
+#: diary/views.py:129
 msgid "Current user is not assigned to any of school forms"
 msgstr "Der aktuelle Benutzer ist keinem Schulformular zugeordnet"
 
-#: diary/views.py:156
-msgid "Number of lesson must be specified"
-msgstr "Die Anzahl der Lektionen muss angegeben werden"
-
-#: diary/views.py:161
-msgid "Must be integer"
-msgstr "Muss eine ganze Zahl sein"
-
-#: diary/views.py:166
-msgid "Must be in range from 1 to 7 inclusive"
-msgstr "Muss im Bereich von 1 bis einschließlich 7 liegen"
-
-#: diary/views.py:178
+#: diary/views.py:189
 msgid "Given school subject does not exist"
 msgstr "Ein bestimmtes Schulfach existiert nicht"
 
@@ -94,3 +94,12 @@ msgstr "Liste der Schulfächer konnte nicht abgerufen werden"
 #: diary/static/diary/js/diary.js:259
 msgid "Failed to get records dated "
 msgstr "Aufzeichnungen konnte nicht abgerufen werden - "
+
+#~ msgid "Number of lesson must be specified"
+#~ msgstr "Die Anzahl der Lektionen muss angegeben werden"
+
+#~ msgid "Must be integer"
+#~ msgstr "Muss eine ganze Zahl sein"
+
+#~ msgid "Must be in range from 1 to 7 inclusive"
+#~ msgstr "Muss im Bereich von 1 bis einschließlich 7 liegen"
