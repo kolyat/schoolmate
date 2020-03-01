@@ -64,6 +64,7 @@ class RecordWriteSerializer(serializers.ModelSerializer):
         queryset=account_models.SchoolUser.objects.all()
     )
     date = serializers.DateField()
+    lesson_number = serializers.IntegerField()
     subject = serializers.PrimaryKeyRelatedField(
         read_only=False, many=False,
         queryset=school_models.SchoolSubject.objects.all()
@@ -72,6 +73,37 @@ class RecordWriteSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.DiaryRecord
         fields = ('user', 'date', 'lesson_number', 'subject', 'text')
+
+    def validate_lesson_number(self, value):
+        """Perform lesson_number validation
+
+        :param value: lesson_number
+
+        :raise ValidationError:
+            - value is null
+            - value is not integer
+            - value is not in range from 1 to 7 inclusive
+
+        :return: value
+        """
+        if value == None:
+            raise serializers.ValidationError(
+                detail=_('lesson_number must be specified'),
+                code='null'
+            )
+        elif not isinstance(value, int):
+            raise serializers.ValidationError(
+                detail=_('lesson_number must be integer'),
+                code='type'
+            )
+        elif (value < 1) or (value > 7):
+            raise serializers.ValidationError(
+                detail=_('lesson_number must be in range '
+                         'from 1 to 7 inclusive'),
+                code='range'
+            )
+        else:
+            return value
 
 
 @method_decorator(auth_decorators.login_required, name='dispatch')
@@ -92,9 +124,7 @@ class Record(views.APIView):
         """
         _date = datetime.date(kwargs['year'], kwargs['month'], kwargs['day'])
         # Get timetable from requested date
-        _form = account_models.SchoolUser.objects.get(
-            username=request.user).school_form
-        if _form == None:
+        if request.user.school_form == None:
             return response.Response(
                 {'school_form': _('Current user is not assigned '
                                   'to any of school forms')},
@@ -102,7 +132,7 @@ class Record(views.APIView):
             )
         params = {'form__year__school_year__start_date__lte': _date,
                   'form__year__school_year__end_date__gte': _date,
-                  'form__school_form': _form,
+                  'form__school_form': request.user.school_form,
                   'day_of_week': _date.weekday()+2}
         tt_object = tt_models.Timetable.objects.filter(**params)
         tt_serializer = TimetableRecordSerializer(tt_object, many=True)
@@ -149,24 +179,6 @@ class Record(views.APIView):
         """
         _date = datetime.date(kwargs['year'], kwargs['month'], kwargs['day'])
         _data = copy.deepcopy(request.data)
-        _lesson_number = _data.get('lesson_number', None)
-        if _lesson_number == None:
-            return response.Response(
-                {'lesson_number': _('Number of lesson must be specified')},
-                status=status.HTTP_400_BAD_REQUEST
-            )
-        elif not isinstance(_lesson_number, int):
-            return response.Response(
-                {'lesson_number': _('Must be integer')},
-                status=status.HTTP_400_BAD_REQUEST
-            )
-        elif (int(_lesson_number) < 1) or (int(_lesson_number) > 7):
-            return response.Response(
-                {'lesson_number': _('Must be in range from 1 to 7 inclusive')},
-                status=status.HTTP_400_BAD_REQUEST
-            )
-        else:
-            pass
         _data.update({'date': _date, 'user': request.user.id})
         subject_name = _data.get('subject', None)
         try:
@@ -178,19 +190,17 @@ class Record(views.APIView):
                 status=status.HTTP_400_BAD_REQUEST
             )
         _data['subject'] = subject_id
+        RecordWriteSerializer(data=_data).is_valid(raise_exception=True)
         try:
             record = self.model.objects.get(
                 user__exact=request.user, date=_date,
-                lesson_number=_lesson_number
+                lesson_number=_data['lesson_number']
             )
+            _status = status.HTTP_202_ACCEPTED
         except exceptions.ObjectDoesNotExist:
             record = None
-        if record:
-            serializer = RecordWriteSerializer(record, data=_data)
-            _status = status.HTTP_202_ACCEPTED
-        else:
-            serializer = RecordWriteSerializer(data=_data)
             _status = status.HTTP_201_CREATED
+        serializer = RecordWriteSerializer(instance=record, data=_data)
         if serializer.is_valid():
             serializer.save()
             response_data = serializer.data
