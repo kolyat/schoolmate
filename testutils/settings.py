@@ -62,3 +62,4 @@ SCHOOL_SUBJECTS_PATH = '/main/subjects/'
 TIMETABLE_DATA_PATH = '/timetable/data/'
 
 DIARY_PATH = '/diary/'
+DIARY_URL = ''.join((BASE_URL, DIARY_PATH))
