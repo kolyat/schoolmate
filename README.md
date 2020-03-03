@@ -68,22 +68,28 @@ everyday records as well as personal adjustments in timetable.
     ```
 
 5. Open `./schoolmate/settings.py` and set up the project:
-   1. Update `SECRET_KEY` if necessary
-   2. Set `DEBUG = True` for debugging mode
-   3. Configure database connection in `DATABASES` section
-   4. _Optional_: configure interaction with mail server
+   1. Update `SECRET_KEY` if necessary.
+   2. Set `DEBUG = True` for debugging mode.
+   3. Configure database connection in `DATABASES` section.
+   4. _Optional_: configure interaction with mail server.
    5. _Optional_: include password validators if necessary in 
-      `AUTH_PASSWORD_VALIDATORS` variable
+      `AUTH_PASSWORD_VALIDATORS` variable.
    6. Select preferable locale in `LANGUAGE_CODE` and configure `TIME_ZONE`.
       More about time zones 
-      [here](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)
+      [here](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
    7. _Optional_: set up number of articles that will be loaded by client in 
-      `LATEST_NEWS_COUNT` variable
+      `LATEST_NEWS_COUNT` variable.
 
 6. You can use `prepare_db.py` to fill database with predefined test data (this
-   data is stored in `management/commands/_db_data.py` of each application)
+   data is stored in `management/commands/_db_data.py` of each application).
 
 7. Run development server with
     ```bash
     manage.py runserver
+    ```
+
+8. Do not forget to deactivate virtual environment after server shutdown if
+   `venv` is not needed anymore:
+    ```bash
+    deactivate
     ```
