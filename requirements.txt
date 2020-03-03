@@ -1,9 +1,12 @@
-django==2.0.13
 psycopg2==2.8.4
+django==2.0.13
 djangorestframework==3.9.4
 django-jinja==2.6.0
 django-babel==0.6.2
 django-user-language-middleware==0.0.3
+django-grappelli==2.14.1
+django-related-admin==0.7.0
+
 ddt==1.2.2
 fastjsonschema==2.14.2
 zipp==0.5.2
@@ -13,5 +16,3 @@ pytest==4.6.9
 seleniumbase==1.22.6
 pytest-django==3.8.0
 mimesis==1.0.4
-django-grappelli==2.14.1
-django-related-admin==0.7.0
