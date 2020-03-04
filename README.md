@@ -81,7 +81,7 @@ everyday records as well as personal adjustments in timetable.
       `LATEST_NEWS_COUNT` variable.
 
 6. You can use `prepare_db.py` to fill database with predefined test data (this
-   data is stored in `management/commands/_db_data.py` of each application).
+   data is stored in<br> `management/commands/_db_data.py` of each application).
 
 7. Run development server with
     ```bash
