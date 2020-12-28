@@ -1,5 +1,5 @@
 # Schoolmate - school management system
-# Copyright (C) 2018-2020  Kirill 'Kolyat' Kiselnikov  <kks.pub@gmail.com>
+# Copyright (C) 2018-2021  Kirill 'Kolyat' Kiselnikov  <kks.pub@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -147,57 +147,57 @@ DAILY_SCHEDULE = [
     }
 ].__reversed__()
 SCHOOL_YEAR = {
-    'name': '2019-2020',
-    'start_date': date(2019, 9, 1),
-    'end_date': date(2020, 5, 25)
+    'name': '2020-2021',
+    'start_date': date(2020, 9, 1),
+    'end_date': date(2021, 5, 25)
 }
 YEAR_SCHEDULE = [
     {
         'number': 1,
         'period_type': 'Q',
         'start_date': SCHOOL_YEAR['start_date'],
-        'end_date': date(2019, 10, 26),
+        'end_date': date(2020, 10, 26),
         'description': 'I четверть'
     },
     {
         'number': 1,
         'period_type': 'H',
-        'start_date': date(2019, 10, 27),
-        'end_date': date(2019, 11, 3),
+        'start_date': date(2020, 10, 27),
+        'end_date': date(2020, 11, 3),
         'description': 'Осенние каникулы'
     },
     {
         'number': 2,
         'period_type': 'Q',
-        'start_date': date(2019, 11, 4),
-        'end_date': date(2019, 12, 28),
+        'start_date': date(2020, 11, 4),
+        'end_date': date(2020, 12, 28),
         'description': 'II четверть'
     },
     {
         'number': 2,
         'period_type': 'H',
-        'start_date': date(2019, 12, 29),
-        'end_date': date(2020, 1, 12),
+        'start_date': date(2020, 12, 29),
+        'end_date': date(2021, 1, 12),
         'description': 'Зимние каникулы'
     },
     {
         'number': 3,
         'period_type': 'Q',
-        'start_date': date(2020, 1, 13),
-        'end_date': date(2020, 3, 22),
+        'start_date': date(2021, 1, 13),
+        'end_date': date(2021, 3, 22),
         'description': 'III четверть'
     },
     {
         'number': 3,
         'period_type': 'H',
-        'start_date': date(2020, 3, 23),
-        'end_date': date(2020, 3, 31),
+        'start_date': date(2021, 3, 23),
+        'end_date': date(2021, 3, 31),
         'description': 'Весенние каникулы'
     },
     {
         'number': 4,
         'period_type': 'Q',
-        'start_date': date(2020, 4, 1),
+        'start_date': date(2021, 4, 1),
         'end_date': SCHOOL_YEAR['end_date'],
         'description': 'IV четверть'
     },
@@ -211,8 +211,8 @@ YEAR_SCHEDULE = [
     {
         'number': 5,
         'period_type': 'H',
-        'start_date': date(2020, 2, 4),
-        'end_date': date(2020, 2, 10),
+        'start_date': date(2021, 2, 4),
+        'end_date': date(2021, 2, 10),
         'description': 'Дополнительные каникулы для первоклассников'
     }
 ].__reversed__()

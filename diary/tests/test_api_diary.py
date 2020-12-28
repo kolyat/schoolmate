@@ -1,5 +1,5 @@
 # Schoolmate - school management system
-# Copyright (C) 2018-2020  Kirill 'Kolyat' Kiselnikov  <kks.pub@gmail.com>
+# Copyright (C) 2018-2021  Kirill 'Kolyat' Kiselnikov  <kks.pub@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -42,7 +42,7 @@ class TestDiaryApiRetrieve(test.APITestCase):
         :param code: expected code
         """
         self.client.login(username=username, password=password)
-        url = settings.DIARY_PATH + '2020/02/29/'
+        url = settings.DIARY_PATH + '2021/02/29/'
         logging.info('Request: GET {}'.format(url))
         try:
             response = self.client.get(url)
@@ -80,7 +80,7 @@ class TestDiaryApiWrite(test.APITestCase):
         :param payload: additional payload
         :param code: expected code
         """
-        url = settings.DIARY_PATH + '2020/03/01/'
+        url = settings.DIARY_PATH + '2021/03/01/'
         data = copy.deepcopy(data_test_api_diary.template)
         data.update(payload)
         logging.info('Request: POST {}'.format(url))
@@ -107,7 +107,7 @@ class TestDiaryApiWrite(test.APITestCase):
         :param payload: additional payload
         :param code: expected code
         """
-        url = settings.DIARY_PATH + '2020/03/02/'
+        url = settings.DIARY_PATH + '2021/03/02/'
         data = copy.deepcopy(data_test_api_diary.template)
         data.update(payload)
         logging.info('Request: POST {}'.format(url))
@@ -131,7 +131,7 @@ class TestDiaryApiWrite(test.APITestCase):
         :param payload: incomplete payload
         :param code: expected code
         """
-        url = settings.DIARY_PATH + '2020/03/03/'
+        url = settings.DIARY_PATH + '2021/03/03/'
         logging.info('Request: POST {}'.format(url))
         logging.info('Payload: {}'.format(payload))
         try:

@@ -32,7 +32,7 @@ Retrieve diary records with timetable for specified date
 Request:
 ```
 webix.ajax().get(
-    "/diary/2020/02/29/",
+    "/diary/2021/02/29/",
     {}
 );
 ```
@@ -42,7 +42,7 @@ Response data:
 [
     {
         "id": 1,
-        "date": "2020-02-29",
+        "date": "2021-02-29",
         "lesson_number": 1,
         "subject": "Algebra",
         "text": "Some records here",
@@ -51,7 +51,7 @@ Response data:
     },
     {
         "id": 2,
-        "date": "2020-02-29",
+        "date": "2021-02-29",
         "lesson_number": 2,
         "subject": "Physics",
         "text": "",
@@ -60,7 +60,7 @@ Response data:
     },
     {
         "id": 3,
-        "date": "2020-02-29",
+        "date": "2021-02-29",
         "lesson_number": 3,
         "subject": "Chemistry",
         "text": "Some records here",
@@ -69,7 +69,7 @@ Response data:
     },
     {
         "id": 4,
-        "date": "2020-02-29",
+        "date": "2021-02-29",
         "lesson_number": 4,
         "subject": "Biology",
         "text": "",
@@ -78,7 +78,7 @@ Response data:
     },
     {
         "id": 5,
-        "date": "2020-02-29",
+        "date": "2021-02-29",
         "lesson_number": 5,
         "subject": "P.E.",
         "text": "",
@@ -87,7 +87,7 @@ Response data:
     },
     {
         "id": 6,
-        "date": "2020-02-29",
+        "date": "2021-02-29",
         "lesson_number": 6,
         "subject": " ",
         "text": "",
@@ -96,7 +96,7 @@ Response data:
     },
     {
         "id": 7,
-        "date": "2020-02-29",
+        "date": "2021-02-29",
         "lesson_number": 7,
         "subject": " ",
         "text": "",
@@ -139,7 +139,7 @@ Response data:
 Request:
 ```
 webix.ajax().post(
-    "/diary/2020/02/29/",
+    "/diary/2021/02/29/",
     {
         "lesson_number": 3,
         "subject": "Chemistry",
@@ -152,7 +152,7 @@ Response data:
 ```json
 {
     "user": "sam",
-    "date": "2020-02-29",
+    "date": "2021-02-29",
     "lesson_number": 3,
     "subject": "Chemistry",
     "text": "New records here"

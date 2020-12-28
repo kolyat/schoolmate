@@ -51,7 +51,7 @@ Response data:
     "month": 1,
     "second": 12,
     "minute": 33,
-    "year": 2020
+    "year": 2021
 }
 ```
 
@@ -138,13 +138,13 @@ Response data:
 [
     {
         "description": "2nd semester",
-        "start_date": "2020-01-13",
-        "end_date": "2020-05-25"
+        "start_date": "2021-01-13",
+        "end_date": "2021-05-25"
     },
     {
         "description": "Summer vacation",
-        "start_date": "2020-05-26",
-        "end_date": "2020-08-31"
+        "start_date": "2021-05-26",
+        "end_date": "2021-08-31"
     }
 ]
 ```

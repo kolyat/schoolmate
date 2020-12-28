@@ -94,7 +94,7 @@ Response data:
     "first_name": "Sam",
     "last_name": "Smith",
     "patronymic_name": "J.",
-    "birth_date": "2020-02-02",
+    "birth_date": "2021-02-02",
     "email": "sam@school.edu",
     "school_form": "9B",
     "language": "ru",
