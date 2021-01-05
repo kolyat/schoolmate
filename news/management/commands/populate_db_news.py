@@ -15,7 +15,7 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 from django.core.management import base
-from testutils import rndutils
+from utils import rnd
 
 from news import models as news_models
 from schoolmate import settings
@@ -33,7 +33,7 @@ def prepare_news(number_of_articles=default_number):
     print('    {:.<25}...'.format('{} articles'.format(number_of_articles)),
           end='', flush=True)
     for _ in range(number_of_articles):
-        article = rndutils.new_article()
+        article = rnd.new_article()
         news_models.Article(title=article['title'],
                             content=article['content']).save()
     print('OK')

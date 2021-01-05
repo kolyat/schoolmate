@@ -14,8 +14,18 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-from testutils import rndutils
+import random
+import mimesis
 
 
-user = rndutils.new_schooluser()
-user['email'] = 'reset_pass@school.edu'
+def new_article():
+    """Generate news article
+
+    :return: dictionary with header and text
+    """
+    random.seed()
+    _text = mimesis.Text()
+    return {
+        'title': _text.title(),
+        'content': _text.text(random.randint(3, 9))
+    }
