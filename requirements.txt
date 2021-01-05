@@ -1,5 +1,5 @@
 psycopg2==2.8.4
-django==2.0.13
+django==2.2.13
 djangorestframework==3.9.4
 django-jinja==2.6.0
 django-babel==0.6.2
