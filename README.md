@@ -35,9 +35,7 @@ everyday records as well as personal adjustments in timetable.
 
 ### Requirements
 
-- Python 3.4 or higher<br>
-  _Note_: scripts for automated testing of API do not support Python 3.4, 
-          use version 3.5 or higher
+- Python 3.4 or higher
 - Database management system: 
     - SQLite (not recommended)
     - PostgreSQL 9.6 or higher
@@ -80,15 +78,19 @@ everyday records as well as personal adjustments in timetable.
    7. _Optional_: set up number of articles that will be loaded by client in 
       `LATEST_NEWS_COUNT` variable.
 
-6. You can use `prepare_db.py` to fill database with predefined test data (this
-   data is stored in<br> `management/commands/_db_data.py` of each application).
+6. Run `prepare_db.py` in order to create database and it's structure.
 
-7. Run development server with
+7. Create superuser:
+    ```bash
+    manage.py createsuperuser
+    ```
+
+8. Run development server with
     ```bash
     manage.py runserver
     ```
 
-8. Do not forget to deactivate virtual environment after server shutdown if
+9. Do not forget to deactivate virtual environment after server shutdown if
    `venv` is not needed anymore:
     ```bash
     deactivate

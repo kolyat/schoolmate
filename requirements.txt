@@ -6,8 +6,3 @@ django-babel==0.6.2
 django-user-language-middleware==0.0.3
 django-grappelli==2.14.1
 django-related-admin==0.7.0
-
-typing==3.7.4.3
-zipp==0.5.2
-more_itertools==7.2.0
-mimesis==1.0.4
