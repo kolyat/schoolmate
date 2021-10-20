@@ -99,8 +99,8 @@ class SchoolForm(models.Model):
 class SchoolSubject(models.Model):
     """Represents school subject
     """
-    subject = models.CharField(max_length=254, blank=True, null=False,
-                               verbose_name=_('School subject'))
+    subject = models.CharField(max_length=254, unique=True, blank=True,
+                               null=False, verbose_name=_('School subject'))
 
     def __str__(self):
         return self.subject
