@@ -1,0 +1,7 @@
+div[view_id="login_form"] {
+    margin-top: 0px !important
+}
+div[view_id="forgot_password_btn"] {
+    margin-top: 4px !important;
+    margin-left: 8px !important
+}

@@ -21,7 +21,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //
 var newPasswordForm = {
     view: "form", name: "new_password_form", id: "new_password_form",
-    width: 360, css: {"margin-top": "0px !important"}, elements: [
+    width: 360, elements: [
         {
             view: "text", type: "text", value: csrfToken, hidden: true,
             name: "csrfmiddlewaretoken", id: "csrfmiddlewaretoken"

@@ -29,8 +29,7 @@ var formHeader = {
     template: gettext("Log in to system")
 };
 var loginForm = {
-    view: "form", name: "login_form", id: "login_form",
-    width: 360, css: {"margin-top": "0px !important"}, elements: [
+    view: "form", name: "login_form", id: "login_form", width: 360, elements: [
         {
             view: "text", type: "text", value: csrfToken,
             name: "csrfmiddlewaretoken", id: "csrfmiddlewaretoken",
@@ -62,8 +61,7 @@ var passwdButton = {
     name: "forgot_password_btn", id: "forgot_password_btn",
     href: URL_PASSWD_RESET,
     click: function() {webix.send(this.config.href, {}, "GET");},
-    minWidth: 165, width: 170, minHeight: 28, height: 30,
-    css: {"margin-top": "4px !important", "margin-left": "8px !important"}
+    minWidth: 165, width: 170, minHeight: 28, height: 30
 };
 
 //

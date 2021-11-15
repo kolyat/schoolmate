@@ -40,7 +40,7 @@ var URL_PASSWD_RESET = "/profile/password_reset/";
 //
 var resetForm = {
     view: "form", name: "password_reset_form", id: "password_reset_form",
-    css: {"margin-top": "0px !important"}, width: 360, elements: [
+    width: 360, elements: [
         {
             view: "text", type: "text", value: csrfToken, hidden: true,
             name: "csrfmiddlewaretoken", id: "csrfmiddlewaretoken"
