@@ -95,7 +95,7 @@ webix.ui({
         {width: 1},
         {
             view: "label", id: "app_menu_button", label: "", align: "center",
-            css: "fas fa-bars appMenuButton", width: 40, height: 40
+            css: "fas fa-bars appMenuButton", width: 30, height: 30
         },
         {
             view: "label", id: "app_label", label: "SCHOOLMATE",
