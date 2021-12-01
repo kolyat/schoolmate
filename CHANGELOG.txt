@@ -1,3 +1,8 @@
+=== 1.0 (2021-12-01)
+
+* Minor fixes and improvements
+
+
 === 0.1 (2020-03-06)
 
 * Initial release
