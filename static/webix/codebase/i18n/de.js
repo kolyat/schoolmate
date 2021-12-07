@@ -1,5 +1,5 @@
 /*German (Germany) locale*/
-webix.i18n.locales["de-DE"] = {
+const de = {
 	groupDelimiter:".",
 	groupSize:3,
 	decimalDelimiter:",",
@@ -27,22 +27,24 @@ webix.i18n.locales["de-DE"] = {
 		done:"Fertig",
 		clear: "Entfernen",
 		today: "Heute"
-    },
+	},
 
-    dataExport:{
+	dataExport:{
 		page:"Seite",
-		of:"aus"
-    },
-    PDFviewer:{
-		of:"aus",
+		of:"von"
+	},
+	PDFviewer:{
+		of:"von",
 		automaticZoom:"Automatisch Zoom",
 		actualSize:"Aktuelles Ausmaß",
 		pageFit:"Seite Ausmaß",
 		pageWidth:"Seite Breite",
-		pageHeight:"Seite Höhe"
-    },
-    aria:{
-    	calendar:"Kalender",
+		pageHeight:"Seite Höhe",
+		enterPassword:"Passwort eingeben",
+		passwordError:"Falsches passwort"
+	},
+	aria:{
+		calendar:"Kalender",
 		increaseValue:"Wert erhöhen",
 		decreaseValue:"Wert verringern",
 		navMonth:["Vorheriger Monat", "Nächsten Monat"],
@@ -70,15 +72,48 @@ webix.i18n.locales["de-DE"] = {
 		showChart:"Chart anzeigen",
 		hideChart:"Chart verstecken",
 		resizeChart:"Chart Größe ändern"
-    },
-    richtext:{
-        underline: "Unterstreichen",
-        bold: "Fettgedruckt",
-        italic: "Kursiv"
-    },
-    combo:{
-    	select:"Auswählen",
-        selectAll:"Alles auswählen",
-        unselectAll:"Alles widerrufen"
-    }
+	},
+	richtext:{
+		underline: "Unterstreichen",
+		bold: "Fettgedruckt",
+		italic: "Kursiv"
+	},
+	combo:{
+		select:"Auswählen",
+		selectAll:"Alles auswählen",
+		unselectAll:"Alles widerrufen"
+	},
+	message:{
+		ok:"OK",
+		cancel:"Abbrechen"
+	},
+	comments:{
+		send: "Absenden",
+		confirmMessage: "Der Kommentar wird entfernt. Sind Sie sicher?",
+		edit: "Redigieren",
+		remove: "Löschen",
+		placeholder: "Geben Sie hier ein..",
+		moreComments:"Mehr Kommentare"
+	},
+	filter:{
+		less: "weniger",
+		lessOrEqual: "weniger oder gleich",
+		greater: "mehr",
+		greaterOrEqual: "größer oder gleich",
+		contains: "enthält",
+		notContains: "nicht enthält",
+		equal: "gleich",
+		notEqual: "ungleich",
+		beginsWith: "beginnt mit",
+		notBeginsWith: "nicht beginnt mit",
+		endsWith: "endet mit",
+		notEndsWith: "nicht endet mit",
+		between: "zwischen",
+		notBetween: "nicht zwischen"
+	},
+	timeboard:{
+		seconds: "Sekunden"
+	}
 };
+
+export default de;

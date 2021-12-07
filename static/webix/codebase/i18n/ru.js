@@ -1,4 +1,4 @@
-webix.i18n.locales["ru-RU"]={
+const ru = {
 	groupDelimiter:" ",
 	groupSize:3,
 	decimalDelimiter:",",
@@ -16,7 +16,7 @@ webix.i18n.locales["ru-RU"]={
 		monthFull:["Январь", "Февраль", "Март", "Апрель", "Maй", "Июнь", "Июль", "Август", "Сентябрь", "Oктябрь", "Ноябрь", "Декабрь"],
 		monthShort:["Янв", "Фев", "Maр", "Aпр", "Maй", "Июн", "Июл", "Aвг", "Сен", "Окт", "Ноя", "Дек"],
 		dayFull:[ "Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"],
-    	dayShort:["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"],
+		dayShort:["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"],
 		hours: "Часы",
 		minutes: "Минуты",
 		done: "Гoтовo",
@@ -24,19 +24,21 @@ webix.i18n.locales["ru-RU"]={
 		today: "Сегодня"
 	},
 
-    dataExport:{
+	dataExport:{
 		page:"Страница",
 		of:"из"
-    },
-    PDFviewer:{
+	},
+	PDFviewer:{
 		of:"из",
 		automaticZoom:"Автоматический зум",
 		actualSize:"Настоящий размер",
 		pageFit:"Размер страницы",
 		pageWidth:"Ширина страницы",
-		pageHeight:"Высота страницы"
-    },
-    aria:{
+		pageHeight:"Высота страницы",
+		enterPassword:"Введите пароль",
+		passwordError:"Неверный пароль"
+	},
+	aria:{
 		calendar:"Календарь",
 		increaseValue:"Увеличить значение",
 		decreaseValue:"Уменьшить значение",
@@ -65,15 +67,48 @@ webix.i18n.locales["ru-RU"]={
 		showChart:"Показать чарт",
 		hideChart:"Спрятать чарт",
 		resizeChart:"Изменить размер чарта"
-    },
-    richtext:{
-        underline: "Подчеркивание",
-        bold: "Жирный",
-        italic: "Курсив"
-    },
-    combo:{
-    	select:"Выбрать",
-        selectAll:"Выбрать все",
-        unselectAll:"Сброс выбора"
-    }
+	},
+	richtext:{
+		underline: "Подчеркивание",
+		bold: "Жирный",
+		italic: "Курсив"
+	},
+	combo:{
+		select:"Выбрать",
+		selectAll:"Выбрать все",
+		unselectAll:"Сброс выбора"
+	},
+	message:{
+		ok:"OK",
+		cancel:"Отмена"
+	},
+	comments:{
+		send: "Отправить",
+		confirmMessage: "Комментарий будет удален. Вы уверены?",
+		edit: "Редактировать",
+		remove: "Удалить",
+		placeholder: "Введите текст..",
+		moreComments:"Больше комментариев"
+	},
+	filter:{
+		less: "меньше",
+		lessOrEqual: "меньше или равно",
+		greater: "больше",
+		greaterOrEqual: "больше или равно",
+		contains: "содержит",
+		notContains: "не содержит",
+		equal: "равно",
+		notEqual: "не равно",
+		beginsWith: "начинается с",
+		notBeginsWith: "не начинается с",
+		endsWith: "заканчиватся",
+		notEndsWith: "не заканчиватся",
+		between: "между",
+		notBetween: "не между"
+	},
+	timeboard:{
+		seconds: "Секунды"
+	}
 };
+
+export default ru;
