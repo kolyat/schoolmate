@@ -9,10 +9,3 @@ body {
     display: flex;
     flex-direction: column;
 }
-
-.webix_success div {
-    background: #8f9;
-}
-.custom .webix_list_item {
-    color: #FFFFFF;
-}

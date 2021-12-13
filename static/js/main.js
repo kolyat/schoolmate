@@ -59,7 +59,6 @@ var userMenu = {
             ]
         }
     ],
-    submenuConfig: {css: "custom"},
     type: {subsign: true},
     autowidth: true, autoheight: true, minWidth: 90, maxWidth: 150,
     align: "right", css: {"text-align": "right", "padding": "9px 0px"}

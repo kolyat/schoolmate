@@ -62,7 +62,7 @@ var dayTableTemplate = {
             // minWidth: 26, width: 28,
         },
         {
-            id: "subject", header: "subject", fillspace: 1, editor: "select",
+            id: "subject", header: "subject", fillspace: 1.2, editor: "select",
             options: [],
             // minWidth: 100, width: 140,
         },
@@ -73,11 +73,11 @@ var dayTableTemplate = {
             // minWidth: 140,
         },
         {
-            id: "marks", header: "marks", width: 1, //fillspace: 0.55,
+            id: "marks", header: "marks", maxWidth: 1, //fillspace: 0.55,
             // minWidth: 50, width: 60,
         },
         {
-            id: "signature", header: "signature", width: 1, //fillspace: 0.8,
+            id: "signature", header: "signature", maxWidth: 1, //fillspace: 0.8,
             // minWidth: 80, width: 100,
         }
     ],

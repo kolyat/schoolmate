@@ -89,8 +89,12 @@ function getTimetable(number) {
             var f_subj = ["subj", f].join("_")
             var f_room = ["room", f].join("_")
             timetable.config.columns.push({
-                id: f_subj,
-                header: {text: f, colspan: 2, css: {"text-align": "center"}}
+                id: f_subj, header: {
+                    text: f, colspan: 2, css: {
+                        "text-align": "center",
+                        "font-weight": "bold"
+                    }
+                }
             });
             timetable.config.columns.push({id: f_room, header: "", width: 45});
             DAYS_OF_WEEK.forEach((_, d) => {
@@ -118,11 +122,11 @@ function getTimetable(number) {
         });
         timetable.config.columns.push(
             {id: "extra", header: "", fillspace: true});
-        timetable.config.columns[0].width = 100;
+        timetable.config.columns[0].width = 110;
         timetable.refreshColumns();
         DAYS_OF_WEEK.forEach((day_name, day_number) => {
             timetable.add(
-                {root: day_name, $css: {"background-color": "#383838"}});
+                {root: day_name, $css: "webix_ss_header"});
             rows[day_number].forEach(lesson => timetable.add(lesson));
         });
         var max_width = 0;
