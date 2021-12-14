@@ -118,6 +118,7 @@ WSGI_APPLICATION = 'schoolmate.wsgi.application'
 
 
 # Database
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',

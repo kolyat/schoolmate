@@ -35,7 +35,7 @@ everyday records as well as personal adjustments in timetable.
 
 ### Requirements
 
-- Python 3.4 or higher
+- Python 3.8 or higher
 - Database management system: 
     - SQLite (not recommended)
     - PostgreSQL 9.6 or higher
@@ -56,7 +56,7 @@ everyday records as well as personal adjustments in timetable.
 3. Create virtual environment for project and activate it (for more information
    visit [this](https://docs.python-guide.org/dev/virtualenvs/) guide):
     ```bash
-    virtualenv -p /usr/bin/python3.4 venv
+    virtualenv -p /usr/bin/python3.8 venv
     source venv/bin/activate
     ```
 
