@@ -60,7 +60,7 @@ Response data:
 
 #### Get user info
 
-Retrieve user info and available system languages.
+Retrieve user's info and settings.
 
 * **URL**:
 `/profile/user/info/`
@@ -98,6 +98,7 @@ Response data:
     "email": "sam@school.edu",
     "school_form": "9B",
     "language": "ru",
+    "skin": "contrast",
     "languages": [
         [
             "ru",
@@ -111,13 +112,27 @@ Response data:
             "de",
             "Deutsch"
         ]
+    ],
+    "skins": [
+        [
+            "contrast",
+            "Contrast"
+        ],
+        [
+            "flat",
+            "Flat"
+        ],
+        [
+            "material",
+            "Material"
+        ]
     ]
 }
 ```
 
-#### Set user language
+#### Set user settings
 
-Change current user's language (locale).
+Change settings of current user.
 
 * **URL**:
 `/profile/user/info/`
@@ -130,7 +145,7 @@ Change current user's language (locale).
 
 * **Data parameters**:
     * Required:
-    `{'language': 'string'}`
+    `{'language': 'string', 'skin': 'string'}`
 
 * **Success response**
     * Code: `202 ACCEPTED`
@@ -144,7 +159,7 @@ Request:
 ```
 webix.ajax().patch(
     "/profile/user/info/",
-    {"language": "de"}
+    {"language": "de", "skin": "compact"}
 );
 ```
 
@@ -152,6 +167,7 @@ Response data:
 ```json
 {
     "username": "sam",
-    "language": "de"
+    "language": "de",
+    "skin": "compact"
 }
 ```

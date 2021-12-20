@@ -14,7 +14,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-from django import http, shortcuts
+from django import http
+from django.template.response import TemplateResponse
 from django.contrib.auth import decorators as auth_decorators
 from django.views.decorators import http as http_decorators
 from django.utils.decorators import method_decorator
@@ -32,7 +33,7 @@ from . import models
 def account(request):
     """Profile page
     """
-    return shortcuts.render(request, 'account.html.j2')
+    return TemplateResponse(request, 'account.html.j2', context={})
 
 
 @auth_decorators.login_required()
@@ -65,7 +66,7 @@ class UserInfoSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.SchoolUser
         fields = ('username', 'first_name', 'last_name', 'patronymic_name',
-                  'birth_date', 'email', 'school_form', 'language')
+                  'birth_date', 'email', 'school_form', 'language', 'skin')
 
 
 @method_decorator(auth_decorators.login_required, name='dispatch')
@@ -75,7 +76,7 @@ class UserInfo(rest_views.APIView):
     model = models.SchoolUser
 
     def get(self, request):
-        """:return: user info and available system languages
+        """:return: user's info and settings
         """
         user_obj = self.model.objects.get(username=request.user.username)
         serializer = UserInfoSerializer(user_obj)
@@ -86,21 +87,28 @@ class UserInfo(rest_views.APIView):
                     'language_code': lang[0],
                     'language_name': lang[1]
                 } for lang in settings.LANGUAGES
+            ],
+            'skins': [
+                {
+                    'skin': s[0],
+                    'skin_name': s[1]
+                } for s in settings.SKINS
             ]
         })
         return response.Response(user_info, status=status.HTTP_200_OK)
 
     def patch(self, request):
-        """Change user's language
+        """Change user's settings
 
-        :return: 202 ACCEPTED; username and current locale
+        :return: 202 ACCEPTED; username, current locale, skin
         :return: 400 BAD REQUEST; serializer's errors
         """
         user_obj = self.model.objects.get(username=request.user.username)
         serializer = UserInfoSerializer(
             user_obj, data={
                 'username': request.user.username,
-                'language': request.data.get('language', None)
+                'language': request.data.get('language', None),
+                'skin': request.data.get('skin', None)
             }
         )
         if serializer.is_valid():

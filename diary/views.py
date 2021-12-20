@@ -18,7 +18,7 @@ import datetime
 import collections
 import copy
 
-from django import shortcuts
+from django.template.response import TemplateResponse
 from django.core import exceptions
 from django.contrib.auth import decorators as auth_decorators
 from django.views.decorators import http as http_decorators
@@ -37,7 +37,7 @@ from timetable import models as tt_models
 def diary(request):
     """Diary page
     """
-    return shortcuts.render(request, 'diary.html.j2')
+    return TemplateResponse(request, 'diary.html.j2', context={})
 
 
 class TimetableRecordSerializer(serializers.ModelSerializer):

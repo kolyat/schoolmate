@@ -7,17 +7,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1\n"
 "Report-Msgid-Bugs-To: kks.pub@gmail.com\n"
-"POT-Creation-Date: 2020-03-01 12:51+0300\n"
-"PO-Revision-Date: 2020-03-01 13:02+0300\n"
+"POT-Creation-Date: 2021-12-20 01:13+0300\n"
+"PO-Revision-Date: 2021-12-20 01:18+0300\n"
 "Last-Translator: Kirill 'Kolyat' Kiselnikov <kks.pub@gmail.com>\n"
-"Language: de\n"
 "Language-Team: de <kks.pub@gmail.com>\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.8.0\n"
-"X-Generator: Poedit 2.2\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Generated-By: Babel 2.9.1\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #: account/admin.py:27
 msgid "Credentials"
@@ -59,16 +59,20 @@ msgstr "Schulklasse"
 msgid "Language"
 msgstr "Sprache"
 
-#: account/models.py:43
+#: account/models.py:44
+msgid "Skin"
+msgstr "Anmeldung"
+
+#: account/models.py:48
 msgid "School user"
 msgstr "Schulnutzer"
 
-#: account/models.py:44
+#: account/models.py:49
 msgid "School users"
 msgstr "Schulnutzern"
 
 #: account/static/account/js/account.js:48
-#: account/static/account/js/login.js:46
+#: account/static/account/js/login.js:45
 msgid "Username"
 msgstr "Nutzername"
 
@@ -103,11 +107,6 @@ msgstr "Aktuelles Passwort"
 #: account/static/account/js/account.js:129
 #: account/static/account/js/password_reset_confirm.js:35
 #: account/static/account/js/password_reset_confirm.js:41
-#: account/tests/data_test_password_change.py:29
-#: account/tests/data_test_password_change.py:36
-#: account/tests/data_test_password_change.py:43
-#: account/tests/test_password_reset.py:134
-#: account/tests/test_password_reset.py:137
 msgid "Field can not be empty"
 msgstr "Feld darf nicht leer sein"
 
@@ -122,7 +121,6 @@ msgid "Retype new password"
 msgstr "Neues Passwort erneut eingeben"
 
 #: account/static/account/js/account.js:146
-#: account/tests/test_password_change.py:107
 msgid "New passwords are not the same"
 msgstr "Neue Passwörter sind nicht gleich"
 
@@ -139,12 +137,10 @@ msgid "Language change failed"
 msgstr "Sprachänderung fehlgeschlagen"
 
 #: account/static/account/js/account.js:241
-#: account/tests/test_password_change.py:44
 msgid "Password changed"
 msgstr "Passwort geändert"
 
 #: account/static/account/js/account.js:249
-#: account/tests/test_password_change.py:124
 msgid "Password change failed"
 msgstr "Passwort ändern fehlgeschlagen"
 
@@ -152,29 +148,27 @@ msgstr "Passwort ändern fehlgeschlagen"
 msgid "Log in to system"
 msgstr "Einloggen in das System"
 
-#: account/static/account/js/login.js:48 account/tests/data_test_login.py:28
+#: account/static/account/js/login.js:47
 msgid "Username can not be empty"
 msgstr "Benutzername darf nicht leer sein"
 
-#: account/static/account/js/login.js:51
+#: account/static/account/js/login.js:50
 msgid "Password"
 msgstr "Passwort"
 
-#: account/static/account/js/login.js:53 account/tests/data_test_login.py:34
+#: account/static/account/js/login.js:52
 msgid "Password can not be empty"
 msgstr "Passwort darf nicht leer sein"
 
-#: account/static/account/js/login.js:56
+#: account/static/account/js/login.js:55
 msgid "Log in"
 msgstr "Einloggen"
 
-#: account/static/account/js/login.js:67
+#: account/static/account/js/login.js:66
 msgid "Forgot password"
 msgstr "Vergissen ein Passwort"
 
-#: account/static/account/js/login.js:110 account/tests/test_login.py:81
-#: account/tests/test_password_change.py:50
-#: account/tests/test_password_reset.py:165
+#: account/static/account/js/login.js:108
 msgid "Wrong username/password"
 msgstr "Falscher Benutzername/Passwort"
 
@@ -183,18 +177,14 @@ msgid "Reset"
 msgstr "Zurücksetzen"
 
 #: account/static/account/js/password_reset.js:68
-#: account/tests/test_password_reset.py:189
 msgid "E-mail can not be empty"
 msgstr "E-mail darf nicht leer sein"
 
 #: account/static/account/js/password_reset.js:72
-#: account/tests/test_password_reset.py:195
 msgid "Must be valid e-mail address"
 msgstr "Muss gültige E-Mail-Adresse sein"
 
 #: account/static/account/js/password_reset.js:90
-#: account/tests/test_password_reset.py:88
-#: account/tests/test_password_reset.py:185
 msgid "Password reset"
 msgstr "Passwort zurücksetzen"
 
@@ -203,7 +193,6 @@ msgid "Could not send password reset confirmation"
 msgstr "Konnte keine Bestätigung zum Zurücksetzen des Passworts senden"
 
 #: account/static/account/js/password_reset_complete.js:38
-#: account/tests/test_password_reset.py:153
 msgid "Password reset complete"
 msgstr "Passwort zurücksetzen vollendet"
 
@@ -217,7 +206,6 @@ msgid "Confirm"
 msgstr "Bestätigen"
 
 #: account/static/account/js/password_reset_confirm.js:55
-#: account/tests/test_password_reset.py:145
 msgid "Passwords are not the same"
 msgstr "Passwörter sind nicht gleich"
 
@@ -231,31 +219,21 @@ msgstr "Konnte kein neues Passwort einrichten"
 
 #: account/static/account/js/password_reset_email_sent.js:38
 msgid "Password reset confirmation has been sent to your e-mail"
-msgstr "Die Bestätigung zum Zurücksetzen des Passworts wurde an Ihre E-Mail gesendet"
-
-#: account/tests/test_login.py:36 account/tests/test_password_change.py:55
-msgid "Main"
-msgstr "Haupt"
-
-#: account/tests/test_logout.py:37 account/tests/test_logout.py:51
-#: account/tests/test_logout.py:54 account/tests/test_password_reset.py:124
-#: account/tests/test_password_reset.py:159
-msgid "Sign in"
-msgstr "Anmelden"
-
-#: account/tests/test_password_reset.py:98
-msgid "Password reset sent"
-msgstr "E-Mail zum Zurücksetzen des Passworts gesendet"
-
-#: account/tests/test_password_reset.py:128
-msgid "Password reset confirmation"
-msgstr "Bestätigung zum Zurücksetzen des Passworts"
+msgstr ""
+"Die Bestätigung zum Zurücksetzen des Passworts wurde an Ihre E-Mail "
+"gesendet"
 
 #~ msgid "Password reset confirmation"
-#~ msgstr "Passwort zurücksetzen Bestätigung"
+#~ msgstr "Bestätigung zum Zurücksetzen des Passworts"
 
 #~ msgid "Password reset sent"
-#~ msgstr "Passwort zurücksetzen gesendet"
+#~ msgstr "E-Mail zum Zurücksetzen des Passworts gesendet"
 
 #~ msgid "Profile"
 #~ msgstr "Profil"
+
+#~ msgid "Main"
+#~ msgstr "Haupt"
+
+#~ msgid "Sign in"
+#~ msgstr "Anmelden"

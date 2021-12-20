@@ -62,7 +62,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     # Custom middleware
     'user_language_middleware.UserLanguageMiddleware',
-    'django_babel.middleware.LocaleMiddleware'
+    'django_babel.middleware.LocaleMiddleware',
+    'account.middleware.skin.SkinMiddleware'
 ]
 ROOT_URLCONF = 'schoolmate.urls'
 TEMPLATES = [
@@ -120,18 +121,18 @@ WSGI_APPLICATION = 'schoolmate.wsgi.application'
 # Database
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 DATABASES = {
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': 'schoolmate.db'
+    # },
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'schoolmate.db'
-    },
-    # 'postgres': {
-    #     'ENGINE': 'django.db.backends.postgresql',
-    #     'NAME': 'schoolmate',
-    #     'USER': 'postgres',
-    #     'PASSWORD': 'postgres',
-    #     'HOST': 'localhost',
-    #     'PORT': '5432'
-    # }
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'schoolmate',
+        'USER': 'postgres',
+        'PASSWORD': 'postgres',
+        'HOST': 'localhost',
+        'PORT': '5432'
+    }
 }
 
 
@@ -146,6 +147,7 @@ DEFAULT_FROM_EMAIL = 'robot@school.edu'
 
 # Password validation
 AUTH_USER_MODEL = 'account.SchoolUser'
+
 AUTH_PASSWORD_VALIDATORS = [
     # {
     #     'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -160,26 +162,29 @@ AUTH_PASSWORD_VALIDATORS = [
     #     'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     # }
 ]
+
 LOGIN_URL = '/profile/login/'
 LOGIN_REDIRECT_URL = '/'
 
 
 # Internationalization
-LANGUAGES = (
-    ('ru', 'Русский'),
-    ('en', 'English'),
-    ('de', 'Deutsch')
+LANGUAGES = (        # i =
+    ('ru', 'Русский'),  # 0
+    ('en', 'English'),  # 1
+    ('de', 'Deutsch')   # 2
 )
-LANGUAGE_CODE = LANGUAGES[0][0]
+LANGUAGE_CODE = LANGUAGES[0][0]  # LANGUAGES[i][0]
 TEMPLATES[0]['OPTIONS']['constants'].update({'server_lang': LANGUAGE_CODE})
+
 LOCALE_PATHS = [
-    os.path.join(BASE_DIR, 'locale'),
-    os.path.join(BASE_DIR, 'school', 'locale'),
-    os.path.join(BASE_DIR, 'account', 'locale'),
-    os.path.join(BASE_DIR, 'news', 'locale'),
+    os.path.join(BASE_DIR,              'locale'),
+    os.path.join(BASE_DIR, 'school',    'locale'),
+    os.path.join(BASE_DIR, 'account',   'locale'),
+    os.path.join(BASE_DIR, 'news',      'locale'),
     os.path.join(BASE_DIR, 'timetable', 'locale'),
-    os.path.join(BASE_DIR, 'diary', 'locale')
+    os.path.join(BASE_DIR, 'diary',     'locale')
 ]
+
 TIME_ZONE = 'Europe/Moscow'
 USE_I18N = True
 USE_L10N = True
@@ -189,11 +194,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
-    os.path.join(BASE_DIR, 'school', 'static'),
-    os.path.join(BASE_DIR, 'account', 'static'),
+    os.path.join(BASE_DIR,              'static'),
+    os.path.join(BASE_DIR, 'school',    'static'),
+    os.path.join(BASE_DIR, 'account',   'static'),
     os.path.join(BASE_DIR, 'timetable', 'static'),
-    os.path.join(BASE_DIR, 'diary', 'static')
+    os.path.join(BASE_DIR, 'diary',     'static')
 ]
 
 
@@ -207,4 +212,14 @@ GRAPPELLI_SWITCH_USER_TARGET = False
 
 
 # Miscellaneous
+SKINS = (                   # i =
+    ('compact',  'Compact'),   # 0
+    ('contrast', 'Contrast'),  # 1
+    ('flat',     'Flat'),      # 2
+    ('material', 'Material'),  # 3
+    ('mini',     'Mini')       # 4
+)
+DEFAULT_SKIN = SKINS[1][0]  # SKINS[i][0]
+TEMPLATES[0]['OPTIONS']['constants'].update({'default_skin': DEFAULT_SKIN})
+
 LATEST_NEWS_COUNT = 300

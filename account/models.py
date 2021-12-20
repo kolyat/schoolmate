@@ -38,6 +38,11 @@ class SchoolUser(auth_models.AbstractUser):
         choices=settings.LANGUAGES, default=settings.LANGUAGE_CODE,
         verbose_name=_('Language')
     )
+    skin = models.CharField(
+        max_length=33, blank=False, null=False,
+        choices=settings.SKINS, default=settings.DEFAULT_SKIN,
+        verbose_name=_('Skin')
+    )
 
     class Meta:
         verbose_name = _('School user')

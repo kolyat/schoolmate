@@ -4,8 +4,15 @@
   <meta content="text/html; charset=utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script type="text/javascript" src="{{ url('javascript-catalog') }}"></script>
-  <link href="{{ static('webix/codebase/skins/contrast.css') }}" rel="stylesheet"
-        type="text/css" />
+  {% if skin %}
+    {% set _skin = skin %}
+  {% elif default_skin %}
+    {% set _skin = default_skin %}
+  {% else %}
+    {% set _skin = 'contrast' %}
+  {% endif %}
+  {% set skin_path = 'webix/codebase/skins/'~_skin~'.css' %}
+  <link href="{{ static(skin_path) }}" rel="stylesheet" type="text/css" />
   <link href="{{ static('fontawesome/css/all.css') }}" rel="stylesheet"
         type="text/css" />
   <link href="{{ static('css/base.css') }}" rel="stylesheet" type="text/css" />

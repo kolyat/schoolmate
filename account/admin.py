@@ -35,7 +35,7 @@ class SchoolUserAdmin(auth_admin.UserAdmin):
             'fields': ('email',)
         }),
         (_('Miscellaneous'), {
-            'fields': ('language', 'date_joined')
+            'fields': ('language', 'skin', 'date_joined')
         }),
         (_('Permissions'), {
             'fields': ('is_active', 'is_staff', 'is_superuser', 'groups',

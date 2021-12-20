@@ -14,7 +14,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-from django import shortcuts
+from django.template.response import TemplateResponse
 from django.contrib.auth import decorators as auth_decorators
 from django.views.decorators import http as http_decorators
 from django.utils.decorators import method_decorator
@@ -29,7 +29,7 @@ from . import models
 def timetable(request):
     """Timetable page
     """
-    return shortcuts.render(request, 'timetable.html.j2')
+    return TemplateResponse(request, 'timetable.html.j2', context={})
 
 
 class TimetableSerializer(serializers.ModelSerializer):
