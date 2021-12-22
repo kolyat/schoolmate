@@ -13,12 +13,10 @@
   {% endif %}
   {% set skin_path = 'webix/codebase/skins/'~_skin~'.css' %}
   <link href="{{ static(skin_path) }}" rel="stylesheet" type="text/css" />
-  <link href="{{ static('fontawesome/css/all.css') }}" rel="stylesheet"
-        type="text/css" />
+  <link href="{{ static('mdi/css/materialdesignicons.min.css') }}"
+        rel="stylesheet" type="text/css" charset="utf-8"/>
   <link href="{{ static('css/base.css') }}" rel="stylesheet" type="text/css" />
   <script src="{{ static('webix/codebase/webix.min.js') }}"
-          type="text/javascript" charset="utf-8"></script>
-  <script defer src="{{ static('fontawesome/js/all.js') }}"
           type="text/javascript" charset="utf-8"></script>
   <link rel="icon" href="{{ static('img/favicon.png') }}" type="image/png" />
   <title>{% block title %}{% endblock title %}</title>
