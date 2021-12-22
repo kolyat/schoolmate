@@ -4,22 +4,10 @@ a:hover, a:visited, a:link, a:active
     color: #FFFFFF;
 }
 
-.appMenuButton>div {
-    font-size: 26px !important;
-}
 .headerSecondaryLabel>div {
     font-size: 18px !important;
     letter-spacing: 2px;
 }
 .appMenuButton:hover, .headerSecondaryLabel>div:hover {
     cursor: pointer;
-}
-
-.app_menu_item {
-    display: flex;
-  	align-items: center;
-  	font-size: 15px;
-}
-.menu_item_icon {
-    margin-right: 22px;
 }

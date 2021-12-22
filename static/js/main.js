@@ -31,70 +31,59 @@ var URL_LOGOUT = "/profile/logout/";
 //
 // Widget description
 //
-var toolbarHeight = 60;
-
-var userMenu = {
-    view: "menu", id: "user_menu", layout: "x", data: [
-        {
-            value: "", name: "user_item", id: "user_item", submenu: [
-                {
-                    value: gettext("Profile"),
-                    name: "profile_item", id: "profile_item",
-                    href: URL_PROFILE, config: {
-                        click: function(id) {
-                            webix.send(this.config.href, {}, "GET");
-                        }
-                    }
-                },
-                { $template: "Separator" },
-                {
-                    value: gettext("Log out"),
-                    name: "logout_item", id: "logout_item",
-                    href: URL_LOGOUT, config: {
-                        click: function(id) {
-                            webix.send(this.config.href, {}, "GET");
-                        }
-                    }
-                }
-            ]
-        }
-    ],
-    type: {subsign: true},
-    autowidth: true, autoheight: true, minWidth: 90, maxWidth: 150,
-    align: "right", css: {"text-align": "right", "padding": "9px 0px"}
-};
+var toolbarHeight = 50;
 
 //
 // UI init
 //
 webix.ui({
-    view: "sidemenu", id: "app_menu", position: "left", hidden: true,
-    width: 210, borderless: true,
-    state: function(state) {
-        state.top = toolbarHeight;
-        state.height -= toolbarHeight;
-    },
-    body: {
-        view: "list", id: "app_menu_list", borderless: true, scroll: false,
-        template: "<span class='menu_item_icon #icon#'></span> #value#",
-        type: {height: toolbarHeight, css: "app_menu_item"},
-        data: [
-            {id: 1, value: gettext("Main"), icon: "fas fa-school", href: URL_MAIN,},
-            {id: 2, value: gettext("Timetable"), icon: "fas fa-table", href: URL_TIMETABLE},
-            {id: 3, value: gettext("Diary"), icon: "fas fa-book-open", href: URL_DIARY},
-        ]
-    }
+    view: "sidebar", id: "app_menu", position: "left", container: "div_menu",
+    collapsed: true, collapsedWidth: 45, minWidth: 220, // maxWidth: 260
+    activeTitle: true, titleHeight: 45, multipleOpen: false, borderless: true,
+    data: [
+        {
+            id: "main", value: gettext("Main"),
+            icon: "mdi mdi-school", href: URL_MAIN
+        },
+        {
+            id: "timetable", value: gettext("Timetable"),
+            icon: "mdi mdi-table", href: URL_TIMETABLE
+        },
+        {
+            id: "diary", value: gettext("Diary"),
+            icon: "mdi mdi-book-open-variant", href: URL_DIARY
+        },
+        {
+            id: "profile", value: gettext("Profile"),
+            icon: "mdi mdi-account", data: [
+                {
+                    id: "profile_info", value: gettext("Info"),
+                    icon: "mdi mdi-card-account-details-outline", href: URL_PROFILE
+                },
+                // TODO: implement new views
+                //{
+                //    id: "profile_settings", value: gettext("Settings"),
+                //    icon: "mdi mdi-account-cog", href: NONE
+                //},
+                {
+                    id: "profile_logout", value: gettext("Log out"),
+                    icon: "mdi mdi-exit-run", href: URL_LOGOUT,
+                }
+            ]
+        }
+
+    ]
 });
 var app_menu = $$("app_menu");
 
 webix.ui({
     view: "toolbar", id: "main_toolbar", container: "div_header",
     responsive: true, minHeight: toolbarHeight, height: toolbarHeight,
-    cols: [
+    borderless: true, cols: [
         {width: 1},
         {
-            view: "label", id: "app_menu_button", label: "", align: "center",
-            css: "fas fa-bars appMenuButton", width: 30, height: 30
+            view: "icon", id: "app_menu_button", align: "center",
+            icon: "mdi mdi-menu"
         },
         {
             view: "label", id: "app_label", label: "SCHOOLMATE",
@@ -102,28 +91,23 @@ webix.ui({
         },
         {id: "toolbar_block_left"},
         {id: "toolbar_block_right"},
-        userMenu
+        // TODO: display user's name
+        {width: 1}
     ]
 });
 
 var main_toolbar = $$("main_toolbar");
 var app_menu_button = $$("app_menu_button");
 var app_label = $$("app_label");
-var user_menu = $$("user_menu");
-var app_menu_list = $$("app_menu_list");
 
 //
 // Event handling
 //
 function toggleAppMenu() {
-    if (app_menu.config.hidden) {
-        app_menu.show();
-    } else {
-        app_menu.hide();
-    }
+    app_menu.toggle();
 }
 
-app_menu_list.attachEvent("onItemClick", function(id, e, node) {
+app_menu.attachEvent("onAfterSelect", function(id, e, node) {
     var item = this.getItem(id);
     webix.send(item.href, {}, "GET");
 });
@@ -133,11 +117,12 @@ app_label.attachEvent("onItemClick", toggleAppMenu);
 //
 // Start-up
 //
-webix.ajax().get(
-    URL_GET_USERNAME,
-    function(text, data, xhr) {
-        var item = user_menu.getItem("user_item");
-        item["value"] = data.json().username;
-        user_menu.updateItem("user_item", item);
-    }
-);
+// TODO: display user's name
+//webix.ajax().get(
+//    URL_GET_USERNAME,
+//    function(text, data, xhr) {
+//        var item = user_menu.getItem("user_item");
+//        item["value"] = data.json().username;
+//        user_menu.updateItem("user_item", item);
+//    }
+//);

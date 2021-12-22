@@ -21,9 +21,14 @@
   <link rel="icon" href="{{ static('img/favicon.png') }}" type="image/png" />
   <title>{% block title %}{% endblock title %}</title>
 </head>
-<body>
-  <div id="div_header" class="div_base"></div>
-  <div id="div_main" class="div_base"></div>
+<body class="no_borders max_height">
+  <div id="div_base" class="no_borders max_height">
+    <div id="div_header" class="no_borders"></div>
+    <div id="div_wrapper" class="no_borders">
+      <div id="div_menu" class="no_borders"></div>
+      <div id="div_main" class="no_borders"></div>
+    <div/>
+  </div>
   {% csrf_token %}
   {% if request.session['_language'] %}
     {% set lang = request.session['_language'] %}
