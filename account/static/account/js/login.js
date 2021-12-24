@@ -95,7 +95,7 @@ function postLoginForm() {
                     webix.message({
                         text: gettext("Wrong username/password"),
                         type: "error",
-                        expire: 3000,
+                        expire: messageExpireTime,
                         id: "wrong_credentials_msg"
                     });
                 }

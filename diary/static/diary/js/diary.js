@@ -105,7 +105,7 @@ var dayTableTemplate = {
                 webix.message({
                     text: gettext("Record saved"),
                     type: "success",
-                    expire: 3000,
+                    expire: messageExpireTime,
                     id: "saved_record_msg"
                 });
                 return true;
@@ -114,7 +114,7 @@ var dayTableTemplate = {
                     text: gettext("Failed to save record to ") +
                         `${_d}.${_m}.${_y}`,
                     type: "error",
-                    expire: 3000,
+                    expire: messageExpireTime,
                     id: "failed_save_record_msg"
                 });
                 return false;
@@ -197,7 +197,7 @@ function getSubjects() {
         webix.message({
             text: gettext("Failed to retrieve list of school subjects"),
             type: "error",
-            expire: 3000,
+            expire: messageExpireTime,
             id: "failed_retrieve_subjects_msg"
         });
     });
@@ -236,7 +236,7 @@ function updateDates() {
                     text: gettext("Failed to get records dated ") +
                         `${_y}.${_m}.${_d}`,
                     type: "error",
-                    expire: 3000,
+                    expire: messageExpireTime,
                     id: "failed_get_records_msg"
                 });
             });

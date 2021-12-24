@@ -153,7 +153,7 @@ function getTimetable(number) {
         webix.message({
             text: gettext("Unable to retrieve timetable"),
             type: "error",
-            expire: 3000,
+            expire: messageExpireTime,
             id: "unable_get_timetable_msg"
         });
     });
@@ -177,7 +177,7 @@ function getForms() {
         webix.message({
             text: gettext("Unable to get list of forms"),
             type: "error",
-            expire: 3000,
+            expire: messageExpireTime,
             id: "unable_get_forms_msg"
         });
     });

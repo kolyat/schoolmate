@@ -102,7 +102,7 @@ function postPasswordResetForm() {
                     webix.message({
                         text: gettext("Could not send password reset confirmation"),
                         type: "error",
-                        expire: 3000,
+                        expire: messageExpireTime,
                         id: "error_sending_reset_confirm_msg"
                     });
                 }

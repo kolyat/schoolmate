@@ -121,7 +121,7 @@ var yearScheduleList = {
             webix.message({
                 text: gettext("Failed to get year schedule"),
                 type: "error",
-                expire: 3000,
+                expire: messageExpireTime,
                 id: "filed_get_year_schedule_msg"
             });
         }
@@ -145,7 +145,7 @@ var dailyScheduleList = {
             webix.message({
                 text: gettext("Failed to get daily schedule"),
                 type: "error",
-                expire: 3000,
+                expire: messageExpireTime,
                 id: "filed_get_daily_schedule_msg"
             });
         }
@@ -213,7 +213,7 @@ news_view.attachEvent("onLoadError", function() {
     webix.message({
         text: gettext("Failed to load news"),
         type: "error",
-        expire: 3000,
+        expire: messageExpireTime,
         id: "failed_load_news_msg"
     });
 });
@@ -284,7 +284,7 @@ function updateStatus() {
         webix.message({
             text: gettext("Failed to retrieve date/time info from server"),
             type: "error",
-            expire: 3000,
+            expire: messageExpireTime,
             id: "failed_status_info_msg"
         });
         updateTimeStatus({});

@@ -21,3 +21,5 @@ var headers = {
     "X-CSRFToken": csrfToken,
     "Content-Type": "application/json"
 };
+
+var messageExpireTime = 3000;

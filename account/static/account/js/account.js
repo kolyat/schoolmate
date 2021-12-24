@@ -138,7 +138,7 @@ var passwordChangeBlock = {
                             webix.message({
                                 text: gettext("New passwords are not the same"),
                                 type: "error",
-                                expire: 3000,
+                                expire: messageExpireTime,
                                 id: "new_passwords_not_same_msg"
                             });
                             return false;
@@ -189,7 +189,7 @@ function loadPersonalInfoForm() {
         webix.message({
             text: gettext("Failed to retrieve user info from server"),
             type: "error",
-            expire: 3000,
+            expire: messageExpireTime,
             id: "failed_user_info_msg"
         });
     });
@@ -201,7 +201,7 @@ function patchLanguage(newv, oldv) {
             webix.message({
                 text: gettext("Language changed"),
                 type: "success",
-                expire: 3000,
+                expire: messageExpireTime,
                 id: "language_changed_msg"
             });
             location.reload(true);
@@ -210,7 +210,7 @@ function patchLanguage(newv, oldv) {
             webix.message({
                 text: gettext("Language change failed"),
                 type: "error",
-                expire: 3000,
+                expire: messageExpireTime,
                 id: "language_change_failed_msg"
             });
             language_select.config["value"] = oldv;
@@ -227,7 +227,7 @@ function postPasswordChangeForm() {
                     webix.message({
                         text: gettext("Password changed"),
                         type: "success",
-                        expire: 3000,
+                        expire: messageExpireTime,
                         id: "password_changed_msg"
                     });
                     password_change_form.clear();
@@ -235,7 +235,7 @@ function postPasswordChangeForm() {
                     webix.message({
                         text: gettext("Password change failed"),
                         type: "error",
-                        expire: 3000,
+                        expire: messageExpireTime,
                         id: "password_change_failed_msg"
                     });
                 }

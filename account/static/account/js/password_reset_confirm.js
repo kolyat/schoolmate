@@ -94,7 +94,7 @@ function postNewPasswordForm() {
                     webix.message({
                         text: gettext("Could not set up new password"),
                         type: "error",
-                        expire: 3000,
+                        expire: messageExpireTime,
                         id: "error_setup_new_password_msg"
                     });
                 }
