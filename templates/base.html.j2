@@ -21,14 +21,7 @@
   <link rel="icon" href="{{ static('img/favicon.png') }}" type="image/png" />
   <title>{% block title %}{% endblock title %}</title>
 </head>
-<body class="no_borders max_height">
-  <div id="div_base" class="no_borders max_height">
-    <div id="div_header" class="no_borders"></div>
-    <div id="div_wrapper" class="no_borders">
-      <div id="div_menu" class="no_borders"></div>
-      <div id="div_main" class="no_borders"></div>
-    <div/>
-  </div>
+<body class="no_borders>
   {% csrf_token %}
   {% if request.session['_language'] %}
     {% set lang = request.session['_language'] %}
@@ -66,7 +59,7 @@
   {% endif %}
   <script src="{{ static('js/base.js') }}"
           type="text/javascript" charset="utf-8"></script>
-  {% block header %}{% endblock header %}
+  {% block start %}{% endblock start %}
   {% block main %}{% endblock main %}
 </body>
 </html>

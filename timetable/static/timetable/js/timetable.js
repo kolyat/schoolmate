@@ -19,13 +19,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //
 // General
 //
-var URL_SCHOOL_FORMS = "/main/forms/";
 var URL_TIMETABLE_DATA = "/timetable/data/";
 
 //
 // Widget description and init
 //
-var formTree = {view: "tree", id: "form_tree", width: 125};
 var timeTable = {
     view: "datatable", id: "timetable", fixedRowHeight: false,
     leftSplit: 1, columns: [
@@ -33,18 +31,13 @@ var timeTable = {
     ]
 };
 
-webix.ui({
-    id: "timetable_layout", type: "space", container: "div_main", padding: 0,
-    rows: [
-        {
-            cols: [
-                formTree, {view: "resizer"}, timeTable
-            ]
-        }
-    ]
-});
+var timetableLayout = {
+    view: "layout", id: "timetable_layout", type: "clean",
+    borderless: false, responsive: true, rows: [timeTable]
+};
 
-var form_tree = $$("form_tree");
+webix.ui(timetableLayout, main_layout, m_body);
+
 var timetable = $$("timetable");
 
 //
@@ -59,7 +52,6 @@ var DAYS_OF_WEEK = new Map([
     [7, gettext("Saturday")]
 ]);
 var lessons_num = 7;
-var school_forms = new Map();
 
 function getTimetable(number) {
     timetable.clearAll(false);
@@ -159,38 +151,10 @@ function getTimetable(number) {
     });
 }
 
-function getForms() {
-    var promise = webix.ajax().get(URL_SCHOOL_FORMS);
-    promise.then(data => {
-        var _forms = data.json();
-        form_tree.add({id: "form_numbers", value: gettext("Forms")});
-        form_tree.add({id: "0", value: gettext("All")}, -1, "form_numbers");
-        _forms.forEach(el => {
-            school_forms.set(el["number"], el["letters"]);
-            form_tree.add(
-                {id: el["number"].toString(), value: el["number"].toString()},
-                -1, "form_numbers"
-            );
-        });
-        form_tree.open("form_numbers");
-    }).fail(err => {
-        webix.message({
-            text: gettext("Unable to get list of forms"),
-            type: "error",
-            expire: messageExpireTime,
-            id: "unable_get_forms_msg"
-        });
-    });
-}
-
 //
 // Start-up
 //
-getForms();
-form_tree.attachEvent("onItemClick", function(id) {
-    var _number = parseInt(id);
-    if (Number.isInteger(_number)) {
-        getTimetable(_number);
-    }
-});
 timetable.showOverlay(gettext("Select form to load timetable"));
+
+var form_number = document.getElementById("form-number").getAttribute("data-fn");
+getTimetable(form_number);

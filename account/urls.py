@@ -33,7 +33,7 @@ urlpatterns = [
              template_name='password_reset.html.j2',
              email_template_name='password_reset_email.html.j2',
              subject_template_name='password_reset_subj.txt',
-             success_url='/profile/password_reset/sent/'
+             success_url='/profile/password_reset/email/'
          ),
          name='password_reset'),
     path('password_reset/email/',

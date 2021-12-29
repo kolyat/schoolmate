@@ -2,19 +2,3 @@ html, .no_borders {
     margin: 0;
     padding: 0;
 }
-html, .max_height {
-    height: 100%;
-}
-
-#div_base {
-    display: flex;
-    flex-direction: column;
-}
-#div_wrapper {
-    display: flex;
-    flex-direction: row;
-    flex-grow: 1;
-}
-#div_main {
-    flex-grow: 1;
-}

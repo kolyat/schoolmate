@@ -21,7 +21,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //
 var newPasswordForm = {
     view: "form", name: "new_password_form", id: "new_password_form",
-    width: 360, elements: [
+    minWidth: 330, maxWidth: 360, elements: [
         {
             view: "text", type: "text", value: csrfToken, hidden: true,
             name: "csrfmiddlewaretoken", id: "csrfmiddlewaretoken"
@@ -61,13 +61,12 @@ var newPasswordForm = {
     }
 };
 
-//
-// UI init
-//
-webix.ui({
-     id: "auth_layout", type: "space", container: "div_main", rows: [{
+var startLayout = {
+     view: "layout", id: "start_layout", type: "space",
+     responsive: true, borderless: true, rows: [{
         align: "center,middle", body: {
-            type: "space", borderless: true, rows: [
+            view: "layout", type: "space", responsive: true, borderless: true,
+            rows: [
                 {
                     view: "template", type: "header",
                     template: gettext("Enter new password"),
@@ -76,7 +75,12 @@ webix.ui({
             ]
         }
     }]
-});
+};
+
+//
+// UI init
+//
+webix.ui(startLayout, base_layout, b_body);
 
 var new_password_form = $$("new_password_form");
 

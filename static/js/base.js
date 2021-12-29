@@ -16,10 +16,50 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
-var csrfToken = document.getElementsByName("csrfmiddlewaretoken")[0].value;
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+//
+// General
+//
+var csrfToken = getCookie("csrftoken");
 var headers = {
     "X-CSRFToken": csrfToken,
     "Content-Type": "application/json"
 };
 
 var messageExpireTime = 3000;
+
+//
+// Widget description
+//
+var baseLayout = {
+    view: "layout", id: "base_layout", type: "clean",
+    responsive: true, borderless: true, rows: [
+        {id: "b_header"},
+        {id: "b_body"},
+        {id: "b_footer", height: 1}
+    ]
+};
+
+//
+// UI init
+//
+webix.ui(baseLayout);
+
+var base_layout = $$("base_layout");
+var b_header = $$("b_header");
+var b_body = $$("b_body");
+var c_footer = $$("c_footer");

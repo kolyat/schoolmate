@@ -1,13 +1,13 @@
 {% extends 'base.html.j2' %}
 
-{% block header %}
-<link href="{{ static('css/header.css') }}" rel="stylesheet"
+{% block start %}
+<link href="{{ static('css/start.css') }}" rel="stylesheet"
       type="text/css" />
-<script src="{{ static('js/header.js') }}"
+<script src="{{ static('js/start.js') }}"
         type="text/javascript" charset="utf-8"></script>
 {% block login %}{% endblock login %}
 {% block password_reset %}{% endblock password_reset %}
 {% block password_reset_email_sent %}{% endblock password_reset_email_sent %}
 {% block password_reset_confirm %}{% endblock password_reset_confirm %}
 {% block password_reset_complete %}{% endblock password_reset_complete %}
-{% endblock header %}
+{% endblock start %}

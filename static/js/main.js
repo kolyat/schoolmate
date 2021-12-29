@@ -20,109 +20,171 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 // General
 //
 var URL_MAIN = "/main/";
+
 var URL_TIMETABLE = "/timetable/";
+var URL_SCHOOL_FORMS = "/main/forms/";
+
 var URL_DIARY = "/diary/";
 
-var URL_GET_USERNAME = "/profile/user/";
-
 var URL_PROFILE = "/profile/";
+var URL_GET_USERNAME = "/profile/user/";
 var URL_LOGOUT = "/profile/logout/";
 
 //
 // Widget description
 //
 var toolbarHeight = 50;
+var mainToolbar = {
+    view: "toolbar", id: "main_toolbar", responsive: true, borderless: true,
+    minHeight: toolbarHeight, height: toolbarHeight, cols: [
+        {width: 1},
+        {
+            view: "icon", id: "app_menu_button", align: "center",
+            icon: "mdi mdi-menu", responsiveCell: false
+        },
+        {id: "toolbar_block_left"},
+        {id: "toolbar_block_right"},
+        {
+            view: "label", id: "app_label", label: "SCHOOLMATE",
+            width: 150, align: "left", css: {
+                "font-size": "18px",
+                "letter-spacing": "2px"
+            }
+        }
+    ]
+};
 
-//
-// UI init
-//
-webix.ui({
-    view: "sidebar", id: "app_menu", position: "left", container: "div_menu",
+var i_timetable_data = [
+    {
+        id: "f_0", value: gettext("All"), _url: URL_TIMETABLE,
+        icon: "mdi mdi-file-table-box-multiple-outline", sf: 0
+    }
+];
+var appMenu = {
+    view: "sidebar", id: "app_menu", position: "left", responsiveCell: false,
     collapsed: true, collapsedWidth: 45, minWidth: 220, // maxWidth: 260
     activeTitle: true, titleHeight: 45, multipleOpen: false, borderless: true,
     data: [
         {
-            id: "main", value: gettext("Main"),
-            icon: "mdi mdi-school", href: URL_MAIN
+            id: "i_main", value: gettext("Main"),
+            icon: "mdi mdi-school", _url: URL_MAIN
         },
         {
-            id: "timetable", value: gettext("Timetable"),
-            icon: "mdi mdi-table", href: URL_TIMETABLE
+            id: "i_timetable", value: gettext("Timetable"),
+            icon: "mdi mdi-table", data: i_timetable_data
         },
         {
-            id: "diary", value: gettext("Diary"),
-            icon: "mdi mdi-book-open-variant", href: URL_DIARY
+            id: "i_diary", value: gettext("Diary"),
+            icon: "mdi mdi-book-open-variant", _url: URL_DIARY
         },
         {
-            id: "profile", value: gettext("Profile"),
+            id: "i_profile", value: gettext("Profile"),
             icon: "mdi mdi-account", data: [
                 {
-                    id: "profile_info", value: gettext("Info"),
-                    icon: "mdi mdi-card-account-details-outline", href: URL_PROFILE
+                    id: "i_profile_info", value: gettext("Info"),
+                    icon: "mdi mdi-card-account-details-outline", _url: URL_PROFILE
                 },
-                // TODO: implement new views
                 //{
-                //    id: "profile_settings", value: gettext("Settings"),
-                //    icon: "mdi mdi-account-cog", href: NONE
+                //    id: "i_profile_settings", value: gettext("Settings"),
+                //    icon: "mdi mdi-account-cog", _url: NONE
                 //},
                 {
-                    id: "profile_logout", value: gettext("Log out"),
-                    icon: "mdi mdi-exit-run", href: URL_LOGOUT,
+                    id: "i_profile_logout", value: gettext("Log out"),
+                    icon: "mdi mdi-exit-run", _url: URL_LOGOUT,
                 }
             ]
         }
-
     ]
-});
-var app_menu = $$("app_menu");
+};
 
-webix.ui({
-    view: "toolbar", id: "main_toolbar", container: "div_header",
-    responsive: true, minHeight: toolbarHeight, height: toolbarHeight,
-    borderless: true, cols: [
-        {width: 1},
+var mBody = {id: "m_body"};
+var mainLayout = {
+    view: "layout", type: "clean", responsive: true, borderless: true, rows: [
         {
-            view: "icon", id: "app_menu_button", align: "center",
-            icon: "mdi mdi-menu"
-        },
-        {
-            view: "label", id: "app_label", label: "SCHOOLMATE",
-            width: 140, css: "headerSecondaryLabel", align: "right"
-        },
-        {id: "toolbar_block_left"},
-        {id: "toolbar_block_right"},
-        // TODO: display user's name
-        {width: 1}
+            view: "layout", id: "main_layout", type: "clean",
+            responsive: true, borderless: true, cols: [
+                appMenu,
+                mBody
+            ]
+        }
     ]
-});
+};
+
+//
+// UI init
+//
+webix.ui(mainToolbar, base_layout, b_header);
+webix.ui(mainLayout, base_layout, b_body);
+
+var main_layout = $$("main_layout");
+var m_body = $$("m_body");
 
 var main_toolbar = $$("main_toolbar");
 var app_menu_button = $$("app_menu_button");
-var app_label = $$("app_label");
+var app_menu = $$("app_menu");
 
 //
 // Event handling
 //
-function toggleAppMenu() {
-    app_menu.toggle();
+function makeRequest(id) {
+    var item = this.getItem(id);
+    var payload = {};
+    if (item.sf > -1) {
+        payload["form_number"] = item.sf;
+    }
+    webix.send(item._url, payload, "GET");
 }
 
-app_menu.attachEvent("onAfterSelect", function(id, e, node) {
-    var item = this.getItem(id);
-    webix.send(item.href, {}, "GET");
-});
+function toggleAppMenu() {
+    app_menu.toggle();
+//    TODO: implement scroll autohide
+//    var state = app_menu.getState();
+//    if (state.collapsed) {
+//        app_menu.define("scroll", false);
+//    } else {
+//        app_menu.define("scroll", true);
+//    }
+//    app_menu.refresh();
+}
+
+function getForms() {
+    var promise = webix.ajax().get(URL_SCHOOL_FORMS);
+    promise.then(data => {
+        var _forms = data.json();
+        _forms.forEach(el => {
+            var item = {
+                id: "f_"+el["number"].toString(), value: el["number"].toString(),
+                icon: "mdi mdi-file-table-box-outline", _url: URL_TIMETABLE,
+                sf: el["number"]
+            }
+            i_timetable_data.push(item);
+            app_menu.add(item, -1, "i_timetable");
+        });
+        var i_timetable = app_menu.getItem("i_timetable");
+        i_timetable["menu"] = i_timetable_data;
+        app_menu.updateItem("i_timetable", i_timetable);
+    }).fail(err => {
+        webix.message({
+            text: gettext("Unable to get list of forms"),
+            type: "error",
+            expire: messageExpireTime,
+            id: "unable_get_forms_msg"
+        });
+    });
+}
+
+app_menu.attachEvent("onAfterSelect", makeRequest);
 app_menu_button.attachEvent("onItemClick", toggleAppMenu);
-app_label.attachEvent("onItemClick", toggleAppMenu);
 
 //
 // Start-up
 //
-// TODO: display user's name
-//webix.ajax().get(
-//    URL_GET_USERNAME,
-//    function(text, data, xhr) {
-//        var item = user_menu.getItem("user_item");
-//        item["value"] = data.json().username;
-//        user_menu.updateItem("user_item", item);
-//    }
-//);
+webix.ajax().get(
+    URL_GET_USERNAME,
+    function(text, data, xhr) {
+        var item = app_menu.getItem("i_profile");
+        item["value"] = data.json().username;
+        app_menu.updateItem("i_profile", item);
+    }
+);
+getForms();

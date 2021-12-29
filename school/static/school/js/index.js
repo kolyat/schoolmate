@@ -28,39 +28,25 @@ var URL_STATUS = "/main/status/";
 // Widget description
 //
 var statusFormWidth = 300;
-var statusLayoutMargin = 5;
-var statusLayoutMaxWidth = statusFormWidth + statusLayoutMargin * 2;
 
 var timeBlock = {
-    align: "center", body: {
-        rows: [
-            {
-                view: "form", name: "time_form", id: "time_form",
-                width: statusFormWidth, elements: [
-                    {
-                        view: "label", id: "time_label", align: "center",
-                        css: "timeLabel", format: webix.i18n.timeFormat
-                    }
-                ]
-            }
-        ]
-    }
+    view: "form", name: "time_form", id: "time_form",
+    width: statusFormWidth, elements: [
+        {
+            view: "label", id: "time_label", align: "center",
+            css: "timeLabel", format: webix.i18n.timeFormat
+        }
+    ]
 };
 
 var dateBlock = {
-    align: "center", body: {
-        rows: [
-            {
-                view: "form", name: "date_form", id: "date_form",
-                width: statusFormWidth, elements: [
-                    {
-                        view: "calendar", id: "main_calendar",
-                        events: webix.Date.isHoliday, weekHeader: true
-                    }
-                ]
-            }
-        ]
-    }
+    view: "form", name: "date_form", id: "date_form",
+    width: statusFormWidth, elements: [
+        {
+            view: "calendar", id: "main_calendar",
+            events: webix.Date.isHoliday, weekHeader: true
+        }
+    ]
 };
 
 var newsPager = {
@@ -153,12 +139,14 @@ var dailyScheduleList = {
 };
 
 var infoBlock = {
-    id: "info_tab", view: "tabview", responsive: "index_layout",
+    id: "info_tab", view: "tabview", responsive: true,
     type: "space", borderless: false, margin: 0, minWidth: statusFormWidth,
     cells: [
-        {header: gettext("News"), body: {rows: [newsView, newsPager]}},
-        {header: gettext("Schedules"), body: {
-            rows: [
+        {
+            header: gettext("News"), rows: [newsView, newsPager]
+        },
+        {
+            header: gettext("Schedules"), rows: [
                 {
                     view: "template", template: gettext("Year schedule"),
                     type: "header"
@@ -170,38 +158,38 @@ var infoBlock = {
                 },
                 dailyScheduleList
             ]
-        }}
+        }
     ]
 };
+
+var indexLayout = {
+    view: "layout", id: "index_layout", type: "clean",
+    responsive: true, borderless: true, cols: [
+        {
+            view: "layout", type: "space", responsive: true,
+            borderless: true, rows: [
+                timeBlock,
+                dateBlock,
+                {}
+            ]
+        },
+        infoBlock
+    ]
+}
 
 //
 // UI init
 //
-webix.ui({
-    id: "index_layout", type: "space", container: "div_main",
-    paddingY: 30, borderless: true, rows: [
-        {
-            id: "status_layout", responsive: "index_layout", cols: [
-                {
-                    type: "space", borderless: true,
-                    maxWidth: statusLayoutMaxWidth, margin: statusLayoutMargin,
-                    rows: [
-                        timeBlock,
-                        dateBlock,
-                        {}
-                    ]
-                },
-                infoBlock
-            ]
-        }
-    ]
-});
+webix.ui(indexLayout, main_layout, m_body);
 
 var time_form = $$("time_form");
 var time_label = $$("time_label");
+
 var date_form = $$("date_form");
 var main_calendar = $$("main_calendar");
+
 var news_view = $$("news_view");
+
 var year_schedule_list = $$("year_schedule_list");
 var daily_schedule_list = $$("daily_schedule_list");
 

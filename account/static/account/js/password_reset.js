@@ -40,7 +40,7 @@ var URL_PASSWD_RESET = "/profile/password_reset/";
 //
 var resetForm = {
     view: "form", name: "password_reset_form", id: "password_reset_form",
-    width: 360, elements: [
+    minWidth: 310, maxWidth: 360, elements: [
         {
             view: "text", type: "text", value: csrfToken, hidden: true,
             name: "csrfmiddlewaretoken", id: "csrfmiddlewaretoken"
@@ -69,13 +69,12 @@ var resetForm = {
     }
 };
 
-//
-// UI init
-//
-webix.ui({
-     id: "auth_layout", type: "space", container: "div_main", rows: [{
+var startLayout = {
+     view: "layout", id: "start_layout", type: "space",
+     responsive: true, borderless: true, rows: [{
         align: "center,middle", body: {
-            type: "space", borderless: true, rows: [
+            view: "layout", type: "space", responsive: true, borderless: true,
+            rows: [
                 {
                     view: "template", type: "header",
                     template: gettext("Password reset")
@@ -84,7 +83,12 @@ webix.ui({
             ]
         }
     }]
-});
+};
+
+//
+// UI init
+//
+webix.ui(startLayout, base_layout, b_body);
 
 var password_reset_form = $$("password_reset_form");
 
@@ -109,7 +113,7 @@ function postPasswordResetForm() {
             }
         )
     }
-};
+}
 
 //
 // Event handling

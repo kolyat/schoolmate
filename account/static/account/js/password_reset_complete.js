@@ -25,11 +25,12 @@ var URL_LOGIN = "/profile/login/";
 // Widget description
 //
 var resetCompleteForm = {
-    view: "form", name: "password_reset_complete_form",
-    id: "password_reset_complete_form", width: 400, elements: [
+    view: "form", name: "password_reset_complete_form", minWidth: 330,
+    id: "password_reset_complete_form", maxWidth: 400, elements: [
         {
-            view: "label", align: "center",
-            label: gettext("Password reset complete")
+            view: "template", autoheight: true, borderless: true,
+            css: {"text-align": "center"},
+            template: gettext("Password reset complete")
         },
         {
             view: "button", value: gettext("Back to login page"),
@@ -37,18 +38,22 @@ var resetCompleteForm = {
             href: URL_LOGIN, click: function() {
                 webix.send(this.config.href, {}, "GET")
             },
-            align: "center", minWidth: 250, width: 260
+            align: "center", minWidth: 260, width: 280
         }
     ]
+};
+
+var startLayout = {
+     view: "layout", id: "start_layout", type: "space",
+     responsive: true, borderless: true, rows: [{
+        align: "center,middle", body: {
+            view: "layout", type: "space", responsive: true, borderless: true,
+            rows: [resetCompleteForm]
+        }
+    }]
 };
 
 //
 // UI init
 //
-webix.ui({
-     id: "auth_layout", type: "space", container: "div_main", rows: [{
-        align: "center,middle", body: {
-            type: "space", borderless: true, rows: [resetCompleteForm]
-        }
-    }]
-});
+webix.ui(startLayout, base_layout, b_body);

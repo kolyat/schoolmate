@@ -16,7 +16,7 @@
 
 from django.template.response import TemplateResponse
 from django.contrib.auth import decorators as auth_decorators
-from django.views.decorators import http as http_decorators
+from django.views import View
 from django.utils.decorators import method_decorator
 from django.utils import timezone
 from rest_framework import generics, serializers
@@ -24,12 +24,17 @@ from rest_framework import generics, serializers
 from . import models
 
 
-@auth_decorators.login_required()
-@http_decorators.require_http_methods(['GET'])
-def timetable(request):
-    """Timetable page
-    """
-    return TemplateResponse(request, 'timetable.html.j2', context={})
+@method_decorator(auth_decorators.login_required, name='dispatch')
+class Timetable(View):
+    default_context = {'form_number': 0}
+
+    def get(self, request):
+        try:
+            fn = request.GET['form_number']
+            _context = {'form_number': fn}
+        except Exception:
+            _context = self.default_context
+        return TemplateResponse(request, 'timetable.html.j2', context=_context)
 
 
 class TimetableSerializer(serializers.ModelSerializer):

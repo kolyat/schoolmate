@@ -16,9 +16,16 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
-webix.ui({
-    view: "toolbar", id: "header_toolbar", container: "div_header",
-    minHeight: 60, height: 60, cols: [{
+//
+// Widget description
+//
+var startToolbar = {
+    view: "toolbar", id: "start_toolbar", minHeight: 60, height: 60, cols: [{
         view: "label", label: "SCHOOLMATE", align: "center", css: "headerLabel"
     }]
-});
+};
+
+//
+// UI init
+//
+webix.ui(startToolbar, base_layout, b_header);

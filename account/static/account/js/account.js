@@ -26,58 +26,52 @@ var URL_PASSWD_CHANGE_DONE = "/profile/password_change/done/";
 //
 // Widget description
 //
-var personalInfoFormLabelWidth = 200;
+var formMinWidth = 270;
+
+var piFormLabelWidth = 120;
 var personalInfoBlock = {
     align: "center", body: {
-        type: "space", borderless: true, rows: [
+        view: "layout", id: "pi_layout", type: "space",
+        borderless: true, rows: [
             {
-                view: "template", template: gettext("User info"),
-                type: "header", name: "user_info_header"
-            },
-            {
-                view: "form", type: "form", minWidth: 425, maxWidth: 490,
+                view: "form", type: "form", minWidth: formMinWidth,
                 name: "personal_info_form", id: "personal_info_form",
-                css: {"margin-top": "0px !important"}, elements: [
+                elements: [
                     {
                         view: "text", label: gettext("Username"),
                         name: "username", id: "username",
-                        readonly: true, labelWidth: personalInfoFormLabelWidth
+                        readonly: true, labelPosition: "top"
                     },
                     {
                         view: "text", label: gettext("First name"),
                         name: "first_name", id: "first_name",
-                        readonly: true, labelWidth: personalInfoFormLabelWidth
+                        readonly: true, labelPosition: "top"
                     },
                     {
                         view: "text", label: gettext("Patronymic name"),
                         name: "patronymic_name", id: "patronymic_name",
-                        readonly: true, labelWidth: personalInfoFormLabelWidth
+                        readonly: true, labelPosition: "top"
                     },
                     {
                         view: "text", label: gettext("Last name"),
                         name: "last_name", id: "last_name",
-                        readonly: true, labelWidth: personalInfoFormLabelWidth
+                        readonly: true, labelPosition: "top"
                     },
                     {
                         view: "text", label: gettext("Date of birth"),
                         name: "birth_date", id: "birth_date",
-                        readonly: true, labelWidth: personalInfoFormLabelWidth,
+                        readonly: true, labelPosition: "top"
                         // format: webix.i18n.dateFormatStr
                     },
                     {
                         view: "text", label: gettext("E-mail"),
                         name: "email", id: "email",
-                        readonly: true, labelWidth: personalInfoFormLabelWidth
+                        readonly: true, labelPosition: "top"
                     },
                     {
                         view: "text", label: gettext("Form"),
                         name: "school_form", id: "school_form",
-                        readonly: true, labelWidth: personalInfoFormLabelWidth
-                    },
-                    {
-                        view: "select", label: gettext("Language"), value: "",
-                        name: "language_select", id: "language_select",
-                        labelWidth: personalInfoFormLabelWidth, options: []
+                        readonly: true, labelPosition: "top"
                     }
                 ]
             }
@@ -85,17 +79,59 @@ var personalInfoBlock = {
     }
 };
 
-var passwordChangeBlock = {
+function patchUserInfo(newv, oldv, source) {
+    var payload = {};
+    payload[this.config.name] = newv;
+    webix.ajax().headers(headers).patch(URL_USER_INFO, payload, {
+        success: function(text, data, xhr) {
+            webix.message({
+                text: gettext("Settings changed"),
+                type: "success",
+                expire: messageExpireTime,
+                id: "settings_changed_msg"
+            });
+            location.reload(true);
+        },
+        error: function(text, data, xhr) {
+            webix.message({
+                text: gettext("Settings change failed"),
+                type: "error",
+                expire: messageExpireTime,
+                id: "settings_change_failed_msg"
+            });
+            this.config["value"] = oldv;
+            this.refresh();
+        }
+    });
+}
+var settingsBlock = {
     align: "center", body: {
-        type: "space", borderless: true, rows: [
+        view: "layout", id: "settings_layout", type: "space",
+        borderless: true, rows: [
             {
-                view: "template", template: gettext("Change password"),
-                type: "header", name: "change_password_header"
+                view: "form", type: "form", minWidth: formMinWidth,
+                name: "settings_form", id: "settings_form",
+                elements: [
+                    {
+                        view: "select", label: gettext("Language"), value: "",
+                        name: "language", id: "language_select",
+                        labelWidth: piFormLabelWidth, options: [], on: {
+                            onChange: patchUserInfo
+                        }
+                    },
+                    {
+                        view: "select", label: gettext("Skin"), value: "",
+                        name: "skin", id: "skin_select",
+                        labelWidth: piFormLabelWidth, options: [], on: {
+                            onChange: patchUserInfo
+                        }
+                    }
+                ]
             },
             {
-                view: "form", type: "form", minWidth: 250, maxWidth: 350,
+                view: "form", type: "form", minWidth: formMinWidth,
                 name: "password_change_form", id: "password_change_form",
-                css: {"margin-top": "0px !important"}, elements: [
+                elements: [
                     {
                         view: "text", type: "text", value: csrfToken,
                         name: "csrfmiddlewaretoken", id: "csrfmiddlewaretoken",
@@ -126,7 +162,7 @@ var passwordChangeBlock = {
                         view: "button", value: gettext("Change password"),
                         type: "form",
                         name: "change_password_btn", id: "change_password_btn",
-                        align: "center", minWidth: 150, width: 160
+                        align: "center", minWidth: 150, maxWidth: 160
                     }
                 ],
                 rules: {
@@ -151,40 +187,50 @@ var passwordChangeBlock = {
     }
 };
 
+var accountLayout = {
+    view: "scrollview", id: "account_scroll", borderless: true, scroll: "y",
+    body: {
+        view: "flexlayout", id: "account_layout", type: "space",
+        borderless: true, cols: [personalInfoBlock, settingsBlock]
+    }
+};
+
 //
 // UI init
 //
-webix.ui({
-    id: "account_layout", type: "space", container: "div_main", paddingY: 30,
-    rows: [
-        {
-            responsive: "account_layout", type: "space", borderless: true,
-            cols: [personalInfoBlock, passwordChangeBlock]
-        },
-        {}
-    ]
-});
+webix.ui(accountLayout, main_layout, m_body);
 
 var personal_info_form = $$("personal_info_form");
-var password_change_form = $$("password_change_form");
+
 var language_select = $$("language_select");
+var skin_select = $$("skin_select");
+
+var password_change_form = $$("password_change_form");
 
 //
 // UI logic
 //
-function loadPersonalInfoForm() {
+function loadUserInfo() {
     var promise = webix.ajax().get(URL_USER_INFO);
     promise.then(data => {
         var user_info = data.json();
+        personal_info_form.parse(user_info, "json");
         user_info.languages.forEach(language => {
             language_select.config["options"].push({
                 "id": language["language_code"],
                 "value": language["language_name"]
             });
         });
-        personal_info_form.parse(user_info, "json");
         language_select.config["value"] = user_info.language;
         language_select.refresh();
+        user_info.skins.forEach(skin => {
+            skin_select.config["options"].push({
+                "id": skin["skin"],
+                "value": skin["skin_name"]
+            });
+        });
+        skin_select.config["value"] = user_info.skin;
+        skin_select.refresh();
     }).fail(err => {
         webix.message({
             text: gettext("Failed to retrieve user info from server"),
@@ -192,30 +238,6 @@ function loadPersonalInfoForm() {
             expire: messageExpireTime,
             id: "failed_user_info_msg"
         });
-    });
-}
-
-function patchLanguage(newv, oldv) {
-    webix.ajax().headers(headers).patch(URL_USER_INFO, { language: newv }, {
-        success: function(text, data, xhr) {
-            webix.message({
-                text: gettext("Language changed"),
-                type: "success",
-                expire: messageExpireTime,
-                id: "language_changed_msg"
-            });
-            location.reload(true);
-        },
-        error: function(text, data, xhr) {
-            webix.message({
-                text: gettext("Language change failed"),
-                type: "error",
-                expire: messageExpireTime,
-                id: "language_change_failed_msg"
-            });
-            language_select.config["value"] = oldv;
-            language_select.refresh();
-        }
     });
 }
 
@@ -250,9 +272,8 @@ function postPasswordChangeForm() {
 password_change_form.attachEvent("onSubmit", postPasswordChangeForm);
 password_change_form.elements["change_password_btn"].attachEvent(
     "onItemClick", postPasswordChangeForm);
-language_select.attachEvent("onChange", patchLanguage);
 
 //
 // Start-up
 //
-loadPersonalInfoForm();
+loadUserInfo();

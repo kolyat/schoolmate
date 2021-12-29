@@ -25,11 +25,12 @@ var URL_LOGIN = "/profile/login/";
 // Widget description
 //
 var sentForm = {
-    view: "form", name: "password_reset_email_sent_form", width: 660,
-    id: "password_reset_email_sent_form", elements: [
+    view: "form", name: "password_reset_email_sent_form", minWidth: 330,
+    id: "password_reset_email_sent_form", maxWidth: 660, elements: [
         {
-            view: "label", align: "center",
-            label: gettext("Password reset confirmation has been sent to your e-mail"),
+            view: "template", autoheight: true, borderless: true,
+            css: {"text-align": "center"},
+            template: gettext("Password reset confirmation has been sent to your e-mail"),
         },
         {
             view: "button", value: gettext("Back to login page"),
@@ -37,18 +38,22 @@ var sentForm = {
             href: URL_LOGIN, click: function() {
                 webix.send(this.config.href, {}, "GET")
             },
-            align: "center", minWidth: 300, width: 310
+            align: "center", minWidth: 260, width: 280
         }
     ]
+};
+
+var startLayout = {
+     view: "layout", id: "start_layout", type: "space",
+     responsive: true, borderless: true, rows: [{
+        align: "center,middle", body: {
+            view: "layout", type: "space", responsive: true, borderless: true,
+            rows: [sentForm]
+        }
+    }]
 };
 
 //
 // UI init
 //
-webix.ui({
-     id: "auth_layout", type: "space", container: "div_main", rows: [{
-        align: "center,middle", body: {
-            type: "space", borderless: true, rows: [sentForm]
-        }
-    }]
-});
+webix.ui(startLayout, base_layout, b_body);

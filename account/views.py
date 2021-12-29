@@ -104,13 +104,12 @@ class UserInfo(rest_views.APIView):
         :return: 400 BAD REQUEST; serializer's errors
         """
         user_obj = self.model.objects.get(username=request.user.username)
-        serializer = UserInfoSerializer(
-            user_obj, data={
-                'username': request.user.username,
-                'language': request.data.get('language', None),
-                'skin': request.data.get('skin', None)
-            }
-        )
+        data = {'username': request.user.username}
+        if request.data.get('language', None):
+            data.update({'language': request.data['language']})
+        if request.data.get('skin', None):
+            data.update({'skin': request.data['skin']})
+        serializer = UserInfoSerializer(user_obj, data=data)
         if serializer.is_valid():
             serializer.save()
             return response.Response(serializer.validated_data,

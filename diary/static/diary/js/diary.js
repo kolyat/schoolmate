@@ -29,11 +29,12 @@ var URL_SUBJECTS = "/main/subjects/";
 // Widget description
 //
 var navBar = {
-    id: "navbar", borderless: true, paddingY: 8, margin: 8, cols: [
+    view: "layout", type: "clean", id: "navbar", paddingY: 8,
+    responsive: false, borderless: true, cols: [
         {
-            view: "label", id: "prev_button", label: "", align: "center",
-            css: "fas fa-angle-double-left weekChangeButton",
-            width: 30, height: 30, tooltip: gettext("Previous week")
+            view: "icon", id: "prev_button", align: "center",
+            icon: "mdi mdi-chevron-left-box-outline", css: "weekChangeButton",
+            tooltip: gettext("Previous week")
         },
         {
             view: "datepicker", id: "current_date", stringResult: false,
@@ -41,10 +42,10 @@ var navBar = {
             invalid: true, invalidMessage: gettext("Invalid date")
         },
         {
-            view: "label", id: "next_button", label: "", align: "center",
-            css: "fas fa-angle-double-right weekChangeButton",
-            width: 30, height: 30, tooltip: gettext("Next week")
-        },
+            view: "icon", id: "next_button", align: "center",
+            icon: "mdi mdi-chevron-right-box-outline", css: "weekChangeButton",
+            tooltip: gettext("Next week")
+        }
     ]
 };
 
@@ -140,41 +141,45 @@ for (var d = 0; d < tablesNum; d++) {
     }
 }
 
+var diaryLayout = {
+    view: "scrollview", id: "diary_scroll", borderless: true, scroll: "y",
+    body: {
+        view: "flexlayout", id: "diary_layout", type: "clean",
+        borderless: true, cols: [
+            {
+                view: "layout", id: "left_layout", type: "space",
+                borderless: true, minWidth: 300, rows: [
+                    dayTables[0],
+                    dayTables[1],
+                    dayTables[2]
+                ]
+            },
+            {
+                view: "layout", id: "right_layout", type: "space",
+                borderless: true, minWidth: 300, rows: [
+                    dayTables[3],
+                    dayTables[4],
+                    dayTables[5]
+                ]
+            }
+        ]
+    }
+};
+
 //
 // UI init
 //
 var pos = main_toolbar.index($$("toolbar_block_right"));
 main_toolbar.addView(navBar, pos);
 
-webix.ui({
-    id: "diary_layout", type: "space", container: "div_main", rows: [
-        {
-            id: "records_layout", view: "flexlayout", type: "space",
-            css: "layout_align", borderless: true, cols: [
-                {
-                    id: "left_layout", type: "space",
-                    borderless: true, minWidth: 300, rows: [
-                        dayTables[0],
-                        dayTables[1],
-                        dayTables[2]
-                    ]
-                },
-                {
-                    id: "right_layout", type: "space",
-                    borderless: true, minWidth: 300, rows: [
-                        dayTables[3],
-                        dayTables[4],
-                        dayTables[5]
-                    ]
-                }
-            ]
-        }
-    ]
-});
+webix.ui(diaryLayout, main_layout, m_body);
+
+var diary_layout = $$("diary_layout");
 
 var current_date = $$("current_date");
 var prev_button = $$("prev_button");
 var next_button = $$("next_button");
+
 var daytable = new Array();
 for (var d = 0; d < tablesNum; d++) {
     daytable.push($$(daytable_id + d));
@@ -245,20 +250,27 @@ function updateDates() {
     monday = monday_now;
 }
 
+function changeCurrentDate(direction) {
+    var _date = current_date.getValue();
+    _date.setDate(_date.getDate() + 7 * direction);
+    current_date.setValue(_date);
+    current_date.refresh();
+    updateDates();
+}
+
 //
 // Event handling
 //
-prev_button.attachEvent("onItemClick", () => {
-    var _date = current_date.getValue();
-    _date.setDate(_date.getDate() - 7);
-    current_date.setValue(_date);
-    updateDates();
-});
-next_button.attachEvent("onItemClick", () => {
-    var _date = current_date.getValue();
-    _date.setDate(_date.getDate() + 7);
-    current_date.setValue(_date);
-    updateDates();
+prev_button.attachEvent("onItemClick", () => {changeCurrentDate(-1)});
+next_button.attachEvent("onItemClick", () => {changeCurrentDate(+1)});
+diary_layout.attachEvent("onSwipeX", function(start, end) {
+    if (end.x - start.x > 0) {
+        // swipe from left to right
+        changeCurrentDate(-1);
+    } else {
+        // swipe from right to left
+        changeCurrentDate(+1);
+    }
 });
 
 //

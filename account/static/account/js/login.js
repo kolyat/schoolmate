@@ -29,7 +29,8 @@ var formHeader = {
     template: gettext("Log in to system")
 };
 var loginForm = {
-    view: "form", name: "login_form", id: "login_form", width: 360, elements: [
+    view: "form", name: "login_form", id: "login_form",
+    minWidth: 270, maxWidth: 360, elements: [
         {
             view: "text", type: "text", value: csrfToken,
             name: "csrfmiddlewaretoken", id: "csrfmiddlewaretoken",
@@ -48,7 +49,7 @@ var loginForm = {
         {
             view: "button", value: gettext("Log in"),
             type: "form", name: "login_btn", id: "login_btn",
-            align: "center", minWidth: 120, width: 140
+            align: "center", minWidth: 130, width: 140
         },
     ],
     rules: {
@@ -64,20 +65,24 @@ var passwdButton = {
     minWidth: 165, width: 170, minHeight: 28, height: 30
 };
 
-//
-// UI init
-//
-webix.ui({
-    id: "auth_layout", type: "space", container: "div_main", rows: [{
+var startLayout = {
+    view: "layout", id: "start_layout", type: "space",
+    responsive: true, borderless: true, rows: [{
         align: "center,middle", body: {
-            type: "space", borderless: true, rows: [
+            view: "layout", type: "space", responsive: true, borderless: true,
+            rows: [
                 formHeader,
                 loginForm,
                 passwdButton
             ]
         }
     }]
-});
+};
+
+//
+// UI init
+//
+webix.ui(startLayout, base_layout, b_body);
 
 var login_form = $$("login_form");
 
