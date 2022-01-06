@@ -1,7 +1,7 @@
 # German translations for Schoolmate.
-# Copyright (C) 2020-2021 Kirill 'Kolyat' Kiselnikov
+# Copyright (C) 2020-2022 Kirill 'Kolyat' Kiselnikov
 # This file is distributed under the same license as the Schoolmate project.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2020-2021.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2020-2022.
 #
 msgid ""
 msgstr ""

@@ -37,13 +37,13 @@ Response data:
 ```json
 [
     {
-        "created": "2021-02-18",
+        "created": "2022-02-18",
         "title": "Title 1",
         "content": "Content 1",
         "author": null
     },
     {
-        "created": "2021-02-17",
+        "created": "2022-02-17",
         "title": "Title 2",
         "content": "Content 2",
         "author": "sam"
