@@ -61,7 +61,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     # Custom middleware
-    'user_language_middleware.UserLanguageMiddleware',
+    'account.middleware.language.LanguageMiddleware',
     'django_babel.middleware.LocaleMiddleware',
     'account.middleware.skin.SkinMiddleware'
 ]
