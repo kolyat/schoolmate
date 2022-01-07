@@ -1,3 +1,11 @@
 a:hover, a:visited, a:link, a:active {
     text-decoration: none;
 }
+
+.webix_sidebar:not(.webix_sidebar_expanded)::-webkit-scrollbar {
+  display: none;             /* Chrome */
+}
+.webix_sidebar:not(.webix_sidebar_expanded) {
+  -ms-overflow-style: none;  /* Internet Explorer */
+  scrollbar-width: none;     /* Firefox */
+}

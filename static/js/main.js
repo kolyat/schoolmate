@@ -62,7 +62,7 @@ var i_timetable_data = [
 ];
 var appMenu = {
     view: "sidebar", id: "app_menu", position: "left", responsiveCell: false,
-    collapsed: true, collapsedWidth: 45, minWidth: 220, // maxWidth: 260
+    collapsed: true, collapsedWidth: 45, minWidth: 220, scroll: true,
     activeTitle: true, titleHeight: 45, multipleOpen: false, borderless: true,
     data: [
         {
@@ -135,18 +135,6 @@ function makeRequest(id) {
     webix.send(item._url, payload, "GET");
 }
 
-function toggleAppMenu() {
-    app_menu.toggle();
-//    TODO: implement scroll autohide
-//    var state = app_menu.getState();
-//    if (state.collapsed) {
-//        app_menu.define("scroll", false);
-//    } else {
-//        app_menu.define("scroll", true);
-//    }
-//    app_menu.refresh();
-}
-
 function getForms() {
     var promise = webix.ajax().get(URL_SCHOOL_FORMS);
     promise.then(data => {
@@ -174,7 +162,7 @@ function getForms() {
 }
 
 app_menu.attachEvent("onAfterSelect", makeRequest);
-app_menu_button.attachEvent("onItemClick", toggleAppMenu);
+app_menu_button.attachEvent("onItemClick", () => { app_menu.toggle(); });
 
 //
 // Start-up
