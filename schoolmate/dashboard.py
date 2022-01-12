@@ -66,3 +66,11 @@ class SchoolmateAdminDashboard(Dashboard):
                 'diary.models.DiaryRecord',
             )
         ))
+        self.children.append(modules.ModelList(
+            _('Notebook'),
+            column=1,
+            collapsible=False,
+            models=(
+                'notebook.models.NotebookRecord',
+            )
+        ))

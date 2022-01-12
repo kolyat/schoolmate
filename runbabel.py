@@ -19,6 +19,16 @@ import sys
 import argparse
 
 
+APPS = (
+    'school',
+    'account',
+    'news',
+    'timetable',
+    'diary',
+    'notebook'
+)
+
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Babel launcher')
     parser.add_argument('-e', '--extract', action='store_true',
@@ -41,18 +51,11 @@ if __name__ == '__main__':
            ' --version=0.1 '
 
     if args.extract:
-        os.system('pybabel extract -F babelcfg/babel.common.cfg'
-                  ' -o locale/django.pot {} .'.format(opts))
-        os.system('pybabel extract -F babelcfg/babel.school.cfg'
-                  ' -o school/locale/django.pot {} .'.format(opts))
-        os.system('pybabel extract -F babelcfg/babel.account.cfg'
-                  ' -o account/locale/django.pot {} .'.format(opts))
-        os.system('pybabel extract -F babelcfg/babel.news.cfg'
-                  ' -o news/locale/django.pot {} .'.format(opts))
-        os.system('pybabel extract -F babelcfg/babel.timetable.cfg'
-                  ' -o timetable/locale/django.pot {} .'.format(opts))
-        os.system('pybabel extract -F babelcfg/babel.diary.cfg'
-                  ' -o diary/locale/django.pot {} .'.format(opts))
+        os.system(f'pybabel extract -F babelcfg/babel.common.cfg'
+                  f' -o locale/django.pot {opts} .')
+        for app in APPS:
+            os.system(f'pybabel extract -F babelcfg/babel.{app}.cfg'
+                      f' -o {app}/locale/django.pot {{}} .')
 
     if args.init:
         # os.system('pybabel init -D django -i locale/django.pot'
@@ -79,29 +82,23 @@ if __name__ == '__main__':
         #           ' -d diary/locale -l ru')
         # os.system('pybabel init -D django -i diary/locale/django.pot'
         #           ' -d diary/locale -l de')
+        # os.system('pybabel init -D django -i notebook/locale/django.pot'
+        #           ' -d notebook/locale -l ru')
+        # os.system('pybabel init -D django -i notebook/locale/django.pot'
+        #           ' -d notebook/locale -l de')
         pass
 
     if args.update:
         os.system('pybabel update -D django -i locale/django.pot -d locale'
                   ' --previous')
-        os.system('pybabel update -D django -i school/locale/django.pot'
-                  ' -d school/locale --previous')
-        os.system('pybabel update -D django -i account/locale/django.pot'
-                  ' -d account/locale --previous')
-        os.system('pybabel update -D django -i news/locale/django.pot'
-                  ' -d news/locale --previous')
-        os.system('pybabel update -D django -i timetable/locale/django.pot'
-                  ' -d timetable/locale --previous')
-        os.system('pybabel update -D django -i diary/locale/django.pot'
-                  ' -d diary/locale --previous')
+        for app in APPS:
+            os.system(f'pybabel update -D django -i {app}/locale/django.pot'
+                      f' -d {app}/locale --previous')
 
     if args.compile:
         os.system('pybabel compile -D django -d locale')
-        os.system('pybabel compile -D django -d school/locale')
-        os.system('pybabel compile -D django -d account/locale')
-        os.system('pybabel compile -D django -d news/locale')
-        os.system('pybabel compile -D django -d timetable/locale')
-        os.system('pybabel compile -D django -d diary/locale')
+        for app in APPS:
+            os.system(f'pybabel compile -D django -d {app}/locale')
 
     if len(sys.argv) < 2:
         print('Nothing to do')

@@ -26,6 +26,8 @@ var URL_SCHOOL_FORMS = "/main/forms/";
 
 var URL_DIARY = "/diary/";
 
+var URL_NOTEBOOK = "/notebook/";
+
 var URL_PROFILE = "/profile/";
 var URL_GET_USERNAME = "/profile/user/";
 var URL_LOGOUT = "/profile/logout/";
@@ -76,6 +78,10 @@ var appMenu = {
         {
             id: "i_diary", value: gettext("Diary"),
             icon: "mdi mdi-book-open-variant", _url: URL_DIARY
+        },
+        {
+            id: "i_notebook", value: gettext("Notebook"),
+            icon: "mdi mdi-notebook-outline", _url: URL_NOTEBOOK
         },
         {
             id: "i_profile", value: gettext("Profile"),

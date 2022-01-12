@@ -14,31 +14,18 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-import os
+from django.contrib import admin
+from related_admin import RelatedFieldAdmin
 
-from utils import db
-
-
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'schoolmate.settings')
-APPS = (
-    'school',
-    'account',
-    'news',
-    'timetable',
-    'diary',
-    'notebook'
-)
+from . import models
 
 
-if __name__ == '__main__':
-    import django
-    django.setup()
-    from django.conf import settings
-    _db = db.Db(settings.DATABASES['default'], settings.BASE_DIR)
-
-    _db.create()
-    for a in APPS:
-        _db.remove_migrations(a)
-    for a in APPS:
-        _db.make_migrations(a)
-    _db.migrate()
+@admin.register(models.NotebookRecord)
+class NotebookRecordAdmin(RelatedFieldAdmin):
+    list_display = (
+        'user__username', 'date_modified', 'title', 'text'
+    )
+    search_fields = (
+        'user__username', 'user__first_name', 'user__last_name',
+        'title', 'text', 'date_modified'
+    )

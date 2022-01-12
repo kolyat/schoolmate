@@ -28,6 +28,7 @@ urlpatterns = [
     path('news/', include('news.urls')),
     path('timetable/', include('timetable.urls')),
     path('diary/', include('diary.urls')),
+    path('notebook/', include('notebook.urls')),
     path('grappelli/', include('grappelli.urls')),
     path('admin/', admin.site.urls),
     path('favicon.ico', generic.RedirectView.as_view(
