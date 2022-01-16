@@ -43,7 +43,7 @@ class NoteSerializerC(serializers.ModelSerializer):
     """
     class Meta:
         model = models.NotebookRecord
-        fields = ['title', 'text']
+        fields = ['user', 'title', 'text']
 
 
 class NoteSerializerR(serializers.ModelSerializer):
