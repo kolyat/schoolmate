@@ -41,9 +41,12 @@ class NoteSerializerL(serializers.ModelSerializer):
 class NoteSerializerC(serializers.ModelSerializer):
     """NotebookRecord model serializer: create
     """
+    user = serializers.HiddenField(default=serializers.CurrentUserDefault())
+
     class Meta:
         model = models.NotebookRecord
-        fields = ['user', 'title', 'text']
+        fields = ['pk', 'user', 'date_modified', 'title', 'text']
+        read_only_fields = ['pk', 'date_modified']
 
 
 class NoteSerializerR(serializers.ModelSerializer):
@@ -57,10 +60,12 @@ class NoteSerializerR(serializers.ModelSerializer):
 class NoteSerializerU(serializers.ModelSerializer):
     """NotebookRecord model serializer: update
     """
+    user = serializers.HiddenField(default=serializers.CurrentUserDefault())
+
     class Meta:
         model = models.NotebookRecord
-        fields = ['pk', 'title', 'text']
-        read_only_fields = ['pk']
+        fields = ['pk', 'user', 'title', 'text']
+        read_only_fields = ['pk', 'user']
 
 
 @method_decorator(auth_decorators.login_required, name='dispatch')

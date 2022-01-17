@@ -3,6 +3,12 @@
 {% block title %}{% trans %}Notebook{% endtrans %}{% endblock title %}
 
 {% block index %}
+<link href="{{ static('notebook/css/ckeditor5.css') }}" rel="stylesheet"
+      type="text/css" />
+<script src="{{ static('notebook/js/ckeditor5.js') }}"
+        type="text/javascript" charset="utf-8"></script>
+<link href="{{ static('notebook/css/notebook.css') }}" rel="stylesheet"
+      type="text/css" />
 <script src="{{ static('notebook/js/notebook.js') }}"
         type="text/javascript" charset="utf-8"></script>
 {% endblock index %}
