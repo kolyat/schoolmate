@@ -42,12 +42,12 @@ urlpatterns = [
         urlconf='schoolmate.urls'
     ), name='openapi-schema'),
     path('redoc/', generic.TemplateView.as_view(
-            template_name='redoc.html.j2',
-            extra_context={'schema_url': 'openapi-schema'}
-        ), name='redoc'),
+        template_name='redoc.html.j2',
+        extra_context={'schema_url': 'openapi-schema'}
+    ), name='redoc'),
 
     path('favicon.ico', generic.RedirectView.as_view(
-        url='{}img/favicon.ico'.format(settings.STATIC_URL))),
+        url=f'{settings.STATIC_URL}img/favicon.ico'))
 ]
 urlpatterns += i18n_patterns(path(
     'jsi18n/', i18n.JavaScriptCatalog.as_view(domain='django'),
