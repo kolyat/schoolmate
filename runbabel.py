@@ -48,14 +48,14 @@ if __name__ == '__main__':
     opts = ' --msgid-bugs-address=kks.pub@gmail.com ' \
            ' --copyright-holder="Kirill \'Kolyat\' Kiselnikov" ' \
            ' --project=Schoolmate ' \
-           ' --version=0.1 '
+           ' --version=2.0 '
 
     if args.extract:
         os.system(f'pybabel extract -F babelcfg/babel.common.cfg'
                   f' -o locale/django.pot {opts} .')
         for app in APPS:
             os.system(f'pybabel extract -F babelcfg/babel.{app}.cfg'
-                      f' -o {app}/locale/django.pot {{}} .')
+                      f' -o {app}/locale/django.pot {opts} .')
 
     if args.init:
         # os.system('pybabel init -D django -i locale/django.pot'

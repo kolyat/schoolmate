@@ -1,0 +1,95 @@
+# Translations template for Schoolmate.
+# Copyright (C) 2022 Kirill 'Kolyat' Kiselnikov
+# This file is distributed under the same license as the Schoolmate project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Schoolmate 2.0\n"
+"Report-Msgid-Bugs-To: kks.pub@gmail.com\n"
+"POT-Creation-Date: 2022-02-03 16:38+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#: notebook/apps.py:23 notebook/templates/notebook.html.j2:3
+msgid "Notebook"
+msgstr ""
+
+#: notebook/models.py:28 notebook/models.py:47
+msgid "Notebook record"
+msgstr ""
+
+#: notebook/models.py:31
+msgid "Notebook record title"
+msgstr ""
+
+#: notebook/models.py:33
+msgid "Notebook record text"
+msgstr ""
+
+#: notebook/models.py:36
+msgid "Record's date & time of modification"
+msgstr ""
+
+#: notebook/models.py:48
+msgid "Notebook records"
+msgstr ""
+
+#: notebook/static/notebook/js/notebook.js:49
+msgid "Failed to get notebook"
+msgstr ""
+
+#: notebook/static/notebook/js/notebook.js:61
+msgid "Create note"
+msgstr ""
+
+#: notebook/static/notebook/js/notebook.js:66
+msgid "Save note"
+msgstr ""
+
+#: notebook/static/notebook/js/notebook.js:71
+msgid "Close note"
+msgstr ""
+
+#: notebook/static/notebook/js/notebook.js:76
+msgid "Delete note"
+msgstr ""
+
+#: notebook/static/notebook/js/notebook.js:80
+msgid "Title / name of this note"
+msgstr ""
+
+#: notebook/static/notebook/js/notebook.js:89
+msgid "Max number of characters – "
+msgstr ""
+
+#: notebook/static/notebook/js/notebook.js:181
+msgid "Failed to save current note"
+msgstr ""
+
+#: notebook/static/notebook/js/notebook.js:192
+msgid "Save changes?"
+msgstr ""
+
+#: notebook/static/notebook/js/notebook.js:229
+msgid "Failed to create note"
+msgstr ""
+
+#: notebook/static/notebook/js/notebook.js:257
+msgid "Failed to retrieve note"
+msgstr ""
+
+#: notebook/static/notebook/js/notebook.js:285
+msgid "Delete current note?"
+msgstr ""
+
+#: notebook/static/notebook/js/notebook.js:295
+msgid "Failed to delete selected note"
+msgstr ""
+

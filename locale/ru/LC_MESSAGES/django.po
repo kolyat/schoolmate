@@ -7,18 +7,18 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1\n"
 "Report-Msgid-Bugs-To: kks.pub@gmail.com\n"
-"POT-Creation-Date: 2020-03-01 12:51+0300\n"
-"PO-Revision-Date: 2020-03-01 13:23+0300\n"
+"POT-Creation-Date: 2022-02-03 16:38+0300\n"
+"PO-Revision-Date: 2022-02-03 16:55+0300\n"
 "Last-Translator: Kirill 'Kolyat' Kiselnikov <kks.pub@gmail.com>\n"
-"Language: ru\n"
 "Language-Team: ru <kks.pub@gmail.com>\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.8.0\n"
-"X-Generator: Poedit 2.2\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Generated-By: Babel 2.9.1\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #: schoolmate/dashboard.py:27
 msgid "Administration"
@@ -32,26 +32,42 @@ msgstr "Общее"
 msgid "Schedules"
 msgstr "Расписания"
 
-#: schoolmate/dashboard.py:62 static/js/main.js:94
+#: schoolmate/dashboard.py:62 static/js/main.js:85
 msgid "Diary"
 msgstr "Дневник"
 
-#: schoolmate/settings.py:200
+#: schoolmate/dashboard.py:70 static/js/main.js:89
+msgid "Notebook"
+msgstr "Блокнот"
+
+#: schoolmate/settings.py:209
 msgid "Schoolmate maintenance"
 msgstr "Schoolmate – служебный доступ"
 
-#: static/js/main.js:47
-msgid "Profile"
-msgstr "Профиль"
+#: static/js/main.js:67
+msgid "All"
+msgstr "Все"
 
-#: static/js/main.js:57
-msgid "Log out"
-msgstr "Выход"
-
-#: static/js/main.js:92
+#: static/js/main.js:77
 msgid "Main"
 msgstr "Главная"
 
-#: static/js/main.js:93
+#: static/js/main.js:81
 msgid "Timetable"
 msgstr "Расписание уроков"
+
+#: static/js/main.js:93
+msgid "Profile"
+msgstr "Профиль"
+
+#: static/js/main.js:96
+msgid "Info"
+msgstr "Информация"
+
+#: static/js/main.js:108
+msgid "Log out"
+msgstr "Выход"
+
+#: static/js/main.js:178
+msgid "Unable to get list of forms"
+msgstr "Не удалось получить список классов"

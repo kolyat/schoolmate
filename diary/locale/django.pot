@@ -1,23 +1,23 @@
 # Translations template for Schoolmate.
-# Copyright (C) 2020-2022 Kirill 'Kolyat' Kiselnikov
+# Copyright (C) 2022 Kirill 'Kolyat' Kiselnikov
 # This file is distributed under the same license as the Schoolmate project.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2020-2022.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Schoolmate 0.1\n"
+"Project-Id-Version: Schoolmate 2.0\n"
 "Report-Msgid-Bugs-To: kks.pub@gmail.com\n"
-"POT-Creation-Date: 2020-03-01 17:01+0300\n"
+"POT-Creation-Date: 2022-02-03 16:38+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.8.0\n"
+"Generated-By: Babel 2.9.1\n"
 
-#: diary/apps.py:23
+#: diary/apps.py:23 diary/templates/diary.html.j2:3
 msgid "Diary"
 msgstr ""
 
@@ -65,31 +65,31 @@ msgstr ""
 msgid "Given school subject does not exist"
 msgstr ""
 
-#: diary/static/diary/js/diary.js:44
+#: diary/static/diary/js/diary.js:45
 msgid "Previous week"
 msgstr ""
 
-#: diary/static/diary/js/diary.js:49
+#: diary/static/diary/js/diary.js:50
 msgid "Invalid date"
 msgstr ""
 
-#: diary/static/diary/js/diary.js:54
+#: diary/static/diary/js/diary.js:55
 msgid "Next week"
 msgstr ""
 
-#: diary/static/diary/js/diary.js:121
+#: diary/static/diary/js/diary.js:122
 msgid "Record saved"
 msgstr ""
 
-#: diary/static/diary/js/diary.js:129
+#: diary/static/diary/js/diary.js:130
 msgid "Failed to save record to "
 msgstr ""
 
-#: diary/static/diary/js/diary.js:219
+#: diary/static/diary/js/diary.js:224
 msgid "Failed to retrieve list of school subjects"
 msgstr ""
 
-#: diary/static/diary/js/diary.js:259
+#: diary/static/diary/js/diary.js:264
 msgid "Failed to get records dated "
 msgstr ""
 
