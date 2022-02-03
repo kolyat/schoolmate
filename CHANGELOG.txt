@@ -2,6 +2,7 @@
 
 * Skin support
 * Major layout improvements for desktop and mobile devices
+* 'Notebook' application
 
 
 === 1.0 (2021-12-01)
