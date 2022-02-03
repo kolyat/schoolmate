@@ -5,3 +5,5 @@ django-jinja==2.10.0
 django-babel==0.6.2
 django-grappelli==2.15.3
 django-related-admin==1.0.1
+pyyaml==6.0
+uritemplate==4.1.1
