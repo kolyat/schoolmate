@@ -19,6 +19,9 @@ page.
 * **Diary** app represents diary of a school student, it stores student's
 everyday records as well as personal adjustments in timetable.
 
+* **Notebook** is an application used for creating and storing notes in HTML
+format.
+
 ##### Application dependencies
 
 * `school`: no dependencies
@@ -26,12 +29,21 @@ everyday records as well as personal adjustments in timetable.
 * `news`: `account`
 * `timetable`: `school`
 * `diary`: `school`, `account`, `timetable`
+* `notebook`: `account`
 
 ##### Supported languages
 
 * English
 * Deutsch
 * Русский
+
+##### Available skins
+
+* Compact
+* Contrast
+* Flat
+* Material
+* Mini
 
 ### Requirements
 
@@ -95,3 +107,10 @@ everyday records as well as personal adjustments in timetable.
     ```bash
     deactivate
     ```
+
+### Interactive API documentation
+
+This project uses [Redoc](https://github.com/Redocly/redoc) for generating 
+documentation from OpenAPI definitions.
+1. Run server.
+2. Go to `http(s)://your.domain/redoc/`.
