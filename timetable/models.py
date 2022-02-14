@@ -35,7 +35,8 @@ class TimetableYear(models.Model):
     """Proxy model for school year
     """
     school_year = models.ForeignKey(
-        school_models.SchoolYear, on_delete=models.PROTECT,
+        school_models.SchoolYear,
+        on_delete=models.PROTECT,
         verbose_name=_('School year')
     )
 
@@ -53,10 +54,14 @@ class TimetableYear(models.Model):
 class TimetableSchoolForm(models.Model):
     """Link school year to school forms
     """
-    year = models.ForeignKey(TimetableYear, on_delete=models.PROTECT,
-                             verbose_name=_('Year'))
+    year = models.ForeignKey(
+        TimetableYear,
+        on_delete=models.PROTECT,
+        verbose_name=_('Year')
+    )
     school_form = models.ForeignKey(
-        school_models.SchoolForm, on_delete=models.PROTECT,
+        school_models.SchoolForm,
+        on_delete=models.PROTECT,
         verbose_name=_('School form')
     )
 
@@ -75,25 +80,36 @@ class TimetableSchoolForm(models.Model):
 class Timetable(models.Model):
     """Represents timetable
     """
-    form = models.ForeignKey(TimetableSchoolForm, on_delete=models.PROTECT,
-                             verbose_name=_('Form'), related_name='lessons')
+    form = models.ForeignKey(
+        TimetableSchoolForm,
+        on_delete=models.PROTECT,
+        related_name='lessons',
+        verbose_name=_('Form')
+    )
     day_of_week = models.PositiveSmallIntegerField(
-        blank=False, null=False, choices=DAYS_OF_WEEK,
+        blank=False,
+        null=False,
+        choices=DAYS_OF_WEEK,
         verbose_name=_('Day of week')
     )
     lesson_number = models.PositiveSmallIntegerField(
-        blank=False, null=False,
+        blank=False,
+        null=False,
         choices=tuple(zip(school_models.PERIOD_NUMBERS,
                           [str(n) for n in school_models.PERIOD_NUMBERS])),
         verbose_name=_('Lesson number')
     )
     subject = models.ForeignKey(
-        school_models.SchoolSubject, on_delete=models.PROTECT,
+        school_models.SchoolSubject,
+        on_delete=models.PROTECT,
         verbose_name=_('Subject')
     )
     classroom = models.ForeignKey(
-        school_models.Classroom, blank=True, null=True,
-        on_delete=models.PROTECT, verbose_name=_('Classroom')
+        school_models.Classroom,
+        blank=True,
+        null=True,
+        on_delete=models.PROTECT,
+        verbose_name=_('Classroom')
     )
 
     def __str__(self):

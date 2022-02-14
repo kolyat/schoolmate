@@ -53,7 +53,7 @@ var DAYS_OF_WEEK = new Map([
 ]);
 var lessons_num = 7;
 
-function getTimetable(number) {
+function getTimetable(form_number) {
     timetable.clearAll(false);
     timetable.config.columns.splice(1, timetable.config.columns.length - 1);
     timetable.config.columns[0].fillspace = true;
@@ -61,9 +61,8 @@ function getTimetable(number) {
     timetable.refresh();
     timetable.hideOverlay();
     timetable.showOverlay(gettext("Loading..."));
-    var params = 0;
-    if (number > 0) params = number;
-    var promise = webix.ajax().get(URL_TIMETABLE_DATA + params);
+    var n = (form_number > 0) ? form_number : 0;
+    var promise = webix.ajax().get(URL_TIMETABLE_DATA, {form_number: n});
     var rows = new Object();
     DAYS_OF_WEEK.forEach((_, d) => {
         var lessons = new Array();
