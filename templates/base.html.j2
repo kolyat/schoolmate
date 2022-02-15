@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta content="text/html; charset=utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <script type="text/javascript" src="{{ url('javascript-catalog') }}"></script>
   {% if skin %}
     {% set _skin = skin %}
@@ -14,7 +14,7 @@
   {% set skin_path = 'webix/codebase/skins/'~_skin~'.css' %}
   <link href="{{ static(skin_path) }}" rel="stylesheet" type="text/css" />
   <link href="{{ static('mdi/css/materialdesignicons.min.css') }}"
-        rel="stylesheet" type="text/css" charset="utf-8"/>
+        rel="stylesheet" type="text/css" charset="utf-8" />
   <link href="{{ static('css/base.css') }}" rel="stylesheet" type="text/css" />
   <script src="{{ static('webix/codebase/webix.min.js') }}"
           type="text/javascript" charset="utf-8"></script>
@@ -23,40 +23,19 @@
 </head>
 <body class="no_borders>
   {% csrf_token %}
+  {% set locales = {'ru': 'ru-RU', 'de': 'de-DE', 'en': 'en-US'} %}
   {% if request.session['_language'] %}
-    {% set lang = request.session['_language'] %}
-    {% if lang == 'ru' %}
-      <script src="{{ static('webix/codebase/i18n/ru.js') }}"
-              type="text/javascript" charset="utf-8"></script>
-      <script>webix.i18n.setLocale("ru-RU");</script>
-    {% elif lang == 'de' %}
-      <script src="{{ static('webix/codebase/i18n/de.js') }}"
-              type="text/javascript" charset="utf-8"></script>
-      <script>webix.i18n.setLocale("de-DE");</script>
-    {% else %}
-      <script src="{{ static('webix/codebase/i18n/en.js') }}"
-              type="text/javascript" charset="utf-8"></script>
-      <script>webix.i18n.setLocale("en-US");</script>
-    {% endif %}
+    {% set l = request.session['_language'] %}
   {% elif server_lang %}
-    {% if server_lang == 'ru' %}
-      <script src="{{ static('webix/codebase/i18n/ru.js') }}"
-              type="text/javascript" charset="utf-8"></script>
-      <script>webix.i18n.setLocale("ru-RU");</script>
-    {% elif server_lang == 'de' %}
-      <script src="{{ static('webix/codebase/i18n/de.js') }}"
-              type="text/javascript" charset="utf-8"></script>
-      <script>webix.i18n.setLocale("de-DE");</script>
-    {% else %}
-      <script src="{{ static('webix/codebase/i18n/en.js') }}"
-              type="text/javascript" charset="utf-8"></script>
-      <script>webix.i18n.setLocale("en-US");</script>
-    {% endif %}
+    {% set l = server_lang %}
   {% else %}
-    <script src="{{ static('webix/codebase/i18n/en.js') }}"
-            type="text/javascript" charset="utf-8"></script>
-    <script>webix.i18n.setLocale("en-US");</script>
+    {% set l = 'en' %}
   {% endif %}
+  {% set locale_path = 'webix/codebase/i18n/'~l~'.js' %}
+  {% set locale = locales[l] %}
+  <script src="{{ static(locale_path) }}"
+          type="text/javascript" charset="utf-8"></script>
+  <script>webix.i18n.setLocale("{{locale}}");</script>
   <script src="{{ static('js/base.js') }}"
           type="text/javascript" charset="utf-8"></script>
   {% block start %}{% endblock start %}
