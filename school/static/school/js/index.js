@@ -19,10 +19,12 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //
 // General
 //
-var URL_NEWS = "/news/";
+var URL_STATUS = "/main/status/";
+
 var URL_YEAR_SCHEDULE = "/main/schedule/year/";
 var URL_DAY_SCHEDULE = "/main/schedule/day/";
-var URL_STATUS = "/main/status/";
+
+var URL_NEWS = "/news/";
 
 //
 // Widget description
@@ -60,19 +62,9 @@ var newsView = {
     template: function(obj) {
         var _created = webix.i18n.dateFormatStr(
             webix.i18n.parseFormatDate(obj.created));
-        var _title;
+        var _title = obj.title ? obj.title : "";
         var _content = obj.content;
-        var _author;
-        if (obj.title) {
-            _title = obj.title;
-        } else {
-            _header = "";
-        }
-        if (obj.author) {
-            _author = obj.author;
-        } else {
-            _author = "<br>";
-        }
+        var _author = obj.author ? obj.author : "<br>";
         return "<div style='display:block;margin-top:6px;margin-bottom:6px;'>"+
                "<p style='text-align:right;'>"+_created+"</p>"+
                "<p style='text-align:left;font-weight:bold;'>"+_title+"</p>"+
@@ -227,12 +219,17 @@ function updateClock(t) {
 
 function updateTimeStatus(_status) {
     time_form.getChildViews().filter(
-        function(e) { return e.config["id"] !== "time_label"; }).forEach(
-        function(e) { time_form.removeView(e.config["id"]); });
+        function(e) { return e.config["id"] !== "time_label"; }
+    ).forEach(
+        function(e) { time_form.removeView(e.config["id"]); }
+    );
     if (_status["time_description"]) {
         _status["time_description"].forEach(el => {
-            time_form.addView({view: "label", align: "center",
-                               label: el["description"]});
+            time_form.addView({
+                view: "label",
+                align: "center",
+                label: el["description"]
+            });
         });
     }
     time_form.refresh();
@@ -244,8 +241,10 @@ function updateCalendar(d) {
 
 function updateDateStatus(_status) {
     date_form.getChildViews().filter(
-        function(e) { return e.config["id"] !== "main_calendar"; }).forEach(
-        function(e) { date_form.removeView(e.config["id"]); });
+        function(e) { return e.config["id"] !== "main_calendar"; }
+    ).forEach(
+        function(e) { date_form.removeView(e.config["id"]); }
+    );
     if (_status["date_description"]) {
         _status["date_description"].forEach(el => {
             date_form.addView({

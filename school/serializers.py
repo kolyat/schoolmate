@@ -14,20 +14,32 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-from django.urls import path
-from django.views import generic
+from rest_framework import serializers
 
-from . import views
+from . import models
 
 
-urlpatterns = [
-    path('main/', views.index, name='index'),
-    path('', generic.RedirectView.as_view(url='/main')),
+class Form(serializers.ModelSerializer):
+    letters = serializers.StringRelatedField(many=True)
 
-    # API
-    path('main/status/', views.Status.as_view()),
-    path('main/forms/', views.Forms.as_view()),
-    path('main/schedule/year/', views.YearSchedule.as_view()),
-    path('main/schedule/day/', views.DailySchedule.as_view()),
-    path('main/subjects/', views.Subjects.as_view()),
-]
+    class Meta:
+        model = models.FormNumber
+        fields = ('number', 'letters')
+
+
+class YearSchedule(serializers.ModelSerializer):
+    class Meta:
+        model = models.YearSchedule
+        fields = ('description', 'start_date', 'end_date', 'period_type')
+
+
+class DailySchedule(serializers.ModelSerializer):
+    class Meta:
+        model = models.DailySchedule
+        fields = ('description', 'start_time', 'end_time')
+
+
+class Subject(serializers.ModelSerializer):
+    class Meta:
+        model = models.SchoolSubject
+        fields = ('subject',)

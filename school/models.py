@@ -17,9 +17,8 @@
 from django.db import models
 from django.utils.translation import gettext as _
 
+from schoolmate import settings
 
-FORM_NUMBERS = range(1, 12)
-FORM_LETTERS = 'АБВГД'
 
 PERIOD_NUMBERS = range(1, 9)
 DAY_PERIOD_TYPES = (
@@ -33,11 +32,13 @@ YEAR_PERIOD_TYPES = (
 
 
 class FormLetter(models.Model):
-    """Describes parallel of school form
+    """School form's parallel
     """
     letter = models.CharField(
-        max_length=2, blank=False, null=False,
-        choices=tuple(zip(FORM_LETTERS, FORM_LETTERS)),
+        blank=False,
+        null=False,
+        max_length=2,
+        choices=tuple(zip(settings.FORM_LETTERS, settings.FORM_LETTERS)),
         verbose_name=_('Form letter')
     )
 
@@ -54,15 +55,22 @@ class FormLetter(models.Model):
 
 
 class FormNumber(models.Model):
-    """Describes year № of education
+    """Year № of education
     """
     number = models.PositiveSmallIntegerField(
-        blank=False, null=False,
-        choices=tuple(zip(FORM_NUMBERS, [str(n) for n in FORM_NUMBERS])),
+        blank=False,
+        null=False,
+        choices=tuple(zip(
+            settings.FORM_NUMBERS,
+            [str(n) for n in settings.FORM_NUMBERS]
+        )),
         verbose_name=_('Form number')
     )
-    letters = models.ManyToManyField(FormLetter, through='SchoolForm',
-                                     verbose_name='Form letter')
+    letters = models.ManyToManyField(
+        FormLetter,
+        through='SchoolForm',
+        verbose_name='Form letter'
+    )
 
     def __str__(self):
         return str(self.number)
@@ -79,16 +87,22 @@ class FormNumber(models.Model):
 class SchoolForm(models.Model):
     """Represents school form
     """
-    form_number = models.ForeignKey(FormNumber, on_delete=models.PROTECT,
-                                    verbose_name='Form number')
-    form_letter = models.ForeignKey(FormLetter, on_delete=models.PROTECT,
-                                    verbose_name='Form letter')
+    form_number = models.ForeignKey(
+        FormNumber,
+        on_delete=models.PROTECT,
+        verbose_name='Form number'
+    )
+    form_letter = models.ForeignKey(
+        FormLetter,
+        on_delete=models.PROTECT,
+        verbose_name='Form letter'
+    )
 
     def __str__(self):
-        return '{}{}'.format(self.form_number, self.form_letter)
+        return f'{self.form_number}{self.form_letter}'
 
     def __unicode__(self):
-        return '{}{}'.format(self.form_number, self.form_letter)
+        return f'{self.form_number}{self.form_letter}'
 
     class Meta:
         ordering = ('form_number', 'form_letter')
@@ -99,8 +113,13 @@ class SchoolForm(models.Model):
 class SchoolSubject(models.Model):
     """Represents school subject
     """
-    subject = models.CharField(max_length=254, unique=True, blank=True,
-                               null=False, verbose_name=_('School subject'))
+    subject = models.CharField(
+        blank=True,
+        null=False,
+        unique=True,
+        max_length=254,
+        verbose_name=_('School subject')
+    )
 
     def __str__(self):
         return self.subject
@@ -114,26 +133,38 @@ class SchoolSubject(models.Model):
 
 
 class DailySchedule(models.Model):
-    """Represents daily schedule
-    Period type (lesson/break), it's number, when it starts and ends
+    """Represents daily schedule:
+    - period type (lesson/break)
+    - number of a period
+    - start & end time of a period
     """
     number = models.PositiveSmallIntegerField(
-        blank=False, null=False,
+        blank=False,
+        null=False,
         choices=tuple(zip(PERIOD_NUMBERS, [str(n) for n in PERIOD_NUMBERS])),
         verbose_name=_('Number of a period')
     )
     period_type = models.CharField(
-        max_length=2, blank=False, null=False, choices=DAY_PERIOD_TYPES,
+        blank=False,
+        null=False,
+        max_length=2,
+        choices=DAY_PERIOD_TYPES,
         verbose_name=_('Period type')
     )
     start_time = models.TimeField(
-        blank=False, null=False, verbose_name=_('Start time of a period')
+        blank=False,
+        null=False,
+        verbose_name=_('Start time of a period')
     )
     end_time = models.TimeField(
-        blank=False, null=False, verbose_name=_('End time of a period')
+        blank=False,
+        null=False,
+        verbose_name=_('End time of a period')
     )
     description = models.CharField(
-        max_length=254, blank=False, null=False,
+        blank=False,
+        null=False,
+        max_length=254,
         verbose_name=_('Additional description')
     )
 
@@ -152,14 +183,21 @@ class SchoolYear(models.Model):
     """Represents school year and it's duration
     """
     name = models.CharField(
-        max_length=254, blank=False, null=False, unique=True,
+        blank=False,
+        null=False,
+        unique=True,
+        max_length=254,
         verbose_name=_('Name of school year')
     )
     start_date = models.DateField(
-        blank=False, null=False, verbose_name=_('Start date of a school year')
+        blank=False,
+        null=False,
+        verbose_name=_('Start date of a school year')
     )
     end_date = models.DateField(
-        blank=False, null=False, verbose_name=_('End date of a school year')
+        blank=False,
+        null=False,
+        verbose_name=_('End date of a school year')
     )
 
     def __str__(self):
@@ -174,29 +212,43 @@ class SchoolYear(models.Model):
 
 
 class YearSchedule(models.Model):
-    """Represents schedule of a school year
-    Period type (academic quarter/holidays), it's number, date of start
-    and end
+    """Represents schedule of a school year:
+    - period type (academic quarter/holidays)
+    - number of a period
+    - start & end date of a period
     """
-    school_year = models.ForeignKey(SchoolYear, on_delete=models.PROTECT,
-                                    verbose_name=_('School year'))
+    school_year = models.ForeignKey(
+        SchoolYear,
+        on_delete=models.PROTECT,
+        verbose_name=_('School year')
+    )
     number = models.PositiveSmallIntegerField(
-        blank=False, null=False,
+        blank=False,
+        null=False,
         choices=tuple(zip(PERIOD_NUMBERS, [str(n) for n in PERIOD_NUMBERS])),
         verbose_name=_('Number of a period')
     )
     period_type = models.CharField(
-        max_length=2, blank=False, null=False, choices=YEAR_PERIOD_TYPES,
+        blank=False,
+        null=False,
+        max_length=2,
+        choices=YEAR_PERIOD_TYPES,
         verbose_name=_('Period type')
     )
     start_date = models.DateField(
-        blank=False, null=False, verbose_name=_('Start date of a period')
+        blank=False,
+        null=False,
+        verbose_name=_('Start date of a period')
     )
     end_date = models.DateField(
-        blank=False, null=False, verbose_name=_('End date of a period')
+        blank=False,
+        null=False,
+        verbose_name=_('End date of a period')
     )
     description = models.CharField(
-        max_length=254, blank=False, null=False,
+        blank=False,
+        null=False,
+        max_length=254,
         verbose_name=_('Additional description')
     )
 
@@ -215,11 +267,16 @@ class Classroom(models.Model):
     """Represents classroom in a school building
     """
     room_id = models.CharField(
-        max_length=15, blank=False, null=False, unique=True,
+        blank=False,
+        null=False,
+        unique=True,
+        max_length=15,
         verbose_name=_('Classroom ID')
     )
     room_name = models.CharField(
-        max_length=254, blank=True, null=True,
+        blank=True,
+        null=True,
+        max_length=254,
         verbose_name=_('Classroom name')
     )
 

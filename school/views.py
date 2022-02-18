@@ -20,9 +20,9 @@ from django.views.decorators import http as http_decorators
 from django.utils.decorators import method_decorator
 from django.utils import timezone
 
-from rest_framework import generics, views, serializers, response, status
+from rest_framework import generics, views, response, status
 
-from . import models
+from . import models, serializers
 
 
 @auth_decorators.login_required()
@@ -33,79 +33,77 @@ def index(request):
     return TemplateResponse(request, 'index.html.j2', context={})
 
 
-class DailyScheduleSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = models.DailySchedule
-        fields = ('description',)
-
-
-class YearScheduleSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = models.YearSchedule
-        fields = ('period_type', 'description')
-
-
 @method_decorator(auth_decorators.login_required, name='dispatch')
 class Status(views.APIView):
-    """Retrieve server's date and time with period descriptions
+    """Retrieve server's date and time with period descriptions.
+
+    ```json
+    {
+        "date_description": [
+            {
+                "description": "2nd semester",
+                "start_date": "2022-01-13",
+                "end_date": "2022-05-25",
+                "period_type": "Q"
+            }
+        ],
+        "time_description": [
+            {
+                "description": "5th lesson",
+                "start_time": "13:05:01",
+                "end_time": "13:50:00"
+            }
+        ],
+        "year": 2022,
+        "month": 2,
+        "day": 18,
+        "hour": 13,
+        "minute": 14,
+        "second": 38
+    }
+    ```
     """
+
     def get(self, request):
-        """
-        :param request: client's request
-        :return: 200 OK; JSON object with date/time and additional period
-                 description
-        """
         now = timezone.localtime(timezone.now())
         date = now.date()
         time = now.timetz()
-        status_info = {}
+        payload = {}
         ys_obj = models.YearSchedule.objects.filter(
-            start_date__lte=date, end_date__gte=date).order_by('-period_type')
-        ys_serializer = YearScheduleSerializer(ys_obj, many=True)
-        status_info.update({'date_description': ys_serializer.data})
+            start_date__lte=date, end_date__gte=date
+        ).order_by('-period_type')
+        ys_serializer = serializers.YearSchedule(ys_obj, many=True)
+        payload.update({'date_description': ys_serializer.data})
         for ys in ys_serializer.data:
             if ys.get('period_type', None) == 'Q':
                 ds_obj = models.DailySchedule.objects.filter(
-                        start_time__lte=time, end_time__gte=time)
-                ds_serializer = DailyScheduleSerializer(ds_obj, many=True)
-                status_info.update({'time_description': ds_serializer.data})
+                        start_time__lte=time, end_time__gte=time
+                )
+                ds_serializer = serializers.DailySchedule(ds_obj, many=True)
+                payload.update({'time_description': ds_serializer.data})
                 break
         else:
-            status_info.update({'time_description': []})
-        status_info.update({
+            payload.update({'time_description': []})
+        payload.update({
             'year': date.year, 'month': date.month, 'day': date.day,
             'hour': time.hour, 'minute': time.minute, 'second': time.second
         })
-        return response.Response(status_info, status=status.HTTP_200_OK)
-
-
-class FormNumberSerializer(serializers.ModelSerializer):
-    letters = serializers.StringRelatedField(many=True)
-
-    class Meta:
-        model = models.FormNumber
-        fields = ('number', 'letters')
+        return response.Response(payload, status=status.HTTP_200_OK)
 
 
 @method_decorator(auth_decorators.login_required, name='dispatch')
 class Forms(generics.ListAPIView):
-    """Retrieve list of school forms
+    """Retrieve school forms.
     """
-    serializer_class = FormNumberSerializer
+    serializer_class = serializers.Form
     queryset = models.FormNumber.objects.all()
 
 
-class YearScheduleViewSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = models.YearSchedule
-        fields = ('description', 'start_date', 'end_date')
-
-
 @method_decorator(auth_decorators.login_required, name='dispatch')
-class YearScheduleView(generics.ListAPIView):
-    """Retrieve schedule of current year
+class YearSchedule(generics.ListAPIView):
+    """Retrieve schedule of current year.
     """
-    serializer_class = YearScheduleViewSerializer
+    serializer_class = serializers.YearSchedule
 
     def get_queryset(self):
         _date = timezone.localtime(timezone.now()).date()
@@ -115,28 +113,16 @@ class YearScheduleView(generics.ListAPIView):
         ).order_by('start_date')
 
 
-class DailyScheduleViewSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = models.DailySchedule
-        fields = ('description', 'start_time', 'end_time')
-
-
 @method_decorator(auth_decorators.login_required, name='dispatch')
-class DailyScheduleView(generics.ListAPIView):
-    """Retrieve daily schedule
+class DailySchedule(generics.ListAPIView):
+    """Retrieve daily schedule.
     """
-    serializer_class = DailyScheduleViewSerializer
+    serializer_class = serializers.DailySchedule
     queryset = models.DailySchedule.objects.all().order_by('start_time')
 
 
-class SubjectSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = models.SchoolSubject
-        fields = ('subject',)
-
-
 class Subjects(generics.ListAPIView):
-    """Retrieve list of school subjects
+    """Retrieve school subjects.
     """
-    serializer_class = SubjectSerializer
+    serializer_class = serializers.Subject
     queryset = models.SchoolSubject.objects.all().order_by('subject')
