@@ -303,7 +303,7 @@ notes_list.attachEvent("onAfterSelect", function(id, e, node) {
 });
 notes_list.attachEvent("onItemDblClick", retrieveNote);
 
-title_text.attachEvent("onChange", function() {this.config.changed = true});
+title_text.attachEvent("onChange", function() { this.config.changed = true });
 
 //
 // Start-up

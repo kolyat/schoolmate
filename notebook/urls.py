@@ -24,12 +24,12 @@ urlpatterns = [
 
     # API
     path('records/',
-         views.RecordsView.as_view(actions={
+         views.Record.as_view(actions={
              'get': 'list',
              'post': 'create'
          })),
     path('records/<int:pk>/',
-         views.NoteView.as_view(actions={
+         views.Note.as_view(actions={
              'get': 'retrieve',
              'patch': 'update',
              'delete': 'destroy'

@@ -18,10 +18,10 @@ from django.template.response import TemplateResponse
 from django.contrib.auth import decorators as auth_decorators
 from django.utils.decorators import method_decorator
 from django.views import View
-from rest_framework import serializers, mixins
+from rest_framework import mixins
 
 from utils import misc
-from . import models
+from . import models, serializers
 
 
 @method_decorator(auth_decorators.login_required, name='dispatch')
@@ -30,54 +30,14 @@ class Notebook(View):
         return TemplateResponse(request, 'notebook.html.j2', context={})
 
 
-class NoteSerializerL(serializers.ModelSerializer):
-    """NotebookRecord model serializer: list
-    """
-    class Meta:
-        model = models.NotebookRecord
-        fields = ['pk', 'date_modified', 'title']
-
-
-class NoteSerializerC(serializers.ModelSerializer):
-    """NotebookRecord model serializer: create
-    """
-    user = serializers.HiddenField(default=serializers.CurrentUserDefault())
-
-    class Meta:
-        model = models.NotebookRecord
-        fields = ['pk', 'user', 'date_modified', 'title', 'text']
-        read_only_fields = ['pk', 'date_modified']
-
-
-class NoteSerializerR(serializers.ModelSerializer):
-    """NotebookRecord model serializer: retrieve
-    """
-    class Meta:
-        model = models.NotebookRecord
-        fields = ['pk', 'date_modified', 'title', 'text']
-
-
-class NoteSerializerU(serializers.ModelSerializer):
-    """NotebookRecord model serializer: update
-    """
-    user = serializers.HiddenField(default=serializers.CurrentUserDefault())
-
-    class Meta:
-        model = models.NotebookRecord
-        fields = ['pk', 'user', 'title', 'text']
-        read_only_fields = ['pk', 'user']
-
-
 @method_decorator(auth_decorators.login_required, name='dispatch')
-class RecordsView(mixins.CreateModelMixin,
-                  mixins.ListModelMixin,
-                  misc.MultipleSerializerGenericViewSet):
-    """List/create notebook record
-    """
-    serializer_class = NoteSerializerL
+class Record(mixins.CreateModelMixin,
+             mixins.ListModelMixin,
+             misc.MultipleSerializerGenericViewSet):
+    serializer_class = serializers.Note
     serializers = {
-        'create': NoteSerializerC,
-        'list': NoteSerializerL
+        'create': serializers.NoteCreate,
+        'list': serializers.Note
     }
 
     def get_queryset(self):
@@ -86,16 +46,14 @@ class RecordsView(mixins.CreateModelMixin,
 
 
 @method_decorator(auth_decorators.login_required, name='dispatch')
-class NoteView(mixins.RetrieveModelMixin,
-               mixins.UpdateModelMixin,
-               mixins.DestroyModelMixin,
-               misc.MultipleSerializerGenericViewSet):
-    """Retrieve/update/destroy notebook record
-    """
-    serializer_class = NoteSerializerR
+class Note(mixins.RetrieveModelMixin,
+           mixins.UpdateModelMixin,
+           mixins.DestroyModelMixin,
+           misc.MultipleSerializerGenericViewSet):
+    serializer_class = serializers.NoteRetrieve
     serializers = {
-        'retrieve': NoteSerializerR,
-        'update': NoteSerializerU
+        'retrieve': serializers.NoteRetrieve,
+        'update': serializers.NoteUpdate
     }
 
     def get_queryset(self):

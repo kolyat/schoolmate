@@ -9,12 +9,12 @@
 
 	padding: 1cm 2cm 2cm 1cm;
 
-	border: 1px hsl( 0,0%,82.7% ) solid;
+	border: 1px hsl(0, 0%, 82.7%) solid;
 	border-radius: var(--ck-border-radius);
 	background: white;
 	color: black;
 
-	box-shadow: 0 0 5px hsla( 0,0%,0%,.1 );
+	box-shadow: 0 0 5px hsla(0, 0%, 0%, .1);
 
 	margin: 1cm auto;
 }

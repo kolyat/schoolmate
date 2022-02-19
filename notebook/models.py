@@ -24,15 +24,26 @@ class NotebookRecord(models.Model):
     """Represents notebook record
     """
     user = models.ForeignKey(
-        account_models.SchoolUser, on_delete=models.CASCADE,
-        verbose_name=_('Notebook record'), related_name='notebook_records'
+        account_models.SchoolUser,
+        on_delete=models.CASCADE,
+        verbose_name=_('Notebook record'),
+        related_name='notebook_records'
     )
-    title = models.CharField(blank=True, null=True, max_length=256,
-                             verbose_name=_('Notebook record title'))
-    text = models.TextField(blank=True, null=True,
-                            verbose_name=_('Notebook record text'))
+    title = models.CharField(
+        blank=True,
+        null=True,
+        max_length=256,
+        verbose_name=_('Notebook record title')
+    )
+    text = models.TextField(
+        blank=True,
+        null=True,
+        verbose_name=_('Notebook record text')
+    )
     date_modified = models.DateTimeField(
-        blank=False, null=False, auto_now=True,
+        blank=False,
+        null=False,
+        auto_now=True,
         verbose_name=_('Record\'s date & time of modification')
     )
 
