@@ -23,6 +23,7 @@ var lessons_num = 7;
 // Function for array comparison
 var isequal = (a, b) => a.every((v, i) => v === b[i]);
                         // a.reduce((x, y) => x && b.includes(y), true);
+
 var URL_SUBJECTS = "/main/subjects/";
 
 //
@@ -59,33 +60,31 @@ var dayTableTemplate = {
             id: "lesson_number", fillspace: 0.25, header: {
                 text: "lesson_number", colspan: 2, height: 30,
                 css: {"text-align": "center"}
-            },
-            // minWidth: 26, width: 28,
+            }
         },
         {
             id: "subject", header: "subject", fillspace: 1.2, editor: "select",
-            options: [],
-            // minWidth: 100, width: 140,
+            options: []
         },
         {
             id: "text", fillspace: 3.8, header: {
                 text: "text", colspan: 3, css: {"text-align": "center"}
-            }, editor: "popup",
-            // minWidth: 140,
+            }, editor: "popup"
         },
         {
-            id: "marks", header: "marks", maxWidth: 1, //fillspace: 0.55,
-            // minWidth: 50, width: 60,
+            id: "marks", header: "marks", maxWidth: 1
         },
         {
-            id: "signature", header: "signature", maxWidth: 1, //fillspace: 0.8,
-            // minWidth: 80, width: 100,
+            id: "signature", header: "signature", maxWidth: 1
         }
     ],
     on: {
         onAfterEditStart: function(id) {
             var editor = this.getEditor(id);
-            var popup = editor.getPopup();
+            var popup = null;
+            try {
+                var popup = editor.getPopup();
+            } catch(err) {}
             if (popup) {
                 popup.config.width = this.getColumnConfig("text").width;
                 popup.config.height = 120;
@@ -221,6 +220,7 @@ function updateDates() {
     });
     days_of_week.shift();
     var monday_now = days_of_week[0].getDate();
+
     // Set date for each table
     for (var d = 0; d < tablesNum; d++) {
         var _to_day_of_week = webix.Date.dateToStr("%l");

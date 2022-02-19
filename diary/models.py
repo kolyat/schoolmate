@@ -25,32 +25,53 @@ class DiaryRecord(models.Model):
     """Represents diary record
     """
     user = models.ForeignKey(
-        account_models.SchoolUser, on_delete=models.CASCADE,
-        verbose_name=_('Diary record'), related_name='diary_records'
+        account_models.SchoolUser,
+        on_delete=models.CASCADE,
+        verbose_name=_('Diary record'),
+        related_name='diary_records'
     )
-    date = models.DateField(blank=False, null=False, verbose_name=_('Date'))
+    date = models.DateField(
+        blank=False,
+        null=False,
+        verbose_name=_('Date')
+    )
     lesson_number = models.PositiveSmallIntegerField(
-        blank=False, null=False,
-        choices=tuple(zip(school_models.PERIOD_NUMBERS,
-                          [str(n) for n in school_models.PERIOD_NUMBERS])),
+        blank=False,
+        null=False,
+        choices=tuple(zip(
+            school_models.PERIOD_NUMBERS,
+            [str(n) for n in school_models.PERIOD_NUMBERS]
+        )),
         verbose_name=_('Lesson number')
     )
     subject = models.ForeignKey(
-        school_models.SchoolSubject, on_delete=models.DO_NOTHING,
+        school_models.SchoolSubject,
+        on_delete=models.DO_NOTHING,
         verbose_name=_('Subject')
     )
-    text = models.TextField(blank=True, null=True,
-                            verbose_name=_('Diary record text'))
+    text = models.TextField(
+        blank=True,
+        null=True,
+        verbose_name=_('Diary record text')
+    )
 
     def __str__(self):
-        return ' | '.join((str(self.user), str(self.date),
-                           str(self.lesson_number), str(self.subject),
-                           self.text))
+        return ' | '.join((
+            str(self.user),
+            str(self.date),
+            str(self.lesson_number),
+            str(self.subject),
+            self.text
+        ))
 
     def __unicode__(self):
-        return ' | '.join((str(self.user), str(self.date),
-                           str(self.lesson_number), str(self.subject),
-                           self.text))
+        return ' | '.join((
+            str(self.user),
+            str(self.date),
+            str(self.lesson_number),
+            str(self.subject),
+            self.text
+        ))
 
     class Meta:
         ordering = ('date',)
