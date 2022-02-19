@@ -16,24 +16,17 @@
 
 from django.contrib.auth import decorators as auth_decorators
 from django.utils.decorators import method_decorator
-from rest_framework import serializers, generics
+from rest_framework import generics
 
-from . import models
 from schoolmate import settings
-
-
-class ArticleSerializer(serializers.ModelSerializer):
-    created = serializers.DateTimeField(format='%Y-%m-%d')
-    author = serializers.CharField(read_only=True)
-
-    class Meta:
-        model = models.Article
-        fields = ('created', 'title', 'content', 'author')
+from . import models, serializers
 
 
 @method_decorator(auth_decorators.login_required, name='dispatch')
-class ArticleView(generics.ListAPIView):
-    """Retrieve list of news
+class Article(generics.ListAPIView):
+    """Retrieve list of news (latest 300 articles by default).
+
+    Number of articles is set in `LATEST_NEWS_COUNT` in project's `settings.py`
     """
-    serializer_class = ArticleSerializer
+    serializer_class = serializers.Article
     queryset = models.Article.objects.all()[:settings.LATEST_NEWS_COUNT]

@@ -14,11 +14,15 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-from django.urls import path
+from rest_framework import serializers
 
-from . import views
+from . import models
 
 
-urlpatterns = [
-    path('', views.Article.as_view())
-]
+class Article(serializers.ModelSerializer):
+    created = serializers.DateTimeField(format='%Y-%m-%d')
+    author = serializers.CharField(read_only=True)
+
+    class Meta:
+        model = models.Article
+        fields = ('created', 'title', 'content', 'author')

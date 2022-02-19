@@ -24,17 +24,37 @@ class Article(models.Model):
     """News article
     """
     author = models.ForeignKey(
-        account_models.SchoolUser, on_delete=models.DO_NOTHING,
-        blank=True, null=True, editable=False, verbose_name=_('Author')
+        account_models.SchoolUser,
+        on_delete=models.DO_NOTHING,
+        blank=True,
+        null=True,
+        editable=False,
+        verbose_name=_('Author')
     )
-    created = models.DateTimeField(blank=False, null=False, auto_now_add=True,
-                                   verbose_name=_('Creation date'))
-    modified = models.DateTimeField(blank=False, null=False, auto_now=True,
-                                    verbose_name=_('Last modification date'))
-    title = models.CharField(max_length=254, blank=True, null=True,
-                             verbose_name=_('Title'))
-    content = models.TextField(max_length=30000, blank=False, null=False,
-                               verbose_name=_('Content'))
+    created = models.DateTimeField(
+        blank=False,
+        null=False,
+        auto_now_add=True,
+        verbose_name=_('Creation date')
+    )
+    modified = models.DateTimeField(
+        blank=False,
+        null=False,
+        auto_now=True,
+        verbose_name=_('Last modification date')
+    )
+    title = models.CharField(
+        blank=True,
+        null=True,
+        max_length=254,
+        verbose_name=_('Title')
+    )
+    content = models.TextField(
+        max_length=30000,
+        blank=False,
+        null=False,
+        verbose_name=_('Content')
+    )
 
     def __str__(self):
         return self.title if self.title else self.content
