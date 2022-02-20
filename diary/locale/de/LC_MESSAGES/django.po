@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Schoolmate 0.1\n"
 "Report-Msgid-Bugs-To: kks.pub@gmail.com\n"
-"POT-Creation-Date: 2022-02-03 16:38+0300\n"
+"POT-Creation-Date: 2022-02-20 23:21+0300\n"
 "PO-Revision-Date: 2020-03-01 17:05+0300\n"
 "Last-Translator: Kirill 'Kolyat' Kiselnikov <kks.pub@gmail.com>\n"
 "Language: de\n"
@@ -22,39 +22,39 @@ msgstr ""
 msgid "Diary"
 msgstr "Tagebuch"
 
-#: diary/models.py:29 diary/models.py:57
+#: diary/models.py:30 diary/models.py:78
 msgid "Diary record"
 msgstr "Tagebuchaufzeichnung"
 
-#: diary/models.py:31
+#: diary/models.py:36
 msgid "Date"
 msgstr "Datum"
 
-#: diary/models.py:36
+#: diary/models.py:45
 msgid "Lesson number"
 msgstr "Lektionnummer"
 
-#: diary/models.py:40
+#: diary/models.py:50
 msgid "Subject"
 msgstr "Schulfach"
 
-#: diary/models.py:43
+#: diary/models.py:55
 msgid "Diary record text"
 msgstr "Tagebuchaufzeichnungstext"
 
-#: diary/models.py:58
+#: diary/models.py:79
 msgid "Diary records"
 msgstr "Tagebuchaufzeichnungen"
 
-#: diary/views.py:91
+#: diary/serializers.py:74
 msgid "lesson_number must be specified"
 msgstr "lesson_number muss angegeben werden"
 
-#: diary/views.py:96
+#: diary/serializers.py:79
 msgid "lesson_number must be integer"
 msgstr "lesson_number muss vom Typ Integer sein"
 
-#: diary/views.py:101
+#: diary/serializers.py:84
 msgid "lesson_number must be in range from 1 to 7 inclusive"
 msgstr "lesson_number muss im Bereich von 1 bis einschließlich 7 liegen"
 
@@ -62,35 +62,35 @@ msgstr "lesson_number muss im Bereich von 1 bis einschließlich 7 liegen"
 msgid "Current user is not assigned to any of school forms"
 msgstr "Der aktuelle Benutzer ist keinem Schulformular zugeordnet"
 
-#: diary/views.py:189
+#: diary/views.py:209
 msgid "Given school subject does not exist"
 msgstr "Ein bestimmtes Schulfach existiert nicht"
 
-#: diary/static/diary/js/diary.js:45
+#: diary/static/diary/js/diary.js:46
 msgid "Previous week"
 msgstr "Letzte Woche"
 
-#: diary/static/diary/js/diary.js:50
+#: diary/static/diary/js/diary.js:51
 msgid "Invalid date"
 msgstr "Ungültiges Datum"
 
-#: diary/static/diary/js/diary.js:55
+#: diary/static/diary/js/diary.js:56
 msgid "Next week"
 msgstr "Nächste Woche"
 
-#: diary/static/diary/js/diary.js:122
+#: diary/static/diary/js/diary.js:114
 msgid "Record saved"
 msgstr "Aufzeichnung erfolgreich gespeichert"
 
-#: diary/static/diary/js/diary.js:130
+#: diary/static/diary/js/diary.js:122
 msgid "Failed to save record to "
 msgstr "Aufzeichnung konnte nicht gespeichert werden - "
 
-#: diary/static/diary/js/diary.js:224
+#: diary/static/diary/js/diary.js:216
 msgid "Failed to retrieve list of school subjects"
 msgstr "Liste der Schulfächer konnte nicht abgerufen werden"
 
-#: diary/static/diary/js/diary.js:264
+#: diary/static/diary/js/diary.js:257
 msgid "Failed to get records dated "
 msgstr "Aufzeichnungen konnte nicht abgerufen werden - "
 

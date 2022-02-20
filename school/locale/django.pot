@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Schoolmate 2.0\n"
 "Report-Msgid-Bugs-To: kks.pub@gmail.com\n"
-"POT-Creation-Date: 2022-02-03 16:38+0300\n"
+"POT-Creation-Date: 2022-02-20 23:21+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,169 +21,169 @@ msgstr ""
 msgid "General"
 msgstr ""
 
-#: school/models.py:26
+#: school/models.py:25
 msgid "Lesson"
 msgstr ""
 
-#: school/models.py:27
+#: school/models.py:26
 msgid "Break"
 msgstr ""
 
-#: school/models.py:30
+#: school/models.py:29
 msgid "Quarter"
 msgstr ""
 
-#: school/models.py:31
+#: school/models.py:30
 msgid "Holidays"
 msgstr ""
 
-#: school/models.py:41 school/models.py:52
+#: school/models.py:42 school/models.py:53
 msgid "Form letter"
 msgstr ""
 
-#: school/models.py:53
+#: school/models.py:54
 msgid "Form letters"
 msgstr ""
 
-#: school/models.py:62 school/models.py:75
+#: school/models.py:67 school/models.py:83
 msgid "Form number"
 msgstr ""
 
-#: school/models.py:76
+#: school/models.py:84
 msgid "Form numbers"
 msgstr ""
 
-#: school/models.py:95
+#: school/models.py:109
 msgid "School form"
 msgstr ""
 
-#: school/models.py:96
+#: school/models.py:110
 msgid "School forms"
 msgstr ""
 
-#: school/models.py:103 school/models.py:112
+#: school/models.py:121 school/models.py:131
 msgid "School subject"
 msgstr ""
 
-#: school/models.py:113
+#: school/models.py:132
 msgid "School subjects"
 msgstr ""
 
-#: school/models.py:123 school/models.py:186
+#: school/models.py:145 school/models.py:229
 msgid "Number of a period"
 msgstr ""
 
-#: school/models.py:127 school/models.py:190
+#: school/models.py:152 school/models.py:236
 msgid "Period type"
 msgstr ""
 
-#: school/models.py:130
+#: school/models.py:157
 msgid "Start time of a period"
 msgstr ""
 
-#: school/models.py:133
+#: school/models.py:162
 msgid "End time of a period"
 msgstr ""
 
-#: school/models.py:137 school/models.py:200
+#: school/models.py:168 school/models.py:252
 msgid "Additional description"
 msgstr ""
 
-#: school/models.py:147
+#: school/models.py:178
 msgid "Period"
 msgstr ""
 
-#: school/models.py:148 school/static/school/js/index.js:162
+#: school/models.py:179 school/static/school/js/index.js:154
 msgid "Daily schedule"
 msgstr ""
 
-#: school/models.py:156
+#: school/models.py:190
 msgid "Name of school year"
 msgstr ""
 
-#: school/models.py:159
+#: school/models.py:195
 msgid "Start date of a school year"
 msgstr ""
 
-#: school/models.py:162
+#: school/models.py:200
 msgid "End date of a school year"
 msgstr ""
 
-#: school/models.py:172 school/models.py:182
+#: school/models.py:210 school/models.py:223
 msgid "School year"
 msgstr ""
 
-#: school/models.py:173
+#: school/models.py:211
 msgid "Academic years"
 msgstr ""
 
-#: school/models.py:193
+#: school/models.py:241
 msgid "Start date of a period"
 msgstr ""
 
-#: school/models.py:196
+#: school/models.py:246
 msgid "End date of a period"
 msgstr ""
 
-#: school/models.py:210
+#: school/models.py:262
 msgid "School year schedule"
 msgstr ""
 
-#: school/models.py:211
+#: school/models.py:263
 msgid "Academic year schedules"
 msgstr ""
 
-#: school/models.py:219
+#: school/models.py:274
 msgid "Classroom ID"
 msgstr ""
 
-#: school/models.py:223
+#: school/models.py:280
 msgid "Classroom name"
 msgstr ""
 
-#: school/models.py:233
+#: school/models.py:290
 msgid "Classroom"
 msgstr ""
 
-#: school/models.py:234
+#: school/models.py:291
 msgid "Classrooms"
 msgstr ""
 
-#: school/static/school/js/index.js:93 school/static/school/js/index.js:112
-#: school/static/school/js/index.js:136
+#: school/static/school/js/index.js:85 school/static/school/js/index.js:104
+#: school/static/school/js/index.js:128
 msgid "No data"
 msgstr ""
 
-#: school/static/school/js/index.js:114
+#: school/static/school/js/index.js:106
 msgid "Failed to get year schedule"
 msgstr ""
 
-#: school/static/school/js/index.js:138
+#: school/static/school/js/index.js:130
 msgid "Failed to get daily schedule"
 msgstr ""
 
-#: school/static/school/js/index.js:152
+#: school/static/school/js/index.js:144
 msgid "News"
 msgstr ""
 
-#: school/static/school/js/index.js:155
+#: school/static/school/js/index.js:147
 msgid "Schedules"
 msgstr ""
 
-#: school/static/school/js/index.js:157
+#: school/static/school/js/index.js:149
 msgid "Year schedule"
 msgstr ""
 
-#: school/static/school/js/index.js:207 school/static/school/js/index.js:220
-#: school/static/school/js/index.js:225
+#: school/static/school/js/index.js:199 school/static/school/js/index.js:212
+#: school/static/school/js/index.js:217
 msgid "Loading..."
 msgstr ""
 
-#: school/static/school/js/index.js:211
+#: school/static/school/js/index.js:203
 msgid "Failed to load news"
 msgstr ""
 
-#: school/static/school/js/index.js:285
+#: school/static/school/js/index.js:284
 msgid "Failed to retrieve date/time info from server"
 msgstr ""
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Schoolmate 2.0\n"
 "Report-Msgid-Bugs-To: kks.pub@gmail.com\n"
-"POT-Creation-Date: 2022-02-03 16:38+0300\n"
+"POT-Creation-Date: 2022-02-20 23:21+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,39 +21,39 @@ msgstr ""
 msgid "Diary"
 msgstr ""
 
-#: diary/models.py:29 diary/models.py:57
+#: diary/models.py:30 diary/models.py:78
 msgid "Diary record"
 msgstr ""
 
-#: diary/models.py:31
+#: diary/models.py:36
 msgid "Date"
 msgstr ""
 
-#: diary/models.py:36
+#: diary/models.py:45
 msgid "Lesson number"
 msgstr ""
 
-#: diary/models.py:40
+#: diary/models.py:50
 msgid "Subject"
 msgstr ""
 
-#: diary/models.py:43
+#: diary/models.py:55
 msgid "Diary record text"
 msgstr ""
 
-#: diary/models.py:58
+#: diary/models.py:79
 msgid "Diary records"
 msgstr ""
 
-#: diary/views.py:91
+#: diary/serializers.py:74
 msgid "lesson_number must be specified"
 msgstr ""
 
-#: diary/views.py:96
+#: diary/serializers.py:79
 msgid "lesson_number must be integer"
 msgstr ""
 
-#: diary/views.py:101
+#: diary/serializers.py:84
 msgid "lesson_number must be in range from 1 to 7 inclusive"
 msgstr ""
 
@@ -61,35 +61,35 @@ msgstr ""
 msgid "Current user is not assigned to any of school forms"
 msgstr ""
 
-#: diary/views.py:189
+#: diary/views.py:209
 msgid "Given school subject does not exist"
 msgstr ""
 
-#: diary/static/diary/js/diary.js:45
+#: diary/static/diary/js/diary.js:46
 msgid "Previous week"
 msgstr ""
 
-#: diary/static/diary/js/diary.js:50
+#: diary/static/diary/js/diary.js:51
 msgid "Invalid date"
 msgstr ""
 
-#: diary/static/diary/js/diary.js:55
+#: diary/static/diary/js/diary.js:56
 msgid "Next week"
 msgstr ""
 
-#: diary/static/diary/js/diary.js:122
+#: diary/static/diary/js/diary.js:114
 msgid "Record saved"
 msgstr ""
 
-#: diary/static/diary/js/diary.js:130
+#: diary/static/diary/js/diary.js:122
 msgid "Failed to save record to "
 msgstr ""
 
-#: diary/static/diary/js/diary.js:224
+#: diary/static/diary/js/diary.js:216
 msgid "Failed to retrieve list of school subjects"
 msgstr ""
 
-#: diary/static/diary/js/diary.js:264
+#: diary/static/diary/js/diary.js:257
 msgid "Failed to get records dated "
 msgstr ""
 

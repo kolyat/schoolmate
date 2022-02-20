@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Schoolmate 0.1\n"
 "Report-Msgid-Bugs-To: kks.pub@gmail.com\n"
-"POT-Creation-Date: 2022-02-03 16:38+0300\n"
+"POT-Creation-Date: 2022-02-20 23:21+0300\n"
 "PO-Revision-Date: 2018-11-22 22:36+0300\n"
 "Last-Translator: Kirill 'Kolyat' Kiselnikov <kks.pub@gmail.com>\n"
 "Language: de\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.9.1\n"
 
-#: timetable/apps.py:23 timetable/models.py:49 timetable/models.py:50
+#: timetable/apps.py:23 timetable/models.py:50 timetable/models.py:51
 #: timetable/templates/timetable.html.j2:3
 msgid "Timetable"
 msgstr "Zeitplan"
@@ -47,43 +47,43 @@ msgstr "Freitag"
 msgid "Saturday"
 msgstr "Samstag"
 
-#: timetable/models.py:39
+#: timetable/models.py:40
 msgid "School year"
 msgstr "Schuljahre"
 
-#: timetable/models.py:57
+#: timetable/models.py:60
 msgid "Year"
 msgstr "Jahre"
 
-#: timetable/models.py:60
+#: timetable/models.py:65
 msgid "School form"
 msgstr "Klasse"
 
-#: timetable/models.py:71 timetable/models.py:72 timetable/models.py:79
+#: timetable/models.py:76 timetable/models.py:77 timetable/models.py:87
 msgid "Form"
 msgstr "Klasse"
 
-#: timetable/models.py:82
+#: timetable/models.py:93
 msgid "Day of week"
 msgstr "Wochentag"
 
-#: timetable/models.py:88
+#: timetable/models.py:100
 msgid "Lesson number"
 msgstr "Schulstundenummer"
 
-#: timetable/models.py:92
+#: timetable/models.py:105
 msgid "Subject"
 msgstr "Schulfach"
 
-#: timetable/models.py:96
+#: timetable/models.py:112
 msgid "Classroom"
 msgstr "Klassenzimmer"
 
-#: timetable/models.py:111
+#: timetable/models.py:127
 msgid "Lesson"
 msgstr "Schulstunde"
 
-#: timetable/models.py:112
+#: timetable/models.py:128
 msgid "Lessons"
 msgstr "Schulstunden"
 
@@ -91,15 +91,15 @@ msgstr "Schulstunden"
 msgid "Loading..."
 msgstr "Laden..."
 
-#: timetable/static/timetable/js/timetable.js:153
+#: timetable/static/timetable/js/timetable.js:152
 msgid "No data"
 msgstr "Keine Daten"
 
-#: timetable/static/timetable/js/timetable.js:155
+#: timetable/static/timetable/js/timetable.js:154
 msgid "Unable to retrieve timetable"
 msgstr "Zeitplan kann nicht abgerufen werden"
 
-#: timetable/static/timetable/js/timetable.js:169
+#: timetable/static/timetable/js/timetable.js:168
 msgid "Select form to load timetable"
 msgstr "Wählen Sie die Klassennummer zum Laden des Zeitplans"
 

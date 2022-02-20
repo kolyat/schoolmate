@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Schoolmate 2.0\n"
 "Report-Msgid-Bugs-To: kks.pub@gmail.com\n"
-"POT-Creation-Date: 2022-02-03 16:38+0300\n"
+"POT-Creation-Date: 2022-02-20 23:21+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.9.1\n"
 
-#: timetable/apps.py:23 timetable/models.py:49 timetable/models.py:50
+#: timetable/apps.py:23 timetable/models.py:50 timetable/models.py:51
 #: timetable/templates/timetable.html.j2:3
 msgid "Timetable"
 msgstr ""
@@ -46,43 +46,43 @@ msgstr ""
 msgid "Saturday"
 msgstr ""
 
-#: timetable/models.py:39
+#: timetable/models.py:40
 msgid "School year"
 msgstr ""
 
-#: timetable/models.py:57
+#: timetable/models.py:60
 msgid "Year"
 msgstr ""
 
-#: timetable/models.py:60
+#: timetable/models.py:65
 msgid "School form"
 msgstr ""
 
-#: timetable/models.py:71 timetable/models.py:72 timetable/models.py:79
+#: timetable/models.py:76 timetable/models.py:77 timetable/models.py:87
 msgid "Form"
 msgstr ""
 
-#: timetable/models.py:82
+#: timetable/models.py:93
 msgid "Day of week"
 msgstr ""
 
-#: timetable/models.py:88
+#: timetable/models.py:100
 msgid "Lesson number"
 msgstr ""
 
-#: timetable/models.py:92
+#: timetable/models.py:105
 msgid "Subject"
 msgstr ""
 
-#: timetable/models.py:96
+#: timetable/models.py:112
 msgid "Classroom"
 msgstr ""
 
-#: timetable/models.py:111
+#: timetable/models.py:127
 msgid "Lesson"
 msgstr ""
 
-#: timetable/models.py:112
+#: timetable/models.py:128
 msgid "Lessons"
 msgstr ""
 
@@ -90,15 +90,15 @@ msgstr ""
 msgid "Loading..."
 msgstr ""
 
-#: timetable/static/timetable/js/timetable.js:153
+#: timetable/static/timetable/js/timetable.js:152
 msgid "No data"
 msgstr ""
 
-#: timetable/static/timetable/js/timetable.js:155
+#: timetable/static/timetable/js/timetable.js:154
 msgid "Unable to retrieve timetable"
 msgstr ""
 
-#: timetable/static/timetable/js/timetable.js:169
+#: timetable/static/timetable/js/timetable.js:168
 msgid "Select form to load timetable"
 msgstr ""
 

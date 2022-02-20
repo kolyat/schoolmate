@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Schoolmate 2.0\n"
 "Report-Msgid-Bugs-To: kks.pub@gmail.com\n"
-"POT-Creation-Date: 2022-02-03 16:38+0300\n"
+"POT-Creation-Date: 2022-02-20 23:21+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,23 +21,23 @@ msgstr ""
 msgid "Notebook"
 msgstr ""
 
-#: notebook/models.py:28 notebook/models.py:47
+#: notebook/models.py:29 notebook/models.py:58
 msgid "Notebook record"
 msgstr ""
 
-#: notebook/models.py:31
+#: notebook/models.py:36
 msgid "Notebook record title"
 msgstr ""
 
-#: notebook/models.py:33
+#: notebook/models.py:41
 msgid "Notebook record text"
 msgstr ""
 
-#: notebook/models.py:36
+#: notebook/models.py:47
 msgid "Record's date & time of modification"
 msgstr ""
 
-#: notebook/models.py:48
+#: notebook/models.py:59
 msgid "Notebook records"
 msgstr ""
 

@@ -5,19 +5,18 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 0.1\n"
+"Project-Id-Version:  0.1\n"
 "Report-Msgid-Bugs-To: kks.pub@gmail.com\n"
-"POT-Creation-Date: 2022-02-03 16:38+0300\n"
+"POT-Creation-Date: 2022-02-20 23:21+0300\n"
 "PO-Revision-Date: 2022-02-03 17:05+0300\n"
 "Last-Translator: Kirill 'Kolyat' Kiselnikov <kks.pub@gmail.com>\n"
-"Language-Team: de <kks.pub@gmail.com>\n"
 "Language: de\n"
+"Language-Team: de <kks.pub@gmail.com>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Babel 2.9.1\n"
-"X-Generator: Poedit 3.0.1\n"
 
 #: account/admin.py:27
 msgid "Credentials"
@@ -43,105 +42,105 @@ msgstr "Berechtigungen"
 msgid "Account"
 msgstr "Konto"
 
-#: account/models.py:29 account/static/account/js/account.js:57
+#: account/models.py:32 account/static/account/js/account.js:59
 msgid "Patronymic name"
 msgstr "Vatersname"
 
-#: account/models.py:31 account/static/account/js/account.js:67
+#: account/models.py:37 account/static/account/js/account.js:69
 msgid "Date of birth"
 msgstr "Geburtsdatum"
 
-#: account/models.py:34
+#: account/models.py:44
 msgid "School form"
 msgstr "Schulklasse"
 
-#: account/models.py:39 account/static/account/js/account.js:123
+#: account/models.py:52 account/static/account/js/account.js:125
 msgid "Language"
 msgstr "Sprache"
 
-#: account/models.py:44 account/static/account/js/account.js:130
+#: account/models.py:60 account/static/account/js/account.js:132
 msgid "Skin"
 msgstr "Anmeldung"
 
-#: account/models.py:48
+#: account/models.py:64
 msgid "School user"
 msgstr "Schulnutzer"
 
-#: account/models.py:49
+#: account/models.py:65
 msgid "School users"
 msgstr "Schulnutzern"
 
-#: account/static/account/js/account.js:47
+#: account/static/account/js/account.js:49
 #: account/static/account/js/login.js:46
 msgid "Username"
 msgstr "Nutzername"
 
-#: account/static/account/js/account.js:52
+#: account/static/account/js/account.js:54
 msgid "First name"
 msgstr "Vorname"
 
-#: account/static/account/js/account.js:62
+#: account/static/account/js/account.js:64
 msgid "Last name"
 msgstr "Nachname"
 
-#: account/static/account/js/account.js:74
+#: account/static/account/js/account.js:76
 #: account/static/account/js/password_reset.js:55
 msgid "E-mail"
 msgstr "E-Mail"
 
-#: account/static/account/js/account.js:79
+#: account/static/account/js/account.js:81
 msgid "Form"
 msgstr "Schulklasse"
 
 # | msgid "Password changed"
-#: account/static/account/js/account.js:95
+#: account/static/account/js/account.js:97
 msgid "Settings changed"
 msgstr "Passwort geändert"
 
 # | msgid "Password change failed"
-#: account/static/account/js/account.js:104
+#: account/static/account/js/account.js:106
 msgid "Settings change failed"
 msgstr "Passwort ändern fehlgeschlagen"
 
-#: account/static/account/js/account.js:148
+#: account/static/account/js/account.js:150
 msgid "Current password"
 msgstr "Aktuelles Passwort"
 
-#: account/static/account/js/account.js:151
-#: account/static/account/js/account.js:158
-#: account/static/account/js/account.js:165
+#: account/static/account/js/account.js:153
+#: account/static/account/js/account.js:160
+#: account/static/account/js/account.js:167
 #: account/static/account/js/password_reset_confirm.js:35
 #: account/static/account/js/password_reset_confirm.js:41
 msgid "Field can not be empty"
 msgstr "Feld darf nicht leer sein"
 
-#: account/static/account/js/account.js:155
+#: account/static/account/js/account.js:157
 #: account/static/account/js/password_reset_confirm.js:33
 msgid "New password"
 msgstr "Neues Passwort"
 
-#: account/static/account/js/account.js:162
+#: account/static/account/js/account.js:164
 #: account/static/account/js/password_reset_confirm.js:39
 msgid "Retype new password"
 msgstr "Neues Passwort erneut eingeben"
 
-#: account/static/account/js/account.js:169
+#: account/static/account/js/account.js:171
 msgid "Change password"
 msgstr "Passwort ändern"
 
-#: account/static/account/js/account.js:182
+#: account/static/account/js/account.js:184
 msgid "New passwords are not the same"
 msgstr "Neue Passwörter sind nicht gleich"
 
-#: account/static/account/js/account.js:249
+#: account/static/account/js/account.js:251
 msgid "Failed to retrieve user info from server"
 msgstr "Fehler beim Abrufen der Benutzerinformationen vom Server"
 
-#: account/static/account/js/account.js:263
+#: account/static/account/js/account.js:265
 msgid "Password changed"
 msgstr "Passwort geändert"
 
-#: account/static/account/js/account.js:271
+#: account/static/account/js/account.js:273
 msgid "Password change failed"
 msgstr "Passwort ändern fehlgeschlagen"
 
@@ -222,7 +221,9 @@ msgstr "Konnte kein neues Passwort einrichten"
 
 #: account/static/account/js/password_reset_email_sent.js:39
 msgid "Password reset confirmation has been sent to your e-mail"
-msgstr "Die Bestätigung zum Zurücksetzen des Passworts wurde an Ihre E-Mail gesendet"
+msgstr ""
+"Die Bestätigung zum Zurücksetzen des Passworts wurde an Ihre E-Mail "
+"gesendet"
 
 #: account/templates/account.html.j2:3
 msgid "Profile"
@@ -240,7 +241,8 @@ msgstr "Konnte keine Bestätigung zum Zurücksetzen des Passworts senden"
 
 #: account/templates/password_reset_email.html.j2:1
 #, python-format
-msgid "\n"
+msgid ""
+"\n"
 "Someone asked to reset password for %(email_)s\n"
 "Follow the link below\n"
 msgstr ""
@@ -270,3 +272,4 @@ msgstr "Passwort zurücksetzen"
 
 #~ msgid "Language change failed"
 #~ msgstr "Sprachänderung fehlgeschlagen"
+

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Schoolmate 2.0\n"
 "Report-Msgid-Bugs-To: kks.pub@gmail.com\n"
-"POT-Creation-Date: 2022-02-03 16:38+0300\n"
+"POT-Creation-Date: 2022-02-20 23:21+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,31 +17,31 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.9.1\n"
 
-#: news/apps.py:23 news/models.py:48
+#: news/apps.py:23 news/models.py:68
 msgid "News"
 msgstr ""
 
-#: news/models.py:28
+#: news/models.py:32
 msgid "Author"
 msgstr ""
 
-#: news/models.py:31
+#: news/models.py:38
 msgid "Creation date"
 msgstr ""
 
-#: news/models.py:33
+#: news/models.py:44
 msgid "Last modification date"
 msgstr ""
 
-#: news/models.py:35
+#: news/models.py:50
 msgid "Title"
 msgstr ""
 
-#: news/models.py:37
+#: news/models.py:56
 msgid "Content"
 msgstr ""
 
-#: news/models.py:47
+#: news/models.py:67
 msgid "Article"
 msgstr ""
 
