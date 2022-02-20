@@ -61,7 +61,7 @@ var passwdButton = {
     view: "button", value: gettext("Forgot password"),
     name: "forgot_password_btn", id: "forgot_password_btn",
     href: URL_PASSWD_RESET,
-    click: function() {webix.send(this.config.href, {}, "GET");},
+    click: function() { webix.send(this.config.href, {}, "GET"); },
     minWidth: 165, width: 170, minHeight: 28, height: 30
 };
 

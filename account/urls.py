@@ -65,5 +65,6 @@ urlpatterns = [
 
     # API
     path('user/', views.user),
-    path('user/info/', views.UserInfo.as_view())
+    path('user/info/', views.UserInfo.as_view()),
+    path('user/settings/', views.UserSettings.as_view())
 ]

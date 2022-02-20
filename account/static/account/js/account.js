@@ -19,9 +19,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //
 // General
 //
-var URL_USER_INFO = "/profile/user/info/";
 var URL_PASSWD_CHANGE = "/profile/password_change/";
 var URL_PASSWD_CHANGE_DONE = "/profile/password_change/done/";
+
+var URL_USER_INFO = "/profile/user/info/";
+var URL_USER_SETTINGS = "/profile/user/settings/";
 
 //
 // Widget description
@@ -79,10 +81,10 @@ var personalInfoBlock = {
     }
 };
 
-function patchUserInfo(newv, oldv, source) {
+function changeUserSettings(newv, oldv, source) {
     var payload = {};
     payload[this.config.name] = newv;
-    webix.ajax().headers(headers).patch(URL_USER_INFO, payload, {
+    webix.ajax().headers(headers).patch(URL_USER_SETTINGS, payload, {
         success: function(text, data, xhr) {
             webix.message({
                 text: gettext("Settings changed"),
@@ -116,14 +118,14 @@ var settingsBlock = {
                         view: "select", label: gettext("Language"), value: "",
                         name: "language", id: "language_select",
                         labelWidth: piFormLabelWidth, options: [], on: {
-                            onChange: patchUserInfo
+                            onChange: changeUserSettings
                         }
                     },
                     {
                         view: "select", label: gettext("Skin"), value: "",
                         name: "skin", id: "skin_select",
                         labelWidth: piFormLabelWidth, options: [], on: {
-                            onChange: patchUserInfo
+                            onChange: changeUserSettings
                         }
                     }
                 ]

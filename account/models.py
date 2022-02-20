@@ -23,24 +23,40 @@ from school import models as school_models
 
 
 class SchoolUser(auth_models.AbstractUser):
-    """Extended version of user model
+    """Extended version of Django's user model
     """
-    patronymic_name = models.CharField(max_length=254, blank=True, null=True,
-                                       verbose_name=_('Patronymic name'))
-    birth_date = models.DateField(blank=True, null=True,
-                                  verbose_name=_('Date of birth'))
+    patronymic_name = models.CharField(
+        blank=True,
+        null=True,
+        max_length=254,
+        verbose_name=_('Patronymic name')
+    )
+    birth_date = models.DateField(
+        blank=True,
+        null=True,
+        verbose_name=_('Date of birth')
+    )
     school_form = models.ForeignKey(
-        school_models.SchoolForm, blank=True, null=True,
-        on_delete=models.DO_NOTHING, verbose_name=_('School form')
+        school_models.SchoolForm,
+        blank=True,
+        null=True,
+        on_delete=models.DO_NOTHING,
+        verbose_name=_('School form')
     )
     language = models.CharField(
-        max_length=9, blank=False, null=False,
-        choices=settings.LANGUAGES, default=settings.LANGUAGE_CODE,
+        blank=False,
+        null=False,
+        max_length=9,
+        choices=settings.LANGUAGES,
+        default=settings.LANGUAGE_CODE,
         verbose_name=_('Language')
     )
     skin = models.CharField(
-        max_length=33, blank=False, null=False,
-        choices=settings.SKINS, default=settings.DEFAULT_SKIN,
+        blank=False,
+        null=False,
+        max_length=33,
+        choices=settings.SKINS,
+        default=settings.DEFAULT_SKIN,
         verbose_name=_('Skin')
     )
 
