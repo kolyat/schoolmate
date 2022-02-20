@@ -48,7 +48,7 @@ class Record(views.APIView):
     def get(self, request, *args, **kwargs):
         """Retrieve timetable with diary records for specified date.
 
-        *Success response*: `200 OK`
+        *Success response*: `200 OK`.
 
         *Error response*: `424 FAILED DEPENDENCY` if current user is not
         assigned to any of school forms.
@@ -193,7 +193,7 @@ class Record(views.APIView):
         *Error responses*: `400 BAD REQUEST`
         - `{"lesson_number": "Number of lesson must be specified"}`
         - `{"lesson_number": "Must be integer"}`
-        - `{"lesson_number": "Must be in range from 1 to 7 inclusive"},`
+        - `{"lesson_number": "Must be in range from 1 to 7 inclusive"}`
         - `{"subject": "Given school subject does not exist"}`
         """
         _date = datetime.date(kwargs['year'], kwargs['month'], kwargs['day'])

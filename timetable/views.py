@@ -38,10 +38,10 @@ class Timetable(View):
 
 @method_decorator(auth_decorators.login_required, name='dispatch')
 class TimetableData(generics.ListAPIView):
-    """Retrieve timetable
+    """Retrieve timetable.
 
-    Required URL parameters:
-    - form_number=[integer] (0 – get whole timetable for all school forms)
+    *Required URL parameter*: `form_number=[integer]` (0 – get whole timetable
+    for all school forms).
     """
     serializer_class = serializers.Timetable
 

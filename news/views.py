@@ -26,7 +26,7 @@ from . import models, serializers
 class Article(generics.ListAPIView):
     """Retrieve list of news (latest 300 articles by default).
 
-    Number of articles is set in `LATEST_NEWS_COUNT` in project's `settings.py`
+    Number of articles is set in `LATEST_NEWS_COUNT` in project's `settings.py`.
     """
     serializer_class = serializers.Article
     queryset = models.Article.objects.all()[:settings.LATEST_NEWS_COUNT]
