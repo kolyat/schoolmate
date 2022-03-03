@@ -1,4 +1,4 @@
-=== 2.0 ()
+=== 2.0 (2022-03-03)
 
 * Skin support
 * Major layout improvements for desktop and mobile devices
