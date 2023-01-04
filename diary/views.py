@@ -1,5 +1,5 @@
 # Schoolmate - school management system
-# Copyright (C) 2018-2022  Kirill 'Kolyat' Kiselnikov  <kks.pub@gmail.com>
+# Copyright (C) 2018-2023  Kirill 'Kolyat' Kiselnikov  <kks.pub@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -57,7 +57,7 @@ class Record(views.APIView):
         [
             {
                 "id": 1,
-                "date": "2022-02-29",
+                "date": "2023-02-29",
                 "lesson_number": 1,
                 "subject": "Algebra",
                 "text": "Some records here",
@@ -66,7 +66,7 @@ class Record(views.APIView):
             },
             {
                 "id": 2,
-                "date": "2022-02-29",
+                "date": "2023-02-29",
                 "lesson_number": 2,
                 "subject": "Physics",
                 "text": "",
@@ -75,7 +75,7 @@ class Record(views.APIView):
             },
             {
                 "id": 3,
-                "date": "2022-02-29",
+                "date": "2023-02-29",
                 "lesson_number": 3,
                 "subject": "Chemistry",
                 "text": "Some records here",
@@ -84,7 +84,7 @@ class Record(views.APIView):
             },
             {
                 "id": 4,
-                "date": "2022-02-29",
+                "date": "2023-02-29",
                 "lesson_number": 4,
                 "subject": "Biology",
                 "text": "",
@@ -93,7 +93,7 @@ class Record(views.APIView):
             },
             {
                 "id": 5,
-                "date": "2022-02-29",
+                "date": "2023-02-29",
                 "lesson_number": 5,
                 "subject": "P.E.",
                 "text": "",
@@ -102,7 +102,7 @@ class Record(views.APIView):
             },
             {
                 "id": 6,
-                "date": "2022-02-29",
+                "date": "2023-02-29",
                 "lesson_number": 6,
                 "subject": " ",
                 "text": "",
@@ -111,7 +111,7 @@ class Record(views.APIView):
             },
             {
                 "id": 7,
-                "date": "2022-02-29",
+                "date": "2023-02-29",
                 "lesson_number": 7,
                 "subject": " ",
                 "text": "",
@@ -183,7 +183,7 @@ class Record(views.APIView):
         ```json
         {
             "user": "sam",
-            "date": "2022-02-29",
+            "date": "2023-02-29",
             "lesson_number": 3,
             "subject": "Chemistry",
             "text": "New records here"

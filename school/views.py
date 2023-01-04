@@ -1,5 +1,5 @@
 # Schoolmate - school management system
-# Copyright (C) 2018-2022  Kirill 'Kolyat' Kiselnikov  <kks.pub@gmail.com>
+# Copyright (C) 2018-2023  Kirill 'Kolyat' Kiselnikov  <kks.pub@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -42,8 +42,8 @@ class Status(views.APIView):
         "date_description": [
             {
                 "description": "2nd semester",
-                "start_date": "2022-01-13",
-                "end_date": "2022-05-25",
+                "start_date": "2023-01-13",
+                "end_date": "2023-05-25",
                 "period_type": "Q"
             }
         ],
@@ -54,7 +54,7 @@ class Status(views.APIView):
                 "end_time": "13:50:00"
             }
         ],
-        "year": 2022,
+        "year": 2023,
         "month": 2,
         "day": 18,
         "hour": 13,
